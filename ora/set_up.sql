@@ -39,7 +39,8 @@ AS
         r.GRANTED_ROLE AS Role,
         u.ACCOUNT_STATUS AS Status
     FROM dba_users u
-    LEFT JOIN dba_role_privs r ON u.USERNAME = r.GRANTEE;
+    LEFT JOIN dba_role_privs r ON u.USERNAME = r.GRANTEE
+    ORDER BY UserID;
 /
 --- Lấy các quyền có trên hệ thống
 CREATE OR REPLACE VIEW V_DETAIL_USER_2
@@ -47,7 +48,8 @@ AS
     SELECT distinct
         GRANTEE AS User_Name, 
         PRIVILEGE AS Privileges
-    FROM DBA_SYS_PRIVS;
+    FROM DBA_SYS_PRIVS
+    ORDER BY User_Name;
 /
 --- Lấy các thông tin trên các ọbject
 CREATE OR REPLACE VIEW V_DETAIL_USER_3
@@ -58,7 +60,8 @@ AS
         tp.TABLE_NAME AS Object_Name,
         tp.TYPE AS Type
     FROM DBA_TAB_PRIVS tp
-    JOIN DBA_ROLE_PRIVS rp ON tp.GRANTEE = rp.GRANTED_ROLE;
+    JOIN DBA_ROLE_PRIVS rp ON tp.GRANTEE = rp.GRANTED_ROLE
+    ORDER BY User_Name;
 /
 -- Lấy các dòng thông tin update trên dòng
 -- Update trên toàn bộ bảng (không ghi cụ thể dòng) được thể hiện ở bảng trên
@@ -67,20 +70,13 @@ AS
     SELECT DISTINCT
         rp.GRANTEE AS User_Name,
         cp.PRIVILEGE AS Privilege,
-        cp.TABLE_NAME AS Table_Name,
-        cp.COLUMN_NAME AS Column_Name
+        cp.COLUMN_NAME AS Column_Name,
+        cp.TABLE_NAME AS Table_Name
     FROM DBA_COL_PRIVS cp
     JOIN DBA_ROLE_PRIVS rp ON cp.GRANTEE = rp.GRANTED_ROLE
+    ORDER BY User_Name;
     --WHERE INSTR(cp.TABLE_NAME, '$') = 0;
-
-
-
-
-
-
-
-
-
+/
 ----------------------
 -- Xem toàn bộ roles
 CREATE OR REPLACE VIEW VIEW_ALL_ROLES
@@ -89,7 +85,41 @@ AS
     ROLE_ID AS RoleID,
     ROLE AS Role_Name,
     PASSWORD_REQUIRED AS Password_Required
-    FROM dba_roles;
+    FROM dba_roles
+    ORDER BY RoleID;
+/
 
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE OR REPLACE VIEW TEST AS
+SELECT *
+FROM V_DETAIL_USER_4 
+
+----------------
+-- nơi thử nghiệm (thật ra nó là xem các quyền trên các table nhưng bây giờ nó là nơi thử nghiệm)
+CREATE OR REPLACE VIEW V_Privs_On_Role AS
+SELECT *
+FROM DISTINCT 
+        GRANTEE as ROLE, 
+        TABLE_NAME as Object_name, 
+        PRIVILEGE
+FROM DBA_TAB_PRIVS
+WHERE GRANTEE IN (
+    SELECT DISTINCT role
+    FROM DBA_ROLES
+) 
+ORDER BY GRANTEE;
+
+-----------------------------------
 
 
