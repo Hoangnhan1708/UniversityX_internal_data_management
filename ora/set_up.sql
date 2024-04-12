@@ -44,7 +44,9 @@ AS
 --- Lấy các quyền có trên hệ thống
 CREATE OR REPLACE VIEW V_DETAIL_USER_2
 AS
-    SELECT GRANTEE, PRIVILEGE
+    SELECT distinct
+        GRANTEE AS User_Name, 
+        PRIVILEGE AS Privileges
     FROM DBA_SYS_PRIVS;
 /
 --- Lấy các thông tin trên các ọbject
