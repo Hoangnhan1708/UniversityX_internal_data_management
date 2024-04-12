@@ -36,8 +36,6 @@
             label10 = new Label();
             label3 = new Label();
             textBox_addUser_confirmPassword = new TextBox();
-            label4 = new Label();
-            checkBox1 = new CheckBox();
             add_user_btn = new Button();
             close_btn = new Button();
             panel1.SuspendLayout();
@@ -122,26 +120,6 @@
             textBox_addUser_confirmPassword.TabIndex = 42;
             textBox_addUser_confirmPassword.UseSystemPasswordChar = true;
             // 
-            // label4
-            // 
-            label4.Anchor = AnchorStyles.Top;
-            label4.AutoSize = true;
-            label4.Location = new Point(197, 332);
-            label4.Name = "label4";
-            label4.Size = new Size(39, 20);
-            label4.TabIndex = 43;
-            label4.Text = "Lock";
-            // 
-            // checkBox1
-            // 
-            checkBox1.Anchor = AnchorStyles.Top;
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(262, 335);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(18, 17);
-            checkBox1.TabIndex = 44;
-            checkBox1.UseVisualStyleBackColor = true;
-            // 
             // add_user_btn
             // 
             add_user_btn.Anchor = AnchorStyles.Top;
@@ -183,8 +161,6 @@
             ClientSize = new Size(800, 450);
             Controls.Add(close_btn);
             Controls.Add(add_user_btn);
-            Controls.Add(checkBox1);
-            Controls.Add(label4);
             Controls.Add(textBox_addUser_confirmPassword);
             Controls.Add(label3);
             Controls.Add(textBox_addUser_username);
@@ -211,8 +187,6 @@
         private Label label10;
         private Label label3;
         private TextBox textBox_addUser_confirmPassword;
-        private Label label4;
-        private CheckBox checkBox1;
         private Button add_user_btn;
         private Button close_btn;
     }
