@@ -68,14 +68,14 @@ namespace portal_application_project
             {
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
-                    string query = "SELECT username FROM all_users"; // Thay thế ROLENAME tại đây
+                    string query = "SELECT role FROM V_DETAIL_USER_1"; // Thay thế ROLENAME tại đây
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
                         connection.Open();
                         OracleDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
-                            string roleName = reader["username"].ToString(); // Thay thế ROLENAME tại đây
+                            string roleName = reader["role"].ToString(); // Thay thế ROLENAME tại đây
                             // Thêm dòng mới với roleName vào cột đầu tiên
                             dataGridView_granted_roles.Rows.Add(roleName);
                         }

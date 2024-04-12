@@ -135,6 +135,7 @@
             add_user_btn.TabIndex = 45;
             add_user_btn.Text = "Add";
             add_user_btn.UseVisualStyleBackColor = false;
+            add_user_btn.Click += add_user_btn_Click;
             // 
             // close_btn
             // 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ExecuteSQLFromFile;
 using Oracle.ManagedDataAccess.Client;
 
 namespace portal_application_project
@@ -20,6 +21,10 @@ namespace portal_application_project
 
             InitializeComponent();
             this.connectionString = _connectionString;
+            //string filePath = "C:\\Users\\User\\OneDrive - VNU-HCMUS\\ATBM\\project\\portal_application_project\\ora\\set_up.sql";
+
+            //SQLFileExecutor executor = new SQLFileExecutor(this.connectionString);
+            //executor.ExecuteSQLFromFile(filePath);
 
         }
 
@@ -60,7 +65,7 @@ namespace portal_application_project
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     connection.Open();
-                    OracleCommand command = new OracleCommand("SELECT * FROM all_users", connection);
+                    OracleCommand command = new OracleCommand("SELECT * FROM VIEW_ALL_ROLES", connection);
                     OracleDataAdapter adapter = new OracleDataAdapter(command);
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
@@ -76,7 +81,7 @@ namespace portal_application_project
 
         private void new_user_btn_Click(object sender, EventArgs e)
         {
-            New_User_Form newUserForm = new New_User_Form();
+            New_User_Form newUserForm = new New_User_Form(connectionString);
             newUserForm.ShowDialog();
         }
 
@@ -96,7 +101,8 @@ namespace portal_application_project
                 // Lấy cell hiện tại
                 DataGridViewCell selectedCell = dataGridView_home_users.SelectedCells[0];
 
-                if (selectedCell.OwningColumn.Name == "USERNAME")
+
+                if (selectedCell.OwningColumn.Name == "NAME")
                 {
                     if (selectedCell.Value != null)
                     {
@@ -180,7 +186,7 @@ namespace portal_application_project
                 // Lấy cell hiện tại
                 DataGridViewCell selectedCell = dataGridView_home_users.SelectedCells[0];
 
-                if (selectedCell.OwningColumn.Name == "USERNAME")
+                if (selectedCell.OwningColumn.Name == "NAME")
                 {
                     if (selectedCell.Value != null)
                     {
@@ -263,31 +269,35 @@ namespace portal_application_project
                 // Lấy cell hiện tại
                 DataGridViewCell selectedCell = dataGridView_home_users.SelectedCells[0];
 
-                // Kiểm tra xem cell hiện tại có giá trị không
-                if (selectedCell.Value != null)
+                if (selectedCell.OwningColumn.Name == "NAME")
                 {
-                    // Lấy giá trị của cell
-                    object usernameSelected = selectedCell.Value;
-
-                    DialogResult result = MessageBox.Show("Bạn có muốn xóa user " + usernameSelected.ToString() + " không?", "Xác nhận", MessageBoxButtons.YesNo);
-
-                    // Kiểm tra kết quả
-                    if (result == DialogResult.Yes)
+                    if (selectedCell.Value != null)
                     {
-                        // Người dùng đã chọn Yes
-                        MessageBox.Show("Đã xóa thành công!");
+                        // Lấy giá trị của cell
+                        object usernameSelected = selectedCell.Value;
+
+                        DialogResult result = MessageBox.Show("Bạn có muốn xóa user " + usernameSelected.ToString() + " không?", "Xác nhận", MessageBoxButtons.YesNo);
+
+                        // Kiểm tra kết quả
+                        if (result == DialogResult.Yes)
+                        {
+                            // Người dùng đã chọn Yes
+                            MessageBox.Show("Đã xóa thành công!");
+                        }
+                        else
+                        {
+                            // Người dùng đã chọn No hoặc đóng hộp thoại
+                            MessageBox.Show("Bạn đã hủy bỏ");
+                        }
                     }
                     else
                     {
-                        // Người dùng đã chọn No hoặc đóng hộp thoại
-                        MessageBox.Show("Bạn đã hủy bỏ");
+                        // Cell không có giá trị
+                        MessageBox.Show("Ô được chọn không có giá trị.");
                     }
                 }
-                else
-                {
-                    // Cell không có giá trị
-                    MessageBox.Show("Ô được chọn không có giá trị.");
-                }
+
+
             }
             else
             {

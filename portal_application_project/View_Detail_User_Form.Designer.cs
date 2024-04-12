@@ -84,7 +84,7 @@
             label10.Anchor = AnchorStyles.Top;
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(451, 87);
+            label10.Location = new Point(77, 79);
             label10.Name = "label10";
             label10.Size = new Size(86, 28);
             label10.TabIndex = 49;
@@ -95,7 +95,7 @@
             label2.Anchor = AnchorStyles.Top;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(451, 135);
+            label2.Location = new Point(77, 127);
             label2.Name = "label2";
             label2.Size = new Size(73, 28);
             label2.TabIndex = 50;
@@ -106,7 +106,7 @@
             label3.Anchor = AnchorStyles.Top;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(451, 182);
+            label3.Location = new Point(77, 174);
             label3.Name = "label3";
             label3.Size = new Size(76, 28);
             label3.TabIndex = 51;
@@ -117,7 +117,7 @@
             label4.Anchor = AnchorStyles.Top;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(451, 235);
+            label4.Location = new Point(77, 227);
             label4.Name = "label4";
             label4.Size = new Size(59, 28);
             label4.TabIndex = 52;
@@ -128,7 +128,7 @@
             label5.Anchor = AnchorStyles.Top;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(451, 283);
+            label5.Location = new Point(77, 275);
             label5.Name = "label5";
             label5.Size = new Size(109, 28);
             label5.TabIndex = 53;
@@ -139,7 +139,7 @@
             label_userID.Anchor = AnchorStyles.Top;
             label_userID.AutoSize = true;
             label_userID.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label_userID.Location = new Point(580, 87);
+            label_userID.Location = new Point(206, 79);
             label_userID.Name = "label_userID";
             label_userID.Size = new Size(87, 28);
             label_userID.TabIndex = 54;
@@ -150,7 +150,7 @@
             label_name.Anchor = AnchorStyles.Top;
             label_name.AutoSize = true;
             label_name.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label_name.Location = new Point(580, 135);
+            label_name.Location = new Point(206, 127);
             label_name.Name = "label_name";
             label_name.Size = new Size(87, 28);
             label_name.TabIndex = 55;
@@ -161,7 +161,7 @@
             label_status.Anchor = AnchorStyles.Top;
             label_status.AutoSize = true;
             label_status.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label_status.Location = new Point(580, 182);
+            label_status.Location = new Point(206, 174);
             label_status.Name = "label_status";
             label_status.Size = new Size(87, 28);
             label_status.TabIndex = 56;
@@ -172,7 +172,7 @@
             label_Role.Anchor = AnchorStyles.Top;
             label_Role.AutoSize = true;
             label_Role.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label_Role.Location = new Point(580, 235);
+            label_Role.Location = new Point(206, 227);
             label_Role.Name = "label_Role";
             label_Role.Size = new Size(87, 28);
             label_Role.TabIndex = 57;

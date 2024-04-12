@@ -1,4 +1,5 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,10 @@ namespace portal_application_project
     {
         private string username;
         private string connectionString;
+        private string userID;
+        private string status;
+        private string roles;
+        
         public View_Detail_User_Form(string username, string connectionString)
         {
             InitializeComponent();
@@ -24,12 +29,68 @@ namespace portal_application_project
 
         private void View_Detail_User_Form_Load(object sender, EventArgs e)
         {
-            label_username_heading.Text = username;
+            LoadDataUserInfo();
             LoadDataSystemPrivileges();
             LoadDataObjectsPrivileges();
             LoadDataColumnsPrivileges();
 
         }
+
+        private void LoadDataUserInfo()
+        {
+
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+                    OracleCommand command = new OracleCommand("SELECT * FROM V_DETAIL_USER_1 WHERE Name = '" + username + "'", connection);
+                    OracleDataAdapter adapter = new OracleDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    // Duyệt qua từng dòng trong DataTable và thêm vào DataGridView
+                    int i = 0;
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        i++;
+                        if (i >= 4)
+                        {
+                            roles = roles + ",...";
+                            break;
+                        }
+                        userID = row["UserID"].ToString();
+
+                        if (roles == null)
+                        {
+                            roles = roles + row["Role"].ToString();
+                        }
+                        else
+                        {
+                            roles = roles + ", " + row["Role"].ToString();
+                        }
+
+                        status = row["Status"].ToString();
+                    }
+                    label_username_heading.Text = username;
+                    label_userID.Text = userID;
+                    label_name.Text = username;
+                    label_status.Text = status;
+                    
+                    if (roles == "")
+                    {
+                        roles = "Have no roles to show";
+                    }
+                    
+                    label_Role.Text = roles;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
 
         private void LoadDataSystemPrivileges()
         {
@@ -38,7 +99,7 @@ namespace portal_application_project
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     connection.Open();
-                    OracleCommand command = new OracleCommand("SELECT * FROM all_users", connection);
+                    OracleCommand command = new OracleCommand("SELECT Privileges FROM V_DETAIL_USER_2 WHERE User_Name = '" + username + "'", connection);
                     OracleDataAdapter adapter = new OracleDataAdapter(command);
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
@@ -59,7 +120,7 @@ namespace portal_application_project
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     connection.Open();
-                    OracleCommand command = new OracleCommand("SELECT * FROM all_users", connection);
+                    OracleCommand command = new OracleCommand("SELECT Privilege,Object_Name,Type FROM V_DETAIL_USER_3 WHERE User_Name = '" + username + "'", connection);
                     OracleDataAdapter adapter = new OracleDataAdapter(command);
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
@@ -80,7 +141,7 @@ namespace portal_application_project
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     connection.Open();
-                    OracleCommand command = new OracleCommand("SELECT * FROM all_users", connection);
+                    OracleCommand command = new OracleCommand("SELECT Privilege,Column_Name,Table_Name FROM V_DETAIL_USER_4 WHERE User_Name = '" + username + "'", connection);
                     OracleDataAdapter adapter = new OracleDataAdapter(command);
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
