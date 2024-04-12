@@ -47,6 +47,36 @@ AS
     SELECT PRIVILEGE
     FROM DBA_SYS_PRIVS;
 /
+--- Lấy các thông tin trên các ọbject
+CREATE OR REPLACE VIEW V_DETAIL_USER_3
+AS
+    SELECT DISTINCT
+        rp.GRANTEE AS User_Name,
+        tp.PRIVILEGE AS Privilege,
+        tp.TABLE_NAME AS Object_Name,
+        tp.TYPE AS Type
+    FROM DBA_TAB_PRIVS tp
+    JOIN DBA_ROLE_PRIVS rp ON tp.GRANTEE = rp.GRANTED_ROLE;
+/
+-- Lấy các dòng thông tin update trên dòng
+-- Update trên toàn bộ bảng (không ghi cụ thể dòng) được thể hiện ở bảng trên
+CREATE OR REPLACE VIEW V_DETAIL_USER_4
+AS
+    SELECT DISTINCT
+        rp.GRANTEE AS User_Name,
+        cp.PRIVILEGE AS Privilege,
+        cp.TABLE_NAME AS Table_Name,
+        cp.COLUMN_NAME AS Column_Name
+    FROM DBA_COL_PRIVS cp
+    JOIN DBA_ROLE_PRIVS rp ON cp.GRANTEE = rp.GRANTED_ROLE
+    --WHERE INSTR(cp.TABLE_NAME, '$') = 0;
+
+
+
+
+
+
+
 
 
 ----------------------
@@ -59,6 +89,5 @@ AS
     PASSWORD_REQUIRED AS Password_Required
     FROM dba_roles;
 
------------------------------------
 
 
