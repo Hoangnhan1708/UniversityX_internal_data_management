@@ -1,4 +1,5 @@
-CREATE OR REPLACE VIEW VIEW_ALL_USERS
+-- Xem toàn bộ các user
+CREATE OR REPLACE VIEW V_ALL_USERS
 AS
     SELECT DISTINCT 
         u.USER_ID AS UserID,
@@ -11,7 +12,7 @@ AS
     LEFT JOIN dba_role_privs r ON u.USERNAME = r.GRANTEE 
     ORDER BY u.USER_ID;
 /
-----------------------
+-- Tạo user mới
 CREATE OR REPLACE PROCEDURE P_CREATE_USER(
     v_uname IN varchar,
     v_pass IN varchar)
@@ -27,7 +28,29 @@ BEGIN
     STRSQL := 'ALTER SESSION SET "_ORACLE_SCRIPT" = FALSE';
     EXECUTE IMMEDIATE(STRSQL);
 END P_CREATE_USER;
+/
+-- Xem chi tiết tài khoản
+--- Lấy id, tên, trạng thái và các roles
+CREATE OR REPLACE VIEW V_DETAIL_USER_1
+AS
+    SELECT DISTINCT
+        u.USER_ID AS UserID,
+        u.USERNAME AS Name,
+        r.GRANTED_ROLE AS Role,
+        u.ACCOUNT_STATUS AS Status
+    FROM dba_users u
+    LEFT JOIN dba_role_privs r ON u.USERNAME = r.GRANTEE;
+/
+--- Lấy các quyền có trên hệ thống
+CREATE OR REPLACE VIEW V_DETAIL_USER_2
+AS
+    SELECT PRIVILEGE
+    FROM DBA_SYS_PRIVS;
+/
+
+
 ----------------------
+-- Xem toàn bộ roles
 CREATE OR REPLACE VIEW VIEW_ALL_ROLES
 AS
     SELECT DISTINCT
@@ -35,40 +58,6 @@ AS
     ROLE AS Role_Name,
     PASSWORD_REQUIRED AS Password_Required
     FROM dba_roles;
-----------------------
-
-
-
----------------
-CREATE OR REPLACE VIEW VIEW_PRIVILEGES_USER
-AS
-SELECT 
-    rp.grantee AS username,
-    rp.granted_role AS role_name,
-    NULL AS table_name,
-    NULL AS column_name,
-    NULL AS privilege,
-    sp.privilege AS system_privilege
-FROM 
-    dba_role_privs rp
-LEFT JOIN 
-    dba_sys_privs sp 
-ON 
-    rp.grantee = sp.grantee;
-/
-----------------
-CREATE OR REPLACE VIEW TEST AS
-SELECT *
-FROM DISTINCT 
-        GRANTEE as ROLE, 
-        TABLE_NAME as Object_name, 
-        PRIVILEGE
-FROM DBA_TAB_PRIVS
-WHERE GRANTEE IN (
-    SELECT DISTINCT role
-    FROM DBA_ROLES
-) 
-ORDER BY GRANTEE;
 
 -----------------------------------
 
