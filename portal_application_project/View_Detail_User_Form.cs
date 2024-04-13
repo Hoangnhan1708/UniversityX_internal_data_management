@@ -71,7 +71,7 @@ namespace portal_application_project
 
                         status = row["Status"].ToString();
                     }
-                    label_username_heading.Text = username;
+                    label_username_heading.Text = username; 
                     label_userID.Text = userID;
                     label_name.Text = username;
                     label_status.Text = status;

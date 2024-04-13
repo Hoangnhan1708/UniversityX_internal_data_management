@@ -96,6 +96,8 @@ namespace portal_application_project
 
         private void LoadDataGrantedRoles()
         {
+            // Xóa tất cả các dòng dữ liệu trong DataGridView
+            dataGridView_granted_roles.Rows.Clear();
             try
             {
 

@@ -22,10 +22,10 @@ namespace portal_application_project
 
             InitializeComponent();
             this.connectionString = _connectionString;
-            //string filePath = "C:\\Users\\User\\OneDrive - VNU-HCMUS\\ATBM\\project\\portal_application_project\\ora\\set_up.sql";
+            string filePath = "C:\\Users\\User\\OneDrive - VNU-HCMUS\\ATBM\\project\\portal_application_project\\ora\\set_up.sql";
 
-            //SQLFileExecutor executor = new SQLFileExecutor(this.connectionString);
-            //executor.ExecuteSQLFromFile(filePath);
+            SQLFileExecutor executor = new SQLFileExecutor(this.connectionString);
+            executor.ExecuteSQLFromFile(filePath);
 
         }
 
@@ -145,7 +145,7 @@ namespace portal_application_project
                 // Lấy cell hiện tại
                 DataGridViewCell selectedCell = dataGridView_home_roles.SelectedCells[0];
 
-                if (selectedCell.OwningColumn.Name == "USERNAME") // Thay thế thành ROLENAME
+                if (selectedCell.OwningColumn.Name == "ROLE_NAME") // Thay thế thành ROLENAME
                 {
                     if (selectedCell.Value != null)
                     {
@@ -167,7 +167,7 @@ namespace portal_application_project
                 }
                 else
                 {
-                    MessageBox.Show("Vui lòng chọn 1 tên user trong cột USERNAME để xem chi tiết!");
+                    MessageBox.Show("Vui lòng chọn 1 tên role trong cột ROLE_NAME để xem chi tiết!");
                 }
 
 
@@ -175,7 +175,7 @@ namespace portal_application_project
             else
             {
                 // Không có cell nào được chọn
-                MessageBox.Show("Vui lòng chọn 1 tên user trong cột USERNAME để xem chi tiết!");
+                MessageBox.Show("Vui lòng chọn 1 tên role trong cột ROLE_NAME để xem chi tiết!");
             }
         }
 
