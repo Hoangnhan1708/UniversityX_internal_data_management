@@ -58,6 +58,7 @@ namespace portal_application_project
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     dataGridView_home_users.DataSource = dataTable;
+                    connection.Close();
 
                 }
             }
@@ -81,7 +82,7 @@ namespace portal_application_project
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     dataGridView_home_roles.DataSource = dataTable;
-
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -95,7 +96,6 @@ namespace portal_application_project
             New_User_Form newUserForm = new New_User_Form(connectionString);
             newUserForm.ShowDialog();
         }
-
 
 
         private void new_role_btn_Click(object sender, EventArgs e)
@@ -311,6 +311,7 @@ namespace portal_application_project
                                         command.ExecuteNonQuery();
 
                                         MessageBox.Show("Xóa user thành công!");
+                                        connection.Close();
                                     }
                                 }
                             }
@@ -381,6 +382,7 @@ namespace portal_application_project
 
                                     MessageBox.Show("Xóa role thành công!");
                                 }
+                                connection.Close();
                             }
                         }
                         catch (Exception ex)

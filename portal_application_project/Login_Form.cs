@@ -30,6 +30,7 @@ namespace portal_application_project
                     Home_Form homeForm = new Home_Form(connectionString);
                     homeForm.Show();
                     this.Hide();
+                    connection.Close();
                 }
             }
             catch (Exception ex)

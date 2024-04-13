@@ -56,7 +56,7 @@ namespace portal_application_project
                     label_passwordRequired.Text = dataTable.Rows[0]["Password"].ToString();
                     label_inherited.Text = dataTable.Rows[0]["Inherited"].ToString();
 
-
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -77,7 +77,7 @@ namespace portal_application_project
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     dataGridView_role_system_privileges.DataSource = dataTable;
-
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -98,7 +98,7 @@ namespace portal_application_project
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     dataGridView_role_object_privileges.DataSource = dataTable;
-
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -119,7 +119,7 @@ namespace portal_application_project
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     dataGridView_role_columns_privileges.DataSource = dataTable;
-
+                    connection.Close();
                 }
             }
             catch (Exception ex)

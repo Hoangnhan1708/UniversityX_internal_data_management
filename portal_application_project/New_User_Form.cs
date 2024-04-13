@@ -53,6 +53,7 @@ namespace portal_application_project
 
                             MessageBox.Show("Tạo user thành công!");
                         }
+                        connection.Close();
                     }
                 }
                 catch (Exception ex)

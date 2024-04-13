@@ -156,6 +156,7 @@ namespace portal_application_project
 
                             }
                         }
+                        connection.Close();
                     }
                 }
                 dataTableTemp = CreateDataTableFromDataGridView(dataGridView_granted_roles);
@@ -448,6 +449,7 @@ namespace portal_application_project
 
 
                         }
+                        connection.Close();
                     }
 
 
@@ -533,6 +535,7 @@ namespace portal_application_project
                             // Thêm dòng mới với roleName vào cột đầu tiên
                             dataGridView_object_privileges.Rows.Add(_object, type);
                         }
+                        connection.Close();
                     }
                 }
             }
@@ -595,6 +598,7 @@ namespace portal_application_project
                             string columnName = row["user_id"].ToString(); // Thay thế COLUMN tại đây
                             dataGridView_column_privileges.Rows.Add(tableName, columnName);
                         }
+                        connection.Close();
                     }
                 }
             }

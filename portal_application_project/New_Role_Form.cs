@@ -50,6 +50,7 @@ namespace portal_application_project
 
                         MessageBox.Show("Tạo Role thành công!");
                     }
+                    connection.Close();
                 }
             }
             catch (Exception ex)
