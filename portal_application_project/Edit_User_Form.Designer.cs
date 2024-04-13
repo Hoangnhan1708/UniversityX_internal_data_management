@@ -33,7 +33,7 @@
             tabControl_edit_user = new TabControl();
             tabPage_grantedRoles = new TabPage();
             close_btn = new Button();
-            new_user_btn = new Button();
+            apply_edit_grantedRoles_btn = new Button();
             dataGridView_granted_roles = new DataGridView();
             tabPage_systemPrivileges = new TabPage();
             close_btn_systemPrivs = new Button();
@@ -48,6 +48,7 @@
             button5 = new Button();
             button6 = new Button();
             dataGridView_column_privileges = new DataGridView();
+            refresh_btn = new Button();
             panel1.SuspendLayout();
             tabControl_edit_user.SuspendLayout();
             tabPage_grantedRoles.SuspendLayout();
@@ -98,8 +99,9 @@
             // 
             // tabPage_grantedRoles
             // 
+            tabPage_grantedRoles.Controls.Add(refresh_btn);
             tabPage_grantedRoles.Controls.Add(close_btn);
-            tabPage_grantedRoles.Controls.Add(new_user_btn);
+            tabPage_grantedRoles.Controls.Add(apply_edit_grantedRoles_btn);
             tabPage_grantedRoles.Controls.Add(dataGridView_granted_roles);
             tabPage_grantedRoles.Location = new Point(4, 31);
             tabPage_grantedRoles.Name = "tabPage_grantedRoles";
@@ -126,21 +128,22 @@
             close_btn.UseVisualStyleBackColor = false;
             close_btn.Click += close_btn_Click;
             // 
-            // new_user_btn
+            // apply_edit_grantedRoles_btn
             // 
-            new_user_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            new_user_btn.BackColor = SystemColors.ButtonHighlight;
-            new_user_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
-            new_user_btn.FlatAppearance.BorderSize = 3;
-            new_user_btn.FlatStyle = FlatStyle.Flat;
-            new_user_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            new_user_btn.ForeColor = SystemColors.HotTrack;
-            new_user_btn.Location = new Point(709, 455);
-            new_user_btn.Name = "new_user_btn";
-            new_user_btn.Size = new Size(138, 50);
-            new_user_btn.TabIndex = 1;
-            new_user_btn.Text = "Apply";
-            new_user_btn.UseVisualStyleBackColor = false;
+            apply_edit_grantedRoles_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            apply_edit_grantedRoles_btn.BackColor = SystemColors.ButtonHighlight;
+            apply_edit_grantedRoles_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            apply_edit_grantedRoles_btn.FlatAppearance.BorderSize = 3;
+            apply_edit_grantedRoles_btn.FlatStyle = FlatStyle.Flat;
+            apply_edit_grantedRoles_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            apply_edit_grantedRoles_btn.ForeColor = SystemColors.HotTrack;
+            apply_edit_grantedRoles_btn.Location = new Point(709, 455);
+            apply_edit_grantedRoles_btn.Name = "apply_edit_grantedRoles_btn";
+            apply_edit_grantedRoles_btn.Size = new Size(138, 50);
+            apply_edit_grantedRoles_btn.TabIndex = 1;
+            apply_edit_grantedRoles_btn.Text = "Apply";
+            apply_edit_grantedRoles_btn.UseVisualStyleBackColor = false;
+            apply_edit_grantedRoles_btn.Click += apply_edit_grantedRoles_btn_Click;
             // 
             // dataGridView_granted_roles
             // 
@@ -338,6 +341,23 @@
             dataGridView_column_privileges.Size = new Size(1077, 433);
             dataGridView_column_privileges.TabIndex = 0;
             // 
+            // refresh_btn
+            // 
+            refresh_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            refresh_btn.BackColor = SystemColors.ButtonHighlight;
+            refresh_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            refresh_btn.FlatAppearance.BorderSize = 3;
+            refresh_btn.FlatStyle = FlatStyle.Flat;
+            refresh_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            refresh_btn.ForeColor = SystemColors.HotTrack;
+            refresh_btn.Location = new Point(20, 459);
+            refresh_btn.Name = "refresh_btn";
+            refresh_btn.Size = new Size(128, 47);
+            refresh_btn.TabIndex = 48;
+            refresh_btn.Text = "Refresh";
+            refresh_btn.UseVisualStyleBackColor = false;
+            refresh_btn.Click += refresh_btn_Click;
+            // 
             // Edit_User_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -378,7 +398,7 @@
         private Label label10;
         private DataGridView dataGridView_object_privileges;
         private DataGridView dataGridView_column_privileges;
-        private Button new_user_btn;
+        private Button apply_edit_grantedRoles_btn;
         private Button close_btn;
         private Button close_btn_systemPrivs;
         private Button button2;
@@ -386,5 +406,6 @@
         private Button button4;
         private Button button5;
         private Button button6;
+        private Button refresh_btn;
     }
 }

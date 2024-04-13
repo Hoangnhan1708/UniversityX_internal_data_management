@@ -15,8 +15,11 @@ namespace portal_application_project
 {
     public partial class Edit_User_Form : Form
     {
-        string username;
-        string connectionString;
+        private string username;
+        private string connectionString;
+        private DataTable dataTableTemp;
+
+
         public Edit_User_Form(string username, string connectionString)
         {
             InitializeComponent();
@@ -42,7 +45,10 @@ namespace portal_application_project
             // Column privileges
             InitializeDataGridViewColumnPrivileges();
             LoadDataColumnPrivileges();
+
+
         }
+
 
         private void InitializeDataGridViewGrantedRoles()
         {
@@ -64,6 +70,30 @@ namespace portal_application_project
             dataGridView_granted_roles.Columns.Add(adminColumn);
         }
 
+        private DataTable CreateDataTableFromDataGridView(DataGridView dataGridView)
+        {
+            DataTable dataTable = new DataTable();
+
+            // Thêm các cột vào DataTable dựa trên cấu trúc của DataGridView
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                dataTable.Columns.Add(column.Name);
+            }
+
+            // Thêm dữ liệu từ DataGridView vào DataTable
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                DataRow newRow = dataTable.NewRow();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    newRow[cell.ColumnIndex] = cell.Value;
+                }
+                dataTable.Rows.Add(newRow);
+            }
+
+            return dataTable;
+        }
+
         private void LoadDataGrantedRoles()
         {
             try
@@ -71,11 +101,11 @@ namespace portal_application_project
 
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
-                    
+
                     string query = "SELECT Role_Name FROM V_ALL_ROLES"; // Thay thế ROLENAME tại đây
                     string sub_query = "SELECT Role FROM V_DETAIL_USER_1 WHERE Name = '" + username + "'";
-                    
-                    
+
+
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
                         connection.Open();
@@ -99,7 +129,7 @@ namespace portal_application_project
                                     if (userRole == roleName)
                                     {
                                         HasRole = true;
-                                        string sub2_query = "SELECT ADM FROM V_ADMIN_OPTION WHERE Role = 'CONNECT' AND UserName = 'SYS'";
+                                        string sub2_query = "SELECT ADM FROM V_ADMIN_OPTION WHERE Role = '" + userRole + "' AND UserName = '" + username + "'";
                                         using (OracleCommand sub2_command = new OracleCommand(sub2_query, connection))
                                         {
 
@@ -126,12 +156,202 @@ namespace portal_application_project
                         }
                     }
                 }
+                dataTableTemp = CreateDataTableFromDataGridView(dataGridView_granted_roles);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+
+        private DataTable CompareDataTables(DataTable dt1, DataTable dt2)
+        {
+            DataTable diffTable = new DataTable();
+            diffTable.Columns.Add("ROLENAME");
+            diffTable.Columns.Add("GRANTED", typeof(bool));
+            diffTable.Columns.Add("ADMIN", typeof(bool));
+
+            // Lặp qua từng dòng của dt1
+            foreach (DataRow row1 in dt1.Rows)
+            {
+                string roleName1 = row1["ROLENAME"].ToString();
+
+                // Lấy giá trị của cột "GRANTED" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
+                object grantedObj = row1["GRANTED"];
+                bool granted1;
+                if (grantedObj != null && bool.TryParse(grantedObj.ToString(), out bool grantedValue))
+                {
+                    granted1 = grantedValue;
+                }
+                else
+                {
+                    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                }
+
+                // Lấy giá trị của cột "ADMIN" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
+                object adminObj = row1["ADMIN"];
+                bool admin1;
+                if (adminObj != null && bool.TryParse(adminObj.ToString(), out bool adminValue))
+                {
+                    admin1 = adminValue;
+                }
+                else
+                {
+                    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                }
+
+                // Tìm dòng tương ứng trong dt2
+                DataRow[] foundRows = dt2.Select($"ROLENAME = '{roleName1}'");
+                if (foundRows.Length > 0)
+                {
+                    // Lấy giá trị của cột "GRANTED" và "ADMIN" từ dòng tương ứng trong dt2
+                    object grantedObj2 = foundRows[0]["GRANTED"];
+                    bool granted2;
+                    if (grantedObj2 != null && bool.TryParse(grantedObj2.ToString(), out bool grantedValue2))
+                    {
+                        granted2 = grantedValue2;
+                    }
+                    else
+                    {
+                        // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                        continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                    }
+
+                    object adminObj2 = foundRows[0]["ADMIN"];
+                    bool admin2;
+                    if (adminObj2 != null && bool.TryParse(adminObj2.ToString(), out bool adminValue2))
+                    {
+                        admin2 = adminValue2;
+                    }
+                    else
+                    {
+                        // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                        continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                    }
+
+                    // So sánh giá trị của các cột GRANTED và ADMIN
+                    if (granted1 != granted2 || admin1 != admin2)
+                    {
+                        // Nếu có sự thay đổi, thêm dòng vào diffTable
+                        DataRow diffRow = diffTable.NewRow();
+                        diffRow["ROLENAME"] = roleName1;
+                        diffRow["GRANTED"] = granted1;
+                        diffRow["ADMIN"] = admin1;
+                        diffTable.Rows.Add(diffRow);
+                    }
+                }
+                else
+                {
+                    // Nếu không tìm thấy dòng trong dt2, thêm vào diffTable
+                    DataRow diffRow = diffTable.NewRow();
+                    diffRow["ROLENAME"] = roleName1;
+                    diffRow["GRANTED"] = granted1;
+                    diffRow["ADMIN"] = admin1;
+                    diffTable.Rows.Add(diffRow);
+                }
+            }
+
+            return diffTable;
+        }
+
+        private void apply_edit_grantedRoles_btn_Click(object sender, EventArgs e)
+        {
+            DataTable dataTableCurrent = CreateDataTableFromDataGridView(dataGridView_granted_roles);
+            DataTable diffTable = CompareDataTables(dataTableCurrent, dataTableTemp);
+            foreach (DataRow row in diffTable.Rows)
+            {
+                if (row["ADMIN"].ToString() == "True")
+                {
+                    if (row["GRANTED"].ToString() == "True")
+                    {
+                        using (OracleConnection connection = new OracleConnection(connectionString))
+                        {
+                            // Mở kết nối
+                            connection.Open();
+
+                            // Tạo đối tượng Command
+                            using (OracleCommand command = connection.CreateCommand())
+                            {
+                                // GRANT quyền SELECT cho người dùng
+                                string grantQuery = $"GRANT {row["ROLENAME"].ToString()} TO {username} WITH ADMIN OPTION";
+                                command.CommandText = grantQuery;
+                                command.ExecuteNonQuery();
+
+                                MessageBox.Show("GRANT ROLE thành công!");
+                            }
+
+                            // Đóng kết nối
+                            connection.Close();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Phải có ROLE mới được có quyền WITH GRANT OPTION.");
+                    }
+
+                        
+                }
+
+                else
+                {
+                    if (row["GRANTED"].ToString() == "True")
+                    {
+                        using (OracleConnection connection = new OracleConnection(connectionString))
+                        {
+                            // Mở kết nối
+                            connection.Open();
+
+                            // Tạo đối tượng Command
+                            using (OracleCommand command = connection.CreateCommand())
+                            {
+                                
+
+                                string grantQuery = $"GRANT {row["ROLENAME"].ToString()} TO {username}";
+                                command.CommandText = grantQuery;
+                                command.ExecuteNonQuery();
+
+                                MessageBox.Show("GRANT ROLE thành công!");
+                            }
+
+                            // Đóng kết nối
+                            connection.Close();
+                        }
+                    }
+
+                    else
+                    {
+                        using (OracleConnection connection = new OracleConnection(connectionString))
+                        {
+                            // Mở kết nối
+                            connection.Open();
+
+                            // Tạo đối tượng Command
+                            using (OracleCommand command = connection.CreateCommand())
+                            {
+                                // GRANT quyền SELECT cho người dùng
+                                string grantQuery = $"REVOKE {row["ROLENAME"].ToString()} FROM {username}";
+                                command.CommandText = grantQuery;
+                                command.ExecuteNonQuery();
+
+                                MessageBox.Show("REVOKE ROLE thành công!");
+                            }
+
+                            // Đóng kết nối
+
+                            connection.Close();
+                        }
+                    }
+                }
+
+ 
+            }
+            
+        }
+
+
 
         private void InitializeDataGridViewSystemPrivileges()
         {
@@ -341,6 +561,11 @@ namespace portal_application_project
         private void button5_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void refresh_btn_Click(object sender, EventArgs e)
+        {
+            LoadDataGrantedRoles();
         }
     }
 }
