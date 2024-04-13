@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace portal_application_project
 {
@@ -66,22 +68,63 @@ namespace portal_application_project
         {
             try
             {
+
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
-                    string query = "SELECT role FROM V_DETAIL_USER_1"; // Thay thế ROLENAME tại đây
+                    
+                    string query = "SELECT Role_Name FROM V_ALL_ROLES"; // Thay thế ROLENAME tại đây
+                    string sub_query = "SELECT Role FROM V_DETAIL_USER_1 WHERE Name = '" + username + "'";
+                    
+                    
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
                         connection.Open();
                         OracleDataReader reader = command.ExecuteReader();
-                        while (reader.Read())
+                        using (OracleCommand sub_command = new OracleCommand(sub_query, connection))
                         {
-                            string roleName = reader["role"].ToString(); // Thay thế ROLENAME tại đây
-                            // Thêm dòng mới với roleName vào cột đầu tiên
-                            dataGridView_granted_roles.Rows.Add(roleName);
+                            while (reader.Read())
+                            {
+                                OracleDataReader sub_reader = sub_command.ExecuteReader();
+                                bool HasRole = false;
+                                bool adm = false;
+                                string roleName = reader["Role_Name"].ToString();
+
+
+                                while (sub_reader.Read())
+                                {
+                                    string userRole = sub_reader["Role"].ToString();
+
+
+
+                                    if (userRole == roleName)
+                                    {
+                                        HasRole = true;
+                                        string sub2_query = "SELECT ADM FROM V_ADMIN_OPTION WHERE Role = 'CONNECT' AND UserName = 'SYS'";
+                                        using (OracleCommand sub2_command = new OracleCommand(sub2_query, connection))
+                                        {
+
+                                            OracleDataReader sub2_reader = sub2_command.ExecuteReader();
+                                            while (sub2_reader.Read())
+                                            {
+                                                string admin = sub2_reader["ADM"].ToString();
+
+                                                if (admin == "YES")
+                                                {
+                                                    adm = true;
+                                                }
+                                            }
+
+                                        }
+                                        break;
+                                    }
+
+                                }
+                                // Thêm dòng mới với roleName và giá trị granted mặc định là false (không được cấp quyền) vào cột "ROLENAME" và "GRANTED" tương ứng,ADMIN ?
+                                dataGridView_granted_roles.Rows.Add(roleName, HasRole, adm);
+
+                            }
                         }
                     }
-
-
                 }
             }
             catch (Exception ex)
