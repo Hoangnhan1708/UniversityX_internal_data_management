@@ -102,7 +102,8 @@ CREATE OR REPLACE VIEW V_DETAIL_USER_2
 AS
     SELECT distinct
         GRANTEE AS User_Name, 
-        PRIVILEGE AS Privileges
+        PRIVILEGE AS Privileges,
+        ADMIN_OPTION AS ADM
     FROM DBA_SYS_PRIVS
     WHERE  GRANTEE IN (SELECT Name
         FROM V_ALL_USERS)
@@ -118,7 +119,6 @@ AS
         tp.TYPE AS Type
     FROM DBA_TAB_PRIVS tp
     JOIN DBA_ROLE_PRIVS rp ON tp.GRANTEE = rp.GRANTED_ROLE
-    ORDER BY User_Name
     UNION
     SELECT DISTINCT
         GRANTEE AS User_Name,
@@ -126,10 +126,7 @@ AS
         TABLE_NAME AS Object_Name,
         TYPE AS Type
     FROM DBA_TAB_PRIVS
-    WHERE GRANTEE IN (
-                SELECT Name
-                FROM V_ALL_USERS)
-                AND GRANTEE = 'DINH';
+    WHERE GRANTEE IN (SELECT Name FROM V_ALL_USERS);
 /
 -- Lấy các dòng thông tin update trên dòng
 -- Update trên toàn bộ bảng (không ghi cụ thể dòng) được thể hiện ở bảng trên
@@ -205,14 +202,7 @@ AS
         FROM V_ALL_ROLES)
     ORDER BY Role_Name;
     
-    
-
-    
-    
-
-    
-    
-    
+/   
 -----------------------------------
 CREATE OR REPLACE VIEW V_ADMIN_OPTION
 AS
@@ -221,7 +211,11 @@ AS
         GRANTED_ROLE AS Role,
         ADMIN_OPTION AS ADM
     FROM dba_role_privs;
-
-SELECT *
-FROM DBA_SYS_PRIVS
-WHERE GRANTEE = 'DBA'
+/
+-----------------------------------
+CREATE OR REPLACE VIEW V_ALL_SYS_PRIVS
+AS
+    SELECT DISTINCT
+        PRIVILEGE AS Privileges
+    FROM DBA_SYS_PRIVS;
+-----------------------------------
