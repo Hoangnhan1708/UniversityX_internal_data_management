@@ -118,7 +118,18 @@ AS
         tp.TYPE AS Type
     FROM DBA_TAB_PRIVS tp
     JOIN DBA_ROLE_PRIVS rp ON tp.GRANTEE = rp.GRANTED_ROLE
-    ORDER BY User_Name;
+    ORDER BY User_Name
+    UNION
+    SELECT DISTINCT
+        GRANTEE AS User_Name,
+        PRIVILEGE AS Privilege,
+        TABLE_NAME AS Object_Name,
+        TYPE AS Type
+    FROM DBA_TAB_PRIVS
+    WHERE GRANTEE IN (
+                SELECT Name
+                FROM V_ALL_USERS)
+                AND GRANTEE = 'DINH';
 /
 -- Lấy các dòng thông tin update trên dòng
 -- Update trên toàn bộ bảng (không ghi cụ thể dòng) được thể hiện ở bảng trên
@@ -168,15 +179,16 @@ AS
     ORDER BY Role_Name;
 /
 --- Lấy các thông tin trên các ọbject
-CREATE OR REPLACE VIEW V_DETAIL_USER_3
+CREATE OR REPLACE VIEW V_DETAIL_ROLES_3
 AS
     SELECT DISTINCT
-        rp.GRANTEE AS Role_Name,
-        tp.PRIVILEGE AS Privilege,
-        tp.TABLE_NAME AS Object_Name,
-        tp.TYPE AS Type
-    FROM DBA_TAB_PRIVS tp
-    JOIN DBA_ROLE_PRIVS rp ON tp.GRANTEE = rp.GRANTED_ROLE
+        GRANTEE AS Role_Name,
+        PRIVILEGE AS Privilege,
+        TABLE_NAME AS Object_Name,
+        TYPE AS Type
+    FROM DBA_TAB_PRIVS 
+    WHERE GRANTEE IN (SELECT Role_Name
+        FROM V_ALL_ROLES)
     ORDER BY Role_Name;
 /
 -- Lấy các dòng thông tin update trên dòng
@@ -184,25 +196,20 @@ AS
 CREATE OR REPLACE VIEW V_DETAIL_ROLES_4
 AS
     SELECT DISTINCT
-        rp.GRANTEE AS Role_Name,
-        cp.PRIVILEGE AS Privilege,
-        cp.COLUMN_NAME AS Column_Name,
-        cp.TABLE_NAME AS Table_Name
-    FROM DBA_COL_PRIVS cp
-    JOIN DBA_ROLE_PRIVS rp ON cp.GRANTEE = rp.GRANTED_ROLE
+        GRANTEE AS Role_Name,
+        PRIVILEGE AS Privilege,
+        COLUMN_NAME AS Column_Name,
+        TABLE_NAME AS Table_Name
+    FROM DBA_COL_PRIVS
+    WHERE GRANTEE IN (SELECT Role_Name
+        FROM V_ALL_ROLES)
     ORDER BY Role_Name;
     
     
+
     
     
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
     
