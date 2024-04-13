@@ -104,6 +104,8 @@ AS
         GRANTEE AS User_Name, 
         PRIVILEGE AS Privileges
     FROM DBA_SYS_PRIVS
+    WHERE  GRANTEE IN (SELECT Name
+        FROM V_ALL_USERS)
     ORDER BY User_Name;
 /
 --- Lấy các thông tin trên các ọbject
@@ -144,7 +146,66 @@ AS
     ORDER BY RoleID;
 /
 --
-
+CREATE OR REPLACE VIEW V_DETAIL_ROLES_1
+AS
+    SELECT DISTINCT
+        ROLE_ID AS RoleID,
+        ROLE AS Role,
+        PASSWORD_REQUIRED AS Password,
+        INHERITED AS Inherited
+    FROM dba_roles
+    ORDER BY RoleID;
+/
+--- Lấy các quyền có trên hệ thống
+CREATE OR REPLACE VIEW V_DETAIL_ROLES_2
+AS
+    SELECT distinct
+        GRANTEE AS Role_Name, 
+        PRIVILEGE AS Privileges
+    FROM DBA_SYS_PRIVS
+    WHERE GRANTEE IN (SELECT Role_Name
+        FROM V_ALL_ROLES)
+    ORDER BY Role_Name;
+/
+--- Lấy các thông tin trên các ọbject
+CREATE OR REPLACE VIEW V_DETAIL_USER_3
+AS
+    SELECT DISTINCT
+        rp.GRANTEE AS Role_Name,
+        tp.PRIVILEGE AS Privilege,
+        tp.TABLE_NAME AS Object_Name,
+        tp.TYPE AS Type
+    FROM DBA_TAB_PRIVS tp
+    JOIN DBA_ROLE_PRIVS rp ON tp.GRANTEE = rp.GRANTED_ROLE
+    ORDER BY Role_Name;
+/
+-- Lấy các dòng thông tin update trên dòng
+-- Update trên toàn bộ bảng (không ghi cụ thể dòng) được thể hiện ở bảng trên
+CREATE OR REPLACE VIEW V_DETAIL_ROLES_4
+AS
+    SELECT DISTINCT
+        rp.GRANTEE AS Role_Name,
+        cp.PRIVILEGE AS Privilege,
+        cp.COLUMN_NAME AS Column_Name,
+        cp.TABLE_NAME AS Table_Name
+    FROM DBA_COL_PRIVS cp
+    JOIN DBA_ROLE_PRIVS rp ON cp.GRANTEE = rp.GRANTED_ROLE
+    ORDER BY Role_Name;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 -----------------------------------
 CREATE OR REPLACE VIEW V_ADMIN_OPTION
 AS
@@ -154,4 +215,6 @@ AS
         ADMIN_OPTION AS ADM
     FROM dba_role_privs;
 
-
+SELECT *
+FROM DBA_SYS_PRIVS
+WHERE GRANTEE = 'DBA'

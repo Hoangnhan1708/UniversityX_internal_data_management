@@ -282,7 +282,7 @@ namespace portal_application_project
 
                                 MessageBox.Show("GRANT ROLE thành công!");
                             }
-
+                            
                             // Đóng kết nối
                             connection.Close();
                         }
@@ -332,11 +332,14 @@ namespace portal_application_project
                             using (OracleCommand command = connection.CreateCommand())
                             {
                                 // GRANT quyền SELECT cho người dùng
+                                
                                 string grantQuery = $"REVOKE {row["ROLENAME"].ToString()} FROM {username}";
                                 command.CommandText = grantQuery;
                                 command.ExecuteNonQuery();
 
                                 MessageBox.Show("REVOKE ROLE thành công!");
+
+                                
                             }
 
                             // Đóng kết nối
@@ -346,9 +349,9 @@ namespace portal_application_project
                     }
                 }
 
- 
             }
-            
+            dataTableTemp = CreateDataTableFromDataGridView(dataGridView_granted_roles);
+
         }
 
 

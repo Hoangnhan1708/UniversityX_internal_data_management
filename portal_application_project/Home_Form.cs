@@ -43,7 +43,7 @@ namespace portal_application_project
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     connection.Open();
-                    OracleCommand command = new OracleCommand("SELECT * FROM VIEW_ALL_USERS", connection);
+                    OracleCommand command = new OracleCommand("SELECT * FROM V_ALL_USERS", connection);
                     OracleDataAdapter adapter = new OracleDataAdapter(command);
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
@@ -66,7 +66,7 @@ namespace portal_application_project
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     connection.Open();
-                    OracleCommand command = new OracleCommand("SELECT * FROM VIEW_ALL_ROLES", connection);
+                    OracleCommand command = new OracleCommand("SELECT * FROM V_ALL_ROLES", connection);
                     OracleDataAdapter adapter = new OracleDataAdapter(command);
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
