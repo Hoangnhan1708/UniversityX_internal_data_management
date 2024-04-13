@@ -15,59 +15,34 @@ namespace ExecuteSQLFromFile
 
         public void ExecuteSQLFromFile(string filePath)
         {
+            // Thay thế chuỗi kết nối này bằng chuỗi kết nối thực tế của bạn đến cơ sở dữ liệu Oracle
+
             try
             {
-                // Mở tệp SQL để đọc
-                using (StreamReader reader = new StreamReader(filePath))
-                {
-                    string sqlStatement = "";
-                    string line;
-                    // Đọc từng dòng trong tệp
-                    while ((line = reader.ReadLine()) != null)
-                    {
-                        // Kiểm tra dòng có phải là một câu lệnh SQL không
-                        if (!string.IsNullOrWhiteSpace(line) && !line.StartsWith("--"))
-                        {
-                            sqlStatement += line.Trim() + " ";
+                string[] sqlCommands = File.ReadAllText(filePath).Split(';');
 
-                            // Kiểm tra xem câu lệnh SQL đã hoàn chỉnh chưa (kết thúc bằng dấu chấm phẩy)
-                            if (line.Trim().EndsWith(";"))
-                            {
-                                
-                                // Thực thi câu lệnh SQL
-                                ExecuteSQL(sqlStatement);
-                                // Reset sqlStatement để đọc câu lệnh SQL tiếp theo
-                                sqlStatement = "";
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            }
-        }
-
-        private void ExecuteSQL(string sqlStatement)
-        {
-            try
-            {
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     connection.Open();
-                    using (OracleCommand command = new OracleCommand(sqlStatement, connection))
+
+                    foreach (string sqlCommand in sqlCommands)
                     {
-                        command.ExecuteNonQuery();
+                        if (!string.IsNullOrWhiteSpace(sqlCommand))
+                        {
+                            using (OracleCommand command = new OracleCommand(sqlCommand, connection))
+                            {
+                                command.ExecuteNonQuery();
+                            }
+                        }
                     }
+
+                    Console.WriteLine("SQL commands executed successfully.");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error executing SQL: " + ex.Message);
+                Console.WriteLine("An error occurred: " + ex.Message);
             }
         }
     }
-
-    
 }

@@ -35,10 +35,10 @@
             user_object_privileges = new TabPage();
             dataGridView_role_object_privileges = new DataGridView();
             user_column_privileges = new TabPage();
-            label_Role = new Label();
-            label_status = new Label();
-            label_name = new Label();
-            label_userID = new Label();
+            label_inherited = new Label();
+            label_passwordRequired = new Label();
+            label_roleName = new Label();
+            label_roleID = new Label();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
@@ -138,56 +138,56 @@
             user_column_privileges.Text = "Columns";
             user_column_privileges.UseVisualStyleBackColor = true;
             // 
-            // label_Role
+            // label_inherited
             // 
-            label_Role.Anchor = AnchorStyles.Top;
-            label_Role.AutoSize = true;
-            label_Role.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label_Role.Location = new Point(580, 241);
-            label_Role.Name = "label_Role";
-            label_Role.Size = new Size(87, 28);
-            label_Role.TabIndex = 68;
-            label_Role.Text = "...............";
+            label_inherited.Anchor = AnchorStyles.Top;
+            label_inherited.AutoSize = true;
+            label_inherited.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label_inherited.Location = new Point(279, 231);
+            label_inherited.Name = "label_inherited";
+            label_inherited.Size = new Size(87, 28);
+            label_inherited.TabIndex = 68;
+            label_inherited.Text = "...............";
             // 
-            // label_status
+            // label_passwordRequired
             // 
-            label_status.Anchor = AnchorStyles.Top;
-            label_status.AutoSize = true;
-            label_status.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label_status.Location = new Point(580, 188);
-            label_status.Name = "label_status";
-            label_status.Size = new Size(87, 28);
-            label_status.TabIndex = 67;
-            label_status.Text = "...............";
+            label_passwordRequired.Anchor = AnchorStyles.Top;
+            label_passwordRequired.AutoSize = true;
+            label_passwordRequired.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label_passwordRequired.Location = new Point(279, 178);
+            label_passwordRequired.Name = "label_passwordRequired";
+            label_passwordRequired.Size = new Size(87, 28);
+            label_passwordRequired.TabIndex = 67;
+            label_passwordRequired.Text = "...............";
             // 
-            // label_name
+            // label_roleName
             // 
-            label_name.Anchor = AnchorStyles.Top;
-            label_name.AutoSize = true;
-            label_name.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label_name.Location = new Point(580, 141);
-            label_name.Name = "label_name";
-            label_name.Size = new Size(87, 28);
-            label_name.TabIndex = 66;
-            label_name.Text = "...............";
+            label_roleName.Anchor = AnchorStyles.Top;
+            label_roleName.AutoSize = true;
+            label_roleName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label_roleName.Location = new Point(279, 131);
+            label_roleName.Name = "label_roleName";
+            label_roleName.Size = new Size(87, 28);
+            label_roleName.TabIndex = 66;
+            label_roleName.Text = "...............";
             // 
-            // label_userID
+            // label_roleID
             // 
-            label_userID.Anchor = AnchorStyles.Top;
-            label_userID.AutoSize = true;
-            label_userID.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label_userID.Location = new Point(580, 93);
-            label_userID.Name = "label_userID";
-            label_userID.Size = new Size(87, 28);
-            label_userID.TabIndex = 65;
-            label_userID.Text = "...............";
+            label_roleID.Anchor = AnchorStyles.Top;
+            label_roleID.AutoSize = true;
+            label_roleID.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label_roleID.Location = new Point(279, 83);
+            label_roleID.Name = "label_roleID";
+            label_roleID.Size = new Size(87, 28);
+            label_roleID.TabIndex = 65;
+            label_roleID.Text = "...............";
             // 
             // label5
             // 
             label5.Anchor = AnchorStyles.Top;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(451, 289);
+            label5.Location = new Point(81, 279);
             label5.Name = "label5";
             label5.Size = new Size(109, 28);
             label5.TabIndex = 64;
@@ -198,44 +198,44 @@
             label4.Anchor = AnchorStyles.Top;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(451, 241);
+            label4.Location = new Point(81, 231);
             label4.Name = "label4";
-            label4.Size = new Size(59, 28);
+            label4.Size = new Size(103, 28);
             label4.TabIndex = 63;
-            label4.Text = "Role:";
+            label4.Text = "Inherited:";
             // 
             // label3
             // 
             label3.Anchor = AnchorStyles.Top;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(451, 188);
+            label3.Location = new Point(81, 178);
             label3.Name = "label3";
-            label3.Size = new Size(76, 28);
+            label3.Size = new Size(192, 28);
             label3.TabIndex = 62;
-            label3.Text = "Status:";
+            label3.Text = "Password required:";
             // 
             // label2
             // 
             label2.Anchor = AnchorStyles.Top;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(451, 141);
+            label2.Location = new Point(81, 131);
             label2.Name = "label2";
-            label2.Size = new Size(73, 28);
+            label2.Size = new Size(117, 28);
             label2.TabIndex = 61;
-            label2.Text = "Name:";
+            label2.Text = "Role name:";
             // 
             // label10
             // 
             label10.Anchor = AnchorStyles.Top;
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(451, 93);
+            label10.Location = new Point(81, 83);
             label10.Name = "label10";
             label10.Size = new Size(86, 28);
             label10.TabIndex = 60;
-            label10.Text = "User ID:";
+            label10.Text = "Role ID:";
             // 
             // label_roleName_heading
             // 
@@ -243,7 +243,7 @@
             label_roleName_heading.AutoSize = true;
             label_roleName_heading.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             label_roleName_heading.ForeColor = Color.White;
-            label_roleName_heading.Location = new Point(476, 9);
+            label_roleName_heading.Location = new Point(436, 9);
             label_roleName_heading.Name = "label_roleName_heading";
             label_roleName_heading.Size = new Size(178, 41);
             label_roleName_heading.TabIndex = 1;
@@ -283,10 +283,10 @@
             ClientSize = new Size(1085, 524);
             Controls.Add(close_btn);
             Controls.Add(tabControl_detailRole_privileges);
-            Controls.Add(label_Role);
-            Controls.Add(label_status);
-            Controls.Add(label_name);
-            Controls.Add(label_userID);
+            Controls.Add(label_inherited);
+            Controls.Add(label_passwordRequired);
+            Controls.Add(label_roleName);
+            Controls.Add(label_roleID);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -319,10 +319,10 @@
         private TabPage user_object_privileges;
         private DataGridView dataGridView_role_object_privileges;
         private TabPage user_column_privileges;
-        private Label label_Role;
-        private Label label_status;
-        private Label label_name;
-        private Label label_userID;
+        private Label label_inherited;
+        private Label label_passwordRequired;
+        private Label label_roleName;
+        private Label label_roleID;
         private Label label5;
         private Label label4;
         private Label label3;
