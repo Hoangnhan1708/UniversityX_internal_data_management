@@ -79,7 +79,7 @@ AS
 /
 ----------------------
 -- Xem toàn bộ roles
-CREATE OR REPLACE VIEW VIEW_ALL_ROLES
+CREATE OR REPLACE VIEW V_ALL_ROLES
 AS
     SELECT DISTINCT
     ROLE_ID AS RoleID,
@@ -88,38 +88,15 @@ AS
     FROM dba_roles
     ORDER BY RoleID;
 /
-
-
-
-
-
-
-
-
-
-
-
-
-
-CREATE OR REPLACE VIEW TEST AS
-SELECT *
-FROM V_DETAIL_USER_4 
-
-----------------
--- nơi thử nghiệm (thật ra nó là xem các quyền trên các table nhưng bây giờ nó là nơi thử nghiệm)
-CREATE OR REPLACE VIEW V_Privs_On_Role AS
-SELECT *
-FROM DISTINCT 
-        GRANTEE as ROLE, 
-        TABLE_NAME as Object_name, 
-        PRIVILEGE
-FROM DBA_TAB_PRIVS
-WHERE GRANTEE IN (
-    SELECT DISTINCT role
-    FROM DBA_ROLES
-) 
-ORDER BY GRANTEE;
+--
 
 -----------------------------------
+CREATE OR REPLACE VIEW V_ADMIN_OPTION
+AS
+    SELECT DISTINCT
+        GRANTEE AS UserName,
+        GRANTED_ROLE AS Role,
+        ADMIN_OPTION AS ADM
+    FROM dba_role_privs;
 
 
