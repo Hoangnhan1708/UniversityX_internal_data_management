@@ -66,21 +66,34 @@ namespace portal_application_project
         {
             try
             {
+
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
-                    string query = "SELECT role FROM V_DETAIL_USER_1"; // Thay thế ROLENAME tại đây
+                    string query = "SELECT Role_Name FROM VIEW_ALL_ROLES";
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
                         connection.Open();
                         OracleDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
-                            string roleName = reader["role"].ToString(); // Thay thế ROLENAME tại đây
-                            // Thêm dòng mới với roleName vào cột đầu tiên
-                            dataGridView_granted_roles.Rows.Add(roleName);
+                            string roleName = reader["Role_Name"].ToString();
+
+                            // Thêm dòng mới với roleName và giá trị granted mặc định là false (không được cấp quyền) vào cột "ROLENAME" và "GRANTED" tương ứng
+                            dataGridView_granted_roles.Rows.Add(roleName, false);
                         }
                     }
-
+                    //query = "SELECT role FROM V_DETAIL_USER_1 WHERE Name = '" + username + "'"; 
+                    //using (OracleCommand command = new OracleCommand(query, connection))
+                    //{
+                    //    connection.Open();
+                    //    OracleDataReader reader = command.ExecuteReader();
+                    //    while (reader.Read())
+                    //    {
+                    //        string roleName = reader["role"].ToString(); // Thay thế ROLENAME tại đây
+                    //        // Thêm dòng mới với roleName vào cột đầu tiên
+                    //        dataGridView_granted_roles.Rows.Add(roleName);
+                    //    }
+                    //}
 
                 }
             }

@@ -45,8 +45,8 @@ namespace portal_application_project
                             command.CommandText = "P_CREATE_USER";
 
                             // Thêm tham số cho procedure
-                            command.Parameters.Add("p_username", OracleDbType.Varchar2).Value = username;
-                            command.Parameters.Add("p_password", OracleDbType.Varchar2).Value = password;
+                            command.Parameters.Add("v_uname", OracleDbType.Varchar2).Value = username;
+                            command.Parameters.Add("v_pass", OracleDbType.Varchar2).Value = password;
 
                             // Thực thi procedure
                             command.ExecuteNonQuery();
