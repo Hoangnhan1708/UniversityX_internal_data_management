@@ -307,7 +307,24 @@ namespace portal_application_project
                             // Tạo đối tượng Command
                             using (OracleCommand command = connection.CreateCommand())
                             {
-                                
+                                string NewRole = row["ROLENAME"].ToString();
+                                string check = "False";
+                                foreach(DataRow sub_row in dataTableTemp.Rows)
+                                {
+                                    string Role = sub_row["ROLENAME"].ToString();
+                                    
+                                    if (Role == NewRole)
+                                    {
+                                        check = sub_row["GRANTED"].ToString();
+                                    }
+                                }
+
+                                if (check == "True")
+                                {
+                                    string sub_grantQuery = $"REVOKE {row["ROLENAME"].ToString()} FROM {username}";
+                                    command.CommandText = sub_grantQuery;
+                                    command.ExecuteNonQuery();
+                                }
 
                                 string grantQuery = $"GRANT {row["ROLENAME"].ToString()} TO {username}";
                                 command.CommandText = grantQuery;
