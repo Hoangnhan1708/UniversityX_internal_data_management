@@ -282,7 +282,7 @@ namespace portal_application_project
 
                                 MessageBox.Show("GRANT ROLE thành công!");
                             }
-                            
+
                             // Đóng kết nối
                             connection.Close();
                         }
@@ -292,7 +292,7 @@ namespace portal_application_project
                         MessageBox.Show("Phải có ROLE mới được có quyền WITH GRANT OPTION.");
                     }
 
-                        
+
                 }
 
                 else
@@ -309,10 +309,10 @@ namespace portal_application_project
                             {
                                 string NewRole = row["ROLENAME"].ToString();
                                 string check = "False";
-                                foreach(DataRow sub_row in dataTableTemp.Rows)
+                                foreach (DataRow sub_row in dataTableTemp.Rows)
                                 {
                                     string Role = sub_row["ROLENAME"].ToString();
-                                    
+
                                     if (Role == NewRole)
                                     {
                                         check = sub_row["GRANTED"].ToString();
@@ -349,14 +349,14 @@ namespace portal_application_project
                             using (OracleCommand command = connection.CreateCommand())
                             {
                                 // GRANT quyền SELECT cho người dùng
-                                
+
                                 string grantQuery = $"REVOKE {row["ROLENAME"].ToString()} FROM {username}";
                                 command.CommandText = grantQuery;
                                 command.ExecuteNonQuery();
 
                                 MessageBox.Show("REVOKE ROLE thành công!");
 
-                                
+
                             }
 
                             // Đóng kết nối
@@ -375,6 +375,7 @@ namespace portal_application_project
 
         private void InitializeDataGridViewSystemPrivileges()
         {
+
             // Tạo cột đầu tiên với tên "PRIVILEGES"
             DataGridViewTextBoxColumn privilegesColumn = new DataGridViewTextBoxColumn();
             privilegesColumn.HeaderText = "PRIVILEGES";
@@ -399,18 +400,56 @@ namespace portal_application_project
             {
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
-                    string query = "SELECT username FROM all_users"; // Thay thế PRIVILEGES tại đây
+                    string query = "SELECT Privileges FROM V_ALL_SYS_PRIVS"; // Thay thế PRIVILEGES tại đây
+
+                    // Lấy các privis mà user đang sowe hữu
+                    string sub_query = "SELECT Privileges,ADM FROM V_DETAIL_USER_2 WHERE User_Name = '" + username + "'";
+
+
+
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
                         connection.Open();
                         OracleDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
-                            string privilege = reader["username"].ToString(); // Thay thế PRIVILEGES tại đây
-                            // Thêm dòng mới với roleName vào cột đầu tiên
-                            dataGridView_system_privileges.Rows.Add(privilege);
+                            string privilege = reader["Privileges"].ToString(); // Thay thế PRIVILEGES tại đây
+
+                            bool hasPrivs = false;
+                            bool adm = false;
+                            using (OracleCommand sub_command = new OracleCommand(sub_query, connection))
+                            {
+                                OracleDataReader sub_reader = sub_command.ExecuteReader();
+                                while (sub_reader.Read())
+                                {
+                                    string UserPrivs = sub_reader["Privileges"].ToString();
+                                    string PrivsAdm = sub_reader["ADM"].ToString();
+                                    if (UserPrivs == privilege)
+                                    {
+                                        hasPrivs = true;
+                                        if (PrivsAdm == "YES")
+                                        {
+                                            adm = true;
+                                        }
+                                        break;
+                                    }
+                                }
+                            }
+
+                            // Thêm dòng mới với roleName vào cột đầu tiên,hàng 2 là user có sở hữu hay không, hàng ba là có adm hay không
+                            dataGridView_system_privileges.Rows.Add(privilege, hasPrivs, adm);
+
+
+
+
+
+
+
                         }
                     }
+
+
+
 
 
                 }
