@@ -91,6 +91,7 @@
             add_role_btn.TabIndex = 56;
             add_role_btn.Text = "Add";
             add_role_btn.UseVisualStyleBackColor = false;
+            add_role_btn.Click += add_role_btn_Click;
             // 
             // textBox_addRole_roleName
             // 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ExecuteSQLFromFile;
 using Oracle.ManagedDataAccess.Client;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace portal_application_project
 {
@@ -89,7 +90,7 @@ namespace portal_application_project
 
         private void new_role_btn_Click(object sender, EventArgs e)
         {
-            New_Role_Form newRoleForm = new New_Role_Form();
+            New_Role_Form newRoleForm = new New_Role_Form(connectionString);
             newRoleForm.ShowDialog();
         }
 
@@ -281,13 +282,37 @@ namespace portal_application_project
                         // Kiểm tra kết quả
                         if (result == DialogResult.Yes)
                         {
-                            // Người dùng đã chọn Yes
-                            MessageBox.Show("Đã xóa thành công!");
+                            try
+                            {
+                                using (OracleConnection connection = new OracleConnection(connectionString))
+                                {
+                                    connection.Open();
+
+                                    using (OracleCommand command = connection.CreateCommand())
+                                    {
+                                        command.CommandType = CommandType.StoredProcedure;
+                                        command.CommandText = "P_DROP_USER";
+
+                                        // Thêm tham số cho procedure
+                                        command.Parameters.Add("v_uname", OracleDbType.Varchar2).Value = usernameSelected.ToString();
+
+
+                                        // Thực thi procedure
+                                        command.ExecuteNonQuery();
+
+                                        MessageBox.Show("Xóa user thành công!");
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error: " + ex.Message);
+                            }
                         }
                         else
                         {
                             // Người dùng đã chọn No hoặc đóng hộp thoại
-                            MessageBox.Show("Bạn đã hủy bỏ");
+                            MessageBox.Show("Xóa user " + usernameSelected.ToString() + " thất bại.");
                         }
                     }
                     else
@@ -326,8 +351,33 @@ namespace portal_application_project
                     // Kiểm tra kết quả
                     if (result == DialogResult.Yes)
                     {
-                        // Người dùng đã chọn Yes
-                        MessageBox.Show("Đã xóa thành công!");
+                        try
+                        {
+                            using (OracleConnection connection = new OracleConnection(connectionString))
+                            {
+                                connection.Open();
+
+                                using (OracleCommand command = connection.CreateCommand())
+                                {
+                                    command.CommandType = CommandType.StoredProcedure;
+                                    command.CommandText = "P_DROP_ROLE";
+
+                                    // Thêm tham số cho procedure
+                                    command.Parameters.Add("v_rolename", OracleDbType.Varchar2).Value = rolenameSelected.ToString();
+
+
+                                    // Thực thi procedure
+                                    command.ExecuteNonQuery();
+
+                                    MessageBox.Show("Xóa role thành công!");
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message);
+                        }
+                        
                     }
                     else
                     {
