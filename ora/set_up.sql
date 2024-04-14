@@ -119,6 +119,7 @@ AS
         tp.TYPE AS Type
     FROM DBA_TAB_PRIVS tp
     JOIN DBA_ROLE_PRIVS rp ON tp.GRANTEE = rp.GRANTED_ROLE
+    ORDER BY User_Name
     UNION
     SELECT DISTINCT
         GRANTEE AS User_Name,
