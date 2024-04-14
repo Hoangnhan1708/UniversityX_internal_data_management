@@ -999,7 +999,7 @@ namespace portal_application_project
                             string sub_query = "SELECT Privilege,Object_Name FROM V_DETAIL_USER_3 WHERE User_Name = '" + username + "'";
                             bool[] hasPrivs = new bool[6];
                             int i = 0;
-                            //bool hasADM = false;
+                            bool hasADM = false;
 
                             using (OracleCommand sub_command = new OracleCommand(sub_query, connection))
                             {
@@ -1042,7 +1042,7 @@ namespace portal_application_project
                                     }
                                 }
                             }
-                            dataGridView_object_privileges.Rows.Add(_object, type, hasPrivs[0], hasPrivs[1], hasPrivs[2], hasPrivs[3], hasPrivs[4], hasPrivs[5]);
+                            dataGridView_object_privileges.Rows.Add(_object, type, hasPrivs[0], hasPrivs[1], hasPrivs[2], hasPrivs[3], hasPrivs[4], hasPrivs[5],hasADM);
                         }
                         connection.Close();
                     }
@@ -1118,7 +1118,6 @@ namespace portal_application_project
                         {
                             if (grant != "")
                             {
-                                MessageBox.Show(grant);
                                 grant = "GRANT " + grant + " ON " + row["OBJECT"].ToString() + " TO " + username;
                                 command.CommandText = grant;
                                 command.ExecuteNonQuery();
