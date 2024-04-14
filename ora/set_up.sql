@@ -230,26 +230,19 @@ AS
         TABLE_NAME AS Object_Name,
         TYPE AS Type        
     FROM DBA_TAB_PRIVS 
-    WHERE PRIVILEGE IN ('SELECT','UPDATE','INSERT','DELETE','EXCUTE','INDEX')
-    AND ROWNUM <= 30;
+    WHERE PRIVILEGE IN ('SELECT','UPDATE','INSERT','DELETE','EXCUTE')
+    AND ROWNUM <= 50;
 /
 
 ----------------------------
 
 
+SELECT OBJECT_NAME
+FROM (
+    SELECT DISTINCT OBJECT_NAME, CREATED
+    FROM ALL_OBJECTS
+    WHERE OBJECT_TYPE IN ('VIEW','TABLE')
+    AND DEFAULT_COLLATION = 'USING_NLS_COMP'
+    ORDER BY CREATED DESC)
+WHERE ROWNUM <= 50
 
-
-
-
-------------------------------------
-
-CREATE OR REPLACE VIEW TEST AS
-SELECT OWNER
-FROM all_views
-WHERE OWNER = SYS_CONTEXT('userenv','session_user')
-
-
-
-SELECT object_name, object_type
-FROM all_objects
-WHERE DEFAULT_COLLATION = 'USING_NLS_COMP'

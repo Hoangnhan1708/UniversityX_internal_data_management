@@ -9,6 +9,7 @@ using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace portal_application_project
@@ -1063,7 +1064,7 @@ namespace portal_application_project
             string[] check = new string[5];
             string[] privs = new string[] { "SELECT", "UPDATE", "INSERT", "DELETE", "EXECUTE" };
             string grant, revoke;
-            MessageBox.Show("a");
+
             foreach (DataRow row in diffTable.Rows)
             {
                 grant = "";
@@ -1184,7 +1185,7 @@ namespace portal_application_project
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     // Load dữ liệu từ truy vấn SQL
-                    string query = "SELECT username,user_id FROM all_users"; // Thay thế TABLENAME, COLUMN tại đây
+                    string query = "SELECT TABLE_NAME,COLUMN_NAME FROM V_ALL_COLUMN"; // Thay thế TABLENAME, COLUMN tại đây
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
                         connection.Open();
@@ -1195,9 +1196,48 @@ namespace portal_application_project
                         // Duyệt qua từng dòng trong DataTable và thêm vào DataGridView
                         foreach (DataRow row in dataTable.Rows)
                         {
-                            string tableName = row["username"].ToString(); // Thay thế TABLENAME tại đây
-                            string columnName = row["user_id"].ToString(); // Thay thế COLUMN tại đây
-                            dataGridView_column_privileges.Rows.Add(tableName, columnName);
+                            string tableName = row["TABLE_NAME"].ToString(); // Thay thế TABLENAME tại đây
+                            string columnName = row["COLUMN_NAME"].ToString(); // Thay thế COLUMN tại đây
+
+                            
+                            string sub_query = "SELECT Privilege,Table_Name,Column_Name FROM V_DETAIL_USER_4 WHERE User_Name = '" + username + "'";
+                            bool[] hasPrivs = new bool[2];
+                            int i = 0;
+                            //bool hasADM = false;
+
+                            using (OracleCommand sub_command = new OracleCommand(sub_query, connection))
+                            {
+                                OracleDataReader sub_reader = sub_command.ExecuteReader();
+                                while (sub_reader.Read())
+                                {
+                                    
+                                    string RolePrivs = sub_reader["Privilege"].ToString();
+                                    string _table = sub_reader["Table_Name"].ToString();
+
+                                    string _column = sub_reader["Column_Name"].ToString();
+
+                                    if (_table == tableName && _column == columnName)
+                                    {
+                                        /*if (RoleADM == "YES")
+                                        {
+                                            hasADM = true;
+                                        }*/
+                                        switch (RolePrivs)
+                                        {
+                                            case "UPDATE":
+                                                i = 1;
+                                                break;
+                                            case "SELECT":
+                                                i = 0;
+                                                break;
+                                        }
+                                        hasPrivs[i] = true;
+                                    }
+                                }
+                            }
+                            
+
+                            dataGridView_column_privileges.Rows.Add(tableName, columnName, hasPrivs[0], hasPrivs[1]);
                         }
                         connection.Close();
                     }
