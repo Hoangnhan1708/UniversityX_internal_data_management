@@ -41,8 +41,9 @@
             dataGridView_object_privileges = new DataGridView();
             tabPage_ColumnsPrivileges = new TabPage();
             button3 = new Button();
-            button4 = new Button();
+            apply_edit_columnPrvs_btn = new Button();
             dataGridView_column_privileges = new DataGridView();
+            dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
             tabControl_edit_role.SuspendLayout();
             tabPage_systemPrivileges.SuspendLayout();
@@ -51,6 +52,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView_object_privileges).BeginInit();
             tabPage_ColumnsPrivileges.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_column_privileges).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -96,7 +98,7 @@
             tabPage_systemPrivileges.Controls.Add(dataGridView_system_privileges);
             tabPage_systemPrivileges.Location = new Point(4, 31);
             tabPage_systemPrivileges.Name = "tabPage_systemPrivileges";
-            tabPage_systemPrivileges.Padding = new Padding(3, 3, 3, 3);
+            tabPage_systemPrivileges.Padding = new Padding(3);
             tabPage_systemPrivileges.Size = new Size(1077, 514);
             tabPage_systemPrivileges.TabIndex = 1;
             tabPage_systemPrivileges.Text = "System privileges";
@@ -207,8 +209,9 @@
             // 
             // tabPage_ColumnsPrivileges
             // 
+            tabPage_ColumnsPrivileges.Controls.Add(dataGridView1);
             tabPage_ColumnsPrivileges.Controls.Add(button3);
-            tabPage_ColumnsPrivileges.Controls.Add(button4);
+            tabPage_ColumnsPrivileges.Controls.Add(apply_edit_columnPrvs_btn);
             tabPage_ColumnsPrivileges.Controls.Add(dataGridView_column_privileges);
             tabPage_ColumnsPrivileges.Location = new Point(4, 31);
             tabPage_ColumnsPrivileges.Name = "tabPage_ColumnsPrivileges";
@@ -234,21 +237,22 @@
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
-            // button4
+            // apply_edit_columnPrvs_btn
             // 
-            button4.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button4.BackColor = SystemColors.ButtonHighlight;
-            button4.FlatAppearance.BorderColor = SystemColors.Highlight;
-            button4.FlatAppearance.BorderSize = 3;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button4.ForeColor = SystemColors.HotTrack;
-            button4.Location = new Point(750, 454);
-            button4.Name = "button4";
-            button4.Size = new Size(138, 50);
-            button4.TabIndex = 48;
-            button4.Text = "Apply";
-            button4.UseVisualStyleBackColor = false;
+            apply_edit_columnPrvs_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            apply_edit_columnPrvs_btn.BackColor = SystemColors.ButtonHighlight;
+            apply_edit_columnPrvs_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            apply_edit_columnPrvs_btn.FlatAppearance.BorderSize = 3;
+            apply_edit_columnPrvs_btn.FlatStyle = FlatStyle.Flat;
+            apply_edit_columnPrvs_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            apply_edit_columnPrvs_btn.ForeColor = SystemColors.HotTrack;
+            apply_edit_columnPrvs_btn.Location = new Point(750, 454);
+            apply_edit_columnPrvs_btn.Name = "apply_edit_columnPrvs_btn";
+            apply_edit_columnPrvs_btn.Size = new Size(138, 50);
+            apply_edit_columnPrvs_btn.TabIndex = 48;
+            apply_edit_columnPrvs_btn.Text = "Apply";
+            apply_edit_columnPrvs_btn.UseVisualStyleBackColor = false;
+            apply_edit_columnPrvs_btn.Click += apply_edit_columnPrvs_btn_Click;
             // 
             // dataGridView_column_privileges
             // 
@@ -261,6 +265,16 @@
             dataGridView_column_privileges.RowTemplate.Height = 29;
             dataGridView_column_privileges.Size = new Size(1077, 437);
             dataGridView_column_privileges.TabIndex = 0;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(244, 171);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(547, 230);
+            dataGridView1.TabIndex = 50;
             // 
             // Edit_Role_Form
             // 
@@ -283,6 +297,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView_object_privileges).EndInit();
             tabPage_ColumnsPrivileges.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_column_privileges).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -302,6 +317,7 @@
         private Button button1;
         private Button apply_edit_objectPrvs_btn;
         private Button button3;
-        private Button button4;
+        private Button apply_edit_columnPrvs_btn;
+        private DataGridView dataGridView1;
     }
 }
