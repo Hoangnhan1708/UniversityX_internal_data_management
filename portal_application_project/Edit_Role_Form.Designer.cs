@@ -33,16 +33,17 @@
             tabControl_edit_role = new TabControl();
             tabPage_systemPrivileges = new TabPage();
             close_btn = new Button();
-            apply_editRole_btn = new Button();
+            apply_editRole_systemPrvs_btn = new Button();
             dataGridView_system_privileges = new DataGridView();
             tabPage_objectPrivileges = new TabPage();
             button1 = new Button();
-            button2 = new Button();
+            apply_edit_objectPrvs_btn = new Button();
             dataGridView_object_privileges = new DataGridView();
             tabPage_ColumnsPrivileges = new TabPage();
             button3 = new Button();
             button4 = new Button();
             dataGridView_column_privileges = new DataGridView();
+            dataGridView_test = new DataGridView();
             panel1.SuspendLayout();
             tabControl_edit_role.SuspendLayout();
             tabPage_systemPrivileges.SuspendLayout();
@@ -51,6 +52,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView_object_privileges).BeginInit();
             tabPage_ColumnsPrivileges.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_column_privileges).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_test).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -92,7 +94,7 @@
             // tabPage_systemPrivileges
             // 
             tabPage_systemPrivileges.Controls.Add(close_btn);
-            tabPage_systemPrivileges.Controls.Add(apply_editRole_btn);
+            tabPage_systemPrivileges.Controls.Add(apply_editRole_systemPrvs_btn);
             tabPage_systemPrivileges.Controls.Add(dataGridView_system_privileges);
             tabPage_systemPrivileges.Location = new Point(4, 31);
             tabPage_systemPrivileges.Name = "tabPage_systemPrivileges";
@@ -119,22 +121,22 @@
             close_btn.UseVisualStyleBackColor = false;
             close_btn.Click += close_btn_Click;
             // 
-            // apply_editRole_btn
+            // apply_editRole_systemPrvs_btn
             // 
-            apply_editRole_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            apply_editRole_btn.BackColor = SystemColors.ButtonHighlight;
-            apply_editRole_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
-            apply_editRole_btn.FlatAppearance.BorderSize = 3;
-            apply_editRole_btn.FlatStyle = FlatStyle.Flat;
-            apply_editRole_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            apply_editRole_btn.ForeColor = SystemColors.HotTrack;
-            apply_editRole_btn.Location = new Point(761, 454);
-            apply_editRole_btn.Name = "apply_editRole_btn";
-            apply_editRole_btn.Size = new Size(138, 50);
-            apply_editRole_btn.TabIndex = 48;
-            apply_editRole_btn.Text = "Apply";
-            apply_editRole_btn.UseVisualStyleBackColor = false;
-            apply_editRole_btn.Click += apply_editRole_btn_Click;
+            apply_editRole_systemPrvs_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            apply_editRole_systemPrvs_btn.BackColor = SystemColors.ButtonHighlight;
+            apply_editRole_systemPrvs_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            apply_editRole_systemPrvs_btn.FlatAppearance.BorderSize = 3;
+            apply_editRole_systemPrvs_btn.FlatStyle = FlatStyle.Flat;
+            apply_editRole_systemPrvs_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            apply_editRole_systemPrvs_btn.ForeColor = SystemColors.HotTrack;
+            apply_editRole_systemPrvs_btn.Location = new Point(761, 454);
+            apply_editRole_systemPrvs_btn.Name = "apply_editRole_systemPrvs_btn";
+            apply_editRole_systemPrvs_btn.Size = new Size(138, 50);
+            apply_editRole_systemPrvs_btn.TabIndex = 48;
+            apply_editRole_systemPrvs_btn.Text = "Apply";
+            apply_editRole_systemPrvs_btn.UseVisualStyleBackColor = false;
+            apply_editRole_systemPrvs_btn.Click += apply_editRole_systemPrvs_btn_Click;
             // 
             // dataGridView_system_privileges
             // 
@@ -150,8 +152,9 @@
             // 
             // tabPage_objectPrivileges
             // 
+            tabPage_objectPrivileges.Controls.Add(dataGridView_test);
             tabPage_objectPrivileges.Controls.Add(button1);
-            tabPage_objectPrivileges.Controls.Add(button2);
+            tabPage_objectPrivileges.Controls.Add(apply_edit_objectPrvs_btn);
             tabPage_objectPrivileges.Controls.Add(dataGridView_object_privileges);
             tabPage_objectPrivileges.Location = new Point(4, 31);
             tabPage_objectPrivileges.Name = "tabPage_objectPrivileges";
@@ -177,21 +180,22 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
-            // button2
+            // apply_edit_objectPrvs_btn
             // 
-            button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button2.BackColor = SystemColors.ButtonHighlight;
-            button2.FlatAppearance.BorderColor = SystemColors.Highlight;
-            button2.FlatAppearance.BorderSize = 3;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.ForeColor = SystemColors.HotTrack;
-            button2.Location = new Point(752, 454);
-            button2.Name = "button2";
-            button2.Size = new Size(138, 50);
-            button2.TabIndex = 52;
-            button2.Text = "Apply";
-            button2.UseVisualStyleBackColor = false;
+            apply_edit_objectPrvs_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            apply_edit_objectPrvs_btn.BackColor = SystemColors.ButtonHighlight;
+            apply_edit_objectPrvs_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            apply_edit_objectPrvs_btn.FlatAppearance.BorderSize = 3;
+            apply_edit_objectPrvs_btn.FlatStyle = FlatStyle.Flat;
+            apply_edit_objectPrvs_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            apply_edit_objectPrvs_btn.ForeColor = SystemColors.HotTrack;
+            apply_edit_objectPrvs_btn.Location = new Point(752, 454);
+            apply_edit_objectPrvs_btn.Name = "apply_edit_objectPrvs_btn";
+            apply_edit_objectPrvs_btn.Size = new Size(138, 50);
+            apply_edit_objectPrvs_btn.TabIndex = 52;
+            apply_edit_objectPrvs_btn.Text = "Apply";
+            apply_edit_objectPrvs_btn.UseVisualStyleBackColor = false;
+            apply_edit_objectPrvs_btn.Click += apply_edit_objectPrvs_btn_Click;
             // 
             // dataGridView_object_privileges
             // 
@@ -261,6 +265,16 @@
             dataGridView_column_privileges.Size = new Size(1077, 437);
             dataGridView_column_privileges.TabIndex = 0;
             // 
+            // dataGridView_test
+            // 
+            dataGridView_test.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_test.Location = new Point(166, 236);
+            dataGridView_test.Name = "dataGridView_test";
+            dataGridView_test.RowHeadersWidth = 51;
+            dataGridView_test.RowTemplate.Height = 29;
+            dataGridView_test.Size = new Size(691, 170);
+            dataGridView_test.TabIndex = 54;
+            // 
             // Edit_Role_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -282,6 +296,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView_object_privileges).EndInit();
             tabPage_ColumnsPrivileges.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_column_privileges).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_test).EndInit();
             ResumeLayout(false);
         }
 
@@ -297,10 +312,11 @@
         private DataGridView dataGridView_object_privileges;
         private DataGridView dataGridView_column_privileges;
         private Button close_btn;
-        private Button apply_editRole_btn;
+        private Button apply_editRole_systemPrvs_btn;
         private Button button1;
-        private Button button2;
+        private Button apply_edit_objectPrvs_btn;
         private Button button3;
         private Button button4;
+        private DataGridView dataGridView_test;
     }
 }
