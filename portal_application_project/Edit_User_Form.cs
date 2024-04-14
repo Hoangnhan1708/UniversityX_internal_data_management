@@ -993,8 +993,55 @@ namespace portal_application_project
                         {
                             string _object = reader["Object_Name"].ToString(); // Thay thế OBJECT tại đây
                             string type = reader["Type"].ToString(); // Thay thế OBJECT tại đây
-                            // Thêm dòng mới với roleName vào cột đầu tiên
-                            dataGridView_object_privileges.Rows.Add(_object, type);
+                                                                     // Thêm dòng mới với roleName vào cột đầu tiên
+
+                            string sub_query = "SELECT Privilege,Object_Name FROM V_DETAIL_USER_3 WHERE User_Name = '" + username + "'";
+                            bool[] hasPrivs = new bool[6];
+                            int i = 0;
+                            //bool hasADM = false;
+
+                            using (OracleCommand sub_command = new OracleCommand(sub_query, connection))
+                            {
+                                OracleDataReader sub_reader = sub_command.ExecuteReader();
+                                while (sub_reader.Read())
+                                {
+                                    string RolePrivs = sub_reader["Privilege"].ToString();
+                                    //string RoleADM = sub_reader["ADM"].ToString();
+                                    string obj = sub_reader["Object_Name"].ToString();
+
+
+                                    if (obj == _object)
+                                    {
+                                        /*if (RoleADM == "YES")
+                                        {
+                                            hasADM = true;
+                                        }*/
+                                        switch (RolePrivs)
+                                        {
+                                            case "INDEX":
+                                                i = 5;
+                                                break;
+                                            case "EXECUTE":
+                                                i = 4;
+                                                break;
+                                            case "INSERT":
+                                                i = 3;
+                                                break;
+                                            case "DELETE":
+                                                i = 2;
+                                                break;
+                                            case "UPDATE":
+                                                i = 1;
+                                                break;
+                                            case "SELECT":
+                                                i = 0;
+                                                break;
+                                        }
+                                        hasPrivs[i] = true;
+                                    }
+                                }
+                            }
+                            dataGridView_object_privileges.Rows.Add(_object, type, hasPrivs[0], hasPrivs[1], hasPrivs[2], hasPrivs[3], hasPrivs[4], hasPrivs[5]);
                         }
                         connection.Close();
                     }
@@ -1016,7 +1063,7 @@ namespace portal_application_project
             string[] check = new string[5];
             string[] privs = new string[] { "SELECT", "UPDATE", "INSERT", "DELETE", "EXECUTE" };
             string grant, revoke;
-
+            MessageBox.Show("a");
             foreach (DataRow row in diffTable.Rows)
             {
                 grant = "";
@@ -1070,6 +1117,7 @@ namespace portal_application_project
                         {
                             if (grant != "")
                             {
+                                MessageBox.Show(grant);
                                 grant = "GRANT " + grant + " ON " + row["OBJECT"].ToString() + " TO " + username;
                                 command.CommandText = grant;
                                 command.ExecuteNonQuery();
