@@ -23,18 +23,18 @@ namespace portal_application_project
             InitializeComponent();
             this.connectionString = _connectionString;
             
-            string directoryPath = AppDomain.CurrentDomain.BaseDirectory;
+            //string directoryPath = AppDomain.CurrentDomain.BaseDirectory;
 
-            // Lùi lại 3 thư mục cha từ đường dẫn thư mục hiện tại
-            for (int i = 0; i < 5; i++)
-            {
-                directoryPath = Directory.GetParent(directoryPath).FullName;
-            }
-            MessageBox.Show(directoryPath);
-            // Kết hợp đường dẫn thư mục với tên file
-            string filePath = Path.Combine(directoryPath, "ora", "set_up.sql");
-            SQLFileExecutor executor = new SQLFileExecutor(this.connectionString);
-            executor.ExecuteSQLFromFile(filePath);
+            //// Lùi lại 3 thư mục cha từ đường dẫn thư mục hiện tại
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    directoryPath = Directory.GetParent(directoryPath).FullName;
+            //}
+            //MessageBox.Show(directoryPath);
+            //// Kết hợp đường dẫn thư mục với tên file
+            //string filePath = Path.Combine(directoryPath, "ora", "set_up.sql");
+            //SQLFileExecutor executor = new SQLFileExecutor(this.connectionString);
+            //executor.ExecuteSQLFromFile(filePath);
             
 
         }
@@ -239,7 +239,7 @@ namespace portal_application_project
                 // Lấy cell hiện tại
                 DataGridViewCell selectedCell = dataGridView_home_roles.SelectedCells[0];
 
-                if (selectedCell.OwningColumn.Name == "USERNAME")
+                if (selectedCell.OwningColumn.Name == "ROLE_NAME")
                 {
                     if (selectedCell.Value != null)
                     {
