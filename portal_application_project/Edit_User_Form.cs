@@ -570,7 +570,7 @@ namespace portal_application_project
         {
             DataTable dataTableCurrent = CreateDataTableFromDataGridView(dataGridView_system_privileges);
             DataTable diffTable = CompareDataTablesSystemPrivileges(dataTableCurrent, dataTableTempSystemPrivileges);
-            
+
             foreach (DataRow row in diffTable.Rows)
             {
                 if (row["WITH_GRANT_OPTION_SYSTEM"].ToString() == "True")
@@ -677,7 +677,7 @@ namespace portal_application_project
                 }
 
             }
-            dataTableTempSystemPrivileges = CreateDataTableFromDataGridView(dataGridView_granted_roles);
+            dataTableTempSystemPrivileges = CreateDataTableFromDataGridView(dataGridView_system_privileges);
             LoadDataSystemPrivileges();
         }
 
@@ -845,6 +845,6 @@ namespace portal_application_project
             this.Close();
         }
 
-        
+
     }
 }
