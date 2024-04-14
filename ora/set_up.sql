@@ -250,9 +250,6 @@ WHERE OWNER = SYS_CONTEXT('userenv','session_user')
 
 
 
-
-
-
-
-
-
+SELECT object_name, object_type
+FROM all_objects
+WHERE DEFAULT_COLLATION = 'USING_NLS_COMP'
