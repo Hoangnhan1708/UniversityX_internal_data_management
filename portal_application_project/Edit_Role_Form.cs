@@ -1008,7 +1008,7 @@ namespace portal_application_project
                             string sub_query = "SELECT Privilege,Table_Name,Column_Name FROM V_DETAIL_ROLES_4 WHERE Role_Name = '" + rolename + "'";
                             bool[] hasPrivs = new bool[2];
                             int i = 0;
-                            //bool hasADM = false;
+                            bool hasADM = false;
 
                             using (OracleCommand sub_command = new OracleCommand(sub_query, connection))
                             {
@@ -1042,7 +1042,7 @@ namespace portal_application_project
                             }
 
 
-                            dataGridView_column_privileges.Rows.Add(tableName, columnName, hasPrivs[0], hasPrivs[1]);
+                            dataGridView_column_privileges.Rows.Add(tableName, columnName, hasPrivs[0], hasPrivs[1],hasADM);
                         }
                         connection.Close();
                     }
@@ -1061,16 +1061,18 @@ namespace portal_application_project
             DataTable diffTable = CompareDataTablesColumnPrivileges(dataTableCurrent, dataTableTempColumnPrivileges);
             dataGridView1.DataSource = diffTable;
 
-            string[] check = new string[5];
+            string[] check = new string[2];
             string[] privs = new string[] { "SELECT", "UPDATE" };
-            string grant, revoke;
+            string grant, revoke, sub_grant;
+            bool clear = false;
+
 
             foreach (DataRow row in diffTable.Rows)
             {
                 grant = "";
                 revoke = "";
 
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     check[i] = row[privs[i]].ToString();
                 }
@@ -1078,7 +1080,7 @@ namespace portal_application_project
 
 
 
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     if (check[i] == "True")
                     {
@@ -1086,13 +1088,13 @@ namespace portal_application_project
                         {
                             grant += ",";
                         }
-                        grant += privs[i];
+                        grant += privs[i] + " (" + row["COLUMN"].ToString() + ")";
                     }
                     else
                     {
                         foreach (DataRow sub_row in dataTableTempColumnPrivileges.Rows)
                         {
-                            if (sub_row["TABLE"].ToString() != row["TABLE"].ToString() && sub_row["COLUMN"].ToString() != row["COLUMN"].ToString())
+                            if (sub_row["TABLE"].ToString() != row["TABLE"].ToString() || sub_row["COLUMN"].ToString() != row["COLUMN"].ToString())
                             {
                                 continue;
                             }
@@ -1118,15 +1120,37 @@ namespace portal_application_project
                         {
                             if (grant != "")
                             {
-                                grant = $"GRANT {grant} ON {row["TABLE"].ToString()} TO username";
+                                grant = $"GRANT {grant} ON {row["TABLE"].ToString()} TO " + rolename;
                                 command.CommandText = grant;
                                 command.ExecuteNonQuery();
                             }
                             if (revoke != "")
                             {
-                                revoke = "REVOKE " + revoke + " ON " + row["OBJECT"].ToString() + " FROM " + rolename;
+                                if (clear)
+                                {
+                                    continue;
+                                }
+                                revoke = "REVOKE " + revoke + " ON " + row["TABLE"].ToString() + " FROM " + rolename;
                                 command.CommandText = revoke;
                                 command.ExecuteNonQuery();
+                                clear = true;
+
+                                foreach (DataRow sub_row in dataTableCurrent.Rows)
+                                {
+                                    if (sub_row["TABLE"].ToString() != row["TABLE"].ToString())
+                                    {
+                                        continue;
+                                    }
+                                    if ((sub_row["UPDATE"].ToString() == "True"))
+                                    {
+                                        clear = false;
+                                        sub_grant = "GRANT UPDATE (" + sub_row["COLUMN"].ToString() + ") ON " + sub_row["TABLE"].ToString() + " TO " + rolename;
+                                        command.CommandText = sub_grant;
+                                        command.ExecuteNonQuery();
+                                    }
+
+                                }
+
                             }
                         }
                         catch (Exception ex)
