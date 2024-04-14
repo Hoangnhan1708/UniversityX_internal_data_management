@@ -41,7 +41,7 @@
             dataGridView_system_privileges = new DataGridView();
             tabPage_objectPrivileges = new TabPage();
             button3 = new Button();
-            button4 = new Button();
+            edit_object_prvs_btn = new Button();
             dataGridView_object_privileges = new DataGridView();
             tabPage_ColumnsPrivileges = new TabPage();
             button5 = new Button();
@@ -221,7 +221,7 @@
             // tabPage_objectPrivileges
             // 
             tabPage_objectPrivileges.Controls.Add(button3);
-            tabPage_objectPrivileges.Controls.Add(button4);
+            tabPage_objectPrivileges.Controls.Add(edit_object_prvs_btn);
             tabPage_objectPrivileges.Controls.Add(dataGridView_object_privileges);
             tabPage_objectPrivileges.Location = new Point(4, 31);
             tabPage_objectPrivileges.Name = "tabPage_objectPrivileges";
@@ -247,21 +247,22 @@
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
-            // button4
+            // edit_object_prvs_btn
             // 
-            button4.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button4.BackColor = SystemColors.ButtonHighlight;
-            button4.FlatAppearance.BorderColor = SystemColors.Highlight;
-            button4.FlatAppearance.BorderSize = 3;
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button4.ForeColor = SystemColors.HotTrack;
-            button4.Location = new Point(760, 454);
-            button4.Name = "button4";
-            button4.Size = new Size(138, 51);
-            button4.TabIndex = 52;
-            button4.Text = "Apply";
-            button4.UseVisualStyleBackColor = false;
+            edit_object_prvs_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            edit_object_prvs_btn.BackColor = SystemColors.ButtonHighlight;
+            edit_object_prvs_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            edit_object_prvs_btn.FlatAppearance.BorderSize = 3;
+            edit_object_prvs_btn.FlatStyle = FlatStyle.Flat;
+            edit_object_prvs_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            edit_object_prvs_btn.ForeColor = SystemColors.HotTrack;
+            edit_object_prvs_btn.Location = new Point(760, 454);
+            edit_object_prvs_btn.Name = "edit_object_prvs_btn";
+            edit_object_prvs_btn.Size = new Size(138, 51);
+            edit_object_prvs_btn.TabIndex = 52;
+            edit_object_prvs_btn.Text = "Apply";
+            edit_object_prvs_btn.UseVisualStyleBackColor = false;
+            edit_object_prvs_btn.Click += edit_object_prvs_btn_Click;
             // 
             // dataGridView_object_privileges
             // 
@@ -378,7 +379,7 @@
         private Button close_btn_systemPrivs;
         private Button apply_edit_systemPrivileges_btn;
         private Button button3;
-        private Button button4;
+        private Button edit_object_prvs_btn;
         private Button button5;
         private Button button6;
     }

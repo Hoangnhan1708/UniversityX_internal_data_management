@@ -730,7 +730,7 @@ namespace portal_application_project
 
 
             string[] check = new string[5];
-            string[] privs = new string[] { "SELECT", "UPDATE", "INSERT", "DELETE" ,"EXECUTE"};
+            string[] privs = new string[] { "SELECT", "UPDATE", "INSERT", "DELETE", "EXECUTE" };
             string grant, revoke;
 
             foreach (DataRow row in diffTable.Rows)
@@ -743,7 +743,7 @@ namespace portal_application_project
                     check[i] = row[privs[i]].ToString();
                 }
 
-                
+
 
 
                 for (int i = 0; i < 5; i++)
