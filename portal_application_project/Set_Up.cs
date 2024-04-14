@@ -19,21 +19,20 @@ namespace ExecuteSQLFromFile
 
             try
             {
-                string[] sqlCommands = File.ReadAllText(filePath).Split(';');
-
+                string[] sqlCommands = File.ReadAllText(filePath).Split(";\r\n/");
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     connection.Open();
 
                     foreach (string sqlCommand in sqlCommands)
                     {
-                        if (!string.IsNullOrWhiteSpace(sqlCommand))
+                        MessageBox.Show(sqlCommand);
+                        using (OracleCommand command = new OracleCommand(sqlCommand, connection))
                         {
-                            using (OracleCommand command = new OracleCommand(sqlCommand, connection))
-                            {
-                                command.ExecuteNonQuery();
-                            }
+                            command.ExecuteNonQuery();
                         }
+
+
                     }
 
                     Console.WriteLine("SQL commands executed successfully.");

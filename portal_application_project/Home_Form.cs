@@ -311,8 +311,9 @@ namespace portal_application_project
                                         command.ExecuteNonQuery();
 
                                         MessageBox.Show("Xóa user thành công!");
-                                        connection.Close();
+                                        
                                     }
+                                    connection.Close();
                                 }
                             }
                             catch (Exception ex)
