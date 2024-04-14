@@ -12,6 +12,7 @@ AS
     LEFT JOIN dba_role_privs r ON u.USERNAME = r.GRANTEE 
     ORDER BY u.USER_ID;
 /
+
 -- Tạo user mới
 CREATE OR REPLACE PROCEDURE P_CREATE_USER(
     v_uname IN varchar,
@@ -36,14 +37,10 @@ CREATE OR REPLACE PROCEDURE P_DROP_USER(
 AS  
     STRSQL VARCHAR(2000);
 BEGIN
-    STRSQL := 'ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE' ;
-    EXECUTE IMMEDIATE(STRSQL);
     
     STRSQL := 'DROP USER '||v_uname;
     EXECUTE IMMEDIATE(STRSQL);
         
-    STRSQL := 'ALTER SESSION SET "_ORACLE_SCRIPT" = FALSE';
-    EXECUTE IMMEDIATE(STRSQL);
 END P_DROP_USER;
 /
 
@@ -71,14 +68,10 @@ CREATE OR REPLACE PROCEDURE P_DROP_ROLE(
 AS  
     STRSQL VARCHAR(2000);
 BEGIN
-    STRSQL := 'ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE' ;
-    EXECUTE IMMEDIATE(STRSQL);
     
     STRSQL := 'DROP ROLE '||v_rolename;
     EXECUTE IMMEDIATE(STRSQL);
         
-    STRSQL := 'ALTER SESSION SET "_ORACLE_SCRIPT" = FALSE';
-    EXECUTE IMMEDIATE(STRSQL);
 END P_DROP_ROLE;
 /
 
@@ -97,6 +90,7 @@ AS
     LEFT JOIN dba_role_privs r ON u.USERNAME = r.GRANTEE
     ORDER BY UserID;
 /
+
 --- Lấy các quyền có trên hệ thống
 CREATE OR REPLACE VIEW V_DETAIL_USER_2
 AS
@@ -109,6 +103,7 @@ AS
         FROM V_ALL_USERS)
     ORDER BY User_Name;
 /
+
 --- Lấy các thông tin trên các ọbject
 CREATE OR REPLACE VIEW V_DETAIL_USER_3
 AS
@@ -119,7 +114,6 @@ AS
         tp.TYPE AS Type
     FROM DBA_TAB_PRIVS tp
     JOIN DBA_ROLE_PRIVS rp ON tp.GRANTEE = rp.GRANTED_ROLE
-    ORDER BY User_Name
     UNION
     SELECT DISTINCT
         GRANTEE AS User_Name,
@@ -127,8 +121,10 @@ AS
         TABLE_NAME AS Object_Name,
         TYPE AS Type
     FROM DBA_TAB_PRIVS
-    WHERE GRANTEE IN (SELECT Name FROM V_ALL_USERS);
+    WHERE GRANTEE IN (SELECT Name FROM V_ALL_USERS)    
+    ORDER BY User_Name;
 /
+
 -- Lấy các dòng thông tin update trên dòng
 -- Update trên toàn bộ bảng (không ghi cụ thể dòng) được thể hiện ở bảng trên
 CREATE OR REPLACE VIEW V_DETAIL_USER_4
@@ -142,6 +138,7 @@ AS
     JOIN DBA_ROLE_PRIVS rp ON cp.GRANTEE = rp.GRANTED_ROLE
     ORDER BY User_Name;
 /
+
 ----------------------
 -- Xem toàn bộ roles
 CREATE OR REPLACE VIEW V_ALL_ROLES
@@ -153,6 +150,7 @@ AS
     FROM dba_roles
     ORDER BY RoleID;
 /
+
 --
 CREATE OR REPLACE VIEW V_DETAIL_ROLES_1
 AS
@@ -164,6 +162,7 @@ AS
     FROM dba_roles
     ORDER BY RoleID;
 /
+
 --- Lấy các quyền có trên hệ thống
 CREATE OR REPLACE VIEW V_DETAIL_ROLES_2
 AS
@@ -175,6 +174,7 @@ AS
         FROM V_ALL_ROLES)
     ORDER BY Role_Name;
 /
+
 --- Lấy các thông tin trên các ọbject
 CREATE OR REPLACE VIEW V_DETAIL_ROLES_3
 AS
@@ -188,6 +188,7 @@ AS
         FROM V_ALL_ROLES)
     ORDER BY Role_Name;
 /
+
 -- Lấy các dòng thông tin update trên dòng
 -- Update trên toàn bộ bảng (không ghi cụ thể dòng) được thể hiện ở bảng trên
 CREATE OR REPLACE VIEW V_DETAIL_ROLES_4
@@ -221,3 +222,33 @@ AS
     FROM DBA_SYS_PRIVS;
 /
 -----------------------------------
+CREATE OR REPLACE VIEW V_ALL_OBJECT
+AS
+    SELECT DISTINCT 
+        TABLE_NAME AS Object_Name,
+        TYPE AS Type        
+    FROM DBA_TAB_PRIVS 
+    WHERE PRIVILEGE IN ('SELECT','UPDATE','INSERT','DELETE');
+/
+
+----------------------------
+
+
+
+
+
+
+------------------------------------
+
+CREATE OR REPLACE VIEW TEST AS
+SELECT OWNER
+FROM all_views
+WHERE OWNER = SYS_CONTEXT('userenv','session_user');
+
+
+
+
+
+
+
+

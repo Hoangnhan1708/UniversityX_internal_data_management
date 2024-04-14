@@ -523,15 +523,15 @@ namespace portal_application_project
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     // load cột Object
-                    string query = "SELECT username,user_id FROM all_users"; // Thay thế OBJECT tại đây
+                    string query = "SELECT Object_Name,Type FROM V_ALL_OBJECT"; // Thay thế OBJECT tại đây
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
                         connection.Open();
                         OracleDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
-                            string _object = reader["username"].ToString(); // Thay thế OBJECT tại đây
-                            string type = reader["user_id"].ToString(); // Thay thế OBJECT tại đây
+                            string _object = reader["Object_Name"].ToString(); // Thay thế OBJECT tại đây
+                            string type = reader["Type"].ToString(); // Thay thế OBJECT tại đây
                             // Thêm dòng mới với roleName vào cột đầu tiên
                             dataGridView_object_privileges.Rows.Add(_object, type);
                         }

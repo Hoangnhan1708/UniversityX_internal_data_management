@@ -26,7 +26,6 @@ namespace ExecuteSQLFromFile
 
                     foreach (string sqlCommand in sqlCommands)
                     {
-                        MessageBox.Show(sqlCommand);
                         using (OracleCommand command = new OracleCommand(sqlCommand, connection))
                         {
                             command.ExecuteNonQuery();
