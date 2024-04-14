@@ -9,6 +9,7 @@ using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace portal_application_project
 {
@@ -16,12 +17,33 @@ namespace portal_application_project
     {
         string rolename;
         string connectionString;
+        private DataTable dataTableTempSystemPrivileges;
         public Edit_Role_Form(string rolename, string connectionString)
         {
             InitializeComponent();
             this.rolename = rolename;
             this.connectionString = connectionString;
             label_roleName_heading.Text = "Edit Role " + this.rolename;
+        }
+
+        private void tabControl_edit_role_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl_edit_role.SelectedTab == tabPage_systemPrivileges)
+            {
+                LoadDataSystemPrivileges();
+            }
+
+            if (tabControl_edit_role.SelectedTab == tabPage_objectPrivileges)
+            {
+                LoadDataObjectPrivileges();
+            }
+
+            if (tabControl_edit_role.SelectedTab == tabPage_ColumnsPrivileges)
+            {
+                LoadDataColumnPrivileges();
+            }
+
+
         }
 
         private void Edit_Role_Form_Load(object sender, EventArgs e)
@@ -32,11 +54,11 @@ namespace portal_application_project
 
             // Object Privileges
             InitializeDataGridViewObjectPrivileges();
-            LoadDataObjectPrivileges();
+
 
             // Column privileges
             InitializeDataGridViewColumnPrivileges();
-            LoadDataColumnPrivileges();
+
         }
 
         private void InitializeDataGridViewSystemPrivileges()
@@ -62,6 +84,7 @@ namespace portal_application_project
 
         private void LoadDataSystemPrivileges()
         {
+            dataGridView_system_privileges.Rows.Clear();
             try
             {
                 using (OracleConnection connection = new OracleConnection(connectionString))
@@ -101,18 +124,226 @@ namespace portal_application_project
                                 }
                             }
                             // Thêm dòng mới với roleName
-                            dataGridView_system_privileges.Rows.Add(privilege,hasPrivs,hasADM);
+                            dataGridView_system_privileges.Rows.Add(privilege, hasPrivs, hasADM);
                         }
                         connection.Close();
                     }
 
 
                 }
+                dataTableTempSystemPrivileges = CreateDataTableFromDataGridView(dataGridView_system_privileges);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private DataTable CompareDataTablesSystemPrivileges(DataTable dt1, DataTable dt2)
+        {
+            DataTable diffTable = new DataTable();
+            diffTable.Columns.Add("PRIVILEGES");
+            diffTable.Columns.Add("GRANTED", typeof(bool));
+            diffTable.Columns.Add("WITH_GRANT_OPTION_SYSTEM", typeof(bool));
+
+            // Lặp qua từng dòng của dt1
+            foreach (DataRow row1 in dt1.Rows)
+            {
+                string privilege1 = row1["PRIVILEGES"].ToString();
+
+                // Lấy giá trị của cột "GRANTED" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
+                object grantedObj = row1["GRANTED"];
+                bool granted1;
+                if (grantedObj != null && bool.TryParse(grantedObj.ToString(), out bool grantedValue))
+                {
+                    granted1 = grantedValue;
+                }
+                else
+                {
+                    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                }
+
+                // Lấy giá trị của cột "ADMIN" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
+                object adminObj = row1["WITH_GRANT_OPTION_SYSTEM"];
+                bool admin1;
+                if (adminObj != null && bool.TryParse(adminObj.ToString(), out bool adminValue))
+                {
+                    admin1 = adminValue;
+                }
+                else
+                {
+                    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                }
+
+                // Tìm dòng tương ứng trong dt2
+                DataRow[] foundRows = dt2.Select($"PRIVILEGES = '{privilege1}'");
+                if (foundRows.Length > 0)
+                {
+                    // Lấy giá trị của cột "GRANTED" và "ADMIN" từ dòng tương ứng trong dt2
+                    object grantedObj2 = foundRows[0]["GRANTED"];
+                    bool granted2;
+                    if (grantedObj2 != null && bool.TryParse(grantedObj2.ToString(), out bool grantedValue2))
+                    {
+                        granted2 = grantedValue2;
+                    }
+                    else
+                    {
+                        // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                        continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                    }
+
+                    object adminObj2 = foundRows[0]["WITH_GRANT_OPTION_SYSTEM"];
+                    bool admin2;
+                    if (adminObj2 != null && bool.TryParse(adminObj2.ToString(), out bool adminValue2))
+                    {
+                        admin2 = adminValue2;
+                    }
+                    else
+                    {
+                        // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                        continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                    }
+
+                    // So sánh giá trị của các cột GRANTED và ADMIN
+                    if (granted1 != granted2 || admin1 != admin2)
+                    {
+                        // Nếu có sự thay đổi, thêm dòng vào diffTable
+                        DataRow diffRow = diffTable.NewRow();
+                        diffRow["PRIVILEGES"] = privilege1;
+                        diffRow["GRANTED"] = granted1;
+                        diffRow["WITH_GRANT_OPTION_SYSTEM"] = admin1;
+                        diffTable.Rows.Add(diffRow);
+                    }
+                }
+                else
+                {
+                    // Nếu không tìm thấy dòng trong dt2, thêm vào diffTable
+                    DataRow diffRow = diffTable.NewRow();
+                    diffRow["PRIVILEGES"] = privilege1;
+                    diffRow["GRANTED"] = granted1;
+                    diffRow["WITH_GRANT_OPTION_SYSTEM"] = admin1;
+                    diffTable.Rows.Add(diffRow);
+                }
+            }
+
+            return diffTable;
+        }
+
+        private void apply_editRole_btn_Click(object sender, EventArgs e)
+        {
+            DataTable dataTableCurrent = CreateDataTableFromDataGridView(dataGridView_system_privileges);
+            DataTable diffTable = CompareDataTablesSystemPrivileges(dataTableCurrent, dataTableTempSystemPrivileges);
+
+            foreach (DataRow row in diffTable.Rows)
+            {
+                if (row["WITH_GRANT_OPTION_SYSTEM"].ToString() == "True")
+                {
+                    if (row["GRANTED"].ToString() == "True")
+                    {
+                        using (OracleConnection connection = new OracleConnection(connectionString))
+                        {
+                            // Mở kết nối
+                            connection.Open();
+
+                            // Tạo đối tượng Command
+                            using (OracleCommand command = connection.CreateCommand())
+                            {
+                                // GRANT quyền SELECT cho người dùng
+                                string grantQuery = $"GRANT {row["PRIVILEGES"].ToString()} TO {rolename} WITH ADMIN OPTION";
+                                command.CommandText = grantQuery;
+                                command.ExecuteNonQuery();
+
+                                MessageBox.Show("GRANT PRIVILEGES thành công!");
+                            }
+
+                            // Đóng kết nối
+                            connection.Close();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Phải có PRIVILEGES mới được có quyền WITH GRANT OPTION.");
+                    }
+
+
+                }
+
+                else
+                {
+                    if (row["GRANTED"].ToString() == "True")
+                    {
+                        using (OracleConnection connection = new OracleConnection(connectionString))
+                        {
+                            // Mở kết nối
+                            connection.Open();
+
+                            // Tạo đối tượng Command
+                            using (OracleCommand command = connection.CreateCommand())
+                            {
+                                string NewRole = row["PRIVILEGES"].ToString();
+                                string check = "False";
+                                foreach (DataRow sub_row in dataTableTempSystemPrivileges.Rows)
+                                {
+                                    string Role = sub_row["PRIVILEGES"].ToString();
+
+                                    if (Role == NewRole)
+                                    {
+                                        check = sub_row["GRANTED"].ToString();
+                                    }
+                                }
+
+                                if (check == "True")
+                                {
+                                    string sub_grantQuery = $"REVOKE {row["PRIVILEGES"].ToString()} FROM {rolename}";
+                                    command.CommandText = sub_grantQuery;
+                                    command.ExecuteNonQuery();
+                                }
+
+                                string grantQuery = $"GRANT {row["PRIVILEGES"].ToString()} TO {rolename}";
+                                command.CommandText = grantQuery;
+                                command.ExecuteNonQuery();
+
+                                MessageBox.Show("GRANT PRIVILEGES thành công!");
+                            }
+
+                            // Đóng kết nối
+                            connection.Close();
+                        }
+                    }
+
+                    else
+                    {
+                        using (OracleConnection connection = new OracleConnection(connectionString))
+                        {
+                            // Mở kết nối
+                            connection.Open();
+
+                            // Tạo đối tượng Command
+                            using (OracleCommand command = connection.CreateCommand())
+                            {
+                                // GRANT quyền SELECT cho người dùng
+
+                                string grantQuery = $"REVOKE {row["PRIVILEGES"].ToString()} FROM {rolename}";
+                                command.CommandText = grantQuery;
+                                command.ExecuteNonQuery();
+
+                                MessageBox.Show("REVOKE PRIVILEGES thành công!");
+
+
+                            }
+
+                            // Đóng kết nối
+
+                            connection.Close();
+                        }
+                    }
+                }
+
+            }
+            dataTableTempSystemPrivileges = CreateDataTableFromDataGridView(dataGridView_system_privileges);
+            LoadDataSystemPrivileges();
         }
 
         private void InitializeDataGridViewObjectPrivileges()
@@ -274,6 +505,30 @@ namespace portal_application_project
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private DataTable CreateDataTableFromDataGridView(DataGridView dataGridView)
+        {
+            DataTable dataTable = new DataTable();
+
+            // Thêm các cột vào DataTable dựa trên cấu trúc của DataGridView
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                dataTable.Columns.Add(column.Name);
+            }
+
+            // Thêm dữ liệu từ DataGridView vào DataTable
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                DataRow newRow = dataTable.NewRow();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    newRow[cell.ColumnIndex] = cell.Value;
+                }
+                dataTable.Rows.Add(newRow);
+            }
+
+            return dataTable;
         }
     }
 }

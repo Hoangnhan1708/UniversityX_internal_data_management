@@ -43,7 +43,6 @@
             button3 = new Button();
             button4 = new Button();
             dataGridView_object_privileges = new DataGridView();
-            label10 = new Label();
             tabPage_ColumnsPrivileges = new TabPage();
             button5 = new Button();
             button6 = new Button();
@@ -224,7 +223,6 @@
             tabPage_objectPrivileges.Controls.Add(button3);
             tabPage_objectPrivileges.Controls.Add(button4);
             tabPage_objectPrivileges.Controls.Add(dataGridView_object_privileges);
-            tabPage_objectPrivileges.Controls.Add(label10);
             tabPage_objectPrivileges.Location = new Point(4, 31);
             tabPage_objectPrivileges.Name = "tabPage_objectPrivileges";
             tabPage_objectPrivileges.Size = new Size(1077, 512);
@@ -269,26 +267,14 @@
             // 
             dataGridView_object_privileges.AllowUserToAddRows = false;
             dataGridView_object_privileges.AllowUserToDeleteRows = false;
-            dataGridView_object_privileges.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView_object_privileges.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_object_privileges.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_object_privileges.Location = new Point(-4, 51);
+            dataGridView_object_privileges.Location = new Point(0, 0);
             dataGridView_object_privileges.Name = "dataGridView_object_privileges";
             dataGridView_object_privileges.RowHeadersWidth = 51;
             dataGridView_object_privileges.RowTemplate.Height = 29;
-            dataGridView_object_privileges.Size = new Size(1081, 389);
+            dataGridView_object_privileges.Size = new Size(1077, 437);
             dataGridView_object_privileges.TabIndex = 51;
-            // 
-            // label10
-            // 
-            label10.Anchor = AnchorStyles.Top;
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(451, 13);
-            label10.Name = "label10";
-            label10.Size = new Size(209, 28);
-            label10.TabIndex = 50;
-            label10.Text = "GRANTED PRIVILEGE";
             // 
             // tabPage_ColumnsPrivileges
             // 
@@ -368,7 +354,6 @@
             tabPage_systemPrivileges.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_system_privileges).EndInit();
             tabPage_objectPrivileges.ResumeLayout(false);
-            tabPage_objectPrivileges.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_object_privileges).EndInit();
             tabPage_ColumnsPrivileges.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_column_privileges).EndInit();
@@ -386,7 +371,6 @@
         private TabPage tabPage_ColumnsPrivileges;
         private DataGridView dataGridView_granted_roles;
         private DataGridView dataGridView_system_privileges;
-        private Label label10;
         private DataGridView dataGridView_object_privileges;
         private DataGridView dataGridView_column_privileges;
         private Button apply_edit_grantedRoles_btn;
