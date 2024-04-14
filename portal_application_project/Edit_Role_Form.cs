@@ -18,6 +18,7 @@ namespace portal_application_project
         string rolename;
         string connectionString;
         private DataTable dataTableTempSystemPrivileges;
+        private DataTable dataTableTempObjectPrivileges;
         public Edit_Role_Form(string rolename, string connectionString)
         {
             InitializeComponent();
@@ -231,7 +232,7 @@ namespace portal_application_project
             return diffTable;
         }
 
-        private void apply_editRole_btn_Click(object sender, EventArgs e)
+        private void apply_editRole_systemPrvs_btn_Click(object sender, EventArgs e)
         {
             DataTable dataTableCurrent = CreateDataTableFromDataGridView(dataGridView_system_privileges);
             DataTable diffTable = CompareDataTablesSystemPrivileges(dataTableCurrent, dataTableTempSystemPrivileges);
@@ -251,7 +252,7 @@ namespace portal_application_project
                             using (OracleCommand command = connection.CreateCommand())
                             {
                                 // GRANT quyền SELECT cho người dùng
-                                string grantQuery = $"GRANT {row["PRIVILEGES"].ToString()} TO {rolename} WITH ADMIN OPTION";
+                                string grantQuery = $"GRANT {row["PRIVILEGES"].ToString()} TO {rolename} WITH GRANT OPTION";
                                 command.CommandText = grantQuery;
                                 command.ExecuteNonQuery();
 
@@ -400,6 +401,7 @@ namespace portal_application_project
 
         private void LoadDataObjectPrivileges()
         {
+            dataGridView_object_privileges.Rows.Clear();
             try
             {
 
@@ -463,23 +465,419 @@ namespace portal_application_project
                                     }
                                 }
                             }
-
-
-
-
-
-
-
-                            dataGridView_object_privileges.Rows.Add(_object, type, hasPrivs[0], hasPrivs[1], hasPrivs[2], hasPrivs[3], hasPrivs[4], hasPrivs[5],hasADM);
+                            dataGridView_object_privileges.Rows.Add(_object, type, hasPrivs[0], hasPrivs[1], hasPrivs[2], hasPrivs[3], hasPrivs[4], hasPrivs[5], hasADM);
                         }
                         connection.Close();
                     }
                 }
+                dataTableTempObjectPrivileges = CreateDataTableFromDataGridView(dataGridView_object_privileges);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private DataTable CompareDataTablesObjectPrivileges(DataTable dt1, DataTable dt2)
+        {
+            DataTable diffTable = new DataTable();
+            diffTable.Columns.Add("OBJECT");
+            diffTable.Columns.Add("TYPE");
+            diffTable.Columns.Add("SELECT", typeof(bool));
+            diffTable.Columns.Add("UPDATE", typeof(bool));
+            diffTable.Columns.Add("DELETE", typeof(bool));
+            diffTable.Columns.Add("INSERT", typeof(bool));
+            diffTable.Columns.Add("EXECUTE", typeof(bool));
+            diffTable.Columns.Add("INDEX", typeof(bool));
+            diffTable.Columns.Add("WITH_GRANT_OPTION_OBJECT", typeof(bool));
+
+            // Lặp qua từng dòng của dt1
+            foreach (DataRow row1 in dt1.Rows)
+            {
+                string object1 = row1["OBJECT"].ToString();
+                
+                string type1 = row1["TYPE"].ToString();
+
+                // Lấy giá trị của cột "SELECT" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
+                object selectObj = row1["SELECT"];
+                bool select1;
+                if (selectObj != null && bool.TryParse(selectObj.ToString(), out bool selectValue))
+                {
+                    select1 = selectValue;
+                    
+                }
+                else
+                {
+                    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                }
+
+                // Lấy giá trị của cột "UPDATE" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
+                object updateObj = row1["UPDATE"];
+                bool update1;
+                if (updateObj != null && bool.TryParse(updateObj.ToString(), out bool updateValue))
+                {
+                    update1 = updateValue;
+                }
+                else
+                {
+                    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                }
+
+                // Lấy giá trị của cột "INSERT" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
+                object insertObj = row1["INSERT"];
+                bool insert1;
+                if (insertObj != null && bool.TryParse(insertObj.ToString(), out bool insertValue))
+                {
+                    insert1 = insertValue;
+                }
+                else
+                {
+                    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                }
+
+                // Lấy giá trị của cột "DELETE" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
+                object deleteObj = row1["DELETE"];
+                bool delete1;
+                if (deleteObj != null && bool.TryParse(deleteObj.ToString(), out bool deleteValue))
+                {
+                    delete1 = deleteValue;
+                }
+                else
+                {
+                    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                }
+
+                // Lấy giá trị của cột "EXECUTE" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
+                object executeObj = row1["EXECUTE"];
+                bool execute1;
+                if (executeObj != null && bool.TryParse(executeObj.ToString(), out bool executeValue))
+                {
+                    execute1 = executeValue;
+                }
+                else
+                {
+                    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                }
+
+                // Lấy giá trị của cột "INDEX" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
+                object indexObj = row1["INDEX"];
+                bool index1;
+                if (indexObj != null && bool.TryParse(indexObj.ToString(), out bool indexValue))
+                {
+                    index1 = indexValue;
+                }
+                else
+                {
+                    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                }
+
+                // Lấy giá trị của cột "ADMIN" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
+                object adminObj = row1["WITH_GRANT_OPTION_OBJECT"];
+                bool admin1;
+                if (adminObj != null && bool.TryParse(adminObj.ToString(), out bool adminValue))
+                {
+                    admin1 = adminValue;
+                }
+                else
+                {
+                    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                }
+
+                // Tìm dòng tương ứng trong dt2
+                
+                DataRow[] foundRows = dt2.Select($"OBJECT = '{object1}'");
+                
+                if (foundRows.Length > 0)
+                {
+                    // Lấy giá trị của cột "GRANTED" và "ADMIN" từ dòng tương ứng trong dt2
+                    object selectObj2 = foundRows[0]["SELECT"];
+                    bool select2;
+                    if (selectObj2 != null && bool.TryParse(selectObj2.ToString(), out bool selectValue2))
+                    {
+                        select2 = selectValue2;
+                    }
+                    else
+                    {
+                        // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                        continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                    }
+
+
+                    object updateObj2 = foundRows[0]["UPDATE"];
+                    bool update2;
+                    if (updateObj2 != null && bool.TryParse(updateObj2.ToString(), out bool updateValue2))
+                    {
+                        update2 = updateValue2;
+                    }
+                    else
+                    {
+                        // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                        continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                    }
+
+                    object deleteObj2 = foundRows[0]["DELETE"];
+                    bool delete2;
+                    if (deleteObj2 != null && bool.TryParse(deleteObj2.ToString(), out bool deleteValue2))
+                    {
+                        delete2 = deleteValue2;
+                    }
+                    else
+                    {
+                        // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                        continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                    }
+
+                    object insertObj2 = foundRows[0]["INSERT"];
+                    bool insert2;
+                    if (insertObj2 != null && bool.TryParse(insertObj2.ToString(), out bool insertValue2))
+                    {
+                        insert2 = insertValue2;
+                    }
+                    else
+                    {
+                        // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                        continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                    }
+
+                    object executeObj2 = foundRows[0]["EXECUTE"];
+                    bool execute2;
+                    if (executeObj2 != null && bool.TryParse(executeObj2.ToString(), out bool executeValue2))
+                    {
+                        execute2 = executeValue2;
+                    }
+                    else
+                    {
+                        // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                        continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                    }
+
+
+                    object indexObj2 = foundRows[0]["INDEX"];
+                    bool index2;
+                    if (indexObj2 != null && bool.TryParse(indexObj2.ToString(), out bool indexValue2))
+                    {
+                        index2 = indexValue2;
+                    }
+                    else
+                    {
+                        // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                        continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                    }
+
+
+                    object adminObj2 = foundRows[0]["WITH_GRANT_OPTION_OBJECT"];
+                    bool admin2;
+                    if (adminObj2 != null && bool.TryParse(adminObj2.ToString(), out bool adminValue2))
+                    {
+                        admin2 = adminValue2;
+                    }
+                    else
+                    {
+                        // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                        continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                    }
+
+                    // So sánh giá trị của các cột GRANTED và ADMIN
+                    if (select1 != select2 || update1 != update2 || insert1 != insert2 || delete1 != delete2 || execute1 != execute2 || index1 != index2 || admin1 != admin2)
+                    {
+                        // Nếu có sự thay đổi, thêm dòng vào diffTable
+                        DataRow diffRow = diffTable.NewRow();
+                        diffRow["OBJECT"] = object1;
+                        diffRow["TYPE"] = type1;
+                        diffRow["SELECT"] = select1;
+                        diffRow["UPDATE"] = update1;
+                        diffRow["INSERT"] = insert1;
+                        diffRow["DELETE"] = delete1;
+                        diffRow["INDEX"] = index1;
+                        diffRow["EXECUTE"] = execute1;
+                        diffRow["WITH_GRANT_OPTION_OBJECT"] = admin1;
+                        diffTable.Rows.Add(diffRow);
+                    }
+                }
+                else
+                {
+                    // Nếu không tìm thấy dòng trong dt2, thêm vào diffTable
+                    DataRow diffRow = diffTable.NewRow();
+                    diffRow["OBJECT"] = object1;
+                    diffRow["TYPE"] = type1;
+                    diffRow["SELECT"] = select1;
+                    diffRow["UPDATE"] = update1;
+                    diffRow["INSERT"] = insert1;
+                    diffRow["DELETE"] = delete1;
+                    diffRow["INDEX"] = index1;
+                    diffRow["EXECUTE"] = execute1;
+                    diffRow["WITH_GRANT_OPTION_OBJECT"] = admin1;
+                    diffTable.Rows.Add(diffRow);
+                }
+            }
+
+            return diffTable;
+        }
+
+
+
+        private void apply_edit_objectPrvs_btn_Click(object sender, EventArgs e)
+        {
+            DataTable dataTableCurrent = CreateDataTableFromDataGridView(dataGridView_object_privileges);
+            DataTable diffTable = CompareDataTablesObjectPrivileges(dataTableCurrent, dataTableTempObjectPrivileges);
+            dataGridView_test.DataSource = diffTable;
+            string truePermissions = "";
+            string falsePermissions = "";
+
+            foreach (DataRow row in diffTable.Rows)
+            {
+
+                // Xây dựng chuỗi falsePermissions
+                if (row["SELECT"].ToString() != "True")
+                {
+                    falsePermissions += "'SELECT',";
+                }
+
+                if (row["UPDATE"].ToString() != "True")
+                {
+                    falsePermissions += "'UPDATE',";
+                }
+
+                if (row["DELETE"].ToString() != "True")
+                {
+                    falsePermissions += "'DELETE',";
+                }
+
+                if (row["INSERT"].ToString() != "True")
+                {
+                    falsePermissions += "'INSERT',";
+                }
+                //if (row["SELECT"].ToString() == "True")
+                //{
+                //    truePermissions += "SELECT,";
+                //}
+                //else
+                //{
+                //    falsePermissions += "SELECT,";
+                //}
+
+                //if (row["UPDATE"].ToString() == "True")
+                //{
+                //    truePermissions += "UPDATE,";
+                //}
+                //else
+                //{
+                //    falsePermissions += "UPDATE,";
+                //}
+
+                //if (row["DELETE"].ToString() == "True")
+                //{
+                //    truePermissions += "DELETE,";
+                //}
+                //else
+                //{
+                //    falsePermissions += "DELETE,";
+                //}
+
+                //if (row["INSERT"].ToString() == "True")
+                //{
+                //    truePermissions += "INSERT,";
+                //}
+                //else
+                //{
+                //    falsePermissions += "INSERT,";
+                //}
+
+
+
+
+                //if ((bool)row["WITH_GRANT_OPTION"]) truePermissions += "WITH_GRANT_OPTION,";
+
+                // Loại bỏ dấu phẩy cuối cùng nếu có
+                if (!string.IsNullOrEmpty(truePermissions) || !string.IsNullOrEmpty(falsePermissions))
+                {
+                    truePermissions = truePermissions.TrimEnd(',');
+                    falsePermissions = falsePermissions.TrimEnd(',');
+                }
+
+
+            }
+
+            //MessageBox.Show(truePermissions);
+            //MessageBox.Show(falsePermissions);
+
+            foreach (DataRow row in diffTable.Rows)
+            {
+
+
+                if (!string.IsNullOrEmpty(truePermissions))
+                {
+                    using (OracleConnection connection = new OracleConnection(connectionString))
+                    {
+                        // Mở kết nối
+                        connection.Open();
+
+                        // Tạo đối tượng Command
+                        using (OracleCommand command = connection.CreateCommand())
+                        {
+                            // GRANT quyền SELECT cho người dùng
+                            string grantQuery = $"GRANT {truePermissions} ON {row["OBJECT"].ToString()} TO {rolename}";
+
+                            command.CommandText = grantQuery;
+                            command.ExecuteNonQuery();
+
+                            MessageBox.Show("GRANT PRIVILEGES thành công!");
+                        }
+
+                        // Đóng kết nối
+                        connection.Close();
+                    }
+                }
+                if (!string.IsNullOrEmpty(falsePermissions))
+                {
+                    using (OracleConnection connection = new OracleConnection(connectionString))
+                    {
+                        // Mở kết nối
+                        connection.Open();
+
+                        // Tạo đối tượng Command
+                        using (OracleCommand command = connection.CreateCommand())
+                        {
+                            // Kiểm tra xem người dùng có quyền cần REVOKE không
+                            string checkExistQuery = $"SELECT COUNT(*) FROM USER_TAB_PRIVS WHERE PRIVILEGE IN ({falsePermissions})";
+                            MessageBox.Show(checkExistQuery);
+                            command.CommandText = checkExistQuery;
+                            int count = Convert.ToInt32(command.ExecuteScalar());
+
+                            if (count > 0)
+                            {
+
+                                // Thực hiện REVOKE chỉ khi người dùng có quyền cần REVOKE
+                                string revokeQuery = $"REVOKE {falsePermissions} ON {row["OBJECT"].ToString()} FROM {rolename}";
+
+                            command.CommandText = revokeQuery;
+                            command.ExecuteNonQuery();
+
+                            MessageBox.Show("REVOKE PRIVILEGES thành công!");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Người dùng không có quyền cần REVOKE.");
+                            }
+                        }
+
+                        // Đóng kết nối
+                        connection.Close();
+                    }
+                }
+
+
+
+            }
+            dataTableTempObjectPrivileges = CreateDataTableFromDataGridView(dataGridView_object_privileges);
+            LoadDataObjectPrivileges();
         }
 
         private void InitializeDataGridViewColumnPrivileges()
@@ -584,5 +982,7 @@ namespace portal_application_project
 
             return dataTable;
         }
+
+
     }
 }
