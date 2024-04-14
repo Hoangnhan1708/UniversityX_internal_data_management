@@ -175,17 +175,71 @@ namespace portal_application_project
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     // load cột Object
-                    string query = "SELECT username,user_id FROM all_users"; // Thay thế OBJECT tại đây
+                    string query = "SELECT Object_Name,Type FROM V_ALL_OBJECT"; // Thay thế OBJECT tại đây
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
                         connection.Open();
                         OracleDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
-                            string _object = reader["username"].ToString(); // Thay thế OBJECT tại đây
-                            string type = reader["user_id"].ToString(); // Thay thế OBJECT tại đây
-                            // Thêm dòng mới với roleName vào cột đầu tiên
-                            dataGridView_object_privileges.Rows.Add(_object, type);
+                            string _object = reader["Object_Name"].ToString(); // Thay thế OBJECT tại đây
+                            string type = reader["Type"].ToString(); // Thay thế OBJECT tại đây
+                                                                     // Thêm dòng mới với roleName vào cột đầu tiên
+
+                            string sub_query = "SELECT Privilege,Object_Name, ADM FROM V_DETAIL_ROLES_3 WHERE Role_Name = '" + rolename + "'";
+                            bool[] hasPrivs = new bool[6];
+                            int i = 0;
+                            bool hasADM = false;
+
+                            using (OracleCommand sub_command = new OracleCommand(sub_query, connection))
+                            {
+                                OracleDataReader sub_reader = sub_command.ExecuteReader();
+                                while (sub_reader.Read())
+                                {
+                                    string RolePrivs = sub_reader["Privilege"].ToString();
+                                    string RoleADM = sub_reader["ADM"].ToString();
+                                    string obj = sub_reader["Object_Name"].ToString();
+
+
+                                    if (obj == _object)
+                                    {
+                                        if (RoleADM == "YES")
+                                        {
+                                            hasADM = true;
+                                        }
+                                        switch (RolePrivs)
+                                        {
+                                            case "INDEX":
+                                                i = 5;
+                                                break;
+                                            case "EXECUTE":
+                                                i = 4;
+                                                break;
+                                            case "INSERT":
+                                                i = 3;
+                                                break;
+                                            case "DELETE":
+                                                i = 2;
+                                                break;
+                                            case "UPDATE":
+                                                i = 1;
+                                                break;
+                                            case "SELECT":
+                                                i = 0;
+                                                break;
+                                        }
+                                        hasPrivs[i] = true;
+                                    }
+                                }
+                            }
+
+
+
+
+
+
+
+                            dataGridView_object_privileges.Rows.Add(_object, type, hasPrivs[0], hasPrivs[1], hasPrivs[2], hasPrivs[3], hasPrivs[4], hasPrivs[5],hasADM);
                         }
                         connection.Close();
                     }

@@ -183,7 +183,8 @@ AS
         GRANTEE AS Role_Name,
         PRIVILEGE AS Privilege,
         TABLE_NAME AS Object_Name,
-        TYPE AS Type
+        TYPE AS Type,
+        GRANTABLE AS ADM
     FROM DBA_TAB_PRIVS 
     WHERE GRANTEE IN (SELECT Role_Name
         FROM V_ALL_ROLES)
@@ -229,7 +230,8 @@ AS
         TABLE_NAME AS Object_Name,
         TYPE AS Type        
     FROM DBA_TAB_PRIVS 
-    WHERE PRIVILEGE IN ('SELECT','UPDATE','INSERT','DELETE');
+    WHERE PRIVILEGE IN ('SELECT','UPDATE','INSERT','DELETE','EXCUTE','INDEX')
+    AND ROWNUM <= 30;
 /
 
 ----------------------------
@@ -244,7 +246,8 @@ AS
 CREATE OR REPLACE VIEW TEST AS
 SELECT OWNER
 FROM all_views
-WHERE OWNER = SYS_CONTEXT('userenv','session_user');
+WHERE OWNER = SYS_CONTEXT('userenv','session_user')
+
 
 
 
