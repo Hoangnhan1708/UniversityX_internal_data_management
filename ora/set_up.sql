@@ -168,7 +168,8 @@ CREATE OR REPLACE VIEW V_DETAIL_ROLES_2
 AS
     SELECT distinct
         GRANTEE AS Role_Name, 
-        PRIVILEGE AS Privileges
+        PRIVILEGE AS Privileges,
+        ADMIN_OPTION AS ADM
     FROM DBA_SYS_PRIVS
     WHERE GRANTEE IN (SELECT Role_Name
         FROM V_ALL_ROLES)

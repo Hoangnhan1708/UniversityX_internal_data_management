@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Intrinsics.Arm;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -65,16 +66,42 @@ namespace portal_application_project
             {
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
-                    string query = "SELECT username FROM all_users"; // Thay thế PRIVILEGES tại đây
+                    string query = "SELECT Privileges FROM V_ALL_SYS_PRIVS"; // Thay thế PRIVILEGES tại đây
+
+
+
                     using (OracleCommand command = new OracleCommand(query, connection))
                     {
                         connection.Open();
                         OracleDataReader reader = command.ExecuteReader();
                         while (reader.Read())
                         {
-                            string privilege = reader["username"].ToString(); // Thay thế PRIVILEGES tại đây
-                            // Thêm dòng mới với roleName vào cột đầu tiên
-                            dataGridView_system_privileges.Rows.Add(privilege);
+                            string privilege = reader["Privileges"].ToString(); // Thay thế PRIVILEGES tại đây
+
+                            string sub_query = "SELECT Privileges,ADM FROM V_DETAIL_ROLES_2 WHERE Role_Name = '" + rolename + "'";
+                            bool hasPrivs = false;
+                            bool hasADM = false;
+
+                            using (OracleCommand sub_command = new OracleCommand(sub_query, connection))
+                            {
+                                OracleDataReader sub_reader = sub_command.ExecuteReader();
+                                while (sub_reader.Read())
+                                {
+                                    string RolePrivs = sub_reader["Privileges"].ToString();
+                                    string RoleADM = sub_reader["ADM"].ToString();
+                                    if (RolePrivs == privilege)
+                                    {
+                                        hasPrivs = true;
+                                        if (RoleADM == "YES")
+                                        {
+                                            hasADM = true;
+                                        }
+                                        break;
+                                    }
+                                }
+                            }
+                            // Thêm dòng mới với roleName
+                            dataGridView_system_privileges.Rows.Add(privilege,hasPrivs,hasADM);
                         }
                         connection.Close();
                     }
