@@ -32,7 +32,6 @@
             panel1 = new Panel();
             tabControl_edit_user = new TabControl();
             tabPage_grantedRoles = new TabPage();
-            refresh_btn = new Button();
             close_btn = new Button();
             apply_edit_grantedRoles_btn = new Button();
             dataGridView_granted_roles = new DataGridView();
@@ -49,7 +48,6 @@
             button5 = new Button();
             button6 = new Button();
             dataGridView_column_privileges = new DataGridView();
-            button1 = new Button();
             panel1.SuspendLayout();
             tabControl_edit_user.SuspendLayout();
             tabPage_grantedRoles.SuspendLayout();
@@ -101,7 +99,6 @@
             // 
             // tabPage_grantedRoles
             // 
-            tabPage_grantedRoles.Controls.Add(refresh_btn);
             tabPage_grantedRoles.Controls.Add(close_btn);
             tabPage_grantedRoles.Controls.Add(apply_edit_grantedRoles_btn);
             tabPage_grantedRoles.Controls.Add(dataGridView_granted_roles);
@@ -112,23 +109,6 @@
             tabPage_grantedRoles.TabIndex = 0;
             tabPage_grantedRoles.Text = "Granted roles";
             tabPage_grantedRoles.UseVisualStyleBackColor = true;
-            // 
-            // refresh_btn
-            // 
-            refresh_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            refresh_btn.BackColor = SystemColors.ButtonHighlight;
-            refresh_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
-            refresh_btn.FlatAppearance.BorderSize = 3;
-            refresh_btn.FlatStyle = FlatStyle.Flat;
-            refresh_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            refresh_btn.ForeColor = SystemColors.HotTrack;
-            refresh_btn.Location = new Point(20, 459);
-            refresh_btn.Name = "refresh_btn";
-            refresh_btn.Size = new Size(128, 47);
-            refresh_btn.TabIndex = 48;
-            refresh_btn.Text = "Refresh";
-            refresh_btn.UseVisualStyleBackColor = false;
-            refresh_btn.Click += refresh_btn_Click;
             // 
             // close_btn
             // 
@@ -180,7 +160,6 @@
             // 
             // tabPage_systemPrivileges
             // 
-            tabPage_systemPrivileges.Controls.Add(button1);
             tabPage_systemPrivileges.Controls.Add(close_btn_systemPrivs);
             tabPage_systemPrivileges.Controls.Add(apply_edit_systemPrivileges_btn);
             tabPage_systemPrivileges.Controls.Add(dataGridView_system_privileges);
@@ -370,22 +349,6 @@
             dataGridView_column_privileges.Size = new Size(1077, 433);
             dataGridView_column_privileges.TabIndex = 0;
             // 
-            // button1
-            // 
-            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button1.BackColor = SystemColors.ButtonHighlight;
-            button1.FlatAppearance.BorderColor = SystemColors.Highlight;
-            button1.FlatAppearance.BorderSize = 3;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ForeColor = SystemColors.HotTrack;
-            button1.Location = new Point(30, 447);
-            button1.Name = "button1";
-            button1.Size = new Size(128, 47);
-            button1.TabIndex = 50;
-            button1.Text = "Refresh";
-            button1.UseVisualStyleBackColor = false;
-            // 
             // Edit_User_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -434,7 +397,5 @@
         private Button button4;
         private Button button5;
         private Button button6;
-        private Button refresh_btn;
-        private Button button1;
     }
 }
