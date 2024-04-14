@@ -28,6 +28,29 @@ namespace portal_application_project
             label_roleName_heading.Text = "Edit User " + this.username;
         }
 
+        private void tabControl_edit_user_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl_edit_user.SelectedTab == tabPage_grantedRoles)
+            {
+                LoadDataGrantedRoles();
+            }
+
+            if (tabControl_edit_user.SelectedTab == tabPage_systemPrivileges)
+            {
+                LoadDataSystemPrivileges();
+            }
+
+            if (tabControl_edit_user.SelectedTab == tabPage_objectPrivileges)
+            {
+                LoadDataObjectPrivileges();
+            }
+
+            if (tabControl_edit_user.SelectedTab == tabPage_ColumnsPrivileges)
+            {
+                LoadDataColumnPrivileges();
+            }
+        }
+
         private void Edit_User_Form_Load(object sender, EventArgs e)
         {
             // Granted roles tab
@@ -36,15 +59,12 @@ namespace portal_application_project
 
             // System Privileges
             InitializeDataGridViewSystemPrivileges();
-            LoadDataSystemPrivileges();
 
             // Object Privileges
             InitializeDataGridViewObjectPrivileges();
-            LoadDataObjectPrivileges();
 
             // Column privileges
             InitializeDataGridViewColumnPrivileges();
-            LoadDataColumnPrivileges();
 
 
         }
@@ -399,6 +419,7 @@ namespace portal_application_project
 
         private void LoadDataSystemPrivileges()
         {
+            dataGridView_system_privileges.Rows.Clear();
             try
             {
                 using (OracleConnection connection = new OracleConnection(connectionString))
@@ -443,18 +464,9 @@ namespace portal_application_project
                             dataGridView_system_privileges.Rows.Add(privilege, hasPrivs, adm);
 
 
-
-
-
-
-
                         }
                         connection.Close();
                     }
-
-
-
-
 
                 }
             }
@@ -462,6 +474,120 @@ namespace portal_application_project
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void apply_edit_systemPrivileges_btn_Click(object sender, EventArgs e)
+        {
+            DataTable dataTableCurrent = CreateDataTableFromDataGridView(dataGridView_granted_roles);
+            DataTable diffTable = CompareDataTables(dataTableCurrent, dataTableTemp);
+            foreach (DataRow row in diffTable.Rows)
+            {
+                if (row["ADMIN"].ToString() == "True")
+                {
+                    if (row["GRANTED"].ToString() == "True")
+                    {
+                        using (OracleConnection connection = new OracleConnection(connectionString))
+                        {
+                            // Mở kết nối
+                            connection.Open();
+
+                            // Tạo đối tượng Command
+                            using (OracleCommand command = connection.CreateCommand())
+                            {
+                                // GRANT quyền SELECT cho người dùng
+                                string grantQuery = $"GRANT {row["ROLENAME"].ToString()} TO {username} WITH ADMIN OPTION";
+                                command.CommandText = grantQuery;
+                                command.ExecuteNonQuery();
+
+                                MessageBox.Show("GRANT ROLE thành công!");
+                            }
+
+                            // Đóng kết nối
+                            connection.Close();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Phải có ROLE mới được có quyền WITH GRANT OPTION.");
+                    }
+
+
+                }
+
+                else
+                {
+                    if (row["GRANTED"].ToString() == "True")
+                    {
+                        using (OracleConnection connection = new OracleConnection(connectionString))
+                        {
+                            // Mở kết nối
+                            connection.Open();
+
+                            // Tạo đối tượng Command
+                            using (OracleCommand command = connection.CreateCommand())
+                            {
+                                string NewRole = row["ROLENAME"].ToString();
+                                string check = "False";
+                                foreach (DataRow sub_row in dataTableTemp.Rows)
+                                {
+                                    string Role = sub_row["ROLENAME"].ToString();
+
+                                    if (Role == NewRole)
+                                    {
+                                        check = sub_row["GRANTED"].ToString();
+                                    }
+                                }
+
+                                if (check == "True")
+                                {
+                                    string sub_grantQuery = $"REVOKE {row["ROLENAME"].ToString()} FROM {username}";
+                                    command.CommandText = sub_grantQuery;
+                                    command.ExecuteNonQuery();
+                                }
+
+                                string grantQuery = $"GRANT {row["ROLENAME"].ToString()} TO {username}";
+                                command.CommandText = grantQuery;
+                                command.ExecuteNonQuery();
+
+                                MessageBox.Show("GRANT ROLE thành công!");
+                            }
+
+                            // Đóng kết nối
+                            connection.Close();
+                        }
+                    }
+
+                    else
+                    {
+                        using (OracleConnection connection = new OracleConnection(connectionString))
+                        {
+                            // Mở kết nối
+                            connection.Open();
+
+                            // Tạo đối tượng Command
+                            using (OracleCommand command = connection.CreateCommand())
+                            {
+                                // GRANT quyền SELECT cho người dùng
+
+                                string grantQuery = $"REVOKE {row["ROLENAME"].ToString()} FROM {username}";
+                                command.CommandText = grantQuery;
+                                command.ExecuteNonQuery();
+
+                                MessageBox.Show("REVOKE ROLE thành công!");
+
+
+                            }
+
+                            // Đóng kết nối
+
+                            connection.Close();
+                        }
+                    }
+                }
+
+            }
+            dataTableTemp = CreateDataTableFromDataGridView(dataGridView_granted_roles);
+
         }
 
         private void InitializeDataGridViewObjectPrivileges()
@@ -632,5 +758,7 @@ namespace portal_application_project
         {
             LoadDataGrantedRoles();
         }
+
+
     }
 }
