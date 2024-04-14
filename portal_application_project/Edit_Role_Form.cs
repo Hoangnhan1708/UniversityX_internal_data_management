@@ -495,7 +495,7 @@ namespace portal_application_project
             foreach (DataRow row1 in dt1.Rows)
             {
                 string object1 = row1["OBJECT"].ToString();
-                
+
                 string type1 = row1["TYPE"].ToString();
 
                 // Lấy giá trị của cột "SELECT" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
@@ -504,7 +504,7 @@ namespace portal_application_project
                 if (selectObj != null && bool.TryParse(selectObj.ToString(), out bool selectValue))
                 {
                     select1 = selectValue;
-                    
+
                 }
                 else
                 {
@@ -591,9 +591,9 @@ namespace portal_application_project
                 }
 
                 // Tìm dòng tương ứng trong dt2
-                
+
                 DataRow[] foundRows = dt2.Select($"OBJECT = '{object1}'");
-                
+
                 if (foundRows.Length > 0)
                 {
                     // Lấy giá trị của cột "GRANTED" và "ADMIN" từ dòng tương ứng trong dt2
@@ -727,155 +727,89 @@ namespace portal_application_project
         {
             DataTable dataTableCurrent = CreateDataTableFromDataGridView(dataGridView_object_privileges);
             DataTable diffTable = CompareDataTablesObjectPrivileges(dataTableCurrent, dataTableTempObjectPrivileges);
-            dataGridView_test.DataSource = diffTable;
-            string truePermissions = "";
-            string falsePermissions = "";
+
+
+            string[] check = new string[5];
+            string[] privs = new string[] { "SELECT", "UPDATE", "INSERT", "DELETE" ,"EXECUTE"};
+            string grant, revoke;
 
             foreach (DataRow row in diffTable.Rows)
             {
+                grant = "";
+                revoke = "";
 
-                // Xây dựng chuỗi falsePermissions
-                if (row["SELECT"].ToString() != "True")
+                for (int i = 0; i < 5; i++)
                 {
-                    falsePermissions += "'SELECT',";
+                    check[i] = row[privs[i]].ToString();
                 }
 
-                if (row["UPDATE"].ToString() != "True")
+                
+
+
+                for (int i = 0; i < 5; i++)
                 {
-                    falsePermissions += "'UPDATE',";
+                    if (check[i] == "True")
+                    {
+                        if (grant != "")
+                        {
+                            grant += ",";
+                        }
+                        grant += privs[i];
+                    }
+                    else
+                    {
+                        foreach (DataRow sub_row in dataTableTempObjectPrivileges.Rows)
+                        {
+                            if (sub_row["OBJECT"].ToString() != row["OBJECT"].ToString())
+                            {
+                                continue;
+                            }
+                            if (sub_row[privs[i]].ToString() == "True")
+                            {
+                                if (revoke != "")
+                                {
+                                    revoke += ",";
+                                }
+                                revoke += privs[i];
+                            }
+                        }
+                    }
+
                 }
 
-                if (row["DELETE"].ToString() != "True")
+                using (OracleConnection connection = new OracleConnection(connectionString))
                 {
-                    falsePermissions += "'DELETE',";
-                }
-
-                if (row["INSERT"].ToString() != "True")
-                {
-                    falsePermissions += "'INSERT',";
-                }
-                //if (row["SELECT"].ToString() == "True")
-                //{
-                //    truePermissions += "SELECT,";
-                //}
-                //else
-                //{
-                //    falsePermissions += "SELECT,";
-                //}
-
-                //if (row["UPDATE"].ToString() == "True")
-                //{
-                //    truePermissions += "UPDATE,";
-                //}
-                //else
-                //{
-                //    falsePermissions += "UPDATE,";
-                //}
-
-                //if (row["DELETE"].ToString() == "True")
-                //{
-                //    truePermissions += "DELETE,";
-                //}
-                //else
-                //{
-                //    falsePermissions += "DELETE,";
-                //}
-
-                //if (row["INSERT"].ToString() == "True")
-                //{
-                //    truePermissions += "INSERT,";
-                //}
-                //else
-                //{
-                //    falsePermissions += "INSERT,";
-                //}
+                    connection.Open();
+                    using (OracleCommand command = connection.CreateCommand())
+                    {
+                        try
+                        {
+                            if (grant != "")
+                            {
+                                grant = "GRANT " + grant + " ON " + row["OBJECT"].ToString() + " TO " + rolename;
+                                command.CommandText = grant;
+                                command.ExecuteNonQuery();
+                            }
+                            if (revoke != "")
+                            {
+                                revoke = "REVOKE " + revoke + " ON " + row["OBJECT"].ToString() + " FROM " + rolename;
+                                command.CommandText = revoke;
+                                command.ExecuteNonQuery();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message);
+                        }
 
 
-
-
-                //if ((bool)row["WITH_GRANT_OPTION"]) truePermissions += "WITH_GRANT_OPTION,";
-
-                // Loại bỏ dấu phẩy cuối cùng nếu có
-                if (!string.IsNullOrEmpty(truePermissions) || !string.IsNullOrEmpty(falsePermissions))
-                {
-                    truePermissions = truePermissions.TrimEnd(',');
-                    falsePermissions = falsePermissions.TrimEnd(',');
+                    }
+                    connection.Close();
                 }
 
 
             }
 
-            //MessageBox.Show(truePermissions);
-            //MessageBox.Show(falsePermissions);
-
-            foreach (DataRow row in diffTable.Rows)
-            {
-
-
-                if (!string.IsNullOrEmpty(truePermissions))
-                {
-                    using (OracleConnection connection = new OracleConnection(connectionString))
-                    {
-                        // Mở kết nối
-                        connection.Open();
-
-                        // Tạo đối tượng Command
-                        using (OracleCommand command = connection.CreateCommand())
-                        {
-                            // GRANT quyền SELECT cho người dùng
-                            string grantQuery = $"GRANT {truePermissions} ON {row["OBJECT"].ToString()} TO {rolename}";
-
-                            command.CommandText = grantQuery;
-                            command.ExecuteNonQuery();
-
-                            MessageBox.Show("GRANT PRIVILEGES thành công!");
-                        }
-
-                        // Đóng kết nối
-                        connection.Close();
-                    }
-                }
-                if (!string.IsNullOrEmpty(falsePermissions))
-                {
-                    using (OracleConnection connection = new OracleConnection(connectionString))
-                    {
-                        // Mở kết nối
-                        connection.Open();
-
-                        // Tạo đối tượng Command
-                        using (OracleCommand command = connection.CreateCommand())
-                        {
-                            // Kiểm tra xem người dùng có quyền cần REVOKE không
-                            string checkExistQuery = $"SELECT COUNT(*) FROM USER_TAB_PRIVS WHERE PRIVILEGE IN ({falsePermissions})";
-                            MessageBox.Show(checkExistQuery);
-                            command.CommandText = checkExistQuery;
-                            int count = Convert.ToInt32(command.ExecuteScalar());
-
-                            if (count > 0)
-                            {
-
-                                // Thực hiện REVOKE chỉ khi người dùng có quyền cần REVOKE
-                                string revokeQuery = $"REVOKE {falsePermissions} ON {row["OBJECT"].ToString()} FROM {rolename}";
-
-                            command.CommandText = revokeQuery;
-                            command.ExecuteNonQuery();
-
-                            MessageBox.Show("REVOKE PRIVILEGES thành công!");
-                            }
-                            else
-                            {
-                                MessageBox.Show("Người dùng không có quyền cần REVOKE.");
-                            }
-                        }
-
-                        // Đóng kết nối
-                        connection.Close();
-                    }
-                }
-
-
-
-            }
             dataTableTempObjectPrivileges = CreateDataTableFromDataGridView(dataGridView_object_privileges);
             LoadDataObjectPrivileges();
         }
