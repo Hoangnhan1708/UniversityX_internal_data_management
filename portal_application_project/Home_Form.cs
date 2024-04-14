@@ -239,7 +239,7 @@ namespace portal_application_project
                 // Lấy cell hiện tại
                 DataGridViewCell selectedCell = dataGridView_home_roles.SelectedCells[0];
 
-                if (selectedCell.OwningColumn.Name == "USERNAME")
+                if (selectedCell.OwningColumn.Name == "ROLE_NAME")
                 {
                     if (selectedCell.Value != null)
                     {
