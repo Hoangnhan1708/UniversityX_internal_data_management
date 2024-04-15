@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace portal_application_project
@@ -724,10 +725,10 @@ namespace portal_application_project
             executeColumn.Name = "EXECUTE";
             dataGridView_object_privileges.Columns.Add(executeColumn);
 
-            DataGridViewCheckBoxColumn indexColumn = new DataGridViewCheckBoxColumn();
-            indexColumn.HeaderText = "INDEX";
-            indexColumn.Name = "INDEX";
-            dataGridView_object_privileges.Columns.Add(indexColumn);
+            //DataGridViewCheckBoxColumn indexColumn = new DataGridViewCheckBoxColumn();
+            //indexColumn.HeaderText = "INDEX";
+            //indexColumn.Name = "INDEX";
+            //dataGridView_object_privileges.Columns.Add(indexColumn);
 
             DataGridViewCheckBoxColumn withGrantOptionColumn = new DataGridViewCheckBoxColumn();
             withGrantOptionColumn.HeaderText = "WITH GRANT OPTION";
@@ -745,7 +746,7 @@ namespace portal_application_project
             diffTable.Columns.Add("DELETE", typeof(bool));
             diffTable.Columns.Add("INSERT", typeof(bool));
             diffTable.Columns.Add("EXECUTE", typeof(bool));
-            diffTable.Columns.Add("INDEX", typeof(bool));
+            //diffTable.Columns.Add("INDEX", typeof(bool));
             diffTable.Columns.Add("WITH_GRANT_OPTION_OBJECT", typeof(bool));
 
             // Lặp qua từng dòng của dt1
@@ -822,17 +823,17 @@ namespace portal_application_project
                 }
 
                 // Lấy giá trị của cột "INDEX" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
-                object indexObj = row1["INDEX"];
-                bool index1;
-                if (indexObj != null && bool.TryParse(indexObj.ToString(), out bool indexValue))
-                {
-                    index1 = indexValue;
-                }
-                else
-                {
-                    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
-                    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
-                }
+                //object indexObj = row1["INDEX"];
+                //bool index1;
+                //if (indexObj != null && bool.TryParse(indexObj.ToString(), out bool indexValue))
+                //{
+                //    index1 = indexValue;
+                //}
+                //else
+                //{
+                //    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                //    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                //}
 
                 // Lấy giá trị của cột "ADMIN" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
                 object adminObj = row1["WITH_GRANT_OPTION_OBJECT"];
@@ -916,17 +917,17 @@ namespace portal_application_project
                     }
 
 
-                    object indexObj2 = foundRows[0]["INDEX"];
-                    bool index2;
-                    if (indexObj2 != null && bool.TryParse(indexObj2.ToString(), out bool indexValue2))
-                    {
-                        index2 = indexValue2;
-                    }
-                    else
-                    {
-                        // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
-                        continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
-                    }
+                    //object indexObj2 = foundRows[0]["INDEX"];
+                    //bool index2;
+                    //if (indexObj2 != null && bool.TryParse(indexObj2.ToString(), out bool indexValue2))
+                    //{
+                    //    index2 = indexValue2;
+                    //}
+                    //else
+                    //{
+                    //    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                    //    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                    //}
 
 
                     object adminObj2 = foundRows[0]["WITH_GRANT_OPTION_OBJECT"];
@@ -942,7 +943,7 @@ namespace portal_application_project
                     }
 
                     // So sánh giá trị của các cột GRANTED và ADMIN
-                    if (select1 != select2 || update1 != update2 || insert1 != insert2 || delete1 != delete2 || execute1 != execute2 || index1 != index2 || admin1 != admin2)
+                    if (select1 != select2 || update1 != update2 || insert1 != insert2 || delete1 != delete2 || execute1 != execute2 ||  admin1 != admin2)
                     {
                         // Nếu có sự thay đổi, thêm dòng vào diffTable
                         DataRow diffRow = diffTable.NewRow();
@@ -952,7 +953,7 @@ namespace portal_application_project
                         diffRow["UPDATE"] = update1;
                         diffRow["INSERT"] = insert1;
                         diffRow["DELETE"] = delete1;
-                        diffRow["INDEX"] = index1;
+                        //diffRow["INDEX"] = index1;
                         diffRow["EXECUTE"] = execute1;
                         diffRow["WITH_GRANT_OPTION_OBJECT"] = admin1;
                         diffTable.Rows.Add(diffRow);
@@ -968,7 +969,7 @@ namespace portal_application_project
                     diffRow["UPDATE"] = update1;
                     diffRow["INSERT"] = insert1;
                     diffRow["DELETE"] = delete1;
-                    diffRow["INDEX"] = index1;
+                    //diffRow["INDEX"] = index1;
                     diffRow["EXECUTE"] = execute1;
                     diffRow["WITH_GRANT_OPTION_OBJECT"] = admin1;
                     diffTable.Rows.Add(diffRow);
@@ -1020,9 +1021,9 @@ namespace portal_application_project
                                         }*/
                                         switch (RolePrivs)
                                         {
-                                            case "INDEX":
-                                                i = 5;
-                                                break;
+                                            //case "INDEX":
+                                            //    i = 5;
+                                            //    break;
                                             case "EXECUTE":
                                                 i = 4;
                                                 break;
@@ -1043,7 +1044,7 @@ namespace portal_application_project
                                     }
                                 }
                             }
-                            dataGridView_object_privileges.Rows.Add(_object, type, hasPrivs[0], hasPrivs[1], hasPrivs[2], hasPrivs[3], hasPrivs[4], hasPrivs[5], hasADM);
+                            dataGridView_object_privileges.Rows.Add(_object, type, hasPrivs[0], hasPrivs[1], hasPrivs[2], hasPrivs[3], hasPrivs[4], hasADM);
                         }
                         connection.Close();
                     }
@@ -1163,10 +1164,10 @@ namespace portal_application_project
             dataGridView_column_privileges.Columns.Add(columnColumn);
 
             // Tạo cột SELECT (Checkbox)
-            DataGridViewCheckBoxColumn selectColumn = new DataGridViewCheckBoxColumn();
-            selectColumn.HeaderText = "SELECT";
-            selectColumn.Name = "SELECT";
-            dataGridView_column_privileges.Columns.Add(selectColumn);
+            //DataGridViewCheckBoxColumn selectColumn = new DataGridViewCheckBoxColumn();
+            //selectColumn.HeaderText = "SELECT";
+            //selectColumn.Name = "SELECT";
+            //dataGridView_column_privileges.Columns.Add(selectColumn);
 
             DataGridViewCheckBoxColumn updateColumn = new DataGridViewCheckBoxColumn();
             updateColumn.HeaderText = "UPDATE";
@@ -1229,9 +1230,9 @@ namespace portal_application_project
                                             case "UPDATE":
                                                 i = 1;
                                                 break;
-                                            case "SELECT":
-                                                i = 0;
-                                                break;
+                                            //case "SELECT":
+                                            //    i = 0;
+                                            //    break;
                                         }
                                         hasPrivs[i] = true;
                                     }
@@ -1239,7 +1240,7 @@ namespace portal_application_project
                             }
 
                             // Theem ADM
-                            dataGridView_column_privileges.Rows.Add(tableName, columnName, hasPrivs[0], hasPrivs[1], hasADM);
+                            dataGridView_column_privileges.Rows.Add(tableName, columnName, hasPrivs[1], hasADM);
                         }
                         connection.Close();
                     }
@@ -1257,7 +1258,7 @@ namespace portal_application_project
             DataTable diffTable = new DataTable();
             diffTable.Columns.Add("TABLE");
             diffTable.Columns.Add("COLUMN");
-            diffTable.Columns.Add("SELECT", typeof(bool));
+            //diffTable.Columns.Add("SELECT", typeof(bool));
             diffTable.Columns.Add("UPDATE", typeof(bool));
             diffTable.Columns.Add("WITH_GRANT_OPTION_COLUMN", typeof(bool));
 
@@ -1269,18 +1270,18 @@ namespace portal_application_project
                 string column1 = row1["COLUMN"].ToString();
 
                 // Lấy giá trị của cột "SELECT" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
-                object selectObj = row1["SELECT"];
-                bool select1;
-                if (selectObj != null && bool.TryParse(selectObj.ToString(), out bool selectValue))
-                {
-                    select1 = selectValue;
+                //object selectObj = row1["SELECT"];
+                //bool select1;
+                //if (selectObj != null && bool.TryParse(selectObj.ToString(), out bool selectValue))
+                //{
+                //    select1 = selectValue;
 
-                }
-                else
-                {
-                    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
-                    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
-                }
+                //}
+                //else
+                //{
+                //    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                //    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                //}
 
                 // Lấy giá trị của cột "UPDATE" và kiểm tra xem có thể chuyển đổi thành kiểu bool không
                 object updateObj = row1["UPDATE"];
@@ -1316,18 +1317,18 @@ namespace portal_application_project
 
                 if (foundRows.Length > 0)
                 {
-                    // Lấy giá trị của cột "GRANTED" và "ADMIN" từ dòng tương ứng trong dt2
-                    object selectObj2 = foundRows[0]["SELECT"];
-                    bool select2;
-                    if (selectObj2 != null && bool.TryParse(selectObj2.ToString(), out bool selectValue2))
-                    {
-                        select2 = selectValue2;
-                    }
-                    else
-                    {
-                        // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
-                        continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
-                    }
+                    //// Lấy giá trị của cột "GRANTED" và "ADMIN" từ dòng tương ứng trong dt2
+                    //object selectObj2 = foundRows[0]["SELECT"];
+                    //bool select2;
+                    //if (selectObj2 != null && bool.TryParse(selectObj2.ToString(), out bool selectValue2))
+                    //{
+                    //    select2 = selectValue2;
+                    //}
+                    //else
+                    //{
+                    //    // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
+                    //    continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
+                    //}
 
 
                     object updateObj2 = foundRows[0]["UPDATE"];
@@ -1355,15 +1356,15 @@ namespace portal_application_project
                         // Xử lý khi không thể chuyển đổi giá trị thành kiểu bool
                         continue; // Bỏ qua dòng này và đi tiếp sang dòng khác
                     }
-
-                    // So sánh giá trị của các cột GRANTED và ADMIN
-                    if (select1 != select2 || update1 != update2 || admin1 != admin2)
+                    //if (select1 != select2 || update1 != update2 || admin1 != admin2)
+                        // So sánh giá trị của các cột GRANTED và ADMIN
+                    if (update1 != update2 || admin1 != admin2)
                     {
                         // Nếu có sự thay đổi, thêm dòng vào diffTable
                         DataRow diffRow = diffTable.NewRow();
                         diffRow["TABLE"] = table1;
                         diffRow["COLUMN"] = column1;
-                        diffRow["SELECT"] = select1;
+                        //diffRow["SELECT"] = select1;
                         diffRow["UPDATE"] = update1;
 
                         diffRow["WITH_GRANT_OPTION_COLUMN"] = admin1;
@@ -1377,7 +1378,7 @@ namespace portal_application_project
                     DataRow diffRow = diffTable.NewRow();
                     diffRow["TABLE"] = table1;
                     diffRow["COLUMN"] = column1;
-                    diffRow["SELECT"] = select1;
+                    //diffRow["SELECT"] = select1;
                     diffRow["UPDATE"] = update1;
 
                     diffRow["WITH_GRANT_OPTION_COLUMN"] = admin1;
@@ -1393,8 +1394,8 @@ namespace portal_application_project
             DataTable diffTable = CompareDataTablesColumnPrivileges(dataTableCurrent, dataTableTempColumnPrivileges);
             
 
-            string[] check = new string[2];
-            string[] privs = new string[] { "SELECT", "UPDATE" };
+            string[] check = new string[1];
+            string[] privs = new string[] { "UPDATE" };
             string grant, revoke, sub_grant;
             bool clear = false;
 
@@ -1404,7 +1405,7 @@ namespace portal_application_project
                 grant = "";
                 revoke = "";
 
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < 1; i++)
                 {
                     check[i] = row[privs[i]].ToString();
                 }
@@ -1412,7 +1413,7 @@ namespace portal_application_project
 
 
 
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < 1; i++)
                 {
                     if (check[i] == "True")
                     {
@@ -1452,7 +1453,9 @@ namespace portal_application_project
                         {
                             if (grant != "")
                             {
+
                                 grant = $"GRANT {grant} ON {row["TABLE"].ToString()} TO " + username;
+                                MessageBox.Show(grant);
                                 command.CommandText = grant;
                                 command.ExecuteNonQuery();
                             }
@@ -1463,6 +1466,7 @@ namespace portal_application_project
                                     continue;
                                 }
                                 revoke = "REVOKE " + revoke + " ON " + row["TABLE"].ToString() + " FROM " + username;
+                                MessageBox.Show(revoke);
                                 command.CommandText = revoke;
                                 command.ExecuteNonQuery();
                                 clear = true;
@@ -1522,6 +1526,6 @@ namespace portal_application_project
             this.Close();
         }
 
-        
+
     }
 }
