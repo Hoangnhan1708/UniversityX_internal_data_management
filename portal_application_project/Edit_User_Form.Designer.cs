@@ -45,7 +45,7 @@
             dataGridView_object_privileges = new DataGridView();
             tabPage_ColumnsPrivileges = new TabPage();
             button5 = new Button();
-            button6 = new Button();
+            apply_edit_columnPrvs_btn = new Button();
             dataGridView_column_privileges = new DataGridView();
             panel1.SuspendLayout();
             tabControl_edit_user.SuspendLayout();
@@ -280,7 +280,7 @@
             // tabPage_ColumnsPrivileges
             // 
             tabPage_ColumnsPrivileges.Controls.Add(button5);
-            tabPage_ColumnsPrivileges.Controls.Add(button6);
+            tabPage_ColumnsPrivileges.Controls.Add(apply_edit_columnPrvs_btn);
             tabPage_ColumnsPrivileges.Controls.Add(dataGridView_column_privileges);
             tabPage_ColumnsPrivileges.Location = new Point(4, 31);
             tabPage_ColumnsPrivileges.Name = "tabPage_ColumnsPrivileges";
@@ -306,21 +306,22 @@
             button5.UseVisualStyleBackColor = false;
             button5.Click += button5_Click;
             // 
-            // button6
+            // apply_edit_columnPrvs_btn
             // 
-            button6.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button6.BackColor = SystemColors.ButtonHighlight;
-            button6.FlatAppearance.BorderColor = SystemColors.Highlight;
-            button6.FlatAppearance.BorderSize = 3;
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button6.ForeColor = SystemColors.HotTrack;
-            button6.Location = new Point(757, 454);
-            button6.Name = "button6";
-            button6.Size = new Size(138, 51);
-            button6.TabIndex = 56;
-            button6.Text = "Apply";
-            button6.UseVisualStyleBackColor = false;
+            apply_edit_columnPrvs_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            apply_edit_columnPrvs_btn.BackColor = SystemColors.ButtonHighlight;
+            apply_edit_columnPrvs_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            apply_edit_columnPrvs_btn.FlatAppearance.BorderSize = 3;
+            apply_edit_columnPrvs_btn.FlatStyle = FlatStyle.Flat;
+            apply_edit_columnPrvs_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            apply_edit_columnPrvs_btn.ForeColor = SystemColors.HotTrack;
+            apply_edit_columnPrvs_btn.Location = new Point(757, 454);
+            apply_edit_columnPrvs_btn.Name = "apply_edit_columnPrvs_btn";
+            apply_edit_columnPrvs_btn.Size = new Size(138, 51);
+            apply_edit_columnPrvs_btn.TabIndex = 56;
+            apply_edit_columnPrvs_btn.Text = "Apply";
+            apply_edit_columnPrvs_btn.UseVisualStyleBackColor = false;
+            apply_edit_columnPrvs_btn.Click += apply_edit_columnPrvs_btn_Click;
             // 
             // dataGridView_column_privileges
             // 
@@ -381,6 +382,6 @@
         private Button button3;
         private Button edit_object_prvs_btn;
         private Button button5;
-        private Button button6;
+        private Button apply_edit_columnPrvs_btn;
     }
 }
