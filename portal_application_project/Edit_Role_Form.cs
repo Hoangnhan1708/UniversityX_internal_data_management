@@ -1059,7 +1059,6 @@ namespace portal_application_project
         {
             DataTable dataTableCurrent = CreateDataTableFromDataGridView(dataGridView_column_privileges);
             DataTable diffTable = CompareDataTablesColumnPrivileges(dataTableCurrent, dataTableTempColumnPrivileges);
-            
 
             string[] check = new string[2];
             string[] privs = new string[] { "SELECT", "UPDATE" };
@@ -1167,7 +1166,7 @@ namespace portal_application_project
             }
 
             dataTableTempColumnPrivileges = CreateDataTableFromDataGridView(dataGridView_column_privileges);
-            LoadDataObjectPrivileges();
+            LoadDataColumnPrivileges();
         }
         private void close_btn_Click(object sender, EventArgs e)
         {
