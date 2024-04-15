@@ -1,4 +1,4 @@
-# CSC11115 - cryptography_siu_vjp
+# CSC12001 - Internal data management for University X
 
 # About
 
