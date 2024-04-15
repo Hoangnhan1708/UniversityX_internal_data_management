@@ -17,11 +17,8 @@ A ***Window Form*** application, made for Oracle database adminstrators to lever
 
 - Windows 10 == 22H2
 - .NET Framework == 4.8.09037
+- Running Oracle database services
 
 ### Run the application
 
-### Help
 
-## Usage and example
-
-### Example
