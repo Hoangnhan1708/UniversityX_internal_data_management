@@ -1202,7 +1202,7 @@ namespace portal_application_project
                             string sub_query = "SELECT Privilege,Table_Name,Column_Name FROM V_DETAIL_USER_4 WHERE User_Name = '" + username + "'";
                             bool[] hasPrivs = new bool[2];
                             int i = 0;
-                            //bool hasADM = false;
+                            bool hasADM = false;
 
                             using (OracleCommand sub_command = new OracleCommand(sub_query, connection))
                             {
@@ -1236,7 +1236,7 @@ namespace portal_application_project
                             }
                             
 
-                            dataGridView_column_privileges.Rows.Add(tableName, columnName, hasPrivs[0], hasPrivs[1]);
+                            dataGridView_column_privileges.Rows.Add(tableName, columnName, hasPrivs[0], hasPrivs[1],hasADM);
                         }
                         connection.Close();
                     }
