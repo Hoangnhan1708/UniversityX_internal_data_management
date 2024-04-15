@@ -136,6 +136,15 @@ AS
         cp.TABLE_NAME AS Table_Name
     FROM DBA_COL_PRIVS cp
     JOIN DBA_ROLE_PRIVS rp ON cp.GRANTEE = rp.GRANTED_ROLE
+    WHERE cp.OWNER = SYS_CONTEXT('userenv','session_user')
+    UNION
+    SELECT DISTINCT
+        GRANTEE AS User_Name,
+        PRIVILEGE AS Privilege,
+        COLUMN_NAME AS Column_Name,
+        TABLE_NAME AS Table_Name
+    FROM DBA_COL_PRIVS
+    WHERE OWNER = SYS_CONTEXT('userenv','session_user')
     ORDER BY User_Name;
 /
 
@@ -257,3 +266,4 @@ AS
     WHERE TABLE_NAME IN (SELECT OBJECT_NAME FROM V_ALL_TABLE)
     ORDER BY TABLE_NAME;
 /
+
