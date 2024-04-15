@@ -1042,7 +1042,7 @@ namespace portal_application_project
                             }
 
 
-                            dataGridView_column_privileges.Rows.Add(tableName, columnName, hasPrivs[0], hasPrivs[1],hasADM);
+                            dataGridView_column_privileges.Rows.Add(tableName, columnName, hasPrivs[0], hasPrivs[1], hasADM);
                         }
                         connection.Close();
                     }
@@ -1059,7 +1059,7 @@ namespace portal_application_project
         {
             DataTable dataTableCurrent = CreateDataTableFromDataGridView(dataGridView_column_privileges);
             DataTable diffTable = CompareDataTablesColumnPrivileges(dataTableCurrent, dataTableTempColumnPrivileges);
-            dataGridView1.DataSource = diffTable;
+            
 
             string[] check = new string[2];
             string[] privs = new string[] { "SELECT", "UPDATE" };
@@ -1166,7 +1166,7 @@ namespace portal_application_project
 
             }
 
-            dataTableTempObjectPrivileges = CreateDataTableFromDataGridView(dataGridView_object_privileges);
+            dataTableTempColumnPrivileges = CreateDataTableFromDataGridView(dataGridView_column_privileges);
             LoadDataObjectPrivileges();
         }
         private void close_btn_Click(object sender, EventArgs e)

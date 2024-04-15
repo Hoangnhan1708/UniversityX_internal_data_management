@@ -43,7 +43,6 @@
             button3 = new Button();
             apply_edit_columnPrvs_btn = new Button();
             dataGridView_column_privileges = new DataGridView();
-            dataGridView1 = new DataGridView();
             panel1.SuspendLayout();
             tabControl_edit_role.SuspendLayout();
             tabPage_systemPrivileges.SuspendLayout();
@@ -52,7 +51,6 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView_object_privileges).BeginInit();
             tabPage_ColumnsPrivileges.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_column_privileges).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -209,7 +207,6 @@
             // 
             // tabPage_ColumnsPrivileges
             // 
-            tabPage_ColumnsPrivileges.Controls.Add(dataGridView1);
             tabPage_ColumnsPrivileges.Controls.Add(button3);
             tabPage_ColumnsPrivileges.Controls.Add(apply_edit_columnPrvs_btn);
             tabPage_ColumnsPrivileges.Controls.Add(dataGridView_column_privileges);
@@ -266,16 +263,6 @@
             dataGridView_column_privileges.Size = new Size(1077, 437);
             dataGridView_column_privileges.TabIndex = 0;
             // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(244, 171);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(547, 230);
-            dataGridView1.TabIndex = 50;
-            // 
             // Edit_Role_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -297,7 +284,6 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView_object_privileges).EndInit();
             tabPage_ColumnsPrivileges.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_column_privileges).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -318,6 +304,5 @@
         private Button apply_edit_objectPrvs_btn;
         private Button button3;
         private Button apply_edit_columnPrvs_btn;
-        private DataGridView dataGridView1;
     }
 }
