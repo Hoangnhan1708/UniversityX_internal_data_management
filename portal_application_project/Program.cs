@@ -11,12 +11,12 @@ namespace portal_application_project
         [STAThread]
         static void Main()
         {
-            string connectionString = "Data Source=localhost;User Id=sys;Password=862202;DBA Privilege=SYSDBA;";
+            //string connectionString = "Data Source=localhost;User Id=sys;Password=123;DBA Privilege=SYSDBA;";
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             
             ApplicationConfiguration.Initialize();
-            Application.Run(new Home_Form(connectionString));
+            Application.Run(new Login_Form());
         }
     }
 }
