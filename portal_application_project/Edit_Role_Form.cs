@@ -1005,9 +1005,8 @@ namespace portal_application_project
                             string columnName = row["COLUMN_NAME"].ToString(); // Thay thế COLUMN tại đây
 
 
-                            string sub_query = "SELECT Privilege,Table_Name,Column_Name FROM V_DETAIL_ROLES_4 WHERE Role_Name = '" + rolename + "'";
-                            bool[] hasPrivs = new bool[2];
-                            int i = 0;
+                            string sub_query = "SELECT Privilege,Table_Name,Column_Name,ADM FROM V_DETAIL_ROLES_4 WHERE Role_Name = '" + rolename + "'";
+                            bool hasPrivs = false;
                             bool hasADM = false;
 
                             using (OracleCommand sub_command = new OracleCommand(sub_query, connection))
@@ -1015,34 +1014,23 @@ namespace portal_application_project
                                 OracleDataReader sub_reader = sub_command.ExecuteReader();
                                 while (sub_reader.Read())
                                 {
-
-                                    string RolePrivs = sub_reader["Privilege"].ToString();
                                     string _table = sub_reader["Table_Name"].ToString();
-
+                                    string RoleADM = sub_reader["ADM"].ToString();
                                     string _column = sub_reader["Column_Name"].ToString();
 
                                     if (_table == tableName && _column == columnName)
                                     {
-                                        /*if (RoleADM == "YES")
+                                        if (RoleADM == "YES")
                                         {
                                             hasADM = true;
-                                        }*/
-                                        switch (RolePrivs)
-                                        {
-                                            case "UPDATE":
-                                                i = 1;
-                                                break;
-                                            //case "SELECT":
-                                            //    i = 0;
-                                            //    break;
                                         }
-                                        hasPrivs[i] = true;
+                                        hasPrivs = true;
                                     }
                                 }
                             }
 
 
-                            dataGridView_column_privileges.Rows.Add(tableName, columnName, hasPrivs[1], hasADM);
+                            dataGridView_column_privileges.Rows.Add(tableName, columnName, hasPrivs, hasADM);
                         }
                         connection.Close();
                     }
@@ -1060,8 +1048,8 @@ namespace portal_application_project
             DataTable dataTableCurrent = CreateDataTableFromDataGridView(dataGridView_column_privileges);
             DataTable diffTable = CompareDataTablesColumnPrivileges(dataTableCurrent, dataTableTempColumnPrivileges);
 
-            string[] check = new string[1];
-            string[] privs = new string[] { "UPDATE" };
+            string[] check = new string[2];
+            string[] privs = new string[] { "UPDATE" , "WITH_GRANT_OPTION_COLUMN"};
             string grant, revoke, sub_grant;
             bool clear = false;
 
@@ -1071,7 +1059,7 @@ namespace portal_application_project
                 grant = "";
                 revoke = "";
 
-                for (int i = 0; i < 1; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     check[i] = row[privs[i]].ToString();
                 }
@@ -1079,36 +1067,45 @@ namespace portal_application_project
 
 
 
-                for (int i = 0; i < 1; i++)
-                {
-                    if (check[i] == "True")
-                    {
-                        if (grant != "")
-                        {
-                            grant += ",";
-                        }
-                        grant += privs[i] + " (" + row["COLUMN"].ToString() + ")";
-                    }
-                    else
-                    {
-                        foreach (DataRow sub_row in dataTableTempColumnPrivileges.Rows)
-                        {
-                            if (sub_row["TABLE"].ToString() != row["TABLE"].ToString() || sub_row["COLUMN"].ToString() != row["COLUMN"].ToString())
-                            {
-                                continue;
-                            }
-                            if (sub_row[privs[i]].ToString() == "True")
-                            {
-                                if (revoke != "")
-                                {
-                                    revoke += ",";
-                                }
-                                revoke += privs[i];
-                            }
-                        }
-                    }
 
+                if (check[0] == "True")
+                {
+                    if (grant != "")
+                    {
+                        grant += ",";
+                    }
+                    grant += privs[0] + " (" + row["COLUMN"].ToString() + ")";
+                    if (check[1] == "True")
+                    {
+                        MessageBox.Show("Không thể chọn grant option cho một role.");
+                        continue;
+                    }
                 }
+                else
+                {
+                    if (check[1] == "True")
+                    {
+                        MessageBox.Show("Không thể chọn grant option khi không trao quyền trên " + row["COLUMN"].ToString() + " của bảng " + row["TABLE"].ToString());
+                        continue;
+                    }
+                    foreach (DataRow sub_row in dataTableTempColumnPrivileges.Rows)
+                    {
+                        if (sub_row["TABLE"].ToString() != row["TABLE"].ToString() || sub_row["COLUMN"].ToString() != row["COLUMN"].ToString())
+                        {
+                            continue;
+                        }
+                        if (sub_row[privs[0]].ToString() == "True")
+                        {
+                            if (revoke != "")
+                            {
+                                revoke += ",";
+                            }
+                            revoke += privs[0];
+                        }
+                    }
+                }
+
+                
 
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
