@@ -21,4 +21,4 @@ A ***Window Form*** application, made for Oracle database adminstrators to lever
 
 ### Run the application
 
-
+Run the executable file (*.exe) at `portal_application_project\portal_application_project\bin\Debug\net6.0-windows\portal_application_project.exe`
