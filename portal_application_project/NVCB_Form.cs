@@ -16,7 +16,7 @@ namespace portal_application_project
     {
         private string connectionString;
         private Query query;
-        
+
         private NhanVienCoBan nvcb = new NhanVienCoBan();
 
         public NVCB_Form(string _connectionString, string _manv)
@@ -100,9 +100,9 @@ namespace portal_application_project
                 bool isChanged = nvcb.updatePhoneNumber(connectionString, query, field_phoneNumber.Text);
                 if (isChanged)
                 {
-                    nvcb.dt = field_phoneNumber.Text; 
+                    nvcb.dt = field_phoneNumber.Text;
                 }
-                
+
             }
         }
     }

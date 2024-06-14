@@ -50,12 +50,12 @@ namespace portal_application_project
                 {
                     using (OracleConnection connection = new OracleConnection(connectionString))
                     {
-                        
+
                         connection.Open();
-                        
+
                         OracleCommand command = new OracleCommand(query.getUserRoles(), connection);
                         OracleDataReader reader = command.ExecuteReader();
-                        
+
                         int role_flag = 0;
 
                         while (reader.Read())
@@ -108,7 +108,7 @@ namespace portal_application_project
                         switch (role_flag)
                         {
                             case 1:
-                               
+
 
                                 NVCB_Form NVCB_Form = new NVCB_Form(connectionString, username);
                                 NVCB_Form.Show();

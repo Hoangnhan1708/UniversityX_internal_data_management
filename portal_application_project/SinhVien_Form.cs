@@ -17,21 +17,16 @@ namespace portal_application_project
     public partial class SinhVien_Form : Form
     {
         private string connectionString;
-        private string mssv;
-        private string hoten;
-        private string phai;
-        private string ngsinh;
-        private string dchi;
-        private string dt;
-        private string mact;
-        private string manganh;
-        private string sotctl;
-        private string dtbtl;
-        public SinhVien_Form(string _connectionString, string username)
+        private Query query;
+
+        private SinhVien sinhvien = new SinhVien();
+        public SinhVien_Form(string _connectionString, string _masv)
         {
             InitializeComponent();
             this.connectionString = _connectionString;
-            this.mssv = username;
+            query = new Query();
+            sinhvien.masv = _masv;
+            sinhvien.LoadThongTinSinhVien(connectionString, query);
         }
 
         private void logout_btn_Click(object sender, EventArgs e)
@@ -43,56 +38,26 @@ namespace portal_application_project
 
         private void SinhVien_Form_Load(object sender, EventArgs e)
         {
-            LoadThongTinSV();
+            LoadThongTinUser();
+
+            dataGridView_hpdadangky.DataSource = sinhvien.LoadFullTable(connectionString, query, "HOCPHAN");
+            dataGridView_dkhp.DataSource = sinhvien.LoadFullTable(connectionString, query, "DANGKY");
+            dataGridView_khmohp.DataSource = sinhvien.LoadFullTable(connectionString, query, "KHMO");
         }
 
-        private void LoadThongTinSV()
+        private void LoadThongTinUser()
         {
-            try
-            {
-                using (OracleConnection connection = new OracleConnection(connectionString))
-                {
-                    connection.Open();
-                    OracleCommand command = new OracleCommand("SELECT * FROM QLTRUONGHOC.SINHVIEN WHERE MASV = '" + mssv + "'", connection);
-                    OracleDataAdapter adapter = new OracleDataAdapter(command);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    // Duyệt qua từng dòng trong DataTable và thêm vào DataGridView
-                    int i = 0;
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-                        hoten = row["HOTEN"].ToString();
-                        phai = row["PHAI"].ToString();
-                        ngsinh = row["PHAI"].ToString();
-                        dchi = row["PHAI"].ToString();
-                        dt = row["PHAI"].ToString();
-                        mact = row["PHAI"].ToString();
-                        manganh = row["PHAI"].ToString();
-                        sotctl = row["PHAI"].ToString();
-                        dtbtl = row["PHAI"].ToString();
-
-                    }
-                    field_mssv.Text = mssv;
-                    field_name.Text = hoten;
-                    hello_name_label.Text = hoten;
-                    //label_userID.Text = userID;
-                    //label_name.Text = username;
-                    //label_status.Text = status;
-
-                    //if (roles == "")
-                    //{
-                    //    roles = "Have no roles to show";
-                    //}
-
-                    //label_Role.Text = roles;
-
-                    connection.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
+            field_masv.Text = sinhvien.masv;
+            field_name.Text = sinhvien.hoten;
+            hello_name_label.Text = sinhvien.hoten;
+            field_gender.Text = sinhvien.phai;
+            field_birthday.Text = sinhvien.ngsinh;
+            field_phoneNumber.Text = sinhvien.dt;
+            field_address.Text = sinhvien.dchi;
+            field_chuongtrinhdaotao.Text = sinhvien.mact;
+            field_manganh.Text = sinhvien.manganh;
+            field_stctl.Text = sinhvien.sotctl.ToString();
+            field_dtbtl.Text = sinhvien.diemtbtl.ToString();
         }
 
         private void btn_thongtinsv_Click(object sender, EventArgs e)
@@ -115,6 +80,38 @@ namespace portal_application_project
             tabControl_sinhvien.SelectedTab = tabPage_dkhp;
         }
 
+        private void change_address_btn_Click(object sender, EventArgs e)
+        {
+            if (field_address.Text == sinhvien.dchi)
+            {
+                MessageBox.Show("Bạn chưa thay đổi địa chỉ, hãy kiểm tra lại!");
+            }
+            else
+            {
+                bool isChanged = sinhvien.updateAddress(connectionString, query, field_address.Text);
+                if (isChanged)
+                {
+                    sinhvien.dchi = field_address.Text;
+                }
 
+            }
+        }
+
+        private void change_phoneNumber_btn_Click(object sender, EventArgs e)
+        {
+            if (field_phoneNumber.Text == sinhvien.dt)
+            {
+                MessageBox.Show("Bạn chưa thay đổi số điện thoại, hãy kiểm tra lại!");
+            }
+            else
+            {
+                bool isChanged = sinhvien.updatePhoneNumber(connectionString, query, field_phoneNumber.Text);
+                if (isChanged)
+                {
+                    sinhvien.dt = field_phoneNumber.Text;
+                }
+
+            }
+        }
     }
 }

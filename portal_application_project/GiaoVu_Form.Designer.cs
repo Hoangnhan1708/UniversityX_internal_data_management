@@ -79,7 +79,9 @@
             tabPage_quanlykehoachmohp = new TabPage();
             dataGridView_khmohp = new DataGridView();
             tabPage_quanlydkhp = new TabPage();
+            dataGridView_dkhp = new DataGridView();
             tabPage_quanlyphancong = new TabPage();
+            dataGridView_phancong = new DataGridView();
             panel3 = new Panel();
             dashboard_label = new Label();
             panel4 = new Panel();
@@ -89,8 +91,7 @@
             text_hello = new Label();
             title = new Label();
             logo = new Panel();
-            dataGridView_dkhp = new DataGridView();
-            dataGridView_phancong = new DataGridView();
+            dollar_icon = new Label();
             panel7.SuspendLayout();
             panel5.SuspendLayout();
             panel10.SuspendLayout();
@@ -109,10 +110,10 @@
             tabPage_quanlykehoachmohp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_khmohp).BeginInit();
             tabPage_quanlydkhp.SuspendLayout();
-            tabPage_quanlyphancong.SuspendLayout();
-            panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_dkhp).BeginInit();
+            tabPage_quanlyphancong.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_phancong).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // label2
@@ -398,6 +399,7 @@
             // 
             // tabControl_nvcb
             // 
+            tabControl_nvcb.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabControl_nvcb.Controls.Add(tabPage_userInfo);
             tabControl_nvcb.Controls.Add(tabPage_quanlysv);
             tabControl_nvcb.Controls.Add(tabPage_quanlythongtindonvi);
@@ -413,6 +415,7 @@
             // 
             // tabPage_userInfo
             // 
+            tabPage_userInfo.Controls.Add(dollar_icon);
             tabPage_userInfo.Controls.Add(change_phoneNumber_btn);
             tabPage_userInfo.Controls.Add(field_salary);
             tabPage_userInfo.Controls.Add(field_phoneNumber);
@@ -716,6 +719,21 @@
             tabPage_quanlydkhp.Text = "Quản lý ĐKHP";
             tabPage_quanlydkhp.UseVisualStyleBackColor = true;
             // 
+            // dataGridView_dkhp
+            // 
+            dataGridView_dkhp.AllowUserToAddRows = false;
+            dataGridView_dkhp.AllowUserToDeleteRows = false;
+            dataGridView_dkhp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_dkhp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_dkhp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_dkhp.Location = new Point(6, 21);
+            dataGridView_dkhp.Name = "dataGridView_dkhp";
+            dataGridView_dkhp.ReadOnly = true;
+            dataGridView_dkhp.RowHeadersWidth = 51;
+            dataGridView_dkhp.RowTemplate.Height = 29;
+            dataGridView_dkhp.Size = new Size(974, 551);
+            dataGridView_dkhp.TabIndex = 16;
+            // 
             // tabPage_quanlyphancong
             // 
             tabPage_quanlyphancong.Controls.Add(dataGridView_phancong);
@@ -725,6 +743,21 @@
             tabPage_quanlyphancong.TabIndex = 6;
             tabPage_quanlyphancong.Text = "Quản lý phân công";
             tabPage_quanlyphancong.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView_phancong
+            // 
+            dataGridView_phancong.AllowUserToAddRows = false;
+            dataGridView_phancong.AllowUserToDeleteRows = false;
+            dataGridView_phancong.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_phancong.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_phancong.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_phancong.Location = new Point(6, 21);
+            dataGridView_phancong.Name = "dataGridView_phancong";
+            dataGridView_phancong.ReadOnly = true;
+            dataGridView_phancong.RowHeadersWidth = 51;
+            dataGridView_phancong.RowTemplate.Height = 29;
+            dataGridView_phancong.Size = new Size(974, 551);
+            dataGridView_phancong.TabIndex = 17;
             // 
             // panel3
             // 
@@ -829,35 +862,15 @@
             logo.Size = new Size(72, 59);
             logo.TabIndex = 50;
             // 
-            // dataGridView_dkhp
+            // dollar_icon
             // 
-            dataGridView_dkhp.AllowUserToAddRows = false;
-            dataGridView_dkhp.AllowUserToDeleteRows = false;
-            dataGridView_dkhp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView_dkhp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView_dkhp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_dkhp.Location = new Point(6, 21);
-            dataGridView_dkhp.Name = "dataGridView_dkhp";
-            dataGridView_dkhp.ReadOnly = true;
-            dataGridView_dkhp.RowHeadersWidth = 51;
-            dataGridView_dkhp.RowTemplate.Height = 29;
-            dataGridView_dkhp.Size = new Size(974, 551);
-            dataGridView_dkhp.TabIndex = 16;
-            // 
-            // dataGridView_phancong
-            // 
-            dataGridView_phancong.AllowUserToAddRows = false;
-            dataGridView_phancong.AllowUserToDeleteRows = false;
-            dataGridView_phancong.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView_phancong.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView_phancong.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_phancong.Location = new Point(6, 21);
-            dataGridView_phancong.Name = "dataGridView_phancong";
-            dataGridView_phancong.ReadOnly = true;
-            dataGridView_phancong.RowHeadersWidth = 51;
-            dataGridView_phancong.RowTemplate.Height = 29;
-            dataGridView_phancong.Size = new Size(974, 551);
-            dataGridView_phancong.TabIndex = 17;
+            dollar_icon.AutoSize = true;
+            dollar_icon.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dollar_icon.Location = new Point(373, 239);
+            dollar_icon.Name = "dollar_icon";
+            dollar_icon.Size = new Size(23, 28);
+            dollar_icon.TabIndex = 45;
+            dollar_icon.Text = "$";
             // 
             // GiaoVu_Form
             // 
@@ -903,11 +916,11 @@
             tabPage_quanlykehoachmohp.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_khmohp).EndInit();
             tabPage_quanlydkhp.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView_dkhp).EndInit();
             tabPage_quanlyphancong.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView_phancong).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView_dkhp).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView_phancong).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -976,5 +989,6 @@
         private Button change_phoneNumber_btn;
         private DataGridView dataGridView_dkhp;
         private DataGridView dataGridView_phancong;
+        private Label dollar_icon;
     }
 }

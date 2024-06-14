@@ -38,16 +38,18 @@
             panel2 = new Panel();
             tabControl_sinhvien = new TabControl();
             tabPage_thongtinsv = new TabPage();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
-            label24 = new Label();
-            label23 = new Label();
-            label22 = new Label();
-            label21 = new Label();
-            label18 = new Label();
-            label17 = new Label();
+            change_address_btn = new Button();
+            change_phoneNumber_btn = new Button();
+            field_phoneNumber = new TextBox();
+            field_address = new TextBox();
+            field_dtbtl = new Label();
+            field_stctl = new Label();
+            field_manganh = new Label();
+            field_chuongtrinhdaotao = new Label();
+            field_birthday = new Label();
+            field_gender = new Label();
             field_name = new Label();
-            field_mssv = new Label();
+            field_masv = new Label();
             label15 = new Label();
             label14 = new Label();
             label13 = new Label();
@@ -59,11 +61,11 @@
             label7 = new Label();
             label3 = new Label();
             tabPage_hpdadangky = new TabPage();
-            label4 = new Label();
+            dataGridView_hpdadangky = new DataGridView();
             tabPage_kehoachmohp = new TabPage();
-            label5 = new Label();
+            dataGridView_khmohp = new DataGridView();
             tabPage_dkhp = new TabPage();
-            label6 = new Label();
+            dataGridView_dkhp = new DataGridView();
             panel5 = new Panel();
             panel6 = new Panel();
             label2 = new Label();
@@ -78,8 +80,11 @@
             tabControl_sinhvien.SuspendLayout();
             tabPage_thongtinsv.SuspendLayout();
             tabPage_hpdadangky.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_hpdadangky).BeginInit();
             tabPage_kehoachmohp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_khmohp).BeginInit();
             tabPage_dkhp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_dkhp).BeginInit();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
             panel3.SuspendLayout();
@@ -91,7 +96,7 @@
             panel1.BackColor = Color.White;
             panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
             panel1.Cursor = Cursors.Hand;
-            panel1.Location = new Point(804, 46);
+            panel1.Location = new Point(749, 47);
             panel1.Name = "panel1";
             panel1.Size = new Size(41, 41);
             panel1.TabIndex = 67;
@@ -120,7 +125,7 @@
             hello_name_label.AutoSize = true;
             hello_name_label.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             hello_name_label.ForeColor = Color.White;
-            hello_name_label.Location = new Point(974, 51);
+            hello_name_label.Location = new Point(919, 52);
             hello_name_label.Name = "hello_name_label";
             hello_name_label.Size = new Size(167, 26);
             hello_name_label.TabIndex = 65;
@@ -132,7 +137,7 @@
             text_hello.AutoSize = true;
             text_hello.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             text_hello.ForeColor = Color.White;
-            text_hello.Location = new Point(851, 51);
+            text_hello.Location = new Point(796, 52);
             text_hello.Name = "text_hello";
             text_hello.Size = new Size(130, 26);
             text_hello.TabIndex = 64;
@@ -172,6 +177,7 @@
             // 
             // tabControl_sinhvien
             // 
+            tabControl_sinhvien.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabControl_sinhvien.Controls.Add(tabPage_thongtinsv);
             tabControl_sinhvien.Controls.Add(tabPage_hpdadangky);
             tabControl_sinhvien.Controls.Add(tabPage_kehoachmohp);
@@ -186,16 +192,18 @@
             // 
             // tabPage_thongtinsv
             // 
-            tabPage_thongtinsv.Controls.Add(textBox2);
-            tabPage_thongtinsv.Controls.Add(textBox1);
-            tabPage_thongtinsv.Controls.Add(label24);
-            tabPage_thongtinsv.Controls.Add(label23);
-            tabPage_thongtinsv.Controls.Add(label22);
-            tabPage_thongtinsv.Controls.Add(label21);
-            tabPage_thongtinsv.Controls.Add(label18);
-            tabPage_thongtinsv.Controls.Add(label17);
+            tabPage_thongtinsv.Controls.Add(change_address_btn);
+            tabPage_thongtinsv.Controls.Add(change_phoneNumber_btn);
+            tabPage_thongtinsv.Controls.Add(field_phoneNumber);
+            tabPage_thongtinsv.Controls.Add(field_address);
+            tabPage_thongtinsv.Controls.Add(field_dtbtl);
+            tabPage_thongtinsv.Controls.Add(field_stctl);
+            tabPage_thongtinsv.Controls.Add(field_manganh);
+            tabPage_thongtinsv.Controls.Add(field_chuongtrinhdaotao);
+            tabPage_thongtinsv.Controls.Add(field_birthday);
+            tabPage_thongtinsv.Controls.Add(field_gender);
             tabPage_thongtinsv.Controls.Add(field_name);
-            tabPage_thongtinsv.Controls.Add(field_mssv);
+            tabPage_thongtinsv.Controls.Add(field_masv);
             tabPage_thongtinsv.Controls.Add(label15);
             tabPage_thongtinsv.Controls.Add(label14);
             tabPage_thongtinsv.Controls.Add(label13);
@@ -213,79 +221,99 @@
             tabPage_thongtinsv.Text = "Thông tin sinh viên";
             tabPage_thongtinsv.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // change_address_btn
             // 
-            textBox2.Location = new Point(362, 269);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(180, 27);
-            textBox2.TabIndex = 21;
+            change_address_btn.Location = new Point(705, 219);
+            change_address_btn.Name = "change_address_btn";
+            change_address_btn.Size = new Size(94, 29);
+            change_address_btn.TabIndex = 46;
+            change_address_btn.Text = "Thay đổi";
+            change_address_btn.UseVisualStyleBackColor = true;
+            change_address_btn.Click += change_address_btn_Click;
             // 
-            // textBox1
+            // change_phoneNumber_btn
             // 
-            textBox1.Location = new Point(362, 219);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(464, 27);
-            textBox1.TabIndex = 20;
+            change_phoneNumber_btn.Location = new Point(705, 269);
+            change_phoneNumber_btn.Name = "change_phoneNumber_btn";
+            change_phoneNumber_btn.Size = new Size(94, 29);
+            change_phoneNumber_btn.TabIndex = 45;
+            change_phoneNumber_btn.Text = "Thay đổi";
+            change_phoneNumber_btn.UseVisualStyleBackColor = true;
+            change_phoneNumber_btn.Click += change_phoneNumber_btn_Click;
             // 
-            // label24
+            // field_phoneNumber
             // 
-            label24.AutoSize = true;
-            label24.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label24.Location = new Point(362, 502);
-            label24.Name = "label24";
-            label24.Size = new Size(180, 28);
-            label24.TabIndex = 19;
-            label24.Text = "..........................................";
+            field_phoneNumber.Location = new Point(362, 269);
+            field_phoneNumber.Name = "field_phoneNumber";
+            field_phoneNumber.Size = new Size(296, 27);
+            field_phoneNumber.TabIndex = 21;
             // 
-            // label23
+            // field_address
             // 
-            label23.AutoSize = true;
-            label23.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label23.Location = new Point(362, 440);
-            label23.Name = "label23";
-            label23.Size = new Size(180, 28);
-            label23.TabIndex = 18;
-            label23.Text = "..........................................";
+            field_address.Location = new Point(362, 219);
+            field_address.Name = "field_address";
+            field_address.Size = new Size(296, 27);
+            field_address.TabIndex = 20;
             // 
-            // label22
+            // field_dtbtl
             // 
-            label22.AutoSize = true;
-            label22.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label22.Location = new Point(362, 381);
-            label22.Name = "label22";
-            label22.Size = new Size(180, 28);
-            label22.TabIndex = 17;
-            label22.Text = "..........................................";
+            field_dtbtl.AutoSize = true;
+            field_dtbtl.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            field_dtbtl.Location = new Point(362, 502);
+            field_dtbtl.Name = "field_dtbtl";
+            field_dtbtl.Size = new Size(180, 28);
+            field_dtbtl.TabIndex = 19;
+            field_dtbtl.Text = "..........................................";
             // 
-            // label21
+            // field_stctl
             // 
-            label21.AutoSize = true;
-            label21.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label21.Location = new Point(362, 328);
-            label21.Name = "label21";
-            label21.Size = new Size(180, 28);
-            label21.TabIndex = 16;
-            label21.Text = "..........................................";
+            field_stctl.AutoSize = true;
+            field_stctl.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            field_stctl.Location = new Point(362, 440);
+            field_stctl.Name = "field_stctl";
+            field_stctl.Size = new Size(180, 28);
+            field_stctl.TabIndex = 18;
+            field_stctl.Text = "..........................................";
             // 
-            // label18
+            // field_manganh
             // 
-            label18.AutoSize = true;
-            label18.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label18.Location = new Point(362, 169);
-            label18.Name = "label18";
-            label18.Size = new Size(180, 28);
-            label18.TabIndex = 13;
-            label18.Text = "..........................................";
+            field_manganh.AutoSize = true;
+            field_manganh.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            field_manganh.Location = new Point(362, 381);
+            field_manganh.Name = "field_manganh";
+            field_manganh.Size = new Size(180, 28);
+            field_manganh.TabIndex = 17;
+            field_manganh.Text = "..........................................";
             // 
-            // label17
+            // field_chuongtrinhdaotao
             // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label17.Location = new Point(362, 120);
-            label17.Name = "label17";
-            label17.Size = new Size(180, 28);
-            label17.TabIndex = 12;
-            label17.Text = "..........................................";
+            field_chuongtrinhdaotao.AutoSize = true;
+            field_chuongtrinhdaotao.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            field_chuongtrinhdaotao.Location = new Point(362, 328);
+            field_chuongtrinhdaotao.Name = "field_chuongtrinhdaotao";
+            field_chuongtrinhdaotao.Size = new Size(180, 28);
+            field_chuongtrinhdaotao.TabIndex = 16;
+            field_chuongtrinhdaotao.Text = "..........................................";
+            // 
+            // field_birthday
+            // 
+            field_birthday.AutoSize = true;
+            field_birthday.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            field_birthday.Location = new Point(362, 169);
+            field_birthday.Name = "field_birthday";
+            field_birthday.Size = new Size(180, 28);
+            field_birthday.TabIndex = 13;
+            field_birthday.Text = "..........................................";
+            // 
+            // field_gender
+            // 
+            field_gender.AutoSize = true;
+            field_gender.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            field_gender.Location = new Point(362, 120);
+            field_gender.Name = "field_gender";
+            field_gender.Size = new Size(180, 28);
+            field_gender.TabIndex = 12;
+            field_gender.Text = "..........................................";
             // 
             // field_name
             // 
@@ -297,15 +325,15 @@
             field_name.TabIndex = 11;
             field_name.Text = "..........................................";
             // 
-            // field_mssv
+            // field_masv
             // 
-            field_mssv.AutoSize = true;
-            field_mssv.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            field_mssv.Location = new Point(362, 30);
-            field_mssv.Name = "field_mssv";
-            field_mssv.Size = new Size(180, 28);
-            field_mssv.TabIndex = 10;
-            field_mssv.Text = "..........................................";
+            field_masv.AutoSize = true;
+            field_masv.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            field_masv.Location = new Point(362, 30);
+            field_masv.Name = "field_masv";
+            field_masv.Size = new Size(180, 28);
+            field_masv.TabIndex = 10;
+            field_masv.Text = "..........................................";
             // 
             // label15
             // 
@@ -409,7 +437,7 @@
             // 
             // tabPage_hpdadangky
             // 
-            tabPage_hpdadangky.Controls.Add(label4);
+            tabPage_hpdadangky.Controls.Add(dataGridView_hpdadangky);
             tabPage_hpdadangky.Location = new Point(4, 29);
             tabPage_hpdadangky.Name = "tabPage_hpdadangky";
             tabPage_hpdadangky.Padding = new Padding(3);
@@ -418,18 +446,24 @@
             tabPage_hpdadangky.Text = "Học phần đã đăng ký";
             tabPage_hpdadangky.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // dataGridView_hpdadangky
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(364, 269);
-            label4.Name = "label4";
-            label4.Size = new Size(147, 20);
-            label4.TabIndex = 1;
-            label4.Text = "học phần đã đăng ký";
+            dataGridView_hpdadangky.AllowUserToAddRows = false;
+            dataGridView_hpdadangky.AllowUserToDeleteRows = false;
+            dataGridView_hpdadangky.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_hpdadangky.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_hpdadangky.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_hpdadangky.Location = new Point(6, 21);
+            dataGridView_hpdadangky.Name = "dataGridView_hpdadangky";
+            dataGridView_hpdadangky.ReadOnly = true;
+            dataGridView_hpdadangky.RowHeadersWidth = 51;
+            dataGridView_hpdadangky.RowTemplate.Height = 29;
+            dataGridView_hpdadangky.Size = new Size(974, 551);
+            dataGridView_hpdadangky.TabIndex = 15;
             // 
             // tabPage_kehoachmohp
             // 
-            tabPage_kehoachmohp.Controls.Add(label5);
+            tabPage_kehoachmohp.Controls.Add(dataGridView_khmohp);
             tabPage_kehoachmohp.Location = new Point(4, 29);
             tabPage_kehoachmohp.Name = "tabPage_kehoachmohp";
             tabPage_kehoachmohp.Size = new Size(986, 592);
@@ -437,18 +471,24 @@
             tabPage_kehoachmohp.Text = "Kế hoạch mở HP";
             tabPage_kehoachmohp.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // dataGridView_khmohp
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(420, 286);
-            label5.Name = "label5";
-            label5.Size = new Size(115, 20);
-            label5.TabIndex = 2;
-            label5.Text = "kế hoạch mở hp";
+            dataGridView_khmohp.AllowUserToAddRows = false;
+            dataGridView_khmohp.AllowUserToDeleteRows = false;
+            dataGridView_khmohp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_khmohp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_khmohp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_khmohp.Location = new Point(6, 21);
+            dataGridView_khmohp.Name = "dataGridView_khmohp";
+            dataGridView_khmohp.ReadOnly = true;
+            dataGridView_khmohp.RowHeadersWidth = 51;
+            dataGridView_khmohp.RowTemplate.Height = 29;
+            dataGridView_khmohp.Size = new Size(974, 551);
+            dataGridView_khmohp.TabIndex = 16;
             // 
             // tabPage_dkhp
             // 
-            tabPage_dkhp.Controls.Add(label6);
+            tabPage_dkhp.Controls.Add(dataGridView_dkhp);
             tabPage_dkhp.Location = new Point(4, 29);
             tabPage_dkhp.Name = "tabPage_dkhp";
             tabPage_dkhp.Size = new Size(986, 592);
@@ -456,14 +496,20 @@
             tabPage_dkhp.Text = "Đăng ký học phần";
             tabPage_dkhp.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // dataGridView_dkhp
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(436, 286);
-            label6.Name = "label6";
-            label6.Size = new Size(84, 20);
-            label6.TabIndex = 3;
-            label6.Text = "Đăng ký hp";
+            dataGridView_dkhp.AllowUserToAddRows = false;
+            dataGridView_dkhp.AllowUserToDeleteRows = false;
+            dataGridView_dkhp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_dkhp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_dkhp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_dkhp.Location = new Point(6, 21);
+            dataGridView_dkhp.Name = "dataGridView_dkhp";
+            dataGridView_dkhp.ReadOnly = true;
+            dataGridView_dkhp.RowHeadersWidth = 51;
+            dataGridView_dkhp.RowTemplate.Height = 29;
+            dataGridView_dkhp.Size = new Size(974, 551);
+            dataGridView_dkhp.TabIndex = 15;
             // 
             // panel5
             // 
@@ -608,11 +654,11 @@
             tabPage_thongtinsv.ResumeLayout(false);
             tabPage_thongtinsv.PerformLayout();
             tabPage_hpdadangky.ResumeLayout(false);
-            tabPage_hpdadangky.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_hpdadangky).EndInit();
             tabPage_kehoachmohp.ResumeLayout(false);
-            tabPage_kehoachmohp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_khmohp).EndInit();
             tabPage_dkhp.ResumeLayout(false);
-            tabPage_dkhp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_dkhp).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel6.ResumeLayout(false);
@@ -649,13 +695,10 @@
         private TabPage tabPage_dkhp;
         private TabPage tabPage_thongtinsv;
         private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
-        private Label label18;
-        private Label label17;
+        private Label field_birthday;
+        private Label field_gender;
         private Label field_name;
-        private Label field_mssv;
+        private Label field_masv;
         private Label label15;
         private Label label14;
         private Label label13;
@@ -665,11 +708,16 @@
         private Label label9;
         private Label label8;
         private Label label7;
-        private Label label24;
-        private Label label23;
-        private Label label22;
-        private Label label21;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private Label field_dtbtl;
+        private Label field_stctl;
+        private Label field_manganh;
+        private Label field_chuongtrinhdaotao;
+        private TextBox field_address;
+        private TextBox field_phoneNumber;
+        private Button change_address_btn;
+        private Button change_phoneNumber_btn;
+        private DataGridView dataGridView_khmohp;
+        private DataGridView dataGridView_dkhp;
+        private DataGridView dataGridView_hpdadangky;
     }
 }

@@ -50,7 +50,7 @@ namespace portal_application_project
             field_madv.Text = truongkhoa.madv;
         }
 
-        
+
 
         private void logout_btn_Click(object sender, EventArgs e)
         {

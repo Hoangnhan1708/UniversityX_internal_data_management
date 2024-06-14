@@ -49,7 +49,7 @@ namespace portal_application_project
             field_madv.Text = giaovu.madv;
         }
 
-        
+
 
         private void logout_btn_Click(object sender, EventArgs e)
         {

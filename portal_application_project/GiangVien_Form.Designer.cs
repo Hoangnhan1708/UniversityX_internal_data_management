@@ -38,6 +38,7 @@
             panel2 = new Panel();
             tabControl_nvcb = new TabControl();
             tabPage_userInfo = new TabPage();
+            change_phoneNumber_btn = new Button();
             field_salary = new Label();
             field_phoneNumber = new TextBox();
             field_madv = new Label();
@@ -83,7 +84,7 @@
             label2 = new Label();
             panel8 = new Panel();
             label5 = new Label();
-            change_phoneNumber_btn = new Button();
+            dollar_icon = new Label();
             panel2.SuspendLayout();
             tabControl_nvcb.SuspendLayout();
             tabPage_userInfo.SuspendLayout();
@@ -189,6 +190,7 @@
             // 
             // tabControl_nvcb
             // 
+            tabControl_nvcb.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabControl_nvcb.Controls.Add(tabPage_userInfo);
             tabControl_nvcb.Controls.Add(tabPage_phanconggiangday);
             tabControl_nvcb.Controls.Add(tabPage_lopgiangday);
@@ -200,11 +202,12 @@
             tabControl_nvcb.Location = new Point(279, 70);
             tabControl_nvcb.Name = "tabControl_nvcb";
             tabControl_nvcb.SelectedIndex = 0;
-            tabControl_nvcb.Size = new Size(997, 647);
+            tabControl_nvcb.Size = new Size(997, 628);
             tabControl_nvcb.TabIndex = 4;
             // 
             // tabPage_userInfo
             // 
+            tabPage_userInfo.Controls.Add(dollar_icon);
             tabPage_userInfo.Controls.Add(change_phoneNumber_btn);
             tabPage_userInfo.Controls.Add(field_salary);
             tabPage_userInfo.Controls.Add(field_phoneNumber);
@@ -225,10 +228,20 @@
             tabPage_userInfo.Location = new Point(4, 29);
             tabPage_userInfo.Name = "tabPage_userInfo";
             tabPage_userInfo.Padding = new Padding(3);
-            tabPage_userInfo.Size = new Size(989, 614);
+            tabPage_userInfo.Size = new Size(989, 595);
             tabPage_userInfo.TabIndex = 0;
             tabPage_userInfo.Text = "Thông tin người dùng";
             tabPage_userInfo.UseVisualStyleBackColor = true;
+            // 
+            // change_phoneNumber_btn
+            // 
+            change_phoneNumber_btn.Location = new Point(592, 284);
+            change_phoneNumber_btn.Name = "change_phoneNumber_btn";
+            change_phoneNumber_btn.Size = new Size(94, 29);
+            change_phoneNumber_btn.TabIndex = 44;
+            change_phoneNumber_btn.Text = "Thay đổi";
+            change_phoneNumber_btn.UseVisualStyleBackColor = true;
+            change_phoneNumber_btn.Click += change_phoneNumber_btn_Click;
             // 
             // field_salary
             // 
@@ -391,7 +404,7 @@
             // 
             tabPage_phanconggiangday.Location = new Point(4, 29);
             tabPage_phanconggiangday.Name = "tabPage_phanconggiangday";
-            tabPage_phanconggiangday.Size = new Size(989, 614);
+            tabPage_phanconggiangday.Size = new Size(989, 595);
             tabPage_phanconggiangday.TabIndex = 5;
             tabPage_phanconggiangday.Text = "Xem phân công giảng dạy";
             tabPage_phanconggiangday.UseVisualStyleBackColor = true;
@@ -400,7 +413,7 @@
             // 
             tabPage_lopgiangday.Location = new Point(4, 29);
             tabPage_lopgiangday.Name = "tabPage_lopgiangday";
-            tabPage_lopgiangday.Size = new Size(989, 614);
+            tabPage_lopgiangday.Size = new Size(989, 595);
             tabPage_lopgiangday.TabIndex = 6;
             tabPage_lopgiangday.Text = "Xem lớp giảng dạy";
             tabPage_lopgiangday.UseVisualStyleBackColor = true;
@@ -411,7 +424,7 @@
             tabPage_thongtinsv.Location = new Point(4, 29);
             tabPage_thongtinsv.Name = "tabPage_thongtinsv";
             tabPage_thongtinsv.Padding = new Padding(3);
-            tabPage_thongtinsv.Size = new Size(989, 614);
+            tabPage_thongtinsv.Size = new Size(989, 595);
             tabPage_thongtinsv.TabIndex = 1;
             tabPage_thongtinsv.Text = "Thông tin sinh viên";
             tabPage_thongtinsv.UseVisualStyleBackColor = true;
@@ -435,7 +448,7 @@
             // 
             tabPage_capnhatdiem.Location = new Point(4, 29);
             tabPage_capnhatdiem.Name = "tabPage_capnhatdiem";
-            tabPage_capnhatdiem.Size = new Size(989, 614);
+            tabPage_capnhatdiem.Size = new Size(989, 595);
             tabPage_capnhatdiem.TabIndex = 7;
             tabPage_capnhatdiem.Text = "Cập nhật điểm";
             tabPage_capnhatdiem.UseVisualStyleBackColor = true;
@@ -445,7 +458,7 @@
             tabPage_thongtindonvi.Controls.Add(dataGridView_thongtindv);
             tabPage_thongtindonvi.Location = new Point(4, 29);
             tabPage_thongtindonvi.Name = "tabPage_thongtindonvi";
-            tabPage_thongtindonvi.Size = new Size(989, 614);
+            tabPage_thongtindonvi.Size = new Size(989, 595);
             tabPage_thongtindonvi.TabIndex = 2;
             tabPage_thongtindonvi.Text = "Thông tin đơn vị";
             tabPage_thongtindonvi.UseVisualStyleBackColor = true;
@@ -470,7 +483,7 @@
             tabPage_thongtinhp.Controls.Add(dataGridView_thongtinhp);
             tabPage_thongtinhp.Location = new Point(4, 29);
             tabPage_thongtinhp.Name = "tabPage_thongtinhp";
-            tabPage_thongtinhp.Size = new Size(989, 614);
+            tabPage_thongtinhp.Size = new Size(989, 595);
             tabPage_thongtinhp.TabIndex = 3;
             tabPage_thongtinhp.Text = "Thông tin học phần";
             tabPage_thongtinhp.UseVisualStyleBackColor = true;
@@ -495,7 +508,7 @@
             tabPage_kehoachmohp.Controls.Add(dataGridView_khmohp);
             tabPage_kehoachmohp.Location = new Point(4, 29);
             tabPage_kehoachmohp.Name = "tabPage_kehoachmohp";
-            tabPage_kehoachmohp.Size = new Size(989, 614);
+            tabPage_kehoachmohp.Size = new Size(989, 595);
             tabPage_kehoachmohp.TabIndex = 4;
             tabPage_kehoachmohp.Text = "Kế hoạch mở HP";
             tabPage_kehoachmohp.UseVisualStyleBackColor = true;
@@ -737,15 +750,15 @@
             label5.TabIndex = 3;
             label5.Text = "Đơn vị";
             // 
-            // change_phoneNumber_btn
+            // dollar_icon
             // 
-            change_phoneNumber_btn.Location = new Point(592, 284);
-            change_phoneNumber_btn.Name = "change_phoneNumber_btn";
-            change_phoneNumber_btn.Size = new Size(94, 29);
-            change_phoneNumber_btn.TabIndex = 44;
-            change_phoneNumber_btn.Text = "Thay đổi";
-            change_phoneNumber_btn.UseVisualStyleBackColor = true;
-            change_phoneNumber_btn.Click += change_phoneNumber_btn_Click;
+            dollar_icon.AutoSize = true;
+            dollar_icon.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dollar_icon.Location = new Point(371, 239);
+            dollar_icon.Name = "dollar_icon";
+            dollar_icon.Size = new Size(23, 28);
+            dollar_icon.TabIndex = 45;
+            dollar_icon.Text = "$";
             // 
             // GiangVien_Form
             // 
@@ -849,5 +862,6 @@
         private TabPage tabPage_lopgiangday;
         private TabPage tabPage_capnhatdiem;
         private Button change_phoneNumber_btn;
+        private Label dollar_icon;
     }
 }
