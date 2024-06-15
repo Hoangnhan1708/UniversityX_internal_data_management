@@ -51,7 +51,7 @@ namespace portal_application_project
             field_name.Text = sinhvien.hoten;
             hello_name_label.Text = sinhvien.hoten;
             field_gender.Text = sinhvien.phai;
-            field_birthday.Text = sinhvien.ngsinh;
+            field_birthday.Text = sinhvien.ngsinh.ToString();
             field_phoneNumber.Text = sinhvien.dt;
             field_address.Text = sinhvien.dchi;
             field_chuongtrinhdaotao.Text = sinhvien.mact;

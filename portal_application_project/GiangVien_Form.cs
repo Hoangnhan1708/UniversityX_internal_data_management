@@ -18,14 +18,8 @@ namespace portal_application_project
         private Query query;
 
         private GiangVien giangvien = new GiangVien();
-        //private string manv;
-        //private string hoten;
-        //private string phai;
-        //private string ngsinh;
-        //private string phucap;
-        //private string dt;
-        //private string vaitro;
-        //private string madv;
+        // Declare a list to keep track of modified rows
+        private List<DataGridViewRow> modifiedRows = new List<DataGridViewRow>();
 
         public GiangVien_Form(string _connectionString, string _manv)
         {
@@ -43,6 +37,10 @@ namespace portal_application_project
             dataGridView_thongtindv.DataSource = giangvien.LoadFullTable(connectionString, query, "DONVI");
             dataGridView_thongtinhp.DataSource = giangvien.LoadFullTable(connectionString, query, "HOCPHAN");
             dataGridView_khmohp.DataSource = giangvien.LoadFullTable(connectionString, query, "KHMO");
+            dataGridView_phanconggiangday.DataSource = giangvien.LoadFullTable(connectionString, query, "PHANCONG");
+            dataGridView_xemlopgiangday.DataSource = giangvien.LoadFullTable(connectionString, query, "PHANCONG");
+
+            dataGridView_capnhatdiem.DataSource = giangvien.LoadFullTable(connectionString, query, "DANGKY");
         }
 
         private void LoadThongTinUser()
@@ -124,5 +122,33 @@ namespace portal_application_project
 
             }
         }
+
+        private void dataGridView_capnhatdiem_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if the changed column is one of the score columns
+            if (e.ColumnIndex == dataGridView_capnhatdiem.Columns["DIEMTH"].Index ||
+                e.ColumnIndex == dataGridView_capnhatdiem.Columns["DIEMQT"].Index ||
+                e.ColumnIndex == dataGridView_capnhatdiem.Columns["DIEMCK"].Index ||
+                e.ColumnIndex == dataGridView_capnhatdiem.Columns["DIEMTK"].Index)
+            {
+                // Add the modified row to the list if it's not already there
+                DataGridViewRow row = dataGridView_capnhatdiem.Rows[e.RowIndex];
+                if (!modifiedRows.Contains(row))
+                {
+                    modifiedRows.Add(row);
+                }
+            }
+        }
+
+        private void update_score_btn_Click(object sender, EventArgs e)
+        {
+            giangvien.updateScore(connectionString, query, modifiedRows);
+
+            
+            // Clear the list of modified rows after updating
+            modifiedRows.Clear();
+        }
+
+
     }
 }

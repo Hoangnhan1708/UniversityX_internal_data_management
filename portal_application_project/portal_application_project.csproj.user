@@ -19,7 +19,19 @@
     <Compile Update="Login_Form.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="New_DonVi_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="New_HocPhan_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="New_KHMO_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="New_Role_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="New_SinhVien_Form.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="New_User_Form.cs">

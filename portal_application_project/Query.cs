@@ -57,6 +57,67 @@ namespace portal_application_project
             return "UPDATE QLTRUONGHOC.SINHVIEN SET DT = :newPhoneNumber WHERE MASV = :masv";
         }
 
+        // GIANGVIEN
+        public string giangvienUpdateScore()
+        {
+            return "UPDATE QLTRUONGHOC.DANGKY SET DIEMTH = :DIEMTH, DIEMQT = :DIEMQT, DIEMCK = :DIEMCK, DIEMTK = :DIEMTK " +
+                                     "WHERE MASV = :MASV AND MAGV = :MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
+        }
 
+        // GIAOVU
+
+        // GIAOVU -> SINHVIEN
+        public string giaovuInsertSinhVien()
+        {
+            return "INSERT INTO QLTRUONGHOC.SINHVIEN (MASV, HOTEN, PHAI, NGSINH, DCHI, DT, MACT, MANGANH, SOTCTL, DTBTL) " +
+                                 "VALUES (:MASV, :HOTEN, :PHAI, :NGSINH, :DCHI, :DT, :MACT, :MANGANH, :SOTCTL, :DTBTL)";
+        }
+        public string giaovuUpdateSinhVienInfo()
+        {
+            return "UPDATE QLTRUONGHOC.SINHVIEN SET HOTEN = :HOTEN, PHAI = :PHAI, NGSINH = :NGSINH, DCHI = :DCHI, DT = :DT, MACT = :MACT, MANGANH = :MANGANH, SOTCTL = :SOTCTL, DTBTL = :DTBTL " +
+                                     "WHERE MASV = :MASV";
+        }
+
+        // GIAOVU -> DONVI
+
+        public string giaovuInsertDonVi()
+        {
+            return "INSERT INTO QLTRUONGHOC.DONVI (MADV, TENDV, TRGDV) " +
+                                 "VALUES (:MADV, :TENDV, :TRGDV)";
+        }
+
+        public string giaovuUpdateDonViInfo()
+        {
+            return "UPDATE QLTRUONGHOC.DONVI SET TENDV = :TENDV, TRGDV = :TRGDV " +
+                                     "WHERE MADV = :MADV";
+        }
+
+        // GIAOVU -> HOCPHAN
+
+        public string giaovuInsertHocPhan()
+        {
+            return "INSERT INTO QLTRUONGHOC.HOCPHAN (MAHP, TENHP, SOTC ,STLT,STTH, SOSVTD,MADV) " +
+                                 "VALUES (:MAHP, :TENHP, :SOTC,:STLT, :STTH, :SOSVTD, :MADV)";
+        }
+
+        public string giaovuUpdateHocPhanInfo()
+        {
+            return "UPDATE QLTRUONGHOC.HOCPHAN SET TENHP = :TENHP, SOTC = :SOTC, STLT = :STLT, STTH = :STTH, SOSVTD = :SOSVTD, MADV = :MADV " +
+                            "WHERE MAHP = :MAHP";
+        }
+
+
+        // GIAOVU -> KHMO
+        public string giaovuInsertKHMO()
+        {
+            return "INSERT INTO QLTRUONGHOC.KHMO (MAHP, HK, NAM ,MACT) " +
+                                 "VALUES (:MAHP, :HK, :NAM,:MACT)";
+        }
+
+        public string giaovuUpdateKHMOInfo()
+        {
+            return "UPDATE QLTRUONGHOC.KHMO SET HK = :HK, NAM = :NAM, MACT = :MACT " +
+                            "WHERE MAHP = :MAHP";
+        }
     }
 }

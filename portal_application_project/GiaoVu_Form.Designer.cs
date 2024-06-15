@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GiaoVu_Form));
             label2 = new Label();
             user_info_btn = new Label();
@@ -53,6 +54,7 @@
             panel2 = new Panel();
             tabControl_nvcb = new TabControl();
             tabPage_userInfo = new TabPage();
+            dollar_icon = new Label();
             change_phoneNumber_btn = new Button();
             field_salary = new Label();
             field_phoneNumber = new TextBox();
@@ -71,12 +73,24 @@
             label17 = new Label();
             label19 = new Label();
             tabPage_quanlysv = new TabPage();
+            refresh_sinhvien_btn = new Button();
+            update_sinhvien_btn = new Button();
+            add_sinhvien_btn = new Button();
             dataGridView_sinhvien = new DataGridView();
             tabPage_quanlythongtindonvi = new TabPage();
+            refresh_donvi_btn = new Button();
+            update_donvi_btn = new Button();
+            add_donvi_btn = new Button();
             dataGridView_thongtindv = new DataGridView();
             tabPage_quanlyhp = new TabPage();
+            refresh_hocphan_btn = new Button();
+            update_hocphan_btn = new Button();
+            add_hocphan_btn = new Button();
             dataGridView_thongtinhp = new DataGridView();
             tabPage_quanlykehoachmohp = new TabPage();
+            refresh_khmo_btn = new Button();
+            update_khmo_btn = new Button();
+            add_khmo_btn = new Button();
             dataGridView_khmohp = new DataGridView();
             tabPage_quanlydkhp = new TabPage();
             dataGridView_dkhp = new DataGridView();
@@ -85,13 +99,13 @@
             panel3 = new Panel();
             dashboard_label = new Label();
             panel4 = new Panel();
-            panel1 = new Panel();
             logout_btn = new Button();
             hello_name_label = new Label();
             text_hello = new Label();
             title = new Label();
             logo = new Panel();
-            dollar_icon = new Label();
+            panel1 = new Panel();
+            imageList1 = new ImageList(components);
             panel7.SuspendLayout();
             panel5.SuspendLayout();
             panel10.SuspendLayout();
@@ -441,6 +455,16 @@
             tabPage_userInfo.Text = "Thông tin người dùng";
             tabPage_userInfo.UseVisualStyleBackColor = true;
             // 
+            // dollar_icon
+            // 
+            dollar_icon.AutoSize = true;
+            dollar_icon.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dollar_icon.Location = new Point(373, 239);
+            dollar_icon.Name = "dollar_icon";
+            dollar_icon.Size = new Size(23, 28);
+            dollar_icon.TabIndex = 45;
+            dollar_icon.Text = "$";
+            // 
             // change_phoneNumber_btn
             // 
             change_phoneNumber_btn.Location = new Point(595, 283);
@@ -610,6 +634,9 @@
             // 
             // tabPage_quanlysv
             // 
+            tabPage_quanlysv.Controls.Add(refresh_sinhvien_btn);
+            tabPage_quanlysv.Controls.Add(update_sinhvien_btn);
+            tabPage_quanlysv.Controls.Add(add_sinhvien_btn);
             tabPage_quanlysv.Controls.Add(dataGridView_sinhvien);
             tabPage_quanlysv.Location = new Point(4, 29);
             tabPage_quanlysv.Name = "tabPage_quanlysv";
@@ -618,6 +645,57 @@
             tabPage_quanlysv.TabIndex = 1;
             tabPage_quanlysv.Text = "Quản lý sinh viên";
             tabPage_quanlysv.UseVisualStyleBackColor = true;
+            // 
+            // refresh_sinhvien_btn
+            // 
+            refresh_sinhvien_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            refresh_sinhvien_btn.BackColor = SystemColors.ButtonHighlight;
+            refresh_sinhvien_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            refresh_sinhvien_btn.FlatAppearance.BorderSize = 3;
+            refresh_sinhvien_btn.FlatStyle = FlatStyle.Flat;
+            refresh_sinhvien_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            refresh_sinhvien_btn.ForeColor = SystemColors.HotTrack;
+            refresh_sinhvien_btn.Location = new Point(776, 533);
+            refresh_sinhvien_btn.Name = "refresh_sinhvien_btn";
+            refresh_sinhvien_btn.Size = new Size(180, 53);
+            refresh_sinhvien_btn.TabIndex = 16;
+            refresh_sinhvien_btn.Text = "Refresh";
+            refresh_sinhvien_btn.UseVisualStyleBackColor = false;
+            refresh_sinhvien_btn.Click += refresh_sinhvien_btn_Click;
+            // 
+            // update_sinhvien_btn
+            // 
+            update_sinhvien_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            update_sinhvien_btn.BackColor = SystemColors.ButtonHighlight;
+            update_sinhvien_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            update_sinhvien_btn.FlatAppearance.BorderSize = 3;
+            update_sinhvien_btn.FlatStyle = FlatStyle.Flat;
+            update_sinhvien_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            update_sinhvien_btn.ForeColor = SystemColors.HotTrack;
+            update_sinhvien_btn.Location = new Point(447, 533);
+            update_sinhvien_btn.Name = "update_sinhvien_btn";
+            update_sinhvien_btn.Size = new Size(180, 53);
+            update_sinhvien_btn.TabIndex = 15;
+            update_sinhvien_btn.Text = "Cập nhật dữ liệu";
+            update_sinhvien_btn.UseVisualStyleBackColor = false;
+            update_sinhvien_btn.Click += update_sinhvien_btn_Click;
+            // 
+            // add_sinhvien_btn
+            // 
+            add_sinhvien_btn.Anchor = AnchorStyles.Bottom;
+            add_sinhvien_btn.BackColor = SystemColors.ButtonHighlight;
+            add_sinhvien_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            add_sinhvien_btn.FlatAppearance.BorderSize = 3;
+            add_sinhvien_btn.FlatStyle = FlatStyle.Flat;
+            add_sinhvien_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            add_sinhvien_btn.ForeColor = SystemColors.HotTrack;
+            add_sinhvien_btn.Location = new Point(73, 533);
+            add_sinhvien_btn.Name = "add_sinhvien_btn";
+            add_sinhvien_btn.Size = new Size(159, 53);
+            add_sinhvien_btn.TabIndex = 14;
+            add_sinhvien_btn.Text = "Thêm sinh viên";
+            add_sinhvien_btn.UseVisualStyleBackColor = false;
+            add_sinhvien_btn.Click += add_sinhvien_btn_Click;
             // 
             // dataGridView_sinhvien
             // 
@@ -628,14 +706,17 @@
             dataGridView_sinhvien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView_sinhvien.Location = new Point(9, 21);
             dataGridView_sinhvien.Name = "dataGridView_sinhvien";
-            dataGridView_sinhvien.ReadOnly = true;
             dataGridView_sinhvien.RowHeadersWidth = 51;
             dataGridView_sinhvien.RowTemplate.Height = 29;
-            dataGridView_sinhvien.Size = new Size(974, 551);
+            dataGridView_sinhvien.Size = new Size(971, 506);
             dataGridView_sinhvien.TabIndex = 12;
+            dataGridView_sinhvien.CellValueChanged += dataGridView_sinhvien_CellValueChanged;
             // 
             // tabPage_quanlythongtindonvi
             // 
+            tabPage_quanlythongtindonvi.Controls.Add(refresh_donvi_btn);
+            tabPage_quanlythongtindonvi.Controls.Add(update_donvi_btn);
+            tabPage_quanlythongtindonvi.Controls.Add(add_donvi_btn);
             tabPage_quanlythongtindonvi.Controls.Add(dataGridView_thongtindv);
             tabPage_quanlythongtindonvi.Location = new Point(4, 29);
             tabPage_quanlythongtindonvi.Name = "tabPage_quanlythongtindonvi";
@@ -643,6 +724,57 @@
             tabPage_quanlythongtindonvi.TabIndex = 2;
             tabPage_quanlythongtindonvi.Text = "Quản lý thông tin đơn vị";
             tabPage_quanlythongtindonvi.UseVisualStyleBackColor = true;
+            // 
+            // refresh_donvi_btn
+            // 
+            refresh_donvi_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            refresh_donvi_btn.BackColor = SystemColors.ButtonHighlight;
+            refresh_donvi_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            refresh_donvi_btn.FlatAppearance.BorderSize = 3;
+            refresh_donvi_btn.FlatStyle = FlatStyle.Flat;
+            refresh_donvi_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            refresh_donvi_btn.ForeColor = SystemColors.HotTrack;
+            refresh_donvi_btn.Location = new Point(761, 524);
+            refresh_donvi_btn.Name = "refresh_donvi_btn";
+            refresh_donvi_btn.Size = new Size(180, 53);
+            refresh_donvi_btn.TabIndex = 19;
+            refresh_donvi_btn.Text = "Refresh";
+            refresh_donvi_btn.UseVisualStyleBackColor = false;
+            refresh_donvi_btn.Click += refresh_donvi_btn_Click;
+            // 
+            // update_donvi_btn
+            // 
+            update_donvi_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            update_donvi_btn.BackColor = SystemColors.ButtonHighlight;
+            update_donvi_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            update_donvi_btn.FlatAppearance.BorderSize = 3;
+            update_donvi_btn.FlatStyle = FlatStyle.Flat;
+            update_donvi_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            update_donvi_btn.ForeColor = SystemColors.HotTrack;
+            update_donvi_btn.Location = new Point(432, 524);
+            update_donvi_btn.Name = "update_donvi_btn";
+            update_donvi_btn.Size = new Size(180, 53);
+            update_donvi_btn.TabIndex = 18;
+            update_donvi_btn.Text = "Cập nhật dữ liệu";
+            update_donvi_btn.UseVisualStyleBackColor = false;
+            update_donvi_btn.Click += update_donvi_btn_Click;
+            // 
+            // add_donvi_btn
+            // 
+            add_donvi_btn.Anchor = AnchorStyles.Bottom;
+            add_donvi_btn.BackColor = SystemColors.ButtonHighlight;
+            add_donvi_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            add_donvi_btn.FlatAppearance.BorderSize = 3;
+            add_donvi_btn.FlatStyle = FlatStyle.Flat;
+            add_donvi_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            add_donvi_btn.ForeColor = SystemColors.HotTrack;
+            add_donvi_btn.Location = new Point(58, 524);
+            add_donvi_btn.Name = "add_donvi_btn";
+            add_donvi_btn.Size = new Size(159, 53);
+            add_donvi_btn.TabIndex = 17;
+            add_donvi_btn.Text = "Thêm đơn vị";
+            add_donvi_btn.UseVisualStyleBackColor = false;
+            add_donvi_btn.Click += add_donvi_btn_Click;
             // 
             // dataGridView_thongtindv
             // 
@@ -653,14 +785,17 @@
             dataGridView_thongtindv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView_thongtindv.Location = new Point(9, 3);
             dataGridView_thongtindv.Name = "dataGridView_thongtindv";
-            dataGridView_thongtindv.ReadOnly = true;
             dataGridView_thongtindv.RowHeadersWidth = 51;
             dataGridView_thongtindv.RowTemplate.Height = 29;
-            dataGridView_thongtindv.Size = new Size(974, 551);
+            dataGridView_thongtindv.Size = new Size(971, 506);
             dataGridView_thongtindv.TabIndex = 13;
+            dataGridView_thongtindv.CellValueChanged += dataGridView_thongtindv_CellValueChanged;
             // 
             // tabPage_quanlyhp
             // 
+            tabPage_quanlyhp.Controls.Add(refresh_hocphan_btn);
+            tabPage_quanlyhp.Controls.Add(update_hocphan_btn);
+            tabPage_quanlyhp.Controls.Add(add_hocphan_btn);
             tabPage_quanlyhp.Controls.Add(dataGridView_thongtinhp);
             tabPage_quanlyhp.Location = new Point(4, 29);
             tabPage_quanlyhp.Name = "tabPage_quanlyhp";
@@ -668,6 +803,57 @@
             tabPage_quanlyhp.TabIndex = 3;
             tabPage_quanlyhp.Text = "Quản lý học phần";
             tabPage_quanlyhp.UseVisualStyleBackColor = true;
+            // 
+            // refresh_hocphan_btn
+            // 
+            refresh_hocphan_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            refresh_hocphan_btn.BackColor = SystemColors.ButtonHighlight;
+            refresh_hocphan_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            refresh_hocphan_btn.FlatAppearance.BorderSize = 3;
+            refresh_hocphan_btn.FlatStyle = FlatStyle.Flat;
+            refresh_hocphan_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            refresh_hocphan_btn.ForeColor = SystemColors.HotTrack;
+            refresh_hocphan_btn.Location = new Point(767, 533);
+            refresh_hocphan_btn.Name = "refresh_hocphan_btn";
+            refresh_hocphan_btn.Size = new Size(180, 53);
+            refresh_hocphan_btn.TabIndex = 22;
+            refresh_hocphan_btn.Text = "Refresh";
+            refresh_hocphan_btn.UseVisualStyleBackColor = false;
+            refresh_hocphan_btn.Click += refresh_hocphan_btn_Click;
+            // 
+            // update_hocphan_btn
+            // 
+            update_hocphan_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            update_hocphan_btn.BackColor = SystemColors.ButtonHighlight;
+            update_hocphan_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            update_hocphan_btn.FlatAppearance.BorderSize = 3;
+            update_hocphan_btn.FlatStyle = FlatStyle.Flat;
+            update_hocphan_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            update_hocphan_btn.ForeColor = SystemColors.HotTrack;
+            update_hocphan_btn.Location = new Point(438, 533);
+            update_hocphan_btn.Name = "update_hocphan_btn";
+            update_hocphan_btn.Size = new Size(180, 53);
+            update_hocphan_btn.TabIndex = 21;
+            update_hocphan_btn.Text = "Cập nhật dữ liệu";
+            update_hocphan_btn.UseVisualStyleBackColor = false;
+            update_hocphan_btn.Click += update_hocphan_btn_Click;
+            // 
+            // add_hocphan_btn
+            // 
+            add_hocphan_btn.Anchor = AnchorStyles.Bottom;
+            add_hocphan_btn.BackColor = SystemColors.ButtonHighlight;
+            add_hocphan_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            add_hocphan_btn.FlatAppearance.BorderSize = 3;
+            add_hocphan_btn.FlatStyle = FlatStyle.Flat;
+            add_hocphan_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            add_hocphan_btn.ForeColor = SystemColors.HotTrack;
+            add_hocphan_btn.Location = new Point(64, 533);
+            add_hocphan_btn.Name = "add_hocphan_btn";
+            add_hocphan_btn.Size = new Size(167, 53);
+            add_hocphan_btn.TabIndex = 20;
+            add_hocphan_btn.Text = "Thêm học phần";
+            add_hocphan_btn.UseVisualStyleBackColor = false;
+            add_hocphan_btn.Click += add_hocphan_btn_Click;
             // 
             // dataGridView_thongtinhp
             // 
@@ -678,14 +864,17 @@
             dataGridView_thongtinhp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView_thongtinhp.Location = new Point(6, 21);
             dataGridView_thongtinhp.Name = "dataGridView_thongtinhp";
-            dataGridView_thongtinhp.ReadOnly = true;
             dataGridView_thongtinhp.RowHeadersWidth = 51;
             dataGridView_thongtinhp.RowTemplate.Height = 29;
-            dataGridView_thongtinhp.Size = new Size(974, 551);
+            dataGridView_thongtinhp.Size = new Size(971, 506);
             dataGridView_thongtinhp.TabIndex = 14;
+            dataGridView_thongtinhp.CellValueChanged += dataGridView_thongtinhp_CellValueChanged;
             // 
             // tabPage_quanlykehoachmohp
             // 
+            tabPage_quanlykehoachmohp.Controls.Add(refresh_khmo_btn);
+            tabPage_quanlykehoachmohp.Controls.Add(update_khmo_btn);
+            tabPage_quanlykehoachmohp.Controls.Add(add_khmo_btn);
             tabPage_quanlykehoachmohp.Controls.Add(dataGridView_khmohp);
             tabPage_quanlykehoachmohp.Location = new Point(4, 29);
             tabPage_quanlykehoachmohp.Name = "tabPage_quanlykehoachmohp";
@@ -693,6 +882,57 @@
             tabPage_quanlykehoachmohp.TabIndex = 4;
             tabPage_quanlykehoachmohp.Text = "Quản lý kế hoạch mở HP";
             tabPage_quanlykehoachmohp.UseVisualStyleBackColor = true;
+            // 
+            // refresh_khmo_btn
+            // 
+            refresh_khmo_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            refresh_khmo_btn.BackColor = SystemColors.ButtonHighlight;
+            refresh_khmo_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            refresh_khmo_btn.FlatAppearance.BorderSize = 3;
+            refresh_khmo_btn.FlatStyle = FlatStyle.Flat;
+            refresh_khmo_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            refresh_khmo_btn.ForeColor = SystemColors.HotTrack;
+            refresh_khmo_btn.Location = new Point(753, 533);
+            refresh_khmo_btn.Name = "refresh_khmo_btn";
+            refresh_khmo_btn.Size = new Size(180, 53);
+            refresh_khmo_btn.TabIndex = 25;
+            refresh_khmo_btn.Text = "Refresh";
+            refresh_khmo_btn.UseVisualStyleBackColor = false;
+            refresh_khmo_btn.Click += refresh_khmo_btn_Click;
+            // 
+            // update_khmo_btn
+            // 
+            update_khmo_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            update_khmo_btn.BackColor = SystemColors.ButtonHighlight;
+            update_khmo_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            update_khmo_btn.FlatAppearance.BorderSize = 3;
+            update_khmo_btn.FlatStyle = FlatStyle.Flat;
+            update_khmo_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            update_khmo_btn.ForeColor = SystemColors.HotTrack;
+            update_khmo_btn.Location = new Point(424, 533);
+            update_khmo_btn.Name = "update_khmo_btn";
+            update_khmo_btn.Size = new Size(180, 53);
+            update_khmo_btn.TabIndex = 24;
+            update_khmo_btn.Text = "Cập nhật dữ liệu";
+            update_khmo_btn.UseVisualStyleBackColor = false;
+            update_khmo_btn.Click += update_khmo_btn_Click;
+            // 
+            // add_khmo_btn
+            // 
+            add_khmo_btn.Anchor = AnchorStyles.Bottom;
+            add_khmo_btn.BackColor = SystemColors.ButtonHighlight;
+            add_khmo_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            add_khmo_btn.FlatAppearance.BorderSize = 3;
+            add_khmo_btn.FlatStyle = FlatStyle.Flat;
+            add_khmo_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            add_khmo_btn.ForeColor = SystemColors.HotTrack;
+            add_khmo_btn.Location = new Point(50, 533);
+            add_khmo_btn.Name = "add_khmo_btn";
+            add_khmo_btn.Size = new Size(285, 53);
+            add_khmo_btn.TabIndex = 23;
+            add_khmo_btn.Text = "Thêm kế hoạch mở học phần";
+            add_khmo_btn.UseVisualStyleBackColor = false;
+            add_khmo_btn.Click += add_khmo_btn_Click;
             // 
             // dataGridView_khmohp
             // 
@@ -703,11 +943,11 @@
             dataGridView_khmohp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView_khmohp.Location = new Point(6, 21);
             dataGridView_khmohp.Name = "dataGridView_khmohp";
-            dataGridView_khmohp.ReadOnly = true;
             dataGridView_khmohp.RowHeadersWidth = 51;
             dataGridView_khmohp.RowTemplate.Height = 29;
-            dataGridView_khmohp.Size = new Size(974, 551);
+            dataGridView_khmohp.Size = new Size(971, 506);
             dataGridView_khmohp.TabIndex = 15;
+            dataGridView_khmohp.CellValueChanged += dataGridView_khmohp_CellValueChanged;
             // 
             // tabPage_quanlydkhp
             // 
@@ -789,17 +1029,6 @@
             panel4.Size = new Size(42, 42);
             panel4.TabIndex = 2;
             // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            panel1.BackColor = Color.White;
-            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.Cursor = Cursors.Hand;
-            panel1.Location = new Point(810, 44);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(41, 41);
-            panel1.TabIndex = 55;
-            // 
             // logout_btn
             // 
             logout_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -862,15 +1091,23 @@
             logo.Size = new Size(72, 59);
             logo.TabIndex = 50;
             // 
-            // dollar_icon
+            // panel1
             // 
-            dollar_icon.AutoSize = true;
-            dollar_icon.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dollar_icon.Location = new Point(373, 239);
-            dollar_icon.Name = "dollar_icon";
-            dollar_icon.Size = new Size(23, 28);
-            dollar_icon.TabIndex = 45;
-            dollar_icon.Text = "$";
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panel1.BackColor = Color.FromArgb(1, 69, 142);
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.Cursor = Cursors.Hand;
+            panel1.Location = new Point(811, 44);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(40, 37);
+            panel1.TabIndex = 55;
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth8Bit;
+            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
+            imageList1.TransparentColor = Color.Transparent;
+            imageList1.Images.SetKeyName(0, "email-removebg-preview.png");
             // 
             // GiaoVu_Form
             // 
@@ -940,7 +1177,6 @@
         private Panel panel3;
         private Label dashboard_label;
         private Panel panel4;
-        private Panel panel1;
         private Button logout_btn;
         private Label hello_name_label;
         private Label text_hello;
@@ -990,5 +1226,19 @@
         private DataGridView dataGridView_dkhp;
         private DataGridView dataGridView_phancong;
         private Label dollar_icon;
+        private Button update_sinhvien_btn;
+        private Button add_sinhvien_btn;
+        private Button refresh_sinhvien_btn;
+        private Button refresh_donvi_btn;
+        private Button update_donvi_btn;
+        private Button add_donvi_btn;
+        private Panel panel1;
+        private ImageList imageList1;
+        private Button refresh_hocphan_btn;
+        private Button update_hocphan_btn;
+        private Button add_hocphan_btn;
+        private Button refresh_khmo_btn;
+        private Button update_khmo_btn;
+        private Button add_khmo_btn;
     }
 }

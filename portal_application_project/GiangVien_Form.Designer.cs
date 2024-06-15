@@ -38,6 +38,7 @@
             panel2 = new Panel();
             tabControl_nvcb = new TabControl();
             tabPage_userInfo = new TabPage();
+            dollar_icon = new Label();
             change_phoneNumber_btn = new Button();
             field_salary = new Label();
             field_phoneNumber = new TextBox();
@@ -56,10 +57,14 @@
             label18 = new Label();
             label19 = new Label();
             tabPage_phanconggiangday = new TabPage();
+            dataGridView_phanconggiangday = new DataGridView();
             tabPage_lopgiangday = new TabPage();
+            dataGridView_xemlopgiangday = new DataGridView();
             tabPage_thongtinsv = new TabPage();
             dataGridView_sinhvien = new DataGridView();
             tabPage_capnhatdiem = new TabPage();
+            update_score_btn = new Button();
+            dataGridView_capnhatdiem = new DataGridView();
             tabPage_thongtindonvi = new TabPage();
             dataGridView_thongtindv = new DataGridView();
             tabPage_thongtinhp = new TabPage();
@@ -84,12 +89,17 @@
             label2 = new Label();
             panel8 = new Panel();
             label5 = new Label();
-            dollar_icon = new Label();
             panel2.SuspendLayout();
             tabControl_nvcb.SuspendLayout();
             tabPage_userInfo.SuspendLayout();
+            tabPage_phanconggiangday.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_phanconggiangday).BeginInit();
+            tabPage_lopgiangday.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_xemlopgiangday).BeginInit();
             tabPage_thongtinsv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_sinhvien).BeginInit();
+            tabPage_capnhatdiem.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_capnhatdiem).BeginInit();
             tabPage_thongtindonvi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_thongtindv).BeginInit();
             tabPage_thongtinhp.SuspendLayout();
@@ -232,6 +242,16 @@
             tabPage_userInfo.TabIndex = 0;
             tabPage_userInfo.Text = "Thông tin người dùng";
             tabPage_userInfo.UseVisualStyleBackColor = true;
+            // 
+            // dollar_icon
+            // 
+            dollar_icon.AutoSize = true;
+            dollar_icon.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dollar_icon.Location = new Point(371, 239);
+            dollar_icon.Name = "dollar_icon";
+            dollar_icon.Size = new Size(23, 28);
+            dollar_icon.TabIndex = 45;
+            dollar_icon.Text = "$";
             // 
             // change_phoneNumber_btn
             // 
@@ -402,6 +422,7 @@
             // 
             // tabPage_phanconggiangday
             // 
+            tabPage_phanconggiangday.Controls.Add(dataGridView_phanconggiangday);
             tabPage_phanconggiangday.Location = new Point(4, 29);
             tabPage_phanconggiangday.Name = "tabPage_phanconggiangday";
             tabPage_phanconggiangday.Size = new Size(989, 595);
@@ -409,14 +430,45 @@
             tabPage_phanconggiangday.Text = "Xem phân công giảng dạy";
             tabPage_phanconggiangday.UseVisualStyleBackColor = true;
             // 
+            // dataGridView_phanconggiangday
+            // 
+            dataGridView_phanconggiangday.AllowUserToAddRows = false;
+            dataGridView_phanconggiangday.AllowUserToDeleteRows = false;
+            dataGridView_phanconggiangday.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_phanconggiangday.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_phanconggiangday.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_phanconggiangday.Location = new Point(6, 11);
+            dataGridView_phanconggiangday.Name = "dataGridView_phanconggiangday";
+            dataGridView_phanconggiangday.ReadOnly = true;
+            dataGridView_phanconggiangday.RowHeadersWidth = 51;
+            dataGridView_phanconggiangday.RowTemplate.Height = 29;
+            dataGridView_phanconggiangday.Size = new Size(977, 573);
+            dataGridView_phanconggiangday.TabIndex = 13;
+            // 
             // tabPage_lopgiangday
             // 
+            tabPage_lopgiangday.Controls.Add(dataGridView_xemlopgiangday);
             tabPage_lopgiangday.Location = new Point(4, 29);
             tabPage_lopgiangday.Name = "tabPage_lopgiangday";
             tabPage_lopgiangday.Size = new Size(989, 595);
             tabPage_lopgiangday.TabIndex = 6;
             tabPage_lopgiangday.Text = "Xem lớp giảng dạy";
             tabPage_lopgiangday.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView_xemlopgiangday
+            // 
+            dataGridView_xemlopgiangday.AllowUserToAddRows = false;
+            dataGridView_xemlopgiangday.AllowUserToDeleteRows = false;
+            dataGridView_xemlopgiangday.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_xemlopgiangday.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_xemlopgiangday.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_xemlopgiangday.Location = new Point(6, 11);
+            dataGridView_xemlopgiangday.Name = "dataGridView_xemlopgiangday";
+            dataGridView_xemlopgiangday.ReadOnly = true;
+            dataGridView_xemlopgiangday.RowHeadersWidth = 51;
+            dataGridView_xemlopgiangday.RowTemplate.Height = 29;
+            dataGridView_xemlopgiangday.Size = new Size(977, 573);
+            dataGridView_xemlopgiangday.TabIndex = 14;
             // 
             // tabPage_thongtinsv
             // 
@@ -446,12 +498,46 @@
             // 
             // tabPage_capnhatdiem
             // 
+            tabPage_capnhatdiem.Controls.Add(update_score_btn);
+            tabPage_capnhatdiem.Controls.Add(dataGridView_capnhatdiem);
             tabPage_capnhatdiem.Location = new Point(4, 29);
             tabPage_capnhatdiem.Name = "tabPage_capnhatdiem";
             tabPage_capnhatdiem.Size = new Size(989, 595);
             tabPage_capnhatdiem.TabIndex = 7;
             tabPage_capnhatdiem.Text = "Cập nhật điểm";
             tabPage_capnhatdiem.UseVisualStyleBackColor = true;
+            // 
+            // update_score_btn
+            // 
+            update_score_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            update_score_btn.BackColor = SystemColors.ButtonHighlight;
+            update_score_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            update_score_btn.FlatAppearance.BorderSize = 3;
+            update_score_btn.FlatStyle = FlatStyle.Flat;
+            update_score_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            update_score_btn.ForeColor = SystemColors.HotTrack;
+            update_score_btn.Location = new Point(447, 546);
+            update_score_btn.Name = "update_score_btn";
+            update_score_btn.Size = new Size(182, 46);
+            update_score_btn.TabIndex = 15;
+            update_score_btn.Text = "Cập nhật điểm";
+            update_score_btn.UseVisualStyleBackColor = false;
+            update_score_btn.Click += update_score_btn_Click;
+            // 
+            // dataGridView_capnhatdiem
+            // 
+            dataGridView_capnhatdiem.AllowUserToAddRows = false;
+            dataGridView_capnhatdiem.AllowUserToDeleteRows = false;
+            dataGridView_capnhatdiem.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_capnhatdiem.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_capnhatdiem.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_capnhatdiem.Location = new Point(6, 11);
+            dataGridView_capnhatdiem.Name = "dataGridView_capnhatdiem";
+            dataGridView_capnhatdiem.RowHeadersWidth = 51;
+            dataGridView_capnhatdiem.RowTemplate.Height = 29;
+            dataGridView_capnhatdiem.Size = new Size(977, 529);
+            dataGridView_capnhatdiem.TabIndex = 14;
+            dataGridView_capnhatdiem.CellValueChanged += dataGridView_capnhatdiem_CellValueChanged;
             // 
             // tabPage_thongtindonvi
             // 
@@ -750,16 +836,6 @@
             label5.TabIndex = 3;
             label5.Text = "Đơn vị";
             // 
-            // dollar_icon
-            // 
-            dollar_icon.AutoSize = true;
-            dollar_icon.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dollar_icon.Location = new Point(371, 239);
-            dollar_icon.Name = "dollar_icon";
-            dollar_icon.Size = new Size(23, 28);
-            dollar_icon.TabIndex = 45;
-            dollar_icon.Text = "$";
-            // 
             // GiangVien_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -783,8 +859,14 @@
             tabControl_nvcb.ResumeLayout(false);
             tabPage_userInfo.ResumeLayout(false);
             tabPage_userInfo.PerformLayout();
+            tabPage_phanconggiangday.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView_phanconggiangday).EndInit();
+            tabPage_lopgiangday.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView_xemlopgiangday).EndInit();
             tabPage_thongtinsv.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_sinhvien).EndInit();
+            tabPage_capnhatdiem.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView_capnhatdiem).EndInit();
             tabPage_thongtindonvi.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_thongtindv).EndInit();
             tabPage_thongtinhp.ResumeLayout(false);
@@ -863,5 +945,9 @@
         private TabPage tabPage_capnhatdiem;
         private Button change_phoneNumber_btn;
         private Label dollar_icon;
+        private DataGridView dataGridView_phanconggiangday;
+        private DataGridView dataGridView_xemlopgiangday;
+        private DataGridView dataGridView_capnhatdiem;
+        private Button update_score_btn;
     }
 }

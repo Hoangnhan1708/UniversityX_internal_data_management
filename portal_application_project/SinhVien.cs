@@ -13,20 +13,20 @@ namespace portal_application_project
         public string masv;
         public string hoten;
         public string phai;
-        public string ngsinh;
+        public DateTime ngsinh;
         public string dchi;
         public string dt;
         public string mact;
         public string manganh;
         public int sotctl;
-        public int diemtbtl;
+        public float diemtbtl;
 
         public SinhVien()
         {
             masv = "";
             hoten = "";
             phai = "";
-            ngsinh = "";
+            ngsinh = DateTime.Now;
             dchi = "";
             dt = "";
             mact = "";
@@ -54,7 +54,7 @@ namespace portal_application_project
                         
                         hoten = row["HOTEN"].ToString();
                         phai = row["PHAI"].ToString();
-                        ngsinh = row["NGSINH"].ToString();
+                        ngsinh = Convert.ToDateTime(row["NGSINH"]);
                         dchi = row["DCHI"].ToString();
                         dt = row["DT"].ToString();
                         mact = row["MACT"].ToString();
