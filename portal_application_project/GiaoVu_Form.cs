@@ -236,6 +236,47 @@ namespace portal_application_project
         }
 
 
+        // Tab Page: PHANCONG
+
+        private void dataGridView_phancong_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if the changed column is one of the score columns
+            if (e.ColumnIndex == dataGridView_phancong.Columns["MAGV"].Index ||
+                e.ColumnIndex == dataGridView_phancong.Columns["MAHP"].Index ||
+                e.ColumnIndex == dataGridView_phancong.Columns["HK"].Index ||
+                e.ColumnIndex == dataGridView_phancong.Columns["NAM"].Index ||
+                e.ColumnIndex == dataGridView_phancong.Columns["MACT"].Index)
+            {
+                // Add the modified row to the list if it's not already there
+                DataGridViewRow row = dataGridView_phancong.Rows[e.RowIndex];
+                if (!modifiedRows.Contains(row))
+                {
+                    modifiedRows.Add(row);
+                }
+            }
+        }
+
+        private void update_phancong_btn_Click(object sender, EventArgs e)
+        {
+            giaovu.updatePhanCongInfo(connectionString, query, modifiedRows);
+
+
+            // Clear the list of modified rows after updating
+            modifiedRows.Clear();
+        }
+
+        private void refresh_phancong_btn_Click(object sender, EventArgs e)
+        {
+            dataGridView_phancong.DataSource = giaovu.LoadFullTable(connectionString, query, "PHANCONG");
+        }
+
+        // Tab Page: DANGKY
+        private void add_dangky_btn_Click(object sender, EventArgs e)
+        {
+            New_DangKy_Form newDangKyForm = new New_DangKy_Form(connectionString);
+            newDangKyForm.ShowDialog();
+        }
+
 
 
         // Xử lý sự kiện chung

@@ -95,6 +95,8 @@
             tabPage_quanlydkhp = new TabPage();
             dataGridView_dkhp = new DataGridView();
             tabPage_quanlyphancong = new TabPage();
+            refresh_phancong_btn = new Button();
+            update_phancong_btn = new Button();
             dataGridView_phancong = new DataGridView();
             panel3 = new Panel();
             dashboard_label = new Label();
@@ -106,6 +108,9 @@
             logo = new Panel();
             panel1 = new Panel();
             imageList1 = new ImageList(components);
+            refresh_dangky_btn = new Button();
+            add_dangky_btn = new Button();
+            delete_dangky_btn = new Button();
             panel7.SuspendLayout();
             panel5.SuspendLayout();
             panel10.SuspendLayout();
@@ -951,6 +956,9 @@
             // 
             // tabPage_quanlydkhp
             // 
+            tabPage_quanlydkhp.Controls.Add(refresh_dangky_btn);
+            tabPage_quanlydkhp.Controls.Add(add_dangky_btn);
+            tabPage_quanlydkhp.Controls.Add(delete_dangky_btn);
             tabPage_quanlydkhp.Controls.Add(dataGridView_dkhp);
             tabPage_quanlydkhp.Location = new Point(4, 29);
             tabPage_quanlydkhp.Name = "tabPage_quanlydkhp";
@@ -971,11 +979,13 @@
             dataGridView_dkhp.ReadOnly = true;
             dataGridView_dkhp.RowHeadersWidth = 51;
             dataGridView_dkhp.RowTemplate.Height = 29;
-            dataGridView_dkhp.Size = new Size(974, 551);
+            dataGridView_dkhp.Size = new Size(971, 506);
             dataGridView_dkhp.TabIndex = 16;
             // 
             // tabPage_quanlyphancong
             // 
+            tabPage_quanlyphancong.Controls.Add(refresh_phancong_btn);
+            tabPage_quanlyphancong.Controls.Add(update_phancong_btn);
             tabPage_quanlyphancong.Controls.Add(dataGridView_phancong);
             tabPage_quanlyphancong.Location = new Point(4, 29);
             tabPage_quanlyphancong.Name = "tabPage_quanlyphancong";
@@ -983,6 +993,40 @@
             tabPage_quanlyphancong.TabIndex = 6;
             tabPage_quanlyphancong.Text = "Quản lý phân công";
             tabPage_quanlyphancong.UseVisualStyleBackColor = true;
+            // 
+            // refresh_phancong_btn
+            // 
+            refresh_phancong_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            refresh_phancong_btn.BackColor = SystemColors.ButtonHighlight;
+            refresh_phancong_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            refresh_phancong_btn.FlatAppearance.BorderSize = 3;
+            refresh_phancong_btn.FlatStyle = FlatStyle.Flat;
+            refresh_phancong_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            refresh_phancong_btn.ForeColor = SystemColors.HotTrack;
+            refresh_phancong_btn.Location = new Point(776, 533);
+            refresh_phancong_btn.Name = "refresh_phancong_btn";
+            refresh_phancong_btn.Size = new Size(180, 53);
+            refresh_phancong_btn.TabIndex = 27;
+            refresh_phancong_btn.Text = "Refresh";
+            refresh_phancong_btn.UseVisualStyleBackColor = false;
+            refresh_phancong_btn.Click += refresh_phancong_btn_Click;
+            // 
+            // update_phancong_btn
+            // 
+            update_phancong_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            update_phancong_btn.BackColor = SystemColors.ButtonHighlight;
+            update_phancong_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            update_phancong_btn.FlatAppearance.BorderSize = 3;
+            update_phancong_btn.FlatStyle = FlatStyle.Flat;
+            update_phancong_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            update_phancong_btn.ForeColor = SystemColors.HotTrack;
+            update_phancong_btn.Location = new Point(447, 533);
+            update_phancong_btn.Name = "update_phancong_btn";
+            update_phancong_btn.Size = new Size(180, 53);
+            update_phancong_btn.TabIndex = 26;
+            update_phancong_btn.Text = "Cập nhật dữ liệu";
+            update_phancong_btn.UseVisualStyleBackColor = false;
+            update_phancong_btn.Click += update_phancong_btn_Click;
             // 
             // dataGridView_phancong
             // 
@@ -993,11 +1037,11 @@
             dataGridView_phancong.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView_phancong.Location = new Point(6, 21);
             dataGridView_phancong.Name = "dataGridView_phancong";
-            dataGridView_phancong.ReadOnly = true;
             dataGridView_phancong.RowHeadersWidth = 51;
             dataGridView_phancong.RowTemplate.Height = 29;
-            dataGridView_phancong.Size = new Size(974, 551);
+            dataGridView_phancong.Size = new Size(971, 506);
             dataGridView_phancong.TabIndex = 17;
+            dataGridView_phancong.CellValueChanged += dataGridView_phancong_CellValueChanged;
             // 
             // panel3
             // 
@@ -1108,6 +1152,55 @@
             imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
             imageList1.TransparentColor = Color.Transparent;
             imageList1.Images.SetKeyName(0, "email-removebg-preview.png");
+            // 
+            // refresh_dangky_btn
+            // 
+            refresh_dangky_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            refresh_dangky_btn.BackColor = SystemColors.ButtonHighlight;
+            refresh_dangky_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            refresh_dangky_btn.FlatAppearance.BorderSize = 3;
+            refresh_dangky_btn.FlatStyle = FlatStyle.Flat;
+            refresh_dangky_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            refresh_dangky_btn.ForeColor = SystemColors.HotTrack;
+            refresh_dangky_btn.Location = new Point(771, 533);
+            refresh_dangky_btn.Name = "refresh_dangky_btn";
+            refresh_dangky_btn.Size = new Size(180, 53);
+            refresh_dangky_btn.TabIndex = 28;
+            refresh_dangky_btn.Text = "Refresh";
+            refresh_dangky_btn.UseVisualStyleBackColor = false;
+            // 
+            // add_dangky_btn
+            // 
+            add_dangky_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            add_dangky_btn.BackColor = SystemColors.ButtonHighlight;
+            add_dangky_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            add_dangky_btn.FlatAppearance.BorderSize = 3;
+            add_dangky_btn.FlatStyle = FlatStyle.Flat;
+            add_dangky_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            add_dangky_btn.ForeColor = SystemColors.HotTrack;
+            add_dangky_btn.Location = new Point(442, 533);
+            add_dangky_btn.Name = "add_dangky_btn";
+            add_dangky_btn.Size = new Size(180, 53);
+            add_dangky_btn.TabIndex = 27;
+            add_dangky_btn.Text = "Thêm đăng ký";
+            add_dangky_btn.UseVisualStyleBackColor = false;
+            add_dangky_btn.Click += add_dangky_btn_Click;
+            // 
+            // delete_dangky_btn
+            // 
+            delete_dangky_btn.Anchor = AnchorStyles.Bottom;
+            delete_dangky_btn.BackColor = SystemColors.ButtonHighlight;
+            delete_dangky_btn.FlatAppearance.BorderColor = Color.Red;
+            delete_dangky_btn.FlatAppearance.BorderSize = 3;
+            delete_dangky_btn.FlatStyle = FlatStyle.Flat;
+            delete_dangky_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            delete_dangky_btn.ForeColor = Color.Red;
+            delete_dangky_btn.Location = new Point(68, 533);
+            delete_dangky_btn.Name = "delete_dangky_btn";
+            delete_dangky_btn.Size = new Size(154, 53);
+            delete_dangky_btn.TabIndex = 26;
+            delete_dangky_btn.Text = "Xóa";
+            delete_dangky_btn.UseVisualStyleBackColor = false;
             // 
             // GiaoVu_Form
             // 
@@ -1240,5 +1333,10 @@
         private Button refresh_khmo_btn;
         private Button update_khmo_btn;
         private Button add_khmo_btn;
+        private Button refresh_phancong_btn;
+        private Button update_phancong_btn;
+        private Button refresh_dangky_btn;
+        private Button add_dangky_btn;
+        private Button delete_dangky_btn;
     }
 }

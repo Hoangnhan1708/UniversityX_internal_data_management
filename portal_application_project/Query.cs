@@ -119,5 +119,19 @@ namespace portal_application_project
             return "UPDATE QLTRUONGHOC.KHMO SET HK = :HK, NAM = :NAM, MACT = :MACT " +
                             "WHERE MAHP = :MAHP";
         }
+
+        // GIAOVU -> PHANCONG
+        public string giaovuUpdatePhanCongInfo()
+        {
+            return "UPDATE QLTRUONGHOC.PHANCONG SET HK = :HK, NAM = :NAM, MACT = :MACT " +
+                            "WHERE MAGV = :MAGV AND MAHP = :MAHP";
+        }
+
+        // GIAOVU -> DANGKY
+        public string giaovuInsertDangKy()
+        {
+            return "INSERT INTO QLTRUONGHOC.DANGKY (MASV, MAGV, MAHP, HK, NAM ,MACT, DIEMTH,DIEMQT,DIEMCK,DIEMTK) " +
+                                 "VALUES (:MASV, :MAGV, :MAHP,:HK,:NAM, :MACT, :DIEMTH, :DIEMQT, :DIEMCK, :DIEMTK)";
+        }
     }
 }
