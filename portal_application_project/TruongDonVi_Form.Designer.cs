@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TruongDonVi_Form));
-            panel1 = new Panel();
             logout_btn = new Button();
             hello_name_label = new Label();
             text_hello = new Label();
             title = new Label();
             logo = new Panel();
             panel2 = new Panel();
-            tabControl_nvcb = new TabControl();
+            tabControl_truongdonvi = new TabControl();
             tabPage_userInfo = new TabPage();
+            dollar_icon = new Label();
             change_phoneNumber_btn = new Button();
             field_salary = new Label();
             field_phoneNumber = new TextBox();
@@ -56,9 +56,13 @@
             label23 = new Label();
             label24 = new Label();
             tabPage_phancong = new TabPage();
+            dataGridView_xemphanconggiangday = new DataGridView();
             tabPage_thongtinsv = new TabPage();
             dataGridView_sinhvien = new DataGridView();
             tabPage_capnhatsv = new TabPage();
+            refresh_capnhatdiem_btn = new Button();
+            update_score_btn = new Button();
+            dataGridView_capnhatdiem = new DataGridView();
             tabPage_thongtindonvi = new TabPage();
             dataGridView_thongtindv = new DataGridView();
             tabPage_thongtinhp = new TabPage();
@@ -68,8 +72,15 @@
             tabPage_thongtindkhp = new TabPage();
             dataGridView_dkhp = new DataGridView();
             tabPage_quanlyphancong = new TabPage();
-            dataGridView_phancong = new DataGridView();
+            delete_quanlyphancong_btn = new Button();
+            update_quanlyphancong_btn = new Button();
+            refresh_quanlyphancong_btn = new Button();
+            add_quanlyphancong_btn = new Button();
+            dataGridView_quanlyphancong = new DataGridView();
+            tabPage_xemphanconggv = new TabPage();
+            dataGridView_xemphanconggv = new DataGridView();
             panel5 = new Panel();
+            xemphanconggv_btn = new Label();
             khmohp_btn = new Label();
             thongtinhp_btn = new Label();
             thongtindv_btn = new Label();
@@ -89,12 +100,16 @@
             panel3 = new Panel();
             dashboard_label = new Label();
             panel4 = new Panel();
-            dollar_icon = new Label();
+            panel1 = new Panel();
             panel2.SuspendLayout();
-            tabControl_nvcb.SuspendLayout();
+            tabControl_truongdonvi.SuspendLayout();
             tabPage_userInfo.SuspendLayout();
+            tabPage_phancong.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_xemphanconggiangday).BeginInit();
             tabPage_thongtinsv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_sinhvien).BeginInit();
+            tabPage_capnhatsv.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_capnhatdiem).BeginInit();
             tabPage_thongtindonvi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_thongtindv).BeginInit();
             tabPage_thongtinhp.SuspendLayout();
@@ -104,24 +119,15 @@
             tabPage_thongtindkhp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_dkhp).BeginInit();
             tabPage_quanlyphancong.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView_phancong).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_quanlyphancong).BeginInit();
+            tabPage_xemphanconggv.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_xemphanconggv).BeginInit();
             panel5.SuspendLayout();
             panel7.SuspendLayout();
             panel8.SuspendLayout();
             panel6.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            panel1.BackColor = Color.White;
-            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.Cursor = Cursors.Hand;
-            panel1.Location = new Point(814, 39);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(41, 41);
-            panel1.TabIndex = 61;
             // 
             // logout_btn
             // 
@@ -147,7 +153,7 @@
             hello_name_label.AutoSize = true;
             hello_name_label.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             hello_name_label.ForeColor = Color.White;
-            hello_name_label.Location = new Point(984, 44);
+            hello_name_label.Location = new Point(905, 45);
             hello_name_label.Name = "hello_name_label";
             hello_name_label.Size = new Size(167, 26);
             hello_name_label.TabIndex = 59;
@@ -159,7 +165,7 @@
             text_hello.AutoSize = true;
             text_hello.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             text_hello.ForeColor = Color.White;
-            text_hello.Location = new Point(861, 44);
+            text_hello.Location = new Point(782, 45);
             text_hello.Name = "text_hello";
             text_hello.Size = new Size(130, 26);
             text_hello.TabIndex = 58;
@@ -189,7 +195,7 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.White;
-            panel2.Controls.Add(tabControl_nvcb);
+            panel2.Controls.Add(tabControl_truongdonvi);
             panel2.Controls.Add(panel5);
             panel2.Controls.Add(panel3);
             panel2.Location = new Point(55, 120);
@@ -197,23 +203,24 @@
             panel2.Size = new Size(1276, 701);
             panel2.TabIndex = 62;
             // 
-            // tabControl_nvcb
+            // tabControl_truongdonvi
             // 
-            tabControl_nvcb.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tabControl_nvcb.Controls.Add(tabPage_userInfo);
-            tabControl_nvcb.Controls.Add(tabPage_phancong);
-            tabControl_nvcb.Controls.Add(tabPage_thongtinsv);
-            tabControl_nvcb.Controls.Add(tabPage_capnhatsv);
-            tabControl_nvcb.Controls.Add(tabPage_thongtindonvi);
-            tabControl_nvcb.Controls.Add(tabPage_thongtinhp);
-            tabControl_nvcb.Controls.Add(tabPage_kehoachmohp);
-            tabControl_nvcb.Controls.Add(tabPage_thongtindkhp);
-            tabControl_nvcb.Controls.Add(tabPage_quanlyphancong);
-            tabControl_nvcb.Location = new Point(273, 72);
-            tabControl_nvcb.Name = "tabControl_nvcb";
-            tabControl_nvcb.SelectedIndex = 0;
-            tabControl_nvcb.Size = new Size(994, 626);
-            tabControl_nvcb.TabIndex = 4;
+            tabControl_truongdonvi.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tabControl_truongdonvi.Controls.Add(tabPage_userInfo);
+            tabControl_truongdonvi.Controls.Add(tabPage_phancong);
+            tabControl_truongdonvi.Controls.Add(tabPage_thongtinsv);
+            tabControl_truongdonvi.Controls.Add(tabPage_capnhatsv);
+            tabControl_truongdonvi.Controls.Add(tabPage_thongtindonvi);
+            tabControl_truongdonvi.Controls.Add(tabPage_thongtinhp);
+            tabControl_truongdonvi.Controls.Add(tabPage_kehoachmohp);
+            tabControl_truongdonvi.Controls.Add(tabPage_thongtindkhp);
+            tabControl_truongdonvi.Controls.Add(tabPage_quanlyphancong);
+            tabControl_truongdonvi.Controls.Add(tabPage_xemphanconggv);
+            tabControl_truongdonvi.Location = new Point(273, 72);
+            tabControl_truongdonvi.Name = "tabControl_truongdonvi";
+            tabControl_truongdonvi.SelectedIndex = 0;
+            tabControl_truongdonvi.Size = new Size(994, 626);
+            tabControl_truongdonvi.TabIndex = 4;
             // 
             // tabPage_userInfo
             // 
@@ -242,6 +249,16 @@
             tabPage_userInfo.TabIndex = 0;
             tabPage_userInfo.Text = "Thông tin người dùng";
             tabPage_userInfo.UseVisualStyleBackColor = true;
+            // 
+            // dollar_icon
+            // 
+            dollar_icon.AutoSize = true;
+            dollar_icon.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            dollar_icon.Location = new Point(372, 239);
+            dollar_icon.Name = "dollar_icon";
+            dollar_icon.Size = new Size(23, 28);
+            dollar_icon.TabIndex = 45;
+            dollar_icon.Text = "$";
             // 
             // change_phoneNumber_btn
             // 
@@ -412,12 +429,28 @@
             // 
             // tabPage_phancong
             // 
+            tabPage_phancong.Controls.Add(dataGridView_xemphanconggiangday);
             tabPage_phancong.Location = new Point(4, 29);
             tabPage_phancong.Name = "tabPage_phancong";
             tabPage_phancong.Size = new Size(986, 593);
             tabPage_phancong.TabIndex = 5;
             tabPage_phancong.Text = "Phân công";
             tabPage_phancong.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView_xemphanconggiangday
+            // 
+            dataGridView_xemphanconggiangday.AllowUserToAddRows = false;
+            dataGridView_xemphanconggiangday.AllowUserToDeleteRows = false;
+            dataGridView_xemphanconggiangday.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_xemphanconggiangday.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_xemphanconggiangday.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_xemphanconggiangday.Location = new Point(5, 10);
+            dataGridView_xemphanconggiangday.Name = "dataGridView_xemphanconggiangday";
+            dataGridView_xemphanconggiangday.ReadOnly = true;
+            dataGridView_xemphanconggiangday.RowHeadersWidth = 51;
+            dataGridView_xemphanconggiangday.RowTemplate.Height = 29;
+            dataGridView_xemphanconggiangday.Size = new Size(977, 573);
+            dataGridView_xemphanconggiangday.TabIndex = 14;
             // 
             // tabPage_thongtinsv
             // 
@@ -447,12 +480,64 @@
             // 
             // tabPage_capnhatsv
             // 
+            tabPage_capnhatsv.Controls.Add(refresh_capnhatdiem_btn);
+            tabPage_capnhatsv.Controls.Add(update_score_btn);
+            tabPage_capnhatsv.Controls.Add(dataGridView_capnhatdiem);
             tabPage_capnhatsv.Location = new Point(4, 29);
             tabPage_capnhatsv.Name = "tabPage_capnhatsv";
             tabPage_capnhatsv.Size = new Size(986, 593);
             tabPage_capnhatsv.TabIndex = 6;
             tabPage_capnhatsv.Text = "Cập nhật";
             tabPage_capnhatsv.UseVisualStyleBackColor = true;
+            // 
+            // refresh_capnhatdiem_btn
+            // 
+            refresh_capnhatdiem_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            refresh_capnhatdiem_btn.BackColor = SystemColors.ButtonHighlight;
+            refresh_capnhatdiem_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            refresh_capnhatdiem_btn.FlatAppearance.BorderSize = 3;
+            refresh_capnhatdiem_btn.FlatStyle = FlatStyle.Flat;
+            refresh_capnhatdiem_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            refresh_capnhatdiem_btn.ForeColor = SystemColors.HotTrack;
+            refresh_capnhatdiem_btn.Location = new Point(774, 538);
+            refresh_capnhatdiem_btn.Name = "refresh_capnhatdiem_btn";
+            refresh_capnhatdiem_btn.Size = new Size(180, 53);
+            refresh_capnhatdiem_btn.TabIndex = 20;
+            refresh_capnhatdiem_btn.Text = "Refresh";
+            refresh_capnhatdiem_btn.UseVisualStyleBackColor = false;
+            refresh_capnhatdiem_btn.Click += refresh_capnhatdiem_btn_Click;
+            // 
+            // update_score_btn
+            // 
+            update_score_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            update_score_btn.BackColor = SystemColors.ButtonHighlight;
+            update_score_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            update_score_btn.FlatAppearance.BorderSize = 3;
+            update_score_btn.FlatStyle = FlatStyle.Flat;
+            update_score_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            update_score_btn.ForeColor = SystemColors.HotTrack;
+            update_score_btn.Location = new Point(446, 541);
+            update_score_btn.Name = "update_score_btn";
+            update_score_btn.Size = new Size(182, 46);
+            update_score_btn.TabIndex = 17;
+            update_score_btn.Text = "Cập nhật điểm";
+            update_score_btn.UseVisualStyleBackColor = false;
+            update_score_btn.Click += update_score_btn_Click;
+            // 
+            // dataGridView_capnhatdiem
+            // 
+            dataGridView_capnhatdiem.AllowUserToAddRows = false;
+            dataGridView_capnhatdiem.AllowUserToDeleteRows = false;
+            dataGridView_capnhatdiem.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_capnhatdiem.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_capnhatdiem.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_capnhatdiem.Location = new Point(5, 6);
+            dataGridView_capnhatdiem.Name = "dataGridView_capnhatdiem";
+            dataGridView_capnhatdiem.RowHeadersWidth = 51;
+            dataGridView_capnhatdiem.RowTemplate.Height = 29;
+            dataGridView_capnhatdiem.Size = new Size(977, 529);
+            dataGridView_capnhatdiem.TabIndex = 16;
+            dataGridView_capnhatdiem.CellValueChanged += dataGridView_capnhatdiem_CellValueChanged;
             // 
             // tabPage_thongtindonvi
             // 
@@ -556,7 +641,11 @@
             // 
             // tabPage_quanlyphancong
             // 
-            tabPage_quanlyphancong.Controls.Add(dataGridView_phancong);
+            tabPage_quanlyphancong.Controls.Add(delete_quanlyphancong_btn);
+            tabPage_quanlyphancong.Controls.Add(update_quanlyphancong_btn);
+            tabPage_quanlyphancong.Controls.Add(refresh_quanlyphancong_btn);
+            tabPage_quanlyphancong.Controls.Add(add_quanlyphancong_btn);
+            tabPage_quanlyphancong.Controls.Add(dataGridView_quanlyphancong);
             tabPage_quanlyphancong.Location = new Point(4, 29);
             tabPage_quanlyphancong.Name = "tabPage_quanlyphancong";
             tabPage_quanlyphancong.Size = new Size(986, 593);
@@ -564,25 +653,118 @@
             tabPage_quanlyphancong.Text = "Quản lý phân công";
             tabPage_quanlyphancong.UseVisualStyleBackColor = true;
             // 
-            // dataGridView_phancong
+            // delete_quanlyphancong_btn
             // 
-            dataGridView_phancong.AllowUserToAddRows = false;
-            dataGridView_phancong.AllowUserToDeleteRows = false;
-            dataGridView_phancong.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView_phancong.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView_phancong.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_phancong.Location = new Point(6, 21);
-            dataGridView_phancong.Name = "dataGridView_phancong";
-            dataGridView_phancong.ReadOnly = true;
-            dataGridView_phancong.RowHeadersWidth = 51;
-            dataGridView_phancong.RowTemplate.Height = 29;
-            dataGridView_phancong.Size = new Size(974, 551);
-            dataGridView_phancong.TabIndex = 18;
+            delete_quanlyphancong_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            delete_quanlyphancong_btn.BackColor = SystemColors.ButtonHighlight;
+            delete_quanlyphancong_btn.FlatAppearance.BorderColor = Color.Red;
+            delete_quanlyphancong_btn.FlatAppearance.BorderSize = 3;
+            delete_quanlyphancong_btn.FlatStyle = FlatStyle.Flat;
+            delete_quanlyphancong_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            delete_quanlyphancong_btn.ForeColor = Color.Red;
+            delete_quanlyphancong_btn.Location = new Point(542, 537);
+            delete_quanlyphancong_btn.Name = "delete_quanlyphancong_btn";
+            delete_quanlyphancong_btn.Size = new Size(180, 53);
+            delete_quanlyphancong_btn.TabIndex = 24;
+            delete_quanlyphancong_btn.Text = "Xóa";
+            delete_quanlyphancong_btn.UseVisualStyleBackColor = false;
+            delete_quanlyphancong_btn.Click += delete_quanlyphancong_btn_Click;
+            // 
+            // update_quanlyphancong_btn
+            // 
+            update_quanlyphancong_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            update_quanlyphancong_btn.BackColor = SystemColors.ButtonHighlight;
+            update_quanlyphancong_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            update_quanlyphancong_btn.FlatAppearance.BorderSize = 3;
+            update_quanlyphancong_btn.FlatStyle = FlatStyle.Flat;
+            update_quanlyphancong_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            update_quanlyphancong_btn.ForeColor = SystemColors.HotTrack;
+            update_quanlyphancong_btn.Location = new Point(292, 537);
+            update_quanlyphancong_btn.Name = "update_quanlyphancong_btn";
+            update_quanlyphancong_btn.Size = new Size(180, 53);
+            update_quanlyphancong_btn.TabIndex = 23;
+            update_quanlyphancong_btn.Text = "Cập nhật";
+            update_quanlyphancong_btn.UseVisualStyleBackColor = false;
+            update_quanlyphancong_btn.Click += update_quanlyphancong_btn_Click;
+            // 
+            // refresh_quanlyphancong_btn
+            // 
+            refresh_quanlyphancong_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            refresh_quanlyphancong_btn.BackColor = SystemColors.ButtonHighlight;
+            refresh_quanlyphancong_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            refresh_quanlyphancong_btn.FlatAppearance.BorderSize = 3;
+            refresh_quanlyphancong_btn.FlatStyle = FlatStyle.Flat;
+            refresh_quanlyphancong_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            refresh_quanlyphancong_btn.ForeColor = SystemColors.HotTrack;
+            refresh_quanlyphancong_btn.Location = new Point(761, 537);
+            refresh_quanlyphancong_btn.Name = "refresh_quanlyphancong_btn";
+            refresh_quanlyphancong_btn.Size = new Size(180, 53);
+            refresh_quanlyphancong_btn.TabIndex = 22;
+            refresh_quanlyphancong_btn.Text = "Refresh";
+            refresh_quanlyphancong_btn.UseVisualStyleBackColor = false;
+            refresh_quanlyphancong_btn.Click += refresh_quanlyphancong_btn_Click;
+            // 
+            // add_quanlyphancong_btn
+            // 
+            add_quanlyphancong_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            add_quanlyphancong_btn.BackColor = SystemColors.ButtonHighlight;
+            add_quanlyphancong_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            add_quanlyphancong_btn.FlatAppearance.BorderSize = 3;
+            add_quanlyphancong_btn.FlatStyle = FlatStyle.Flat;
+            add_quanlyphancong_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            add_quanlyphancong_btn.ForeColor = SystemColors.HotTrack;
+            add_quanlyphancong_btn.Location = new Point(52, 537);
+            add_quanlyphancong_btn.Name = "add_quanlyphancong_btn";
+            add_quanlyphancong_btn.Size = new Size(180, 53);
+            add_quanlyphancong_btn.TabIndex = 21;
+            add_quanlyphancong_btn.Text = "Thêm";
+            add_quanlyphancong_btn.UseVisualStyleBackColor = false;
+            add_quanlyphancong_btn.Click += add_quanlyphancong_btn_Click;
+            // 
+            // dataGridView_quanlyphancong
+            // 
+            dataGridView_quanlyphancong.AllowUserToAddRows = false;
+            dataGridView_quanlyphancong.AllowUserToDeleteRows = false;
+            dataGridView_quanlyphancong.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_quanlyphancong.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_quanlyphancong.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_quanlyphancong.Location = new Point(3, 3);
+            dataGridView_quanlyphancong.Name = "dataGridView_quanlyphancong";
+            dataGridView_quanlyphancong.RowHeadersWidth = 51;
+            dataGridView_quanlyphancong.RowTemplate.Height = 29;
+            dataGridView_quanlyphancong.Size = new Size(974, 528);
+            dataGridView_quanlyphancong.TabIndex = 18;
+            dataGridView_quanlyphancong.CellValueChanged += dataGridView_quanlyphancong_CellValueChanged;
+            // 
+            // tabPage_xemphanconggv
+            // 
+            tabPage_xemphanconggv.Controls.Add(dataGridView_xemphanconggv);
+            tabPage_xemphanconggv.Location = new Point(4, 29);
+            tabPage_xemphanconggv.Name = "tabPage_xemphanconggv";
+            tabPage_xemphanconggv.Size = new Size(986, 593);
+            tabPage_xemphanconggv.TabIndex = 9;
+            tabPage_xemphanconggv.Text = "Xem phân công của gv";
+            tabPage_xemphanconggv.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView_xemphanconggv
+            // 
+            dataGridView_xemphanconggv.AllowUserToAddRows = false;
+            dataGridView_xemphanconggv.AllowUserToDeleteRows = false;
+            dataGridView_xemphanconggv.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_xemphanconggv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_xemphanconggv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_xemphanconggv.Location = new Point(9, 19);
+            dataGridView_xemphanconggv.Name = "dataGridView_xemphanconggv";
+            dataGridView_xemphanconggv.RowHeadersWidth = 51;
+            dataGridView_xemphanconggv.RowTemplate.Height = 29;
+            dataGridView_xemphanconggv.Size = new Size(974, 528);
+            dataGridView_xemphanconggv.TabIndex = 19;
             // 
             // panel5
             // 
             panel5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panel5.BackColor = Color.FromArgb(217, 217, 217);
+            panel5.Controls.Add(xemphanconggv_btn);
             panel5.Controls.Add(khmohp_btn);
             panel5.Controls.Add(thongtinhp_btn);
             panel5.Controls.Add(thongtindv_btn);
@@ -600,6 +782,20 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(267, 631);
             panel5.TabIndex = 3;
+            // 
+            // xemphanconggv_btn
+            // 
+            xemphanconggv_btn.Anchor = AnchorStyles.Left;
+            xemphanconggv_btn.AutoSize = true;
+            xemphanconggv_btn.Cursor = Cursors.Hand;
+            xemphanconggv_btn.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            xemphanconggv_btn.ForeColor = Color.FromArgb(0, 35, 73);
+            xemphanconggv_btn.Location = new Point(15, 584);
+            xemphanconggv_btn.Name = "xemphanconggv_btn";
+            xemphanconggv_btn.Size = new Size(235, 26);
+            xemphanconggv_btn.TabIndex = 25;
+            xemphanconggv_btn.Text = "Xem phân công của GV";
+            xemphanconggv_btn.Click += xemphanconggv_btn_Click;
             // 
             // khmohp_btn
             // 
@@ -649,11 +845,11 @@
             quanlyphancong_btn.Cursor = Cursors.Hand;
             quanlyphancong_btn.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             quanlyphancong_btn.ForeColor = Color.FromArgb(0, 35, 73);
-            quanlyphancong_btn.Location = new Point(29, 537);
+            quanlyphancong_btn.Location = new Point(15, 537);
             quanlyphancong_btn.Name = "quanlyphancong_btn";
-            quanlyphancong_btn.Size = new Size(190, 26);
+            quanlyphancong_btn.Size = new Size(252, 26);
             quanlyphancong_btn.TabIndex = 21;
-            quanlyphancong_btn.Text = "Quản lý phân công";
+            quanlyphancong_btn.Text = "Quản lý phân công về HP";
             quanlyphancong_btn.Click += quanlyphancong_btn_Click;
             // 
             // thongtin_dkhp_btn
@@ -701,9 +897,9 @@
             capnhatsv_btn.ForeColor = Color.FromArgb(0, 35, 73);
             capnhatsv_btn.Location = new Point(33, 267);
             capnhatsv_btn.Name = "capnhatsv_btn";
-            capnhatsv_btn.Size = new Size(95, 26);
+            capnhatsv_btn.Size = new Size(147, 26);
             capnhatsv_btn.TabIndex = 16;
-            capnhatsv_btn.Text = "Cập nhật";
+            capnhatsv_btn.Text = "Cập nhật điểm";
             capnhatsv_btn.Click += capnhatsv_btn_Click;
             // 
             // thongtinsv_btn
@@ -832,15 +1028,16 @@
             panel4.Size = new Size(42, 42);
             panel4.TabIndex = 2;
             // 
-            // dollar_icon
+            // panel1
             // 
-            dollar_icon.AutoSize = true;
-            dollar_icon.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dollar_icon.Location = new Point(372, 239);
-            dollar_icon.Name = "dollar_icon";
-            dollar_icon.Size = new Size(23, 28);
-            dollar_icon.TabIndex = 45;
-            dollar_icon.Text = "$";
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panel1.BackColor = Color.FromArgb(1, 69, 142);
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.Cursor = Cursors.Hand;
+            panel1.Location = new Point(736, 41);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(40, 37);
+            panel1.TabIndex = 63;
             // 
             // TruongDonVi_Form
             // 
@@ -848,8 +1045,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(1, 69, 142);
             ClientSize = new Size(1382, 853);
-            Controls.Add(panel2);
             Controls.Add(panel1);
+            Controls.Add(panel2);
             Controls.Add(logout_btn);
             Controls.Add(hello_name_label);
             Controls.Add(text_hello);
@@ -860,11 +1057,15 @@
             Text = "TruongDonVi_Form";
             Load += TruongDonVi_Form_Load;
             panel2.ResumeLayout(false);
-            tabControl_nvcb.ResumeLayout(false);
+            tabControl_truongdonvi.ResumeLayout(false);
             tabPage_userInfo.ResumeLayout(false);
             tabPage_userInfo.PerformLayout();
+            tabPage_phancong.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView_xemphanconggiangday).EndInit();
             tabPage_thongtinsv.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_sinhvien).EndInit();
+            tabPage_capnhatsv.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView_capnhatdiem).EndInit();
             tabPage_thongtindonvi.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_thongtindv).EndInit();
             tabPage_thongtinhp.ResumeLayout(false);
@@ -874,7 +1075,9 @@
             tabPage_thongtindkhp.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_dkhp).EndInit();
             tabPage_quanlyphancong.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView_phancong).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_quanlyphancong).EndInit();
+            tabPage_xemphanconggv.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView_xemphanconggv).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel7.ResumeLayout(false);
@@ -890,8 +1093,6 @@
         }
 
         #endregion
-
-        private Panel panel1;
         private Button logout_btn;
         private Label hello_name_label;
         private Label text_hello;
@@ -918,7 +1119,7 @@
         private Label thongtindv_btn;
         private Label thongtinhp_btn;
         private Label khmohp_btn;
-        private TabControl tabControl_nvcb;
+        private TabControl tabControl_truongdonvi;
         private TabPage tabPage_userInfo;
         private Label field_salary;
         private TextBox field_phoneNumber;
@@ -950,7 +1151,19 @@
         private TabPage tabPage_quanlyphancong;
         private Button change_phoneNumber_btn;
         private DataGridView dataGridView_dkhp;
-        private DataGridView dataGridView_phancong;
+        private DataGridView dataGridView_quanlyphancong;
         private Label dollar_icon;
+        private DataGridView dataGridView_xemphanconggiangday;
+        private Button update_score_btn;
+        private DataGridView dataGridView_capnhatdiem;
+        private Button refresh_capnhatdiem_btn;
+        private Button delete_quanlyphancong_btn;
+        private Button update_quanlyphancong_btn;
+        private Button refresh_quanlyphancong_btn;
+        private Button add_quanlyphancong_btn;
+        private Label xemphanconggv_btn;
+        private TabPage tabPage_xemphanconggv;
+        private DataGridView dataGridView_xemphanconggv;
+        private Panel panel1;
     }
 }

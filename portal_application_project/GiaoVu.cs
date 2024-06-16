@@ -42,9 +42,18 @@ namespace portal_application_project
                         command.Parameters.Add(new OracleParameter("DTBTL", newSinhVien.diemtbtl));
 
                         connection.Open();
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Thêm sinh viên thành công!");
-                        
+                        int rowsAffected = command.ExecuteNonQuery();
+                        connection.Close();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Thêm sinh viên thành công!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không có hàng nào được thêm!");
+                        }
+
                     }
                 }
             }
@@ -94,7 +103,17 @@ namespace portal_application_project
                             command.Parameters.Add(new OracleParameter("MASV", masv));
 
                             connection.Open();
-                            command.ExecuteNonQuery();
+                            int rowsAffected = command.ExecuteNonQuery();
+                            connection.Close();
+
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Cập nhật thành công!");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không có hàng nào được cập nhật!");
+                            }
                         }
                     }
                     MessageBox.Show("Đã cập nhật thành công!");
@@ -137,9 +156,18 @@ namespace portal_application_project
 
 
                         connection.Open();
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Thêm đơn vị thành công!");
+                        int rowsAffected = command.ExecuteNonQuery();
                         connection.Close();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Thêm đơn vị thành công!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không có hàng nào được thêm!");
+                        }
+                        
                     }
                 }
             }
@@ -176,8 +204,17 @@ namespace portal_application_project
                             command.Parameters.Add(new OracleParameter("MADV", madv));
 
                             connection.Open();
-                            command.ExecuteNonQuery();
+                            int rowsAffected = command.ExecuteNonQuery();
                             connection.Close();
+
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Cập nhật thành công!");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không có hàng nào được cập nhật!");
+                            }
                         }
                     }
                     MessageBox.Show("Đã cập nhật thành công!");
@@ -223,9 +260,18 @@ namespace portal_application_project
                         command.Parameters.Add(new OracleParameter("MADV", madv));
 
                         connection.Open();
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Thêm học phần thành công!");
+                        int rowsAffected = command.ExecuteNonQuery();
                         connection.Close();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Thêm học phần thành công!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không có hàng nào được thêm!");
+                        }
+                      
 
                     }
                 }
@@ -324,10 +370,17 @@ namespace portal_application_project
                         
 
                         connection.Open();
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Thêm kế hoạch mở học phần thành công!");
+                        int rowsAffected = command.ExecuteNonQuery();
                         connection.Close();
 
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Thêm kế hoạch mở học phần thành công!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không có hàng nào được thêm!");
+                        }
                     }
                 }
             }
@@ -419,8 +472,8 @@ namespace portal_application_project
                             command.Parameters.Add(new OracleParameter("HK", hk));
                             command.Parameters.Add(new OracleParameter("NAM", nam));
                             command.Parameters.Add(new OracleParameter("MACT", mact));
+                            command.Parameters.Add(new OracleParameter("MAGV", magv));
                             command.Parameters.Add(new OracleParameter("MAHP", mahp));
-                            command.Parameters.Add(new OracleParameter("MAHP", magv));
 
                             connection.Open();
                             int rowsAffected = command.ExecuteNonQuery();
@@ -484,10 +537,17 @@ namespace portal_application_project
 
 
                         connection.Open();
-                        command.ExecuteNonQuery();
-                        MessageBox.Show("Thêm đăng ký thành công!");
+                        int rowsAffected = command.ExecuteNonQuery();
                         connection.Close();
 
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Thêm đăng ký thành công!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không có hàng nào được thêm!");
+                        }
                     }
                 }
             }
@@ -526,8 +586,17 @@ namespace portal_application_project
                             command.Parameters.Add(new OracleParameter("MACT", mact));
 
                             connection.Open();
-                            command.ExecuteNonQuery();
+                            int rowsAffected = command.ExecuteNonQuery();
                             connection.Close();
+
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Xóa thành công!");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không có hàng nào được xóa!");
+                            }
                         }
                     }
                 }

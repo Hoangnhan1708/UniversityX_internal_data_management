@@ -140,5 +140,26 @@ namespace portal_application_project
         {
             return "DELETE FROM QLTRUONGHOC.DANGKY WHERE MASV = :MASV AND MAGV = :MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
         }
+
+
+        // TRUONGDONVI -> PHANCONG
+
+        public string truongdonviInsertPhanCong()
+        {
+            return "INSERT INTO QLTRUONGHOC.PHANCONG (MAGV, MAHP, HK, NAM ,MACT) " +
+                                 "VALUES (:MAGV, :MAHP,:HK,:NAM, :MACT)";
+        }
+
+        public string truongdonviUpdatePhanCongInfo()
+        {
+            return "UPDATE QLTRUONGHOC.PHANCONG SET HK = :HK, NAM = :NAM, MACT = :MACT " +
+                            "WHERE MAGV = :MAGV AND MAHP = :MAHP";
+        }
+
+        // DELETE
+        public string truongdonviDeletePhanCong()
+        {
+            return "DELETE FROM QLTRUONGHOC.PHANCONG WHERE MAGV = :MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
+        }
     }
 }
