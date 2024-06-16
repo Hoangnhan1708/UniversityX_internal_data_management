@@ -307,51 +307,26 @@ namespace portal_application_project
                 }
             }
 
-            // Perform the deletion
-            foreach (DataGridViewRow row in rowsToDelete)
+            DialogResult result = MessageBox.Show("Bạn có muốn xóa những học phần đã đăng ký này không?", "Xác nhận", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
             {
-                string masv = row.Cells["MASV"].Value.ToString();
-                string magv = row.Cells["MAGV"].Value.ToString();
-                string mahp = row.Cells["MAHP"].Value.ToString();
-                int hk = Convert.ToInt32(row.Cells["HK"].Value);
-                int nam = Convert.ToInt32(row.Cells["NAM"].Value);
-                string mact = row.Cells["MACT"].Value.ToString();
-
-                string deleteQuery = "DELETE FROM QLTRUONGHOC.DANGKY WHERE MASV = :MASV AND MAGV = :MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
-
-                try
+                giaovu.deleteDangKySelectedRow(connectionString, query, rowsToDelete);
+                // Remove the checkbox column if it exists
+                if (dataGridView_dkhp.Columns.Contains("Delete"))
                 {
-                    using (OracleConnection connection = new OracleConnection(connectionString))
-                    {
-                        using (OracleCommand command = new OracleCommand(deleteQuery, connection))
-                        {
-                            command.Parameters.Add(new OracleParameter("MASV", masv));
-                            command.Parameters.Add(new OracleParameter("MAGV", magv));
-                            command.Parameters.Add(new OracleParameter("MAHP", mahp));
-                            command.Parameters.Add(new OracleParameter("HK", hk));
-                            command.Parameters.Add(new OracleParameter("NAM", nam));
-                            command.Parameters.Add(new OracleParameter("MACT", mact));
+                    dataGridView_dkhp.Columns.Remove("Delete");
+                }
 
-                            connection.Open();
-                            command.ExecuteNonQuery();
-                            connection.Close();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message);
-                }
+                // Reload the data
+                LoadDangKyWithCheckboxColumn();
             }
-
-            // Remove the checkbox column if it exists
-            if (dataGridView_dkhp.Columns.Contains("Delete"))
+            else
             {
-                dataGridView_dkhp.Columns.Remove("Delete");
+                return;
             }
-
-            // Reload the data
-            LoadDangKyWithCheckboxColumn();
+            
+            
+            
         }
 
 

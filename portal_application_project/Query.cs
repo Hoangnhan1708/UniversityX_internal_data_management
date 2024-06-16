@@ -128,10 +128,17 @@ namespace portal_application_project
         }
 
         // GIAOVU -> DANGKY
+
+        // INSERT
         public string giaovuInsertDangKy()
         {
             return "INSERT INTO QLTRUONGHOC.DANGKY (MASV, MAGV, MAHP, HK, NAM ,MACT, DIEMTH,DIEMQT,DIEMCK,DIEMTK) " +
                                  "VALUES (:MASV, :MAGV, :MAHP,:HK,:NAM, :MACT, :DIEMTH, :DIEMQT, :DIEMCK, :DIEMTK)";
+        }
+        // DELETE
+        public string giaovuDeleteDangKy()
+        {
+            return "DELETE FROM QLTRUONGHOC.DANGKY WHERE MASV = :MASV AND MAGV = :MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
         }
     }
 }

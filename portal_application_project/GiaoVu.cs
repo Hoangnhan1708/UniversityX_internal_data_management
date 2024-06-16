@@ -497,5 +497,45 @@ namespace portal_application_project
                 MessageBox.Show("Thêm đăng ký thất bại, hãy thử lại!");
             }
         }
+
+        public void deleteDangKySelectedRow(string connectionString, Query query, List<DataGridViewRow> rowsToDelete)
+        {
+            // Perform the deletion
+            foreach (DataGridViewRow row in rowsToDelete)
+            {
+                string masv = row.Cells["MASV"].Value.ToString();
+                string magv = row.Cells["MAGV"].Value.ToString();
+                string mahp = row.Cells["MAHP"].Value.ToString();
+                int hk = Convert.ToInt32(row.Cells["HK"].Value);
+                int nam = Convert.ToInt32(row.Cells["NAM"].Value);
+                string mact = row.Cells["MACT"].Value.ToString();
+
+                string deleteQuery = query.giaovuDeleteDangKy();
+
+                try
+                {
+                    using (OracleConnection connection = new OracleConnection(connectionString))
+                    {
+                        using (OracleCommand command = new OracleCommand(deleteQuery, connection))
+                        {
+                            command.Parameters.Add(new OracleParameter("MASV", masv));
+                            command.Parameters.Add(new OracleParameter("MAGV", magv));
+                            command.Parameters.Add(new OracleParameter("MAHP", mahp));
+                            command.Parameters.Add(new OracleParameter("HK", hk));
+                            command.Parameters.Add(new OracleParameter("NAM", nam));
+                            command.Parameters.Add(new OracleParameter("MACT", mact));
+
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                            connection.Close();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
     }
 }
