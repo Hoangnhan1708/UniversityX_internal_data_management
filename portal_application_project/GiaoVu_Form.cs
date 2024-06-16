@@ -33,8 +33,8 @@ namespace portal_application_project
             dataGridView_thongtindv.DataSource = giaovu.LoadFullTable(connectionString, query, "DONVI");
             dataGridView_thongtinhp.DataSource = giaovu.LoadFullTable(connectionString, query, "HOCPHAN");
             dataGridView_khmohp.DataSource = giaovu.LoadFullTable(connectionString, query, "KHMO");
-            dataGridView_dkhp.DataSource = giaovu.LoadFullTable(connectionString, query, "DANGKY");
             dataGridView_phancong.DataSource = giaovu.LoadFullTable(connectionString, query, "PHANCONG");
+            LoadDangKyWithCheckboxColumn();
         }
 
         private void LoadThongTinUser()
@@ -48,6 +48,22 @@ namespace portal_application_project
             field_phoneNumber.Text = giaovu.dt;
             field_role.Text = giaovu.vaitro;
             field_madv.Text = giaovu.madv;
+        }
+
+        // Load data and add the checkbox column
+        private void LoadDangKyWithCheckboxColumn()
+        {
+            DataTable dataTable = giaovu.LoadFullTable(connectionString, query, "DANGKY");
+            dataGridView_dkhp.DataSource = dataTable;
+
+            DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn
+            {
+                Name = "Delete",
+                HeaderText = "Delete",
+                TrueValue = true,
+                FalseValue = false
+            };
+            dataGridView_dkhp.Columns.Insert(0, checkBoxColumn);
         }
 
 
@@ -277,6 +293,67 @@ namespace portal_application_project
             newDangKyForm.ShowDialog();
         }
 
+        private void delete_dangky_btn_Click(object sender, EventArgs e)
+        {
+            List<DataGridViewRow> rowsToDelete = new List<DataGridViewRow>();
+
+            // Collect the selected rows
+            foreach (DataGridViewRow row in dataGridView_dkhp.Rows)
+            {
+                DataGridViewCheckBoxCell chk = row.Cells["Delete"] as DataGridViewCheckBoxCell;
+                if (chk != null && chk.Value != null && (bool)chk.Value)
+                {
+                    rowsToDelete.Add(row);
+                }
+            }
+
+            // Perform the deletion
+            foreach (DataGridViewRow row in rowsToDelete)
+            {
+                string masv = row.Cells["MASV"].Value.ToString();
+                string magv = row.Cells["MAGV"].Value.ToString();
+                string mahp = row.Cells["MAHP"].Value.ToString();
+                int hk = Convert.ToInt32(row.Cells["HK"].Value);
+                int nam = Convert.ToInt32(row.Cells["NAM"].Value);
+                string mact = row.Cells["MACT"].Value.ToString();
+
+                string deleteQuery = "DELETE FROM QLTRUONGHOC.DANGKY WHERE MASV = :MASV AND MAGV = :MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
+
+                try
+                {
+                    using (OracleConnection connection = new OracleConnection(connectionString))
+                    {
+                        using (OracleCommand command = new OracleCommand(deleteQuery, connection))
+                        {
+                            command.Parameters.Add(new OracleParameter("MASV", masv));
+                            command.Parameters.Add(new OracleParameter("MAGV", magv));
+                            command.Parameters.Add(new OracleParameter("MAHP", mahp));
+                            command.Parameters.Add(new OracleParameter("HK", hk));
+                            command.Parameters.Add(new OracleParameter("NAM", nam));
+                            command.Parameters.Add(new OracleParameter("MACT", mact));
+
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                            connection.Close();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+
+            // Remove the checkbox column if it exists
+            if (dataGridView_dkhp.Columns.Contains("Delete"))
+            {
+                dataGridView_dkhp.Columns.Remove("Delete");
+            }
+
+            // Reload the data
+            LoadDangKyWithCheckboxColumn();
+        }
+
 
 
         // Xử lý sự kiện chung
@@ -329,6 +406,6 @@ namespace portal_application_project
             modifiedRows.Clear();
         }
 
-        
+
     }
 }

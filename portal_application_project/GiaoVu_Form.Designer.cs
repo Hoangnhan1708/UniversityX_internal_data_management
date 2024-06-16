@@ -93,6 +93,9 @@
             add_khmo_btn = new Button();
             dataGridView_khmohp = new DataGridView();
             tabPage_quanlydkhp = new TabPage();
+            refresh_dangky_btn = new Button();
+            add_dangky_btn = new Button();
+            delete_dangky_btn = new Button();
             dataGridView_dkhp = new DataGridView();
             tabPage_quanlyphancong = new TabPage();
             refresh_phancong_btn = new Button();
@@ -108,9 +111,6 @@
             logo = new Panel();
             panel1 = new Panel();
             imageList1 = new ImageList(components);
-            refresh_dangky_btn = new Button();
-            add_dangky_btn = new Button();
-            delete_dangky_btn = new Button();
             panel7.SuspendLayout();
             panel5.SuspendLayout();
             panel10.SuspendLayout();
@@ -967,6 +967,56 @@
             tabPage_quanlydkhp.Text = "Quản lý ĐKHP";
             tabPage_quanlydkhp.UseVisualStyleBackColor = true;
             // 
+            // refresh_dangky_btn
+            // 
+            refresh_dangky_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            refresh_dangky_btn.BackColor = SystemColors.ButtonHighlight;
+            refresh_dangky_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            refresh_dangky_btn.FlatAppearance.BorderSize = 3;
+            refresh_dangky_btn.FlatStyle = FlatStyle.Flat;
+            refresh_dangky_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            refresh_dangky_btn.ForeColor = SystemColors.HotTrack;
+            refresh_dangky_btn.Location = new Point(771, 533);
+            refresh_dangky_btn.Name = "refresh_dangky_btn";
+            refresh_dangky_btn.Size = new Size(180, 53);
+            refresh_dangky_btn.TabIndex = 28;
+            refresh_dangky_btn.Text = "Refresh";
+            refresh_dangky_btn.UseVisualStyleBackColor = false;
+            // 
+            // add_dangky_btn
+            // 
+            add_dangky_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            add_dangky_btn.BackColor = SystemColors.ButtonHighlight;
+            add_dangky_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            add_dangky_btn.FlatAppearance.BorderSize = 3;
+            add_dangky_btn.FlatStyle = FlatStyle.Flat;
+            add_dangky_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            add_dangky_btn.ForeColor = SystemColors.HotTrack;
+            add_dangky_btn.Location = new Point(442, 533);
+            add_dangky_btn.Name = "add_dangky_btn";
+            add_dangky_btn.Size = new Size(180, 53);
+            add_dangky_btn.TabIndex = 27;
+            add_dangky_btn.Text = "Thêm đăng ký";
+            add_dangky_btn.UseVisualStyleBackColor = false;
+            add_dangky_btn.Click += add_dangky_btn_Click;
+            // 
+            // delete_dangky_btn
+            // 
+            delete_dangky_btn.Anchor = AnchorStyles.Bottom;
+            delete_dangky_btn.BackColor = SystemColors.ButtonHighlight;
+            delete_dangky_btn.FlatAppearance.BorderColor = Color.Red;
+            delete_dangky_btn.FlatAppearance.BorderSize = 3;
+            delete_dangky_btn.FlatStyle = FlatStyle.Flat;
+            delete_dangky_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            delete_dangky_btn.ForeColor = Color.Red;
+            delete_dangky_btn.Location = new Point(68, 533);
+            delete_dangky_btn.Name = "delete_dangky_btn";
+            delete_dangky_btn.Size = new Size(154, 53);
+            delete_dangky_btn.TabIndex = 26;
+            delete_dangky_btn.Text = "Xóa";
+            delete_dangky_btn.UseVisualStyleBackColor = false;
+            delete_dangky_btn.Click += delete_dangky_btn_Click;
+            // 
             // dataGridView_dkhp
             // 
             dataGridView_dkhp.AllowUserToAddRows = false;
@@ -976,7 +1026,6 @@
             dataGridView_dkhp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView_dkhp.Location = new Point(6, 21);
             dataGridView_dkhp.Name = "dataGridView_dkhp";
-            dataGridView_dkhp.ReadOnly = true;
             dataGridView_dkhp.RowHeadersWidth = 51;
             dataGridView_dkhp.RowTemplate.Height = 29;
             dataGridView_dkhp.Size = new Size(971, 506);
@@ -1152,55 +1201,6 @@
             imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
             imageList1.TransparentColor = Color.Transparent;
             imageList1.Images.SetKeyName(0, "email-removebg-preview.png");
-            // 
-            // refresh_dangky_btn
-            // 
-            refresh_dangky_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            refresh_dangky_btn.BackColor = SystemColors.ButtonHighlight;
-            refresh_dangky_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
-            refresh_dangky_btn.FlatAppearance.BorderSize = 3;
-            refresh_dangky_btn.FlatStyle = FlatStyle.Flat;
-            refresh_dangky_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            refresh_dangky_btn.ForeColor = SystemColors.HotTrack;
-            refresh_dangky_btn.Location = new Point(771, 533);
-            refresh_dangky_btn.Name = "refresh_dangky_btn";
-            refresh_dangky_btn.Size = new Size(180, 53);
-            refresh_dangky_btn.TabIndex = 28;
-            refresh_dangky_btn.Text = "Refresh";
-            refresh_dangky_btn.UseVisualStyleBackColor = false;
-            // 
-            // add_dangky_btn
-            // 
-            add_dangky_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            add_dangky_btn.BackColor = SystemColors.ButtonHighlight;
-            add_dangky_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
-            add_dangky_btn.FlatAppearance.BorderSize = 3;
-            add_dangky_btn.FlatStyle = FlatStyle.Flat;
-            add_dangky_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            add_dangky_btn.ForeColor = SystemColors.HotTrack;
-            add_dangky_btn.Location = new Point(442, 533);
-            add_dangky_btn.Name = "add_dangky_btn";
-            add_dangky_btn.Size = new Size(180, 53);
-            add_dangky_btn.TabIndex = 27;
-            add_dangky_btn.Text = "Thêm đăng ký";
-            add_dangky_btn.UseVisualStyleBackColor = false;
-            add_dangky_btn.Click += add_dangky_btn_Click;
-            // 
-            // delete_dangky_btn
-            // 
-            delete_dangky_btn.Anchor = AnchorStyles.Bottom;
-            delete_dangky_btn.BackColor = SystemColors.ButtonHighlight;
-            delete_dangky_btn.FlatAppearance.BorderColor = Color.Red;
-            delete_dangky_btn.FlatAppearance.BorderSize = 3;
-            delete_dangky_btn.FlatStyle = FlatStyle.Flat;
-            delete_dangky_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            delete_dangky_btn.ForeColor = Color.Red;
-            delete_dangky_btn.Location = new Point(68, 533);
-            delete_dangky_btn.Name = "delete_dangky_btn";
-            delete_dangky_btn.Size = new Size(154, 53);
-            delete_dangky_btn.TabIndex = 26;
-            delete_dangky_btn.Text = "Xóa";
-            delete_dangky_btn.UseVisualStyleBackColor = false;
             // 
             // GiaoVu_Form
             // 
