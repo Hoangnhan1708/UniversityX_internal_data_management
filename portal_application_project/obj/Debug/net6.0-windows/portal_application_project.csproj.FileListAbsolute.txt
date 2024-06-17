@@ -47,3 +47,4 @@ C:\Users\User\OneDrive - VNU-HCMUS\ATBM\project\portal_application_project\porta
 C:\Users\User\OneDrive - VNU-HCMUS\ATBM\project\portal_application_project\portal_application_project\obj\Debug\net6.0-windows\portal_application_project.New_KHMO_Form.resources
 C:\Users\User\OneDrive - VNU-HCMUS\ATBM\project\portal_application_project\portal_application_project\obj\Debug\net6.0-windows\portal_application_project.New_DangKy_Form.resources
 C:\Users\User\OneDrive - VNU-HCMUS\ATBM\project\portal_application_project\portal_application_project\obj\Debug\net6.0-windows\portal_application_project.New_PhanCong_Form.resources
+C:\Users\User\OneDrive - VNU-HCMUS\ATBM\project\portal_application_project\portal_application_project\obj\Debug\net6.0-windows\portal_application_project.New_NhanVien_Form.resources

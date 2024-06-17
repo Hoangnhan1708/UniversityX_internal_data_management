@@ -49,7 +49,7 @@ namespace portal_application_project
             field_name.Text = giangvien.hoten;
             hello_name_label.Text = giangvien.hoten;
             field_gender.Text = giangvien.phai;
-            field_birthday.Text = giangvien.ngsinh;
+            field_birthday.Text = giangvien.ngsinh.ToString();
             field_salary.Text = giangvien.phucap.ToString();
             field_phoneNumber.Text = giangvien.dt;
             field_role.Text = giangvien.vaitro;
@@ -144,7 +144,7 @@ namespace portal_application_project
         {
             giangvien.updateScore(connectionString, query, modifiedRows);
 
-            
+
             // Clear the list of modified rows after updating
             modifiedRows.Clear();
         }

@@ -43,7 +43,7 @@ namespace portal_application_project
             field_name.Text = giaovu.hoten;
             hello_name_label.Text = giaovu.hoten;
             field_gender.Text = giaovu.phai;
-            field_birthday.Text = giaovu.ngsinh;
+            field_birthday.Text = giaovu.ngsinh.ToString();
             field_salary.Text = giaovu.phucap.ToString();
             field_phoneNumber.Text = giaovu.dt;
             field_role.Text = giaovu.vaitro;

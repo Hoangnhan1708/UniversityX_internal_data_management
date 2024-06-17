@@ -161,5 +161,44 @@ namespace portal_application_project
         {
             return "DELETE FROM QLTRUONGHOC.PHANCONG WHERE MAGV = :MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
         }
+
+
+        // TRUONGKHOA -> PHANCONG
+
+        // INSERT
+        public string truongkhoaInsertPhanCong()
+        {
+            return "INSERT INTO QLTRUONGHOC.PHANCONG (MAGV, MAHP, HK, NAM ,MACT) " +
+                                 "VALUES (:MAGV, :MAHP,:HK,:NAM, :MACT)";
+        }
+
+        // UPDATE
+        public string truongkhoaUpdatePhanCongInfo()
+        {
+            return "UPDATE QLTRUONGHOC.PHANCONG SET HK = :HK, NAM = :NAM, MACT = :MACT " +
+                            "WHERE MAGV = :MAGV AND MAHP = :MAHP";
+        }
+
+        // TRUONGKHOA -> NHANSU
+
+        // INSERT
+        public string truongkhoaInsertNhanSu()
+        {
+            return "INSERT INTO QLTRUONGHOC.NHANSU (MANV, HOTEN, PHAI, NGSINH, PHUCAP,DT, VAITRO, MADV) " +
+                                 "VALUES (:MANV, :HOTEN,:PHAI,:NGSINH, :PHUCAP, :DT, :VAITRO,:MADV)";
+        }
+
+        // UPDATE
+        public string truongkhoaUpdateNhanSu()
+        {
+            return "UPDATE QLTRUONGHOC.NHANSU SET HOTEN = :HOTEN, PHAI = :PHAI, NGSINH = :NGSINH, PHUCAP = :PHUCAP, DT = :DT, VAITRO = :VAITRO, MADV = :MADV " +
+                                     "WHERE MANV = :MANV";
+        }
+
+        // DELETE
+        public string truongdonviDeleteNhanSu()
+        {
+            return "DELETE FROM QLTRUONGHOC.NHANSU WHERE MANV = :MANV";
+        }
     }
 }

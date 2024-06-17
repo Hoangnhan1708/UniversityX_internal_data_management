@@ -15,7 +15,7 @@ namespace portal_application_project
         public string manv;
         public string hoten;
         public string phai;
-        public string ngsinh;
+        public DateTime ngsinh;
         public int phucap;
         public string dt;
         public string vaitro;
@@ -25,7 +25,7 @@ namespace portal_application_project
             manv = "";
             hoten = "";
             phai = "";
-            ngsinh = "";
+            ngsinh = DateTime.Now;
             phucap = 0;
             dt = "";
             vaitro = "";
@@ -51,8 +51,8 @@ namespace portal_application_project
                     {
                         hoten = row["HOTEN"].ToString();
                         phai = row["PHAI"].ToString();
-                        ngsinh = row["NGSINH"].ToString();
-   
+                        ngsinh = Convert.ToDateTime(row["NGSINH"]);
+
                         phucap = int.Parse(row["PHUCAP"].ToString());
                         dt = row["DT"].ToString();
                         vaitro = row["VAITRO"].ToString();

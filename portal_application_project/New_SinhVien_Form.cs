@@ -58,7 +58,7 @@ namespace portal_application_project
             newSinhVien.diemtbtl = float.TryParse(field_dtbtl.Text, out float dtbtlValue) ? dtbtlValue : 0;
 
             giaovu.insertSinhVien(connectionString, query, newSinhVien);
-            this.Close();
+            
         }
 
         private void close_btn_Click(object sender, EventArgs e)

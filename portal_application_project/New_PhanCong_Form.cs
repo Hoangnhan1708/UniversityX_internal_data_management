@@ -13,15 +13,16 @@ namespace portal_application_project
     public partial class New_PhanCong_Form : Form
     {
         private string connectionString;
-        private TruongDonVi truongdonvi;
+        private string role;
         private Query query;
-        public New_PhanCong_Form(string connectionString)
+        public New_PhanCong_Form(string connectionString, string role)
         {
             InitializeComponent();
             this.connectionString = connectionString;
 
-            truongdonvi = new TruongDonVi();
+            
             query = new Query();
+            this.role = role;
         }
 
         private void add_phancong_btn_Click(object sender, EventArgs e)
@@ -35,8 +36,16 @@ namespace portal_application_project
 
             string mact = field_mact.Text;
 
-
-            truongdonvi.insertPhanCong(connectionString, query, magv, mahp, hk, nam, mact);
+            if(role == "TRUONGKHOA")
+            {
+                TruongKhoa truongkhoa = new TruongKhoa();
+                truongkhoa.insertPhanCong(connectionString, query, magv, mahp, hk, nam, mact);
+            }
+            else
+            {
+                TruongDonVi truongdonvi = new TruongDonVi();
+                truongdonvi.insertPhanCong(connectionString, query, magv, mahp, hk, nam, mact);
+            }
             
         }
 

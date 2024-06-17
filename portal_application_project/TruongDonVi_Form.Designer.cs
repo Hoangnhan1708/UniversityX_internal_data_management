@@ -509,7 +509,7 @@
             // 
             // update_score_btn
             // 
-            update_score_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            update_score_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             update_score_btn.BackColor = SystemColors.ButtonHighlight;
             update_score_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
             update_score_btn.FlatAppearance.BorderSize = 3;

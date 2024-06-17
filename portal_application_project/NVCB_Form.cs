@@ -45,7 +45,7 @@ namespace portal_application_project
             field_name.Text = nvcb.hoten;
             hello_name_label.Text = nvcb.hoten;
             field_gender.Text = nvcb.phai;
-            field_birthday.Text = nvcb.ngsinh;
+            field_birthday.Text = nvcb.ngsinh.ToString();
             field_salary.Text = nvcb.phucap.ToString();
             field_phoneNumber.Text = nvcb.dt;
             field_role.Text = nvcb.vaitro;

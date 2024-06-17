@@ -56,7 +56,7 @@ namespace portal_application_project
             field_name.Text = truongdonvi.hoten;
             hello_name_label.Text = truongdonvi.hoten;
             field_gender.Text = truongdonvi.phai;
-            field_birthday.Text = truongdonvi.ngsinh;
+            field_birthday.Text = truongdonvi.ngsinh.ToString();
             field_salary.Text = truongdonvi.phucap.ToString();
             field_phoneNumber.Text = truongdonvi.dt;
             field_role.Text = truongdonvi.vaitro;
@@ -229,7 +229,7 @@ namespace portal_application_project
 
         private void add_quanlyphancong_btn_Click(object sender, EventArgs e)
         {
-            New_PhanCong_Form newPhanCongForm = new New_PhanCong_Form(connectionString);
+            New_PhanCong_Form newPhanCongForm = new New_PhanCong_Form(connectionString, "TRUONGDONVI");
             newPhanCongForm.ShowDialog();
         }
 
