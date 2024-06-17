@@ -41,8 +41,10 @@ namespace portal_application_project
             LoadThongTinUser();
 
             dataGridView_hpdadangky.DataSource = sinhvien.LoadFullTable(connectionString, query, "HOCPHAN");
-            dataGridView_dkhp.DataSource = sinhvien.LoadFullTable(connectionString, query, "DANGKY");
+            //dataGridView_dkhp.DataSource = sinhvien.LoadFullTable(connectionString, query, "DANGKY");
             dataGridView_khmohp.DataSource = sinhvien.LoadFullTable(connectionString, query, "KHMO");
+
+            LoadDKHPWithCheckboxColumn();
         }
 
         private void LoadThongTinUser()
@@ -62,7 +64,7 @@ namespace portal_application_project
 
         private void LoadDKHPWithCheckboxColumn()
         {
-            DataTable dataTable = sinhvien.LoadFullTable(connectionString, query, "PHANCONG");
+            DataTable dataTable = sinhvien.LoadFullTable(connectionString, query, "DANGKY");
             dataGridView_dkhp.DataSource = dataTable;
 
             DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn
@@ -129,6 +131,7 @@ namespace portal_application_project
             }
         }
 
+        // Chưa xonggg!
         private void add_dkhp_btn_Click(object sender, EventArgs e)
         {
             List<DataGridViewRow> rowsToHandle = new List<DataGridViewRow>();
@@ -143,7 +146,7 @@ namespace portal_application_project
                 }
             }
 
-            DialogResult result = MessageBox.Show("Bạn có muốn xóa những học phần đã chọn không?", "Xác nhận", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Bạn có muốn đăng ký những học phần đã chọn không?", "Xác nhận", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 sinhvien.insertDangKySelectedRow(connectionString, query, rowsToHandle);
@@ -160,11 +163,73 @@ namespace portal_application_project
             {
                 return;
             }
+            //List<DataGridViewRow> rowsToHandle = new List<DataGridViewRow>();
+
+            //// Collect the selected rows
+            //foreach (DataGridViewRow row in dataGridView_dkhp.Rows)
+            //{
+            //    DataGridViewCheckBoxCell chk = row.Cells["Select"] as DataGridViewCheckBoxCell;
+            //    if (chk != null && chk.Value != null && (bool)chk.Value)
+            //    {
+            //        rowsToHandle.Add(row);
+            //    }
+            //}
+
+            //DialogResult result = MessageBox.Show("Bạn có muốn xóa những học phần đã chọn không?", "Xác nhận", MessageBoxButtons.YesNo);
+            //if (result == DialogResult.Yes)
+            //{
+            //    sinhvien.insertDangKySelectedRow(connectionString, query, rowsToHandle);
+            //    // Remove the checkbox column if it exists
+            //    if (dataGridView_dkhp.Columns.Contains("Select"))
+            //    {
+            //        dataGridView_dkhp.Columns.Remove("Select");
+            //    }
+
+            //    // Reload the data
+            //    LoadDKHPWithCheckboxColumn();
+            //}
+            //else
+            //{
+            //    return;
+            //}
         }
 
         private void refresh_nhansu_btn_Click(object sender, EventArgs e)
         {
-            LoadDKHPWithCheckboxColumn();
+            
+        }
+
+        private void delete_dkhp_btn_Click(object sender, EventArgs e)
+        {
+            List<DataGridViewRow> rowsToHandle = new List<DataGridViewRow>();
+
+            // Collect the selected rows
+            foreach (DataGridViewRow row in dataGridView_dkhp.Rows)
+            {
+                DataGridViewCheckBoxCell chk = row.Cells["Select"] as DataGridViewCheckBoxCell;
+                if (chk != null && chk.Value != null && (bool)chk.Value)
+                {
+                    rowsToHandle.Add(row);
+                }
+            }
+
+            DialogResult result = MessageBox.Show("Bạn có muốn xóa những học phần đã chọn không?", "Xác nhận", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                sinhvien.deleteDangKySelectedRow(connectionString, query, rowsToHandle);
+                // Remove the checkbox column if it exists
+                if (dataGridView_dkhp.Columns.Contains("Select"))
+                {
+                    dataGridView_dkhp.Columns.Remove("Select");
+                }
+
+                // Reload the data
+                LoadDKHPWithCheckboxColumn();
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }

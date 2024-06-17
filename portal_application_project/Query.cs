@@ -204,10 +204,18 @@ namespace portal_application_project
         // SINHVIEN -> DANGKY
 
         // INSERT
-        public string sinhvienInsertDangKy()
+        public string sinhvienInsertDKHP()
         {
-            return "INSERT INTO QLTRUONGHOC.NHANSU (MANV, HOTEN, PHAI, NGSINH, PHUCAP,DT, VAITRO, MADV) " +
-                                 "VALUES (:MANV, :HOTEN,:PHAI,:NGSINH, :PHUCAP, :DT, :VAITRO,:MADV)";
+            //return "INSERT INTO QLTRUONGHOC.NHANSU (MANV, HOTEN, PHAI, NGSINH, PHUCAP,DT, VAITRO, MADV) " +
+            //                     "VALUES (:MANV, :HOTEN,:PHAI,:NGSINH, :PHUCAP, :DT, :VAITRO,:MADV)";
+            return "INSERT INTO QLTRUONGHOC.DANGKY (MASV, MAGV, MAHP, HK, NAM, MACT) VALUES ";
         }
+
+        // DELETE
+        public string sinhvienDeleteDKHP()
+        {
+            return "DELETE FROM QLTRUONGHOC.DANGKY WHERE MASV = :MASV AND MAGV = :MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
+        }
+
     }
 }

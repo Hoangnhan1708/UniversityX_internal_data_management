@@ -517,6 +517,7 @@
             delete_dkhp_btn.TabIndex = 36;
             delete_dkhp_btn.Text = "Xóa";
             delete_dkhp_btn.UseVisualStyleBackColor = false;
+            delete_dkhp_btn.Click += delete_dkhp_btn_Click;
             // 
             // refresh_nhansu_btn
             // 
@@ -546,9 +547,9 @@
             add_dkhp_btn.ForeColor = SystemColors.HotTrack;
             add_dkhp_btn.Location = new Point(421, 536);
             add_dkhp_btn.Name = "add_dkhp_btn";
-            add_dkhp_btn.Size = new Size(180, 53);
+            add_dkhp_btn.Size = new Size(197, 53);
             add_dkhp_btn.TabIndex = 34;
-            add_dkhp_btn.Text = "Thêm";
+            add_dkhp_btn.Text = "Đăng ký học phần";
             add_dkhp_btn.UseVisualStyleBackColor = false;
             add_dkhp_btn.Click += add_dkhp_btn_Click;
             // 
@@ -561,7 +562,6 @@
             dataGridView_dkhp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView_dkhp.Location = new Point(9, 13);
             dataGridView_dkhp.Name = "dataGridView_dkhp";
-            dataGridView_dkhp.ReadOnly = true;
             dataGridView_dkhp.RowHeadersWidth = 51;
             dataGridView_dkhp.RowTemplate.Height = 29;
             dataGridView_dkhp.Size = new Size(974, 517);
