@@ -33,7 +33,6 @@
             male_checkbox = new CheckBox();
             field_phoneNumber = new TextBox();
             field_madv = new TextBox();
-            field_role = new TextBox();
             field_phucap = new TextBox();
             label8 = new Label();
             label6 = new Label();
@@ -49,6 +48,7 @@
             label1 = new Label();
             label7 = new Label();
             panel1 = new Panel();
+            field_role = new ComboBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -99,15 +99,6 @@
             field_madv.Name = "field_madv";
             field_madv.Size = new Size(251, 27);
             field_madv.TabIndex = 99;
-            // 
-            // field_role
-            // 
-            field_role.Anchor = AnchorStyles.Top;
-            field_role.BackColor = Color.White;
-            field_role.Location = new Point(151, 308);
-            field_role.Name = "field_role";
-            field_role.Size = new Size(251, 27);
-            field_role.TabIndex = 98;
             // 
             // field_phucap
             // 
@@ -272,17 +263,25 @@
             panel1.Size = new Size(818, 70);
             panel1.TabIndex = 82;
             // 
+            // field_role
+            // 
+            field_role.FormattingEnabled = true;
+            field_role.Location = new Point(154, 311);
+            field_role.Name = "field_role";
+            field_role.Size = new Size(248, 28);
+            field_role.TabIndex = 107;
+            // 
             // New_NhanVien_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(818, 480);
+            Controls.Add(field_role);
             Controls.Add(dateTimePicker2);
             Controls.Add(female_checkbox);
             Controls.Add(male_checkbox);
             Controls.Add(field_phoneNumber);
             Controls.Add(field_madv);
-            Controls.Add(field_role);
             Controls.Add(field_phucap);
             Controls.Add(label8);
             Controls.Add(label6);
@@ -312,7 +311,6 @@
         private CheckBox male_checkbox;
         private TextBox field_phoneNumber;
         private TextBox field_madv;
-        private TextBox field_role;
         private TextBox field_phucap;
         private Label label8;
         private Label label6;
@@ -328,5 +326,6 @@
         private Label label1;
         private Label label7;
         private Panel panel1;
+        private ComboBox field_role;
     }
 }

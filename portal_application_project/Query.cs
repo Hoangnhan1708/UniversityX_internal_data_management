@@ -200,5 +200,14 @@ namespace portal_application_project
         {
             return "DELETE FROM QLTRUONGHOC.NHANSU WHERE MANV = :MANV";
         }
+
+        // SINHVIEN -> DANGKY
+
+        // INSERT
+        public string sinhvienInsertDangKy()
+        {
+            return "INSERT INTO QLTRUONGHOC.NHANSU (MANV, HOTEN, PHAI, NGSINH, PHUCAP,DT, VAITRO, MADV) " +
+                                 "VALUES (:MANV, :HOTEN,:PHAI,:NGSINH, :PHUCAP, :DT, :VAITRO,:MADV)";
+        }
     }
 }

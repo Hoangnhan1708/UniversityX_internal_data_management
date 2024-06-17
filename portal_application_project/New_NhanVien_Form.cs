@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace portal_application_project
 {
@@ -23,6 +24,12 @@ namespace portal_application_project
             newNhanVien = new NhanVienCoBan();
             truongkhoa = new TruongKhoa();
             query = new Query();
+            field_role.Items.Add("Nhân viên cơ bản");
+            field_role.Items.Add("Giảng viên");
+            field_role.Items.Add("Giáo vụ");
+            field_role.Items.Add("Trưởng đơn vị");
+            field_role.Items.Add("Trưởng khoa");
+            
         }
 
         private void add_nhanvien_btn_Click(object sender, EventArgs e)

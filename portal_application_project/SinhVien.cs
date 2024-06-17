@@ -166,6 +166,56 @@ namespace portal_application_project
             }
             return false;
         }
+
+        public void insertDangKySelectedRow(string connectionString, Query query, List<DataGridViewRow> rowsToHandle)
+        {
+            // Perform the deletion
+            foreach (DataGridViewRow row in rowsToHandle)
+            {
+                string masv = row.Cells["MASV"].Value.ToString();
+                string magv = row.Cells["MAGV"].Value.ToString();
+                string mahp = row.Cells["MAHP"].Value.ToString();
+                int hk = Convert.ToInt32(row.Cells["HK"].Value);
+                int nam = Convert.ToInt32(row.Cells["NAM"].Value);
+                string mact = row.Cells["MACT"].Value.ToString();
+
+                string deleteQuery = query.sinhvienInsertDangKy();
+
+                try
+                {
+                    using (OracleConnection connection = new OracleConnection(connectionString))
+                    {
+                        using (OracleCommand command = new OracleCommand(deleteQuery, connection))
+                        {
+                            command.Parameters.Add(new OracleParameter("MASV", masv));
+                            command.Parameters.Add(new OracleParameter("MAGV", magv));
+                            command.Parameters.Add(new OracleParameter("MAHP", mahp));
+                            command.Parameters.Add(new OracleParameter("HK", hk));
+                            command.Parameters.Add(new OracleParameter("NAM", nam));
+                            command.Parameters.Add(new OracleParameter("MACT", mact));
+
+                            connection.Open();
+                            int rowsAffected = command.ExecuteNonQuery();
+                            connection.Close();
+
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("Thêm thành công!");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không có hàng nào được thêm!");
+                            }
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
     }
 
     

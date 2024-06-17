@@ -60,6 +60,21 @@ namespace portal_application_project
             field_dtbtl.Text = sinhvien.diemtbtl.ToString();
         }
 
+        private void LoadDKHPWithCheckboxColumn()
+        {
+            DataTable dataTable = sinhvien.LoadFullTable(connectionString, query, "PHANCONG");
+            dataGridView_dkhp.DataSource = dataTable;
+
+            DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn
+            {
+                Name = "Select",
+                HeaderText = "Select",
+                TrueValue = true,
+                FalseValue = false
+            };
+            dataGridView_dkhp.Columns.Insert(0, checkBoxColumn);
+        }
+
         private void btn_thongtinsv_Click(object sender, EventArgs e)
         {
             tabControl_sinhvien.SelectedTab = tabPage_thongtinsv;
@@ -112,6 +127,44 @@ namespace portal_application_project
                 }
 
             }
+        }
+
+        private void add_dkhp_btn_Click(object sender, EventArgs e)
+        {
+            List<DataGridViewRow> rowsToHandle = new List<DataGridViewRow>();
+
+            // Collect the selected rows
+            foreach (DataGridViewRow row in dataGridView_dkhp.Rows)
+            {
+                DataGridViewCheckBoxCell chk = row.Cells["Select"] as DataGridViewCheckBoxCell;
+                if (chk != null && chk.Value != null && (bool)chk.Value)
+                {
+                    rowsToHandle.Add(row);
+                }
+            }
+
+            DialogResult result = MessageBox.Show("Bạn có muốn xóa những học phần đã chọn không?", "Xác nhận", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                sinhvien.insertDangKySelectedRow(connectionString, query, rowsToHandle);
+                // Remove the checkbox column if it exists
+                if (dataGridView_dkhp.Columns.Contains("Select"))
+                {
+                    dataGridView_dkhp.Columns.Remove("Select");
+                }
+
+                // Reload the data
+                LoadDKHPWithCheckboxColumn();
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void refresh_nhansu_btn_Click(object sender, EventArgs e)
+        {
+            LoadDKHPWithCheckboxColumn();
         }
     }
 }
