@@ -34,7 +34,6 @@
             text_hello = new Label();
             hello_name_label = new Label();
             logout_btn = new Button();
-            panel1 = new Panel();
             panel3 = new Panel();
             dashboard_label = new Label();
             panel4 = new Panel();
@@ -79,6 +78,7 @@
             label5 = new Label();
             panel6 = new Panel();
             label2 = new Label();
+            mail_btn = new Panel();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
             tabControl_nvcb.SuspendLayout();
@@ -123,7 +123,7 @@
             text_hello.AutoSize = true;
             text_hello.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             text_hello.ForeColor = Color.White;
-            text_hello.Location = new Point(785, 31);
+            text_hello.Location = new Point(738, 31);
             text_hello.Name = "text_hello";
             text_hello.Size = new Size(130, 26);
             text_hello.TabIndex = 44;
@@ -135,7 +135,7 @@
             hello_name_label.AutoSize = true;
             hello_name_label.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             hello_name_label.ForeColor = Color.White;
-            hello_name_label.Location = new Point(908, 31);
+            hello_name_label.Location = new Point(861, 31);
             hello_name_label.Name = "hello_name_label";
             hello_name_label.Size = new Size(167, 26);
             hello_name_label.TabIndex = 45;
@@ -158,17 +158,6 @@
             logout_btn.Text = "Đăng xuất";
             logout_btn.UseVisualStyleBackColor = false;
             logout_btn.Click += logout_btn_Click;
-            // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            panel1.BackColor = Color.White;
-            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.Cursor = Cursors.Hand;
-            panel1.Location = new Point(738, 26);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(41, 41);
-            panel1.TabIndex = 47;
             // 
             // panel3
             // 
@@ -682,14 +671,26 @@
             label2.TabIndex = 3;
             label2.Text = "Nhân viên cơ bản";
             // 
+            // mail_btn
+            // 
+            mail_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            mail_btn.BackColor = Color.FromArgb(1, 69, 142);
+            mail_btn.BackgroundImage = (Image)resources.GetObject("mail_btn.BackgroundImage");
+            mail_btn.Cursor = Cursors.Hand;
+            mail_btn.Location = new Point(692, 31);
+            mail_btn.Name = "mail_btn";
+            mail_btn.Size = new Size(40, 37);
+            mail_btn.TabIndex = 64;
+            mail_btn.Click += mail_btn_Click;
+            // 
             // NVCB_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(1, 69, 142);
             ClientSize = new Size(1382, 853);
+            Controls.Add(mail_btn);
             Controls.Add(panel5);
-            Controls.Add(panel1);
             Controls.Add(logout_btn);
             Controls.Add(hello_name_label);
             Controls.Add(text_hello);
@@ -733,7 +734,6 @@
         private Label text_hello;
         private Label hello_name_label;
         private Button logout_btn;
-        private Panel panel1;
         private Panel panel3;
         private Label dashboard_label;
         private Panel panel4;
@@ -778,5 +778,6 @@
         private DataGridView dataGridView_khmohp;
         private Button change_phoneNumber_btn;
         private Label dollar_icon;
+        private Panel mail_btn;
     }
 }

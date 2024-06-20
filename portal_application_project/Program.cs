@@ -16,8 +16,10 @@ namespace portal_application_project
             // see https://aka.ms/applicationconfiguration.
 
             ApplicationConfiguration.Initialize();
-            //Application.Run(new SinhVien_Form(connectionString));
-            Application.Run(new Login_Form());
+            
+            //Application.Run(new Login_Form());
+            Mail_Form mailForm = new Mail_Form();
+            mailForm.ShowDialog();
         }
     }
 }
