@@ -705,6 +705,7 @@
             Name = "SinhVien_Form";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SinhVien_Form";
+            FormClosing += SinhVien_Form_FormClosing;
             Load += SinhVien_Form_Load;
             panel2.ResumeLayout(false);
             tabControl_sinhvien.ResumeLayout(false);

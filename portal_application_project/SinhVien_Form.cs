@@ -232,12 +232,17 @@ namespace portal_application_project
             }
         }
 
-        
+
 
         private void mail_btn_Click(object sender, EventArgs e)
         {
-            Mail_Form mailForm = new Mail_Form(connectionString,sinhvien.hoten);
+            Mail_Form mailForm = new Mail_Form(connectionString, sinhvien.hoten);
             mailForm.ShowDialog();
+        }
+
+        private void SinhVien_Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

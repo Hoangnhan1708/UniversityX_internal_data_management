@@ -112,5 +112,10 @@ namespace portal_application_project
             Mail_Form mailForm = new Mail_Form(connectionString, nvcb.hoten);
             mailForm.ShowDialog();
         }
+
+        private void NVCB_Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

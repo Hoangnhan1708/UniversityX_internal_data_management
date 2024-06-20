@@ -143,7 +143,7 @@ namespace portal_application_project
                         }
 
 
-                        this.Close();
+                        this.Hide();
                         
                     }
                 }

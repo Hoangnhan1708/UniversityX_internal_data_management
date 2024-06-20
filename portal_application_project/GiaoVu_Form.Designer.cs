@@ -1221,6 +1221,7 @@
             Name = "GiaoVu_Form";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "GiaoVu_Form";
+            FormClosing += GiaoVu_Form_FormClosing;
             Load += GiaoVu_Form_Load;
             panel7.ResumeLayout(false);
             panel7.PerformLayout();

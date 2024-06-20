@@ -154,5 +154,10 @@ namespace portal_application_project
             Mail_Form mailForm = new Mail_Form(connectionString, giangvien.hoten);
             mailForm.ShowDialog();
         }
+
+        private void GiangVien_Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

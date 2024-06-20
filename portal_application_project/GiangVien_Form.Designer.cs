@@ -855,6 +855,7 @@
             Name = "GiangVien_Form";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "GiangVien_Form";
+            FormClosing += GiangVien_Form_FormClosing;
             Load += GiangVien_Form_Load;
             panel2.ResumeLayout(false);
             tabControl_nvcb.ResumeLayout(false);

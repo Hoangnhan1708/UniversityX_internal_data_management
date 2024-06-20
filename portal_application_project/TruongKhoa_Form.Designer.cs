@@ -1144,6 +1144,7 @@
             Name = "TruongKhoa_Form";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TruongKhoa_Form";
+            FormClosing += TruongKhoa_Form_FormClosing;
             Load += TruongKhoa_Form_Load;
             panel2.ResumeLayout(false);
             tabControl_nvcb.ResumeLayout(false);

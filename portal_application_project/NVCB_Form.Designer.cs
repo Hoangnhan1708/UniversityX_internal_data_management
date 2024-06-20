@@ -700,6 +700,7 @@
             Name = "NVCB_Form";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "NVCB_Form";
+            FormClosing += NVCB_Form_FormClosing;
             Load += NVCB_Form_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();

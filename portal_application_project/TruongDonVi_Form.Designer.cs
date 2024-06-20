@@ -1056,6 +1056,7 @@
             Name = "TruongDonVi_Form";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TruongDonVi_Form";
+            FormClosing += TruongDonVi_Form_FormClosing;
             Load += TruongDonVi_Form_Load;
             panel2.ResumeLayout(false);
             tabControl_truongdonvi.ResumeLayout(false);
