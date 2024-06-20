@@ -33,7 +33,6 @@
             emailContentTextBox = new RichTextBox();
             label1 = new Label();
             label2 = new Label();
-            logout_btn = new Button();
             hello_name_label = new Label();
             text_hello = new Label();
             title = new Label();
@@ -58,7 +57,7 @@
             emailListView.Size = new Size(392, 586);
             emailListView.TabIndex = 0;
             emailListView.UseCompatibleStateImageBehavior = false;
-            emailListView.View = View.List;
+            emailListView.View = View.Tile;
             emailListView.DrawColumnHeader += emailListView_DrawColumnHeader;
             emailListView.DrawItem += emailListView_DrawItem;
             emailListView.SelectedIndexChanged += emailListView_SelectedIndexChanged;
@@ -95,23 +94,6 @@
             label2.Size = new Size(132, 28);
             label2.TabIndex = 3;
             label2.Text = "Hộp thư đến";
-            // 
-            // logout_btn
-            // 
-            logout_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            logout_btn.BackColor = Color.FromArgb(1, 69, 142);
-            logout_btn.Cursor = Cursors.Hand;
-            logout_btn.FlatAppearance.BorderColor = Color.FromArgb(1, 69, 142);
-            logout_btn.FlatAppearance.BorderSize = 0;
-            logout_btn.FlatStyle = FlatStyle.Flat;
-            logout_btn.Font = new Font("Segoe UI", 13.8F, FontStyle.Underline, GraphicsUnit.Point);
-            logout_btn.ForeColor = Color.Transparent;
-            logout_btn.Location = new Point(1147, 23);
-            logout_btn.Name = "logout_btn";
-            logout_btn.Size = new Size(139, 59);
-            logout_btn.TabIndex = 71;
-            logout_btn.Text = "Đăng xuất";
-            logout_btn.UseVisualStyleBackColor = false;
             // 
             // hello_name_label
             // 
@@ -215,7 +197,6 @@
             Controls.Add(panel2);
             Controls.Add(panel6);
             Controls.Add(panel3);
-            Controls.Add(logout_btn);
             Controls.Add(hello_name_label);
             Controls.Add(text_hello);
             Controls.Add(title);
@@ -241,7 +222,6 @@
         private RichTextBox emailContentTextBox;
         private Label label1;
         private Label label2;
-        private Button logout_btn;
         private Label hello_name_label;
         private Label text_hello;
         private Label title;

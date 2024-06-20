@@ -149,6 +149,10 @@ namespace portal_application_project
             modifiedRows.Clear();
         }
 
-
+        private void mail_btn_Click(object sender, EventArgs e)
+        {
+            Mail_Form mailForm = new Mail_Form(connectionString, giangvien.hoten);
+            mailForm.ShowDialog();
+        }
     }
 }

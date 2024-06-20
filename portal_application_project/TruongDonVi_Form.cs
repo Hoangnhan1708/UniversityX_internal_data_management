@@ -266,6 +266,10 @@ namespace portal_application_project
             }
         }
 
-
+        private void mail_btn_Click(object sender, EventArgs e)
+        {
+            Mail_Form mailForm = new Mail_Form(connectionString,truongdonvi.hoten);
+            mailForm.ShowDialog();
+        }
     }
 }

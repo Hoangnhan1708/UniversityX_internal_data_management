@@ -204,6 +204,7 @@ namespace portal_application_project
                             MessageBox.Show("Không có hàng nào được thêm!");
                         }
                     }
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -299,6 +300,7 @@ namespace portal_application_project
                                 MessageBox.Show("Không có hàng nào được xóa!");
                             }
                         }
+                        connection.Close();
                     }
                 }
                 catch (Exception ex)

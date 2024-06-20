@@ -62,13 +62,16 @@ namespace portal_application_project
                         {
                             int i = 0;
                             string role = reader.GetString(0);
+                            
                             roles[i] = role;
                             i++;
                         }
+                        reader.Close();
+                        connection.Close();
 
                         for (int i = 0; i < roles.Length; i++)
                         {
-                            if (roles[i].Equals("SV", StringComparison.OrdinalIgnoreCase))
+                            if (roles[i].Equals("SINHVIEN", StringComparison.OrdinalIgnoreCase))
                             {
                                 role_flag = 6;
                                 break;
@@ -98,8 +101,9 @@ namespace portal_application_project
                                 break;
                             }
 
-                            if (roles[i].Equals("NVCB", StringComparison.OrdinalIgnoreCase))
+                            if (roles[i].Equals("NHANVIEN", StringComparison.OrdinalIgnoreCase))
                             {
+                                
                                 role_flag = 1;
                                 break;
                             }
@@ -139,8 +143,8 @@ namespace portal_application_project
                         }
 
 
-                        this.Hide();
-                        connection.Close();
+                        this.Close();
+                        
                     }
                 }
                 catch (Exception ex)

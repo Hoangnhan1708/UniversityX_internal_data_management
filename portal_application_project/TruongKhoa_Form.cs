@@ -93,7 +93,7 @@ namespace portal_application_project
         {
             Login_Form login_Form = new Login_Form();
             login_Form.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void user_info_btn_Click(object sender, EventArgs e)
@@ -351,6 +351,12 @@ namespace portal_application_project
             {
                 return;
             }
+        }
+
+        private void mail_btn_Click(object sender, EventArgs e)
+        {
+            Mail_Form mailForm = new Mail_Form(connectionString,truongkhoa.hoten);
+            mailForm.ShowDialog();
         }
     }
 }

@@ -196,7 +196,7 @@ namespace portal_application_project
 
         private void refresh_nhansu_btn_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void delete_dkhp_btn_Click(object sender, EventArgs e)
@@ -230,6 +230,14 @@ namespace portal_application_project
             {
                 return;
             }
+        }
+
+        
+
+        private void mail_btn_Click(object sender, EventArgs e)
+        {
+            Mail_Form mailForm = new Mail_Form(connectionString,sinhvien.hoten);
+            mailForm.ShowDialog();
         }
     }
 }

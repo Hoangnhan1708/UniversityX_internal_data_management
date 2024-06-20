@@ -8,14 +8,12 @@ namespace portal_application_project
 {
     public class Mail
     {
-        public string title { get; set; }
-        public string sender { get; set; }
+        
         public string content { get; set; }
 
-        public Mail(string title, string sender ,string content)
+        public Mail(string content )
         {
-            this.title = title;
-            this.sender = sender;
+            
             this.content = content;
         }
     }

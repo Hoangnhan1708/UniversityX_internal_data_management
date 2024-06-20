@@ -19,9 +19,13 @@ namespace portal_application_project
             return "Data Source=localhost;User Id=" + username + ";Password=" + password + ";DBA Privilege=SYSDBA;";
         }
 
+        //public string getUserLoginString(string username, string password)
+        //{
+        //    return "Data Source=localhost;User Id=" + username + ";Password=" + password + ";";
+        //}
         public string getUserLoginString(string username, string password)
         {
-            return "Data Source=localhost;User Id=" + username + ";Password=" + password + ";";
+            return "Data Source=localhost:1521/XEPDB1;User Id=" + username + ";Password=" + password + ";";
         }
 
 

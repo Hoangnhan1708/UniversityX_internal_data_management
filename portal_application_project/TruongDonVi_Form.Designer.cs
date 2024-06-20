@@ -100,7 +100,7 @@
             panel3 = new Panel();
             dashboard_label = new Label();
             panel4 = new Panel();
-            panel1 = new Panel();
+            mail_btn = new Panel();
             panel2.SuspendLayout();
             tabControl_truongdonvi.SuspendLayout();
             tabPage_userInfo.SuspendLayout();
@@ -1028,16 +1028,17 @@
             panel4.Size = new Size(42, 42);
             panel4.TabIndex = 2;
             // 
-            // panel1
+            // mail_btn
             // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            panel1.BackColor = Color.FromArgb(1, 69, 142);
-            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.Cursor = Cursors.Hand;
-            panel1.Location = new Point(736, 41);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(40, 37);
-            panel1.TabIndex = 63;
+            mail_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            mail_btn.BackColor = Color.FromArgb(1, 69, 142);
+            mail_btn.BackgroundImage = (Image)resources.GetObject("mail_btn.BackgroundImage");
+            mail_btn.Cursor = Cursors.Hand;
+            mail_btn.Location = new Point(736, 41);
+            mail_btn.Name = "mail_btn";
+            mail_btn.Size = new Size(40, 37);
+            mail_btn.TabIndex = 63;
+            mail_btn.Click += mail_btn_Click;
             // 
             // TruongDonVi_Form
             // 
@@ -1045,7 +1046,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(1, 69, 142);
             ClientSize = new Size(1382, 853);
-            Controls.Add(panel1);
+            Controls.Add(mail_btn);
             Controls.Add(panel2);
             Controls.Add(logout_btn);
             Controls.Add(hello_name_label);
@@ -1164,6 +1165,6 @@
         private Label xemphanconggv_btn;
         private TabPage tabPage_xemphanconggv;
         private DataGridView dataGridView_xemphanconggv;
-        private Panel panel1;
+        private Panel mail_btn;
     }
 }

@@ -50,6 +50,7 @@ namespace portal_application_project
 
                             connection.Open();
                             command.ExecuteNonQuery();
+                            connection.Close();
                         }
                     }
                     MessageBox.Show("Đã cập nhật thành công!");

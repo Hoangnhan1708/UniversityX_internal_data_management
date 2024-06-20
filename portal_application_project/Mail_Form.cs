@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,28 +9,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace portal_application_project
 {
     public partial class Mail_Form : Form
     {
         private List<Mail> emails = new List<Mail>();
-        public Mail_Form()
+        private string connectionString;
+        private string fullname;
+        private Query query = new Query();
+
+        public Mail_Form(string connectionString, string fullname)
         {
             InitializeComponent();
+            this.connectionString = connectionString;
+            hello_name_label.Text = fullname;
             LoadEmails();
         }
 
+
         private void LoadEmails()
         {
-            // Add sample emails
-            emails.Add(new Mail("Meeting Reminder", "boss@example.com", "Don't forget the meeting at 3 PM."));
-            emails.Add(new Mail("Project Update", "colleague@example.com", "Here is the latest update on the project."));
-            emails.Add(new Mail("Party Invitation", "friend@example.com", "You are invited to a party this weekend."));
 
+            string query = "SELECT NOIDUNG FROM QLTRUONGHOC.THONGBAO";
+
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    OracleCommand command = new OracleCommand(query, connection);
+                    connection.Open();
+                    OracleDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+
+                        string content = reader["NOIDUNG"].ToString();
+
+                        Mail email = new Mail(content);
+                        emails.Add(email);
+                        emails.Add(email);
+                    }
+
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading emails: " + ex.Message);
+            }
+
+            // Bind emails to ListView
             foreach (var email in emails)
             {
-                var item = new ListViewItem(email.title + " - From: " + email.sender);
+
+                var item = new ListViewItem(email.content);
                 item.Tag = email; // Store the Mail object in the Tag property
                 emailListView.Items.Add(item);
             }
@@ -49,21 +86,47 @@ namespace portal_application_project
 
         private void emailListView_DrawItem(object sender, DrawListViewItemEventArgs e)
         {
+            // Set the bounds to the full width of the emailListView
+            Rectangle bounds = new Rectangle(e.Bounds.Left, e.Bounds.Top, emailListView.ClientSize.Width, e.Bounds.Height);
 
             // Alternate background color
             if (e.ItemIndex % 2 == 0)
             {
-                e.Graphics.FillRectangle(Brushes.LightGray, e.Bounds);
+                e.Graphics.FillRectangle(Brushes.LightGray, bounds);
             }
             else
             {
-                e.Graphics.FillRectangle(Brushes.White, e.Bounds);
+                e.Graphics.FillRectangle(Brushes.White, bounds);
             }
 
             // Draw text
-            e.Graphics.DrawString(e.Item.Text, emailListView.Font, Brushes.Black, e.Bounds.Location);
+            e.Graphics.DrawString(e.Item.Text, emailListView.Font, Brushes.Black, bounds.Left, bounds.Top);
 
-            e.DrawFocusRectangle();
+            // Draw focus rectangle
+            if (e.State.HasFlag(ListViewItemStates.Selected))
+            {
+                Pen focusPen = new Pen(Color.Black) { DashStyle = System.Drawing.Drawing2D.DashStyle.Dot };
+                Rectangle focusBounds = new Rectangle(bounds.Left, bounds.Top, emailListView.ClientSize.Width - 1, bounds.Height - 1);
+                e.Graphics.DrawRectangle(focusPen, focusBounds);
+            }
+            //// Set the height of the item
+            //Rectangle bounds = new Rectangle(e.Bounds.Left, e.Bounds.Top, emailListView.ClientSize.Width, e.Bounds.Size.Height);
+
+            //// Alternate background color
+            //if (e.ItemIndex % 2 == 0)
+            //{
+            //    e.Graphics.FillRectangle(Brushes.LightGray, bounds);
+            //}
+            //else
+            //{
+            //    e.Graphics.FillRectangle(Brushes.White, bounds);
+            //}
+
+            //// Draw text
+            //e.Graphics.DrawString(e.Item.Text, emailListView.Font, Brushes.Black, bounds.Left, bounds.Top);
+
+            //e.DrawFocusRectangle();
+
         }
 
         private void emailListView_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)

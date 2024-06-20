@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SinhVien_Form));
-            panel1 = new Panel();
             logout_btn = new Button();
             hello_name_label = new Label();
             text_hello = new Label();
@@ -79,6 +78,7 @@
             panel3 = new Panel();
             dashboard_label = new Label();
             panel4 = new Panel();
+            mail_btn = new Panel();
             panel2.SuspendLayout();
             tabControl_sinhvien.SuspendLayout();
             tabPage_thongtinsv.SuspendLayout();
@@ -92,17 +92,6 @@
             panel6.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            panel1.BackColor = Color.White;
-            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
-            panel1.Cursor = Cursors.Hand;
-            panel1.Location = new Point(749, 47);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(41, 41);
-            panel1.TabIndex = 67;
             // 
             // logout_btn
             // 
@@ -688,14 +677,26 @@
             panel4.Size = new Size(42, 42);
             panel4.TabIndex = 2;
             // 
+            // mail_btn
+            // 
+            mail_btn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            mail_btn.BackColor = Color.FromArgb(1, 69, 142);
+            mail_btn.BackgroundImage = (Image)resources.GetObject("mail_btn.BackgroundImage");
+            mail_btn.Cursor = Cursors.Hand;
+            mail_btn.Location = new Point(750, 43);
+            mail_btn.Name = "mail_btn";
+            mail_btn.Size = new Size(40, 37);
+            mail_btn.TabIndex = 69;
+            mail_btn.Click += mail_btn_Click;
+            // 
             // SinhVien_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(1, 69, 142);
             ClientSize = new Size(1382, 853);
+            Controls.Add(mail_btn);
             Controls.Add(panel2);
-            Controls.Add(panel1);
             Controls.Add(logout_btn);
             Controls.Add(hello_name_label);
             Controls.Add(text_hello);
@@ -726,8 +727,6 @@
         }
 
         #endregion
-
-        private Panel panel1;
         private Button logout_btn;
         private Label hello_name_label;
         private Label text_hello;
@@ -778,5 +777,6 @@
         private Button delete_dkhp_btn;
         private Button refresh_nhansu_btn;
         private Button add_dkhp_btn;
+        private Panel mail_btn;
     }
 }
