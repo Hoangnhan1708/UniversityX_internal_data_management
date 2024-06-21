@@ -49,7 +49,7 @@ namespace portal_application_project
 
                         Mail email = new Mail(content);
                         emails.Add(email);
-                        emails.Add(email);
+                        
                     }
 
                     reader.Close();
@@ -109,23 +109,7 @@ namespace portal_application_project
                 Rectangle focusBounds = new Rectangle(bounds.Left, bounds.Top, emailListView.ClientSize.Width - 1, bounds.Height - 1);
                 e.Graphics.DrawRectangle(focusPen, focusBounds);
             }
-            //// Set the height of the item
-            //Rectangle bounds = new Rectangle(e.Bounds.Left, e.Bounds.Top, emailListView.ClientSize.Width, e.Bounds.Size.Height);
-
-            //// Alternate background color
-            //if (e.ItemIndex % 2 == 0)
-            //{
-            //    e.Graphics.FillRectangle(Brushes.LightGray, bounds);
-            //}
-            //else
-            //{
-            //    e.Graphics.FillRectangle(Brushes.White, bounds);
-            //}
-
-            //// Draw text
-            //e.Graphics.DrawString(e.Item.Text, emailListView.Font, Brushes.Black, bounds.Left, bounds.Top);
-
-            //e.DrawFocusRectangle();
+            
 
         }
 

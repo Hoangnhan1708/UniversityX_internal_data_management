@@ -109,6 +109,7 @@
             admin_checkbox.TabIndex = 51;
             admin_checkbox.Text = "admin";
             admin_checkbox.UseVisualStyleBackColor = true;
+            admin_checkbox.CheckedChanged += admin_checkbox_CheckedChanged;
             // 
             // user_checkbox
             // 
@@ -120,6 +121,7 @@
             user_checkbox.TabIndex = 50;
             user_checkbox.Text = "user";
             user_checkbox.UseVisualStyleBackColor = true;
+            user_checkbox.CheckedChanged += user_checkbox_CheckedChanged;
             // 
             // username_label
             // 

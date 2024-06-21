@@ -62,7 +62,7 @@ namespace portal_application_project
                         {
                             int i = 0;
                             string role = reader.GetString(0);
-                            
+
                             roles[i] = role;
                             i++;
                         }
@@ -103,7 +103,7 @@ namespace portal_application_project
 
                             if (roles[i].Equals("NHANVIEN", StringComparison.OrdinalIgnoreCase))
                             {
-                                
+
                                 role_flag = 1;
                                 break;
                             }
@@ -144,7 +144,7 @@ namespace portal_application_project
 
 
                         this.Hide();
-                        
+
                     }
                 }
                 catch (Exception ex)

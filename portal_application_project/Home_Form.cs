@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ExecuteSQLFromFile;
 using Oracle.ManagedDataAccess.Client;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace portal_application_project
@@ -43,6 +44,7 @@ namespace portal_application_project
         {
             LoadDataHomeUsers();
             LoadDataHomeRoles();
+            LoadDataAuditTable();
 
         }
 
@@ -71,6 +73,27 @@ namespace portal_application_project
 
         // Thiếu query
         private void LoadDataHomeRoles()
+        {
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+                    OracleCommand command = new OracleCommand("SELECT * FROM V_ALL_ROLES", connection);
+                    OracleDataAdapter adapter = new OracleDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dataGridView_home_roles.DataSource = dataTable;
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void LoadDataAuditTable()
         {
             try
             {
@@ -419,6 +442,53 @@ namespace portal_application_project
         private void refresh_role_btn_Click(object sender, EventArgs e)
         {
             LoadDataHomeRoles();
+        }
+
+
+
+
+        private void filer_textBox_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(filer_textBox.Text))
+            {
+                filer_textBox.Text = "Nhập tên người dùng...";
+                filer_textBox.ForeColor = Color.Gray;
+            }
+        }
+
+        private void filer_textBox_Enter(object sender, EventArgs e)
+        {
+            if (filer_textBox.Text == "Nhập tên người dùng...")
+            {
+                filer_textBox.Text = "";
+                filer_textBox.ForeColor = Color.Black;
+            }
+        }
+
+        private void Home_Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void find_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+                    OracleCommand command = new OracleCommand("SELECT * FROM V_ALL_ROLES", connection);
+                    OracleDataAdapter adapter = new OracleDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dataGridView_home_roles.DataSource = dataTable;
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
         }
     }
 

@@ -45,12 +45,18 @@
             edit_role_btn = new Button();
             viewDetail_role_btn = new Button();
             new_role_btn = new Button();
+            tabPage_standard_audit = new TabPage();
+            find_btn = new Button();
+            filer_textBox = new TextBox();
+            dataGridView_audit = new DataGridView();
             panel1.SuspendLayout();
             tabControl_Home.SuspendLayout();
             tabPage_users.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_home_users).BeginInit();
             tabPage_roles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_home_roles).BeginInit();
+            tabPage_standard_audit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_audit).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -79,11 +85,12 @@
             tabControl_Home.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabControl_Home.Controls.Add(tabPage_users);
             tabControl_Home.Controls.Add(tabPage_roles);
+            tabControl_Home.Controls.Add(tabPage_standard_audit);
             tabControl_Home.Location = new Point(42, 115);
             tabControl_Home.Name = "tabControl_Home";
             tabControl_Home.Padding = new Point(50, 10);
             tabControl_Home.SelectedIndex = 0;
-            tabControl_Home.Size = new Size(1328, 479);
+            tabControl_Home.Size = new Size(1328, 526);
             tabControl_Home.TabIndex = 1;
             // 
             // tabPage_users
@@ -97,7 +104,7 @@
             tabPage_users.Location = new Point(4, 43);
             tabPage_users.Name = "tabPage_users";
             tabPage_users.Padding = new Padding(3);
-            tabPage_users.Size = new Size(1320, 432);
+            tabPage_users.Size = new Size(1320, 479);
             tabPage_users.TabIndex = 0;
             tabPage_users.Text = "Users";
             tabPage_users.UseVisualStyleBackColor = true;
@@ -114,7 +121,7 @@
             dataGridView_home_users.ReadOnly = true;
             dataGridView_home_users.RowHeadersWidth = 51;
             dataGridView_home_users.RowTemplate.Height = 29;
-            dataGridView_home_users.Size = new Size(1075, 374);
+            dataGridView_home_users.Size = new Size(1075, 421);
             dataGridView_home_users.TabIndex = 11;
             // 
             // refresh_user_btn
@@ -213,7 +220,7 @@
             tabPage_roles.Location = new Point(4, 43);
             tabPage_roles.Name = "tabPage_roles";
             tabPage_roles.Padding = new Padding(3);
-            tabPage_roles.Size = new Size(1320, 432);
+            tabPage_roles.Size = new Size(1320, 479);
             tabPage_roles.TabIndex = 1;
             tabPage_roles.Text = "Roles";
             tabPage_roles.UseVisualStyleBackColor = true;
@@ -230,7 +237,7 @@
             dataGridView_home_roles.ReadOnly = true;
             dataGridView_home_roles.RowHeadersWidth = 51;
             dataGridView_home_roles.RowTemplate.Height = 29;
-            dataGridView_home_roles.Size = new Size(1075, 374);
+            dataGridView_home_roles.Size = new Size(1075, 421);
             dataGridView_home_roles.TabIndex = 12;
             // 
             // refresh_role_btn
@@ -318,6 +325,59 @@
             new_role_btn.UseVisualStyleBackColor = false;
             new_role_btn.Click += new_role_btn_Click;
             // 
+            // tabPage_standard_audit
+            // 
+            tabPage_standard_audit.Controls.Add(find_btn);
+            tabPage_standard_audit.Controls.Add(filer_textBox);
+            tabPage_standard_audit.Controls.Add(dataGridView_audit);
+            tabPage_standard_audit.Location = new Point(4, 43);
+            tabPage_standard_audit.Name = "tabPage_standard_audit";
+            tabPage_standard_audit.Size = new Size(1320, 479);
+            tabPage_standard_audit.TabIndex = 2;
+            tabPage_standard_audit.Text = "Standard Audit";
+            tabPage_standard_audit.UseVisualStyleBackColor = true;
+            // 
+            // find_btn
+            // 
+            find_btn.BackColor = SystemColors.ButtonHighlight;
+            find_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            find_btn.FlatAppearance.BorderSize = 3;
+            find_btn.FlatStyle = FlatStyle.Flat;
+            find_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            find_btn.ForeColor = SystemColors.HotTrack;
+            find_btn.Location = new Point(312, 14);
+            find_btn.Name = "find_btn";
+            find_btn.Size = new Size(92, 42);
+            find_btn.TabIndex = 15;
+            find_btn.Text = "Tìm";
+            find_btn.UseVisualStyleBackColor = false;
+            find_btn.Click += find_btn_Click;
+            // 
+            // filer_textBox
+            // 
+            filer_textBox.Location = new Point(22, 20);
+            filer_textBox.Name = "filer_textBox";
+            filer_textBox.Size = new Size(260, 27);
+            filer_textBox.TabIndex = 14;
+            filer_textBox.Text = "Nhập tên người dùng...";
+            filer_textBox.Enter += filer_textBox_Enter;
+            filer_textBox.Leave += filer_textBox_Leave;
+            // 
+            // dataGridView_audit
+            // 
+            dataGridView_audit.AllowUserToAddRows = false;
+            dataGridView_audit.AllowUserToDeleteRows = false;
+            dataGridView_audit.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_audit.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_audit.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_audit.Location = new Point(22, 68);
+            dataGridView_audit.Name = "dataGridView_audit";
+            dataGridView_audit.ReadOnly = true;
+            dataGridView_audit.RowHeadersWidth = 51;
+            dataGridView_audit.RowTemplate.Height = 29;
+            dataGridView_audit.Size = new Size(1265, 388);
+            dataGridView_audit.TabIndex = 13;
+            // 
             // Home_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -329,6 +389,7 @@
             Name = "Home_Form";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Dashboard";
+            FormClosing += Home_Form_FormClosing;
             Load += Home_Form_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -337,6 +398,9 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView_home_users).EndInit();
             tabPage_roles.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_home_roles).EndInit();
+            tabPage_standard_audit.ResumeLayout(false);
+            tabPage_standard_audit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_audit).EndInit();
             ResumeLayout(false);
         }
 
@@ -359,5 +423,9 @@
         private Button new_role_btn;
         private DataGridView dataGridView_home_users;
         private DataGridView dataGridView_home_roles;
+        private TabPage tabPage_standard_audit;
+        private DataGridView dataGridView_audit;
+        private TextBox filer_textBox;
+        private Button find_btn;
     }
 }

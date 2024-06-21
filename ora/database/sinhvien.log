@@ -1,0 +1,62 @@
+
+SQL*Loader: Release 21.0.0.0.0 - Production on Fri Jun 21 12:19:23 2024
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle and/or its affiliates.  All rights reserved.
+
+Control File:   sinhvien.ctl
+Character Set UTF8 specified for all input.
+First primary datafile data/sinhvien.csv has a
+ utf8 byte order mark in it.
+
+Data File:      data/sinhvien.csv
+  Bad File:     sinhvien.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 1
+Errors allowed: 50
+Bind array:     250 rows, maximum of 1048576 bytes
+Continuation:    none specified
+Path used:      Conventional
+
+Table SINHVIEN, loaded from every logical record.
+Insert option in effect for this table: APPEND
+TRAILING NULLCOLS option in effect
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+MASV                                FIRST     *   ,  O(") CHARACTER            
+HOTEN                                NEXT     *   ,  O(") CHARACTER            
+PHAI                                 NEXT     *   ,  O(") CHARACTER            
+NGSINH                               NEXT     *   ,  O(") DATE YYYY-MM-DD      
+DCHI                                 NEXT     *   ,  O(") CHARACTER            
+DT                                   NEXT     *   ,  O(") CHARACTER            
+MACT                                 NEXT     *   ,  O(") CHARACTER            
+MANGANH                              NEXT     *   ,  O(") CHARACTER            
+SOTCTL                               NEXT     *   ,  O(") CHARACTER            
+DTBTL                                NEXT     *   ,  O(") CHARACTER            
+
+
+Table SINHVIEN:
+  4000 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                 645000 bytes(250 rows)
+Read   buffer bytes: 1048576
+
+Total logical records skipped:          1
+Total logical records read:          4000
+Total logical records rejected:         0
+Total logical records discarded:        0
+
+Run began on Fri Jun 21 12:19:23 2024
+Run ended on Fri Jun 21 12:19:23 2024
+
+Elapsed time was:     00:00:00.22
+CPU time was:         00:00:00.03

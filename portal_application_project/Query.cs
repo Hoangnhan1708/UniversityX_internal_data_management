@@ -25,7 +25,8 @@ namespace portal_application_project
         //}
         public string getUserLoginString(string username, string password)
         {
-            return "Data Source=localhost:1521/XEPDB1;User Id=" + username + ";Password=" + password + ";";
+            //return "Data Source=localhost:1521/XEPDB1;User Id=" + username + ";Password=" + password + ";";
+            return "Data Source=0.tcp.ap.ngrok.io:16088/XE;User Id=" + username + ";Password=" + password + ";";
         }
 
 

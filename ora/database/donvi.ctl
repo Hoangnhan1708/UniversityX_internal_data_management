@@ -1,0 +1,17 @@
+-- donvi.ctl
+
+OPTIONS (SKIP=1)
+
+-- Load data into DONVI table
+LOAD DATA
+CHARACTERSET UTF8
+INFILE 'data/donvi.csv'
+APPEND INTO TABLE DONVI
+FIELDS TERMINATED BY ',' 
+OPTIONALLY ENCLOSED BY '"'
+TRAILING NULLCOLS
+(
+  MADV CHAR,
+  TENDV CHAR,
+  TRGDV FILLER CHAR -- This skips the TRGDV column during the load
+)
