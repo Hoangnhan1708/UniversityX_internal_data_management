@@ -30,7 +30,7 @@ namespace portal_application_project
         {
             // Get values from the controls
 
-            string masv = field_mahp.Text;
+            string masv = field_masv.Text;
             string magv = field_magv.Text;
             string mahp = field_mahp.Text;
             int hk = Convert.ToInt32(field_hk.Text);
@@ -43,7 +43,7 @@ namespace portal_application_project
 
 
             giaovu.insertDangKy(connectionString, query, masv, magv, mahp, hk, nam, mact, diemth, diemqt, diemck, diemtk);
-            this.Close();
+            
         }
 
         private void field_hk_KeyPress(object sender, KeyPressEventArgs e)

@@ -30,6 +30,7 @@ namespace portal_application_project
 
         private void NVCB_Form_Load(object sender, EventArgs e)
         {
+            label_tabPage.Text = tabPage_userInfo.Text;
             LoadThongTinUser();
             dataGridView_sinhvien.DataSource = nvcb.LoadFullTable(connectionString, query, "SINHVIEN");
             dataGridView_thongtindv.DataSource = nvcb.LoadFullTable(connectionString, query, "DONVI");
@@ -64,28 +65,33 @@ namespace portal_application_project
         private void user_info_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_userInfo;
+            label_tabPage.Text = tabPage_userInfo.Text;
         }
 
         private void student_info_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_thongtinsv;
+            label_tabPage.Text = tabPage_thongtinsv.Text;
         }
 
         private void donvi_info_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_thongtindonvi;
+            label_tabPage.Text = tabPage_thongtindonvi.Text;
 
         }
 
         private void course_info_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_thongtinhp;
+            label_tabPage.Text = tabPage_thongtinhp.Text;
 
         }
 
         private void kehoachmohp_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_kehoachmohp;
+            label_tabPage.Text = tabPage_kehoachmohp.Text;
 
         }
 
@@ -109,7 +115,8 @@ namespace portal_application_project
 
         private void mail_btn_Click(object sender, EventArgs e)
         {
-            Mail_Form mailForm = new Mail_Form(connectionString, nvcb.hoten);
+            string mailConnectionString = query.LoginMailString("NVien122", "pwd");
+            Mail_Form mailForm = new Mail_Form(mailConnectionString, nvcb.hoten);
             mailForm.ShowDialog();
         }
 

@@ -39,11 +39,11 @@ namespace portal_application_project
         private void SinhVien_Form_Load(object sender, EventArgs e)
         {
             LoadThongTinUser();
-
-            dataGridView_hpdadangky.DataSource = sinhvien.LoadFullTable(connectionString, query, "HOCPHAN");
+            label_tabPage.Text = tabPage_thongtinsv.Text;
+            dataGridView_danhsachhp.DataSource = sinhvien.LoadFullTable(connectionString, query, "HOCPHAN");
             //dataGridView_dkhp.DataSource = sinhvien.LoadFullTable(connectionString, query, "DANGKY");
             dataGridView_khmohp.DataSource = sinhvien.LoadFullTable(connectionString, query, "KHMO");
-
+            dataGridView_hpdadk.DataSource = sinhvien.LoadFullTable(connectionString, query, "DANGKY");
             LoadDKHPWithCheckboxColumn();
         }
 
@@ -64,7 +64,7 @@ namespace portal_application_project
 
         private void LoadDKHPWithCheckboxColumn()
         {
-            DataTable dataTable = sinhvien.LoadFullTable(connectionString, query, "DANGKY");
+            DataTable dataTable = sinhvien.LoadFullTable(connectionString, query, "V_DKHP_SINHVIEN");
             dataGridView_dkhp.DataSource = dataTable;
 
             DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn
@@ -80,21 +80,31 @@ namespace portal_application_project
         private void btn_thongtinsv_Click(object sender, EventArgs e)
         {
             tabControl_sinhvien.SelectedTab = tabPage_thongtinsv;
+            label_tabPage.Text = tabPage_thongtinsv.Text;
         }
 
         private void hpddk_btn_Click(object sender, EventArgs e)
         {
-            tabControl_sinhvien.SelectedTab = tabPage_hpdadangky;
+            tabControl_sinhvien.SelectedTab = tabPage_danhsachhp;
+            label_tabPage.Text = tabPage_danhsachhp.Text;
         }
 
         private void btn_kehoachmohp_Click(object sender, EventArgs e)
         {
             tabControl_sinhvien.SelectedTab = tabPage_kehoachmohp;
+            label_tabPage.Text = tabPage_kehoachmohp.Text;
         }
 
         private void btn_dkhp_Click(object sender, EventArgs e)
         {
             tabControl_sinhvien.SelectedTab = tabPage_dkhp;
+            label_tabPage.Text = tabPage_dkhp.Text;
+        }
+
+        private void hpdadk_btn_Click(object sender, EventArgs e)
+        {
+            tabControl_sinhvien.SelectedTab = tabPage_hpdadangky;
+            label_tabPage.Text = tabPage_hpdadangky.Text;
         }
 
         private void change_address_btn_Click(object sender, EventArgs e)
@@ -194,10 +204,7 @@ namespace portal_application_project
             //}
         }
 
-        private void refresh_nhansu_btn_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void delete_dkhp_btn_Click(object sender, EventArgs e)
         {
@@ -236,7 +243,8 @@ namespace portal_application_project
 
         private void mail_btn_Click(object sender, EventArgs e)
         {
-            Mail_Form mailForm = new Mail_Form(connectionString, sinhvien.hoten);
+            string mailConnectionString = query.LoginMailString("SVien321", "pwd");
+            Mail_Form mailForm = new Mail_Form(mailConnectionString, sinhvien.hoten);
             mailForm.ShowDialog();
         }
 
@@ -244,5 +252,18 @@ namespace portal_application_project
         {
             Application.Exit();
         }
+
+        private void refresh_dkhp_btn_Click(object sender, EventArgs e)
+        {
+            if (dataGridView_dkhp.Columns.Contains("Select"))
+            {
+                dataGridView_dkhp.Columns.Remove("Select");
+            }
+
+            // Reload the data
+            LoadDKHPWithCheckboxColumn();
+        }
+
+        
     }
 }

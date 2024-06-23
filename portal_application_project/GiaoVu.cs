@@ -469,11 +469,13 @@ namespace portal_application_project
                     {
                         using (OracleCommand command = new OracleCommand(updateQuery, connection))
                         {
+                            command.Parameters.Add(new OracleParameter("MAGV", magv));
+                            command.Parameters.Add(new OracleParameter("MAHP", mahp));
                             command.Parameters.Add(new OracleParameter("HK", hk));
                             command.Parameters.Add(new OracleParameter("NAM", nam));
                             command.Parameters.Add(new OracleParameter("MACT", mact));
-                            command.Parameters.Add(new OracleParameter("MAGV", magv));
-                            command.Parameters.Add(new OracleParameter("MAHP", mahp));
+                            
+                            
 
                             connection.Open();
                             int rowsAffected = command.ExecuteNonQuery();

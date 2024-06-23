@@ -79,6 +79,8 @@
             panel6 = new Panel();
             label2 = new Label();
             mail_btn = new Panel();
+            label_tabPage = new Label();
+            panel1 = new Panel();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
             tabControl_nvcb.SuspendLayout();
@@ -95,6 +97,7 @@
             panel7.SuspendLayout();
             panel8.SuspendLayout();
             panel6.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // logo
@@ -123,7 +126,7 @@
             text_hello.AutoSize = true;
             text_hello.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             text_hello.ForeColor = Color.White;
-            text_hello.Location = new Point(738, 31);
+            text_hello.Location = new Point(692, 31);
             text_hello.Name = "text_hello";
             text_hello.Size = new Size(130, 26);
             text_hello.TabIndex = 44;
@@ -135,7 +138,7 @@
             hello_name_label.AutoSize = true;
             hello_name_label.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             hello_name_label.ForeColor = Color.White;
-            hello_name_label.Location = new Point(861, 31);
+            hello_name_label.Location = new Point(828, 31);
             hello_name_label.Name = "hello_name_label";
             hello_name_label.Size = new Size(167, 26);
             hello_name_label.TabIndex = 45;
@@ -193,6 +196,7 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(panel1);
             panel2.Controls.Add(tabControl_nvcb);
             panel2.Controls.Add(panel3);
             panel2.Location = new Point(67, 112);
@@ -437,12 +441,12 @@
             dataGridView_sinhvien.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView_sinhvien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_sinhvien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_sinhvien.Location = new Point(6, 18);
+            dataGridView_sinhvien.Location = new Point(6, 29);
             dataGridView_sinhvien.Name = "dataGridView_sinhvien";
             dataGridView_sinhvien.ReadOnly = true;
             dataGridView_sinhvien.RowHeadersWidth = 51;
             dataGridView_sinhvien.RowTemplate.Height = 29;
-            dataGridView_sinhvien.Size = new Size(974, 520);
+            dataGridView_sinhvien.Size = new Size(974, 509);
             dataGridView_sinhvien.TabIndex = 12;
             // 
             // tabPage_thongtindonvi
@@ -462,12 +466,12 @@
             dataGridView_thongtindv.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView_thongtindv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_thongtindv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_thongtindv.Location = new Point(9, 3);
+            dataGridView_thongtindv.Location = new Point(9, 27);
             dataGridView_thongtindv.Name = "dataGridView_thongtindv";
             dataGridView_thongtindv.ReadOnly = true;
             dataGridView_thongtindv.RowHeadersWidth = 51;
             dataGridView_thongtindv.RowTemplate.Height = 29;
-            dataGridView_thongtindv.Size = new Size(974, 551);
+            dataGridView_thongtindv.Size = new Size(974, 527);
             dataGridView_thongtindv.TabIndex = 13;
             // 
             // tabPage_thongtinhp
@@ -487,12 +491,12 @@
             dataGridView_thongtinhp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView_thongtinhp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_thongtinhp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_thongtinhp.Location = new Point(6, 21);
+            dataGridView_thongtinhp.Location = new Point(6, 24);
             dataGridView_thongtinhp.Name = "dataGridView_thongtinhp";
             dataGridView_thongtinhp.ReadOnly = true;
             dataGridView_thongtinhp.RowHeadersWidth = 51;
             dataGridView_thongtinhp.RowTemplate.Height = 29;
-            dataGridView_thongtinhp.Size = new Size(974, 520);
+            dataGridView_thongtinhp.Size = new Size(974, 517);
             dataGridView_thongtinhp.TabIndex = 14;
             // 
             // tabPage_kehoachmohp
@@ -512,12 +516,12 @@
             dataGridView_khmohp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView_khmohp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_khmohp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_khmohp.Location = new Point(3, 20);
+            dataGridView_khmohp.Location = new Point(3, 29);
             dataGridView_khmohp.Name = "dataGridView_khmohp";
             dataGridView_khmohp.ReadOnly = true;
             dataGridView_khmohp.RowHeadersWidth = 51;
             dataGridView_khmohp.RowTemplate.Height = 29;
-            dataGridView_khmohp.Size = new Size(977, 521);
+            dataGridView_khmohp.Size = new Size(977, 512);
             dataGridView_khmohp.TabIndex = 15;
             // 
             // panel5
@@ -677,11 +681,30 @@
             mail_btn.BackColor = Color.FromArgb(1, 69, 142);
             mail_btn.BackgroundImage = (Image)resources.GetObject("mail_btn.BackgroundImage");
             mail_btn.Cursor = Cursors.Hand;
-            mail_btn.Location = new Point(692, 31);
+            mail_btn.Location = new Point(646, 31);
             mail_btn.Name = "mail_btn";
             mail_btn.Size = new Size(40, 37);
             mail_btn.TabIndex = 64;
             mail_btn.Click += mail_btn_Click;
+            // 
+            // label_tabPage
+            // 
+            label_tabPage.AutoSize = true;
+            label_tabPage.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label_tabPage.ForeColor = SystemColors.HotTrack;
+            label_tabPage.Location = new Point(335, 0);
+            label_tabPage.Name = "label_tabPage";
+            label_tabPage.Size = new Size(97, 41);
+            label_tabPage.TabIndex = 0;
+            label_tabPage.Text = "label1";
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(label_tabPage);
+            panel1.Location = new Point(281, 72);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(995, 52);
+            panel1.TabIndex = 4;
             // 
             // NVCB_Form
             // 
@@ -699,7 +722,7 @@
             Controls.Add(panel2);
             Name = "NVCB_Form";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "NVCB_Form";
+            Text = "Nhân viên cơ bản";
             FormClosing += NVCB_Form_FormClosing;
             Load += NVCB_Form_Load;
             panel3.ResumeLayout(false);
@@ -724,6 +747,8 @@
             panel8.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -780,5 +805,7 @@
         private Button change_phoneNumber_btn;
         private Label dollar_icon;
         private Panel mail_btn;
+        private Panel panel1;
+        private Label label_tabPage;
     }
 }

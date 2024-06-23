@@ -59,8 +59,8 @@ namespace portal_application_project
                         dt = row["DT"].ToString();
                         mact = row["MACT"].ToString();
                         manganh = row["MANGANH"].ToString();
-                        sotctl = int.Parse(row["SOTCTL"].ToString());
-                        diemtbtl = int.Parse(row["DTBTL"].ToString());
+                        sotctl = Convert.ToInt32(row["SOTCTL"].ToString());
+                        diemtbtl = Convert.ToSingle(row["DTBTL"].ToString());
                     }
 
                     connection.Close();
@@ -173,14 +173,14 @@ namespace portal_application_project
 
             foreach (DataGridViewRow row in rowsToHandle)
             {
-                string masv = row.Cells["MASV"].Value.ToString();
+                
                 string magv = row.Cells["MAGV"].Value.ToString();
                 string mahp = row.Cells["MAHP"].Value.ToString();
                 int hk = Convert.ToInt32(row.Cells["HK"].Value);
                 int nam = Convert.ToInt32(row.Cells["NAM"].Value);
                 string mact = row.Cells["MACT"].Value.ToString();
 
-                values.Add($"('{masv}', '{magv}', '{mahp}', {hk}, {nam}, '{mact}')");
+                values.Add($"('{this.masv}', '{magv}', '{mahp}', {hk}, {nam}, '{mact}')");
             }
 
             string insertQuery = query.sinhvienInsertDKHP() + string.Join(", ", values);

@@ -28,12 +28,13 @@ namespace portal_application_project
 
         private void GiaoVu_Form_Load(object sender, EventArgs e)
         {
+            label_tabPage.Text = tabPage_userInfo.Text;
             LoadThongTinUser();
             dataGridView_sinhvien.DataSource = giaovu.LoadFullTable(connectionString, query, "SINHVIEN");
             dataGridView_thongtindv.DataSource = giaovu.LoadFullTable(connectionString, query, "DONVI");
             dataGridView_thongtinhp.DataSource = giaovu.LoadFullTable(connectionString, query, "HOCPHAN");
             dataGridView_khmohp.DataSource = giaovu.LoadFullTable(connectionString, query, "KHMO");
-            dataGridView_phancong.DataSource = giaovu.LoadFullTable(connectionString, query, "PHANCONG");
+            dataGridView_phancong.DataSource = giaovu.LoadFullTable(connectionString, query, "V_TEST_PHANCONG");
             LoadDangKyWithCheckboxColumn();
         }
 
@@ -53,7 +54,7 @@ namespace portal_application_project
         // Load data and add the checkbox column
         private void LoadDangKyWithCheckboxColumn()
         {
-            DataTable dataTable = giaovu.LoadFullTable(connectionString, query, "DANGKY");
+            DataTable dataTable = giaovu.LoadFullTable(connectionString, query, "V_DANGKY_GIAOVU");
             dataGridView_dkhp.DataSource = dataTable;
 
             DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn
@@ -283,7 +284,7 @@ namespace portal_application_project
 
         private void refresh_phancong_btn_Click(object sender, EventArgs e)
         {
-            dataGridView_phancong.DataSource = giaovu.LoadFullTable(connectionString, query, "PHANCONG");
+            dataGridView_phancong.DataSource = giaovu.LoadFullTable(connectionString, query, "V_TEST_PHANCONG");
         }
 
         // Tab Page: DANGKY
@@ -342,54 +343,73 @@ namespace portal_application_project
         private void user_info_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_userInfo;
+            label_tabPage.Text = tabPage_userInfo.Text;
             modifiedRows.Clear();
         }
 
         private void handle_student_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_quanlysv;
+            label_tabPage.Text = tabPage_quanlysv.Text;
             modifiedRows.Clear();
         }
 
         private void handle_info_unit_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_quanlythongtindonvi;
+            label_tabPage.Text = tabPage_quanlythongtindonvi.Text;
             modifiedRows.Clear();
         }
 
         private void handle_course_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_quanlyhp;
+            label_tabPage.Text = tabPage_quanlyhp.Text;
             modifiedRows.Clear();
         }
 
         private void handle_open_course_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_quanlykehoachmohp;
+            label_tabPage.Text = tabPage_quanlykehoachmohp.Text;
             modifiedRows.Clear();
         }
 
         private void handle_register_course_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_quanlydkhp;
+            label_tabPage.Text = tabPage_quanlydkhp.Text;
             modifiedRows.Clear();
         }
 
         private void handle_assignment_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_quanlyphancong;
+            label_tabPage.Text = tabPage_quanlyphancong.Text;
             modifiedRows.Clear();
         }
 
         private void mail_btn_Click(object sender, EventArgs e)
         {
-            Mail_Form mailForm = new Mail_Form(connectionString, giaovu.hoten);
+            string mailConnectionString = query.LoginMailString("GVu011", "pwd");
+            Mail_Form mailForm = new Mail_Form(mailConnectionString, giaovu.hoten);
             mailForm.ShowDialog();
         }
 
         private void GiaoVu_Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void refresh_dangky_btn_Click(object sender, EventArgs e)
+        {
+            if (dataGridView_dkhp.Columns.Contains("Delete"))
+            {
+                dataGridView_dkhp.Columns.Remove("Delete");
+            }
+
+            // Reload the data
+            LoadDangKyWithCheckboxColumn();
         }
     }
 }

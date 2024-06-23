@@ -100,7 +100,7 @@ namespace portal_application_project
                 {
                     connection.Open();
 
-                    string updateQuery = "UPDATE QLTRUONGHOC.NHANSU SET DT = :newPhoneNumber WHERE MANV = :manv";
+                    string updateQuery = query.nhanvienUpdatePhoneNumber();
                     OracleCommand command = new OracleCommand(updateQuery, connection);
                     command.Parameters.Add(new OracleParameter("newPhoneNumber", newPhoneNumber));
                     command.Parameters.Add(new OracleParameter("manv", this.manv));

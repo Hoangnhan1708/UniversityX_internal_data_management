@@ -49,6 +49,10 @@
             find_btn = new Button();
             filer_textBox = new TextBox();
             dataGridView_audit = new DataGridView();
+            tabPage_fine_grained_audit = new TabPage();
+            find_fga_btn = new Button();
+            filer_fga_textBox = new TextBox();
+            dataGridView_fga = new DataGridView();
             panel1.SuspendLayout();
             tabControl_Home.SuspendLayout();
             tabPage_users.SuspendLayout();
@@ -57,6 +61,8 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView_home_roles).BeginInit();
             tabPage_standard_audit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_audit).BeginInit();
+            tabPage_fine_grained_audit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_fga).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -86,6 +92,7 @@
             tabControl_Home.Controls.Add(tabPage_users);
             tabControl_Home.Controls.Add(tabPage_roles);
             tabControl_Home.Controls.Add(tabPage_standard_audit);
+            tabControl_Home.Controls.Add(tabPage_fine_grained_audit);
             tabControl_Home.Location = new Point(42, 115);
             tabControl_Home.Name = "tabControl_Home";
             tabControl_Home.Padding = new Point(50, 10);
@@ -378,6 +385,59 @@
             dataGridView_audit.Size = new Size(1265, 388);
             dataGridView_audit.TabIndex = 13;
             // 
+            // tabPage_fine_grained_audit
+            // 
+            tabPage_fine_grained_audit.Controls.Add(find_fga_btn);
+            tabPage_fine_grained_audit.Controls.Add(filer_fga_textBox);
+            tabPage_fine_grained_audit.Controls.Add(dataGridView_fga);
+            tabPage_fine_grained_audit.Location = new Point(4, 43);
+            tabPage_fine_grained_audit.Name = "tabPage_fine_grained_audit";
+            tabPage_fine_grained_audit.Size = new Size(1320, 479);
+            tabPage_fine_grained_audit.TabIndex = 3;
+            tabPage_fine_grained_audit.Text = "Fine Grained Audit";
+            tabPage_fine_grained_audit.UseVisualStyleBackColor = true;
+            // 
+            // find_fga_btn
+            // 
+            find_fga_btn.BackColor = SystemColors.ButtonHighlight;
+            find_fga_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            find_fga_btn.FlatAppearance.BorderSize = 3;
+            find_fga_btn.FlatStyle = FlatStyle.Flat;
+            find_fga_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            find_fga_btn.ForeColor = SystemColors.HotTrack;
+            find_fga_btn.Location = new Point(318, 18);
+            find_fga_btn.Name = "find_fga_btn";
+            find_fga_btn.Size = new Size(92, 42);
+            find_fga_btn.TabIndex = 18;
+            find_fga_btn.Text = "Tìm";
+            find_fga_btn.UseVisualStyleBackColor = false;
+            find_fga_btn.Click += find_fga_btn_Click;
+            // 
+            // filer_fga_textBox
+            // 
+            filer_fga_textBox.Location = new Point(28, 24);
+            filer_fga_textBox.Name = "filer_fga_textBox";
+            filer_fga_textBox.Size = new Size(260, 27);
+            filer_fga_textBox.TabIndex = 17;
+            filer_fga_textBox.Text = "Nhập tên người dùng...";
+            filer_fga_textBox.Enter += filer_fga_textBox_Enter;
+            filer_fga_textBox.Leave += filer_fga_textBox_Leave;
+            // 
+            // dataGridView_fga
+            // 
+            dataGridView_fga.AllowUserToAddRows = false;
+            dataGridView_fga.AllowUserToDeleteRows = false;
+            dataGridView_fga.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_fga.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_fga.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_fga.Location = new Point(28, 72);
+            dataGridView_fga.Name = "dataGridView_fga";
+            dataGridView_fga.ReadOnly = true;
+            dataGridView_fga.RowHeadersWidth = 51;
+            dataGridView_fga.RowTemplate.Height = 29;
+            dataGridView_fga.Size = new Size(1265, 388);
+            dataGridView_fga.TabIndex = 16;
+            // 
             // Home_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -401,6 +461,9 @@
             tabPage_standard_audit.ResumeLayout(false);
             tabPage_standard_audit.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_audit).EndInit();
+            tabPage_fine_grained_audit.ResumeLayout(false);
+            tabPage_fine_grained_audit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_fga).EndInit();
             ResumeLayout(false);
         }
 
@@ -427,5 +490,9 @@
         private DataGridView dataGridView_audit;
         private TextBox filer_textBox;
         private Button find_btn;
+        private TabPage tabPage_fine_grained_audit;
+        private Button find_fga_btn;
+        private TextBox filer_fga_textBox;
+        private DataGridView dataGridView_fga;
     }
 }

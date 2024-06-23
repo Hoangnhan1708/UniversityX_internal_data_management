@@ -45,6 +45,7 @@ namespace portal_application_project
             LoadDataHomeUsers();
             LoadDataHomeRoles();
             LoadDataAuditTable();
+            LoadDataFGATable();
 
         }
 
@@ -100,11 +101,32 @@ namespace portal_application_project
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     connection.Open();
-                    OracleCommand command = new OracleCommand("SELECT * FROM V_ALL_ROLES", connection);
+                    OracleCommand command = new OracleCommand("SELECT USERNAME, OBJ_NAME, ACTION_NAME, SQL_TEXT, EXTENDED_TIMESTAMP FROM DBA_AUDIT_TRAIL", connection);
                     OracleDataAdapter adapter = new OracleDataAdapter(command);
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
-                    dataGridView_home_roles.DataSource = dataTable;
+                    dataGridView_audit.DataSource = dataTable;
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void LoadDataFGATable()
+        {
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+                    OracleCommand command = new OracleCommand("SELECT DB_USER, OBJECT_NAME, STATEMENT_TYPE, SQL_TEXT, EXTENDED_TIMESTAMP FROM DBA_FGA_AUDIT_TRAIL", connection);
+                    OracleDataAdapter adapter = new OracleDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dataGridView_fga.DataSource = dataTable;
                     connection.Close();
                 }
             }
@@ -477,17 +499,56 @@ namespace portal_application_project
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
                     connection.Open();
-                    OracleCommand command = new OracleCommand("SELECT * FROM V_ALL_ROLES", connection);
+                    OracleCommand command = new OracleCommand($"SELECT USERNAME, OBJ_NAME, ACTION_NAME, SQL_TEXT, EXTENDED_TIMESTAMP FROM DBA_AUDIT_TRAIL WHERE USERNAME = '{filer_textBox.Text.ToString()}'", connection);
                     OracleDataAdapter adapter = new OracleDataAdapter(command);
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
-                    dataGridView_home_roles.DataSource = dataTable;
+                    dataGridView_audit.DataSource = dataTable;
                     connection.Close();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void find_fga_btn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OracleConnection connection = new OracleConnection(connectionString))
+                {
+                    connection.Open();
+                    OracleCommand command = new OracleCommand($"SELECT DB_USER, OBJECT_NAME, STATEMENT_TYPE, SQL_TEXT, EXTENDED_TIMESTAMP FROM DBA_FGA_AUDIT_TRAIL WHERE DB_USER = '{filer_fga_textBox.Text.ToString()}'", connection);
+                    OracleDataAdapter adapter = new OracleDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dataGridView_fga.DataSource = dataTable;
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void filer_fga_textBox_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(filer_fga_textBox.Text))
+            {
+                filer_fga_textBox.Text = "Nhập tên người dùng...";
+                filer_fga_textBox.ForeColor = Color.Gray;
+            }
+        }
+
+        private void filer_fga_textBox_Enter(object sender, EventArgs e)
+        {
+            if (filer_fga_textBox.Text == "Nhập tên người dùng...")
+            {
+                filer_fga_textBox.Text = "";
+                filer_fga_textBox.ForeColor = Color.Black;
             }
         }
     }

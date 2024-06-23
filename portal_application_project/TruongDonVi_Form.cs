@@ -30,24 +30,24 @@ namespace portal_application_project
 
         private void TruongDonVi_Form_Load(object sender, EventArgs e)
         {
+            label_tabPage.Text = tabPage_userInfo.Text;
             LoadThongTinUser();
             dataGridView_sinhvien.DataSource = truongdonvi.LoadFullTable(connectionString, query, "SINHVIEN");
             dataGridView_thongtindv.DataSource = truongdonvi.LoadFullTable(connectionString, query, "DONVI");
             dataGridView_thongtinhp.DataSource = truongdonvi.LoadFullTable(connectionString, query, "HOCPHAN");
             dataGridView_khmohp.DataSource = truongdonvi.LoadFullTable(connectionString, query, "KHMO");
-            dataGridView_dkhp.DataSource = truongdonvi.LoadFullTable(connectionString, query, "DANGKY");
+
 
             //dataGridView_quanlyphancong.DataSource = truongdonvi.LoadFullTable(connectionString, query, "PHANCONG");
             LoadQuanLyPhanCongWithCheckboxColumn();
 
-            // Cần viết lại hàm cho load những phân công giảng dạy liên quan đến bản thân
-            dataGridView_xemphanconggiangday.DataSource = truongdonvi.LoadFullTable(connectionString, query, "PHANCONG");
+            dataGridView_xemphanconggiangday.DataSource = truongdonvi.LoadFullTable(connectionString, query, "V_INFO_PHANCONG");
 
-            // Cần viết lại hàm cho load lớp mà giảng viên dạy
-            dataGridView_capnhatdiem.DataSource = truongdonvi.LoadFullTable(connectionString, query, "DANGKY");
+            dataGridView_xemlopgiangday.DataSource = truongdonvi.LoadFullTable(connectionString, query, "V_INFO_LOPPHANCONG");
 
-            // Cần viết lại hàm cho load những phân công giảng dạy liên quan đến bản thân
-            dataGridView_xemphanconggv.DataSource = truongdonvi.LoadFullTable(connectionString, query, "PHANCONG");
+            dataGridView_capnhatdiem.DataSource = truongdonvi.LoadFullTable(connectionString, query, "V_INFO_LOPPHANCONG");
+
+            dataGridView_xemphanconggv.DataSource = truongdonvi.LoadFullTable(connectionString, query, "V_PHANCONG_TDV");
         }
 
         private void LoadThongTinUser()
@@ -63,9 +63,24 @@ namespace portal_application_project
             field_madv.Text = truongdonvi.madv;
         }
 
+
+
         private void LoadQuanLyPhanCongWithCheckboxColumn()
         {
-            DataTable dataTable = truongdonvi.LoadFullTable(connectionString, query, "PHANCONG");
+            DataTable dataTable = truongdonvi.LoadFullTable(connectionString, query, "V_PHANCONG_TDV");
+
+            // Thêm cột lưu giá trị ban đầu của MAGV vào DataTable
+            if (!dataTable.Columns.Contains("OLD_MAGV"))
+            {
+                dataTable.Columns.Add("OLD_MAGV", typeof(string));
+            }
+
+            // Lưu giá trị ban đầu của MAGV vào cột OLD_MAGV
+            foreach (DataRow row in dataTable.Rows)
+            {
+                row["OLD_MAGV"] = row["MAGV"];
+            }
+
             dataGridView_quanlyphancong.DataSource = dataTable;
 
             DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn
@@ -76,6 +91,11 @@ namespace portal_application_project
                 FalseValue = false
             };
             dataGridView_quanlyphancong.Columns.Insert(0, checkBoxColumn);
+            // Ẩn cột OLD_MAGV
+            if (dataGridView_quanlyphancong.Columns.Contains("OLD_MAGV"))
+            {
+                dataGridView_quanlyphancong.Columns["OLD_MAGV"].Visible = false;
+            }
         }
 
 
@@ -90,59 +110,74 @@ namespace portal_application_project
         private void user_info_btn_Click(object sender, EventArgs e)
         {
             tabControl_truongdonvi.SelectedTab = tabPage_userInfo;
+            label_tabPage.Text = tabPage_userInfo.Text;
             modifiedRows.Clear();
         }
 
         private void phancong_btn_Click(object sender, EventArgs e)
         {
             tabControl_truongdonvi.SelectedTab = tabPage_phancong;
+            label_tabPage.Text = tabPage_phancong.Text;
+            modifiedRows.Clear();
+        }
+
+        private void xemlopgiangday_btn_Click(object sender, EventArgs e)
+        {
+            tabControl_truongdonvi.SelectedTab = tabPage_xemlopgiangday;
+            label_tabPage.Text = tabPage_xemlopgiangday.Text;
+            modifiedRows.Clear();
         }
 
         private void thongtinsv_btn_Click(object sender, EventArgs e)
         {
             tabControl_truongdonvi.SelectedTab = tabPage_thongtinsv;
+            label_tabPage.Text = tabPage_thongtinsv.Text;
             modifiedRows.Clear();
         }
 
         private void capnhatsv_btn_Click(object sender, EventArgs e)
         {
             tabControl_truongdonvi.SelectedTab = tabPage_capnhatsv;
+            label_tabPage.Text = tabPage_capnhatsv.Text;
             modifiedRows.Clear();
         }
 
         private void thongtindv_btn_Click(object sender, EventArgs e)
         {
             tabControl_truongdonvi.SelectedTab = tabPage_thongtindonvi;
+            label_tabPage.Text = tabPage_thongtindonvi.Text;
             modifiedRows.Clear();
         }
 
         private void thongtinhp_btn_Click(object sender, EventArgs e)
         {
             tabControl_truongdonvi.SelectedTab = tabPage_thongtinhp;
+            label_tabPage.Text = tabPage_thongtinhp.Text;
             modifiedRows.Clear();
         }
 
         private void khmohp_btn_Click(object sender, EventArgs e)
         {
             tabControl_truongdonvi.SelectedTab = tabPage_kehoachmohp;
+            label_tabPage.Text = tabPage_kehoachmohp.Text;
             modifiedRows.Clear();
         }
 
-        private void thongtin_dkhp_btn_Click(object sender, EventArgs e)
-        {
-            tabControl_truongdonvi.SelectedTab = tabPage_thongtindkhp;
-            modifiedRows.Clear();
-        }
+
 
         private void quanlyphancong_btn_Click(object sender, EventArgs e)
         {
             tabControl_truongdonvi.SelectedTab = tabPage_quanlyphancong;
+            label_tabPage.Text = tabPage_quanlyphancong.Text;
             modifiedRows.Clear();
         }
+
+
 
         private void xemphanconggv_btn_Click(object sender, EventArgs e)
         {
             tabControl_truongdonvi.SelectedTab = tabPage_xemphanconggv;
+            label_tabPage.Text = tabPage_xemphanconggv.Text;
             modifiedRows.Clear();
         }
 
@@ -191,7 +226,7 @@ namespace portal_application_project
 
         private void refresh_capnhatdiem_btn_Click(object sender, EventArgs e)
         {
-            dataGridView_capnhatdiem.DataSource = truongdonvi.LoadFullTable(connectionString, query, "DANGKY");
+            dataGridView_capnhatdiem.DataSource = truongdonvi.LoadFullTable(connectionString, query, "V_INFO_LOPPHANCONG");
         }
 
         private void dataGridView_quanlyphancong_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -224,7 +259,12 @@ namespace portal_application_project
         private void refresh_quanlyphancong_btn_Click(object sender, EventArgs e)
         {
             // Cần viết lại hàm cho load những phân công giảng dạy liên quan đến bản thân
-            dataGridView_quanlyphancong.DataSource = truongdonvi.LoadFullTable(connectionString, query, "PHANCONG");
+            // Remove the checkbox column if it exists
+            if (dataGridView_quanlyphancong.Columns.Contains("Delete"))
+            {
+                dataGridView_quanlyphancong.Columns.Remove("Delete");
+            }
+            LoadQuanLyPhanCongWithCheckboxColumn();
         }
 
         private void add_quanlyphancong_btn_Click(object sender, EventArgs e)
@@ -268,7 +308,8 @@ namespace portal_application_project
 
         private void mail_btn_Click(object sender, EventArgs e)
         {
-            Mail_Form mailForm = new Mail_Form(connectionString, truongdonvi.hoten);
+            string mailConnectionString = query.LoginMailString("TDonVi082", "pwd");
+            Mail_Form mailForm = new Mail_Form(mailConnectionString, truongdonvi.hoten);
             mailForm.ShowDialog();
         }
 
@@ -276,5 +317,7 @@ namespace portal_application_project
         {
             Application.Exit();
         }
+
+
     }
 }

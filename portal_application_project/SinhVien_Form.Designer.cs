@@ -37,6 +37,8 @@
             panel2 = new Panel();
             tabControl_sinhvien = new TabControl();
             tabPage_thongtinsv = new TabPage();
+            panel1 = new Panel();
+            label_tabPage = new Label();
             change_address_btn = new Button();
             change_phoneNumber_btn = new Button();
             field_phoneNumber = new TextBox();
@@ -59,16 +61,19 @@
             label8 = new Label();
             label7 = new Label();
             label3 = new Label();
-            tabPage_hpdadangky = new TabPage();
-            dataGridView_hpdadangky = new DataGridView();
+            tabPage_danhsachhp = new TabPage();
+            dataGridView_danhsachhp = new DataGridView();
             tabPage_kehoachmohp = new TabPage();
             dataGridView_khmohp = new DataGridView();
             tabPage_dkhp = new TabPage();
             delete_dkhp_btn = new Button();
-            refresh_nhansu_btn = new Button();
+            refresh_dkhp_btn = new Button();
             add_dkhp_btn = new Button();
             dataGridView_dkhp = new DataGridView();
+            tabPage_hpdadangky = new TabPage();
+            dataGridView_hpdadk = new DataGridView();
             panel5 = new Panel();
+            hpdadk_btn = new Label();
             panel6 = new Panel();
             label2 = new Label();
             btn_kehoachmohp = new Label();
@@ -82,12 +87,15 @@
             panel2.SuspendLayout();
             tabControl_sinhvien.SuspendLayout();
             tabPage_thongtinsv.SuspendLayout();
-            tabPage_hpdadangky.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView_hpdadangky).BeginInit();
+            panel1.SuspendLayout();
+            tabPage_danhsachhp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_danhsachhp).BeginInit();
             tabPage_kehoachmohp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_khmohp).BeginInit();
             tabPage_dkhp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_dkhp).BeginInit();
+            tabPage_hpdadangky.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView_hpdadk).BeginInit();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
             panel3.SuspendLayout();
@@ -117,7 +125,7 @@
             hello_name_label.AutoSize = true;
             hello_name_label.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             hello_name_label.ForeColor = Color.White;
-            hello_name_label.Location = new Point(919, 52);
+            hello_name_label.Location = new Point(868, 51);
             hello_name_label.Name = "hello_name_label";
             hello_name_label.Size = new Size(167, 26);
             hello_name_label.TabIndex = 65;
@@ -129,7 +137,7 @@
             text_hello.AutoSize = true;
             text_hello.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             text_hello.ForeColor = Color.White;
-            text_hello.Location = new Point(796, 52);
+            text_hello.Location = new Point(745, 51);
             text_hello.Name = "text_hello";
             text_hello.Size = new Size(130, 26);
             text_hello.TabIndex = 64;
@@ -171,9 +179,10 @@
             // 
             tabControl_sinhvien.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabControl_sinhvien.Controls.Add(tabPage_thongtinsv);
-            tabControl_sinhvien.Controls.Add(tabPage_hpdadangky);
+            tabControl_sinhvien.Controls.Add(tabPage_danhsachhp);
             tabControl_sinhvien.Controls.Add(tabPage_kehoachmohp);
             tabControl_sinhvien.Controls.Add(tabPage_dkhp);
+            tabControl_sinhvien.Controls.Add(tabPage_hpdadangky);
             tabControl_sinhvien.Location = new Point(279, 76);
             tabControl_sinhvien.Name = "tabControl_sinhvien";
             tabControl_sinhvien.Padding = new Point(0, 0);
@@ -184,6 +193,7 @@
             // 
             // tabPage_thongtinsv
             // 
+            tabPage_thongtinsv.Controls.Add(panel1);
             tabPage_thongtinsv.Controls.Add(change_address_btn);
             tabPage_thongtinsv.Controls.Add(change_phoneNumber_btn);
             tabPage_thongtinsv.Controls.Add(field_phoneNumber);
@@ -212,6 +222,25 @@
             tabPage_thongtinsv.TabIndex = 4;
             tabPage_thongtinsv.Text = "Thông tin sinh viên";
             tabPage_thongtinsv.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(label_tabPage);
+            panel1.Location = new Point(3, 6);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(995, 52);
+            panel1.TabIndex = 70;
+            // 
+            // label_tabPage
+            // 
+            label_tabPage.AutoSize = true;
+            label_tabPage.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label_tabPage.ForeColor = SystemColors.HotTrack;
+            label_tabPage.Location = new Point(335, 0);
+            label_tabPage.Name = "label_tabPage";
+            label_tabPage.Size = new Size(97, 41);
+            label_tabPage.TabIndex = 0;
+            label_tabPage.Text = "label1";
             // 
             // change_address_btn
             // 
@@ -427,31 +456,31 @@
             label3.TabIndex = 0;
             label3.Text = "Mã số sinh viên:";
             // 
-            // tabPage_hpdadangky
+            // tabPage_danhsachhp
             // 
-            tabPage_hpdadangky.Controls.Add(dataGridView_hpdadangky);
-            tabPage_hpdadangky.Location = new Point(4, 29);
-            tabPage_hpdadangky.Name = "tabPage_hpdadangky";
-            tabPage_hpdadangky.Padding = new Padding(3);
-            tabPage_hpdadangky.Size = new Size(986, 592);
-            tabPage_hpdadangky.TabIndex = 1;
-            tabPage_hpdadangky.Text = "Học phần đã đăng ký";
-            tabPage_hpdadangky.UseVisualStyleBackColor = true;
+            tabPage_danhsachhp.Controls.Add(dataGridView_danhsachhp);
+            tabPage_danhsachhp.Location = new Point(4, 29);
+            tabPage_danhsachhp.Name = "tabPage_danhsachhp";
+            tabPage_danhsachhp.Padding = new Padding(3);
+            tabPage_danhsachhp.Size = new Size(986, 592);
+            tabPage_danhsachhp.TabIndex = 1;
+            tabPage_danhsachhp.Text = "Danh sách học phần";
+            tabPage_danhsachhp.UseVisualStyleBackColor = true;
             // 
-            // dataGridView_hpdadangky
+            // dataGridView_danhsachhp
             // 
-            dataGridView_hpdadangky.AllowUserToAddRows = false;
-            dataGridView_hpdadangky.AllowUserToDeleteRows = false;
-            dataGridView_hpdadangky.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView_hpdadangky.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView_hpdadangky.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_hpdadangky.Location = new Point(6, 21);
-            dataGridView_hpdadangky.Name = "dataGridView_hpdadangky";
-            dataGridView_hpdadangky.ReadOnly = true;
-            dataGridView_hpdadangky.RowHeadersWidth = 51;
-            dataGridView_hpdadangky.RowTemplate.Height = 29;
-            dataGridView_hpdadangky.Size = new Size(974, 551);
-            dataGridView_hpdadangky.TabIndex = 15;
+            dataGridView_danhsachhp.AllowUserToAddRows = false;
+            dataGridView_danhsachhp.AllowUserToDeleteRows = false;
+            dataGridView_danhsachhp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_danhsachhp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_danhsachhp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_danhsachhp.Location = new Point(6, 35);
+            dataGridView_danhsachhp.Name = "dataGridView_danhsachhp";
+            dataGridView_danhsachhp.ReadOnly = true;
+            dataGridView_danhsachhp.RowHeadersWidth = 51;
+            dataGridView_danhsachhp.RowTemplate.Height = 29;
+            dataGridView_danhsachhp.Size = new Size(974, 537);
+            dataGridView_danhsachhp.TabIndex = 15;
             // 
             // tabPage_kehoachmohp
             // 
@@ -470,18 +499,18 @@
             dataGridView_khmohp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView_khmohp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_khmohp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_khmohp.Location = new Point(6, 21);
+            dataGridView_khmohp.Location = new Point(6, 33);
             dataGridView_khmohp.Name = "dataGridView_khmohp";
             dataGridView_khmohp.ReadOnly = true;
             dataGridView_khmohp.RowHeadersWidth = 51;
             dataGridView_khmohp.RowTemplate.Height = 29;
-            dataGridView_khmohp.Size = new Size(974, 551);
+            dataGridView_khmohp.Size = new Size(974, 539);
             dataGridView_khmohp.TabIndex = 16;
             // 
             // tabPage_dkhp
             // 
             tabPage_dkhp.Controls.Add(delete_dkhp_btn);
-            tabPage_dkhp.Controls.Add(refresh_nhansu_btn);
+            tabPage_dkhp.Controls.Add(refresh_dkhp_btn);
             tabPage_dkhp.Controls.Add(add_dkhp_btn);
             tabPage_dkhp.Controls.Add(dataGridView_dkhp);
             tabPage_dkhp.Location = new Point(4, 29);
@@ -508,22 +537,22 @@
             delete_dkhp_btn.UseVisualStyleBackColor = false;
             delete_dkhp_btn.Click += delete_dkhp_btn_Click;
             // 
-            // refresh_nhansu_btn
+            // refresh_dkhp_btn
             // 
-            refresh_nhansu_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            refresh_nhansu_btn.BackColor = SystemColors.ButtonHighlight;
-            refresh_nhansu_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
-            refresh_nhansu_btn.FlatAppearance.BorderSize = 3;
-            refresh_nhansu_btn.FlatStyle = FlatStyle.Flat;
-            refresh_nhansu_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            refresh_nhansu_btn.ForeColor = SystemColors.HotTrack;
-            refresh_nhansu_btn.Location = new Point(797, 536);
-            refresh_nhansu_btn.Name = "refresh_nhansu_btn";
-            refresh_nhansu_btn.Size = new Size(180, 53);
-            refresh_nhansu_btn.TabIndex = 35;
-            refresh_nhansu_btn.Text = "Refresh";
-            refresh_nhansu_btn.UseVisualStyleBackColor = false;
-            refresh_nhansu_btn.Click += refresh_nhansu_btn_Click;
+            refresh_dkhp_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            refresh_dkhp_btn.BackColor = SystemColors.ButtonHighlight;
+            refresh_dkhp_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            refresh_dkhp_btn.FlatAppearance.BorderSize = 3;
+            refresh_dkhp_btn.FlatStyle = FlatStyle.Flat;
+            refresh_dkhp_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            refresh_dkhp_btn.ForeColor = SystemColors.HotTrack;
+            refresh_dkhp_btn.Location = new Point(797, 536);
+            refresh_dkhp_btn.Name = "refresh_dkhp_btn";
+            refresh_dkhp_btn.Size = new Size(180, 53);
+            refresh_dkhp_btn.TabIndex = 35;
+            refresh_dkhp_btn.Text = "Refresh";
+            refresh_dkhp_btn.UseVisualStyleBackColor = false;
+            refresh_dkhp_btn.Click += refresh_dkhp_btn_Click;
             // 
             // add_dkhp_btn
             // 
@@ -549,17 +578,43 @@
             dataGridView_dkhp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView_dkhp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_dkhp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_dkhp.Location = new Point(9, 13);
+            dataGridView_dkhp.Location = new Point(9, 35);
             dataGridView_dkhp.Name = "dataGridView_dkhp";
             dataGridView_dkhp.RowHeadersWidth = 51;
             dataGridView_dkhp.RowTemplate.Height = 29;
-            dataGridView_dkhp.Size = new Size(974, 517);
+            dataGridView_dkhp.Size = new Size(974, 495);
             dataGridView_dkhp.TabIndex = 15;
+            // 
+            // tabPage_hpdadangky
+            // 
+            tabPage_hpdadangky.Controls.Add(dataGridView_hpdadk);
+            tabPage_hpdadangky.Location = new Point(4, 29);
+            tabPage_hpdadangky.Name = "tabPage_hpdadangky";
+            tabPage_hpdadangky.Size = new Size(986, 592);
+            tabPage_hpdadangky.TabIndex = 5;
+            tabPage_hpdadangky.Text = "Học phần đã đăng ký";
+            tabPage_hpdadangky.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView_hpdadk
+            // 
+            dataGridView_hpdadk.AllowUserToAddRows = false;
+            dataGridView_hpdadk.AllowUserToDeleteRows = false;
+            dataGridView_hpdadk.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView_hpdadk.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView_hpdadk.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView_hpdadk.Location = new Point(6, 42);
+            dataGridView_hpdadk.Name = "dataGridView_hpdadk";
+            dataGridView_hpdadk.ReadOnly = true;
+            dataGridView_hpdadk.RowHeadersWidth = 51;
+            dataGridView_hpdadk.RowTemplate.Height = 29;
+            dataGridView_hpdadk.Size = new Size(974, 524);
+            dataGridView_hpdadk.TabIndex = 17;
             // 
             // panel5
             // 
             panel5.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panel5.BackColor = Color.FromArgb(217, 217, 217);
+            panel5.Controls.Add(hpdadk_btn);
             panel5.Controls.Add(panel6);
             panel5.Controls.Add(btn_kehoachmohp);
             panel5.Controls.Add(btn_thongtinsv);
@@ -569,6 +624,20 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(273, 631);
             panel5.TabIndex = 27;
+            // 
+            // hpdadk_btn
+            // 
+            hpdadk_btn.Anchor = AnchorStyles.Left;
+            hpdadk_btn.AutoSize = true;
+            hpdadk_btn.Cursor = Cursors.Hand;
+            hpdadk_btn.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            hpdadk_btn.ForeColor = Color.FromArgb(0, 35, 73);
+            hpdadk_btn.Location = new Point(29, 346);
+            hpdadk_btn.Name = "hpdadk_btn";
+            hpdadk_btn.Size = new Size(210, 26);
+            hpdadk_btn.TabIndex = 27;
+            hpdadk_btn.Text = "Học phần đã đăng ký";
+            hpdadk_btn.Click += hpdadk_btn_Click;
             // 
             // panel6
             // 
@@ -640,11 +709,11 @@
             hpddk_btn.Cursor = Cursors.Hand;
             hpddk_btn.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             hpddk_btn.ForeColor = Color.FromArgb(0, 35, 73);
-            hpddk_btn.Location = new Point(29, 181);
+            hpddk_btn.Location = new Point(29, 183);
             hpddk_btn.Name = "hpddk_btn";
-            hpddk_btn.Size = new Size(210, 26);
+            hpddk_btn.Size = new Size(201, 26);
             hpddk_btn.TabIndex = 13;
-            hpddk_btn.Text = "Học phần đã đăng ký";
+            hpddk_btn.Text = "Danh sách học phần";
             hpddk_btn.Click += hpddk_btn_Click;
             // 
             // panel3
@@ -683,7 +752,7 @@
             mail_btn.BackColor = Color.FromArgb(1, 69, 142);
             mail_btn.BackgroundImage = (Image)resources.GetObject("mail_btn.BackgroundImage");
             mail_btn.Cursor = Cursors.Hand;
-            mail_btn.Location = new Point(750, 43);
+            mail_btn.Location = new Point(699, 42);
             mail_btn.Name = "mail_btn";
             mail_btn.Size = new Size(40, 37);
             mail_btn.TabIndex = 69;
@@ -704,19 +773,23 @@
             Controls.Add(logo);
             Name = "SinhVien_Form";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "SinhVien_Form";
+            Text = "Sinh viên";
             FormClosing += SinhVien_Form_FormClosing;
             Load += SinhVien_Form_Load;
             panel2.ResumeLayout(false);
             tabControl_sinhvien.ResumeLayout(false);
             tabPage_thongtinsv.ResumeLayout(false);
             tabPage_thongtinsv.PerformLayout();
-            tabPage_hpdadangky.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView_hpdadangky).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            tabPage_danhsachhp.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView_danhsachhp).EndInit();
             tabPage_kehoachmohp.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_khmohp).EndInit();
             tabPage_dkhp.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_dkhp).EndInit();
+            tabPage_hpdadangky.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView_hpdadk).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel6.ResumeLayout(false);
@@ -746,7 +819,7 @@
         private Panel panel5;
         private TabControl tabControl_sinhvien;
         private TabPage thongtinsinhvien;
-        private TabPage tabPage_hpdadangky;
+        private TabPage tabPage_danhsachhp;
         private TabPage tabPage_kehoachmohp;
         private TabPage tabPage_dkhp;
         private TabPage tabPage_thongtinsv;
@@ -774,10 +847,15 @@
         private Button change_phoneNumber_btn;
         private DataGridView dataGridView_khmohp;
         private DataGridView dataGridView_dkhp;
-        private DataGridView dataGridView_hpdadangky;
+        private DataGridView dataGridView_danhsachhp;
         private Button delete_dkhp_btn;
-        private Button refresh_nhansu_btn;
+        private Button refresh_dkhp_btn;
         private Button add_dkhp_btn;
         private Panel mail_btn;
+        private Panel panel1;
+        private Label label_tabPage;
+        private TabPage tabPage_hpdadangky;
+        private DataGridView dataGridView_hpdadk;
+        private Label hpdadk_btn;
     }
 }

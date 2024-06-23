@@ -82,6 +82,8 @@
             xemlopgiangday_btn = new Label();
             user_info_btn = new Label();
             panel3 = new Panel();
+            panel1 = new Panel();
+            label_tabPage = new Label();
             dashboard_label = new Label();
             panel4 = new Panel();
             panel6 = new Panel();
@@ -109,6 +111,7 @@
             panel5.SuspendLayout();
             panel7.SuspendLayout();
             panel3.SuspendLayout();
+            panel1.SuspendLayout();
             panel6.SuspendLayout();
             panel8.SuspendLayout();
             SuspendLayout();
@@ -179,6 +182,7 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(panel1);
             panel2.Controls.Add(tabControl_nvcb);
             panel2.Controls.Add(panel5);
             panel2.Controls.Add(panel3);
@@ -426,12 +430,12 @@
             dataGridView_phanconggiangday.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView_phanconggiangday.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_phanconggiangday.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_phanconggiangday.Location = new Point(6, 11);
+            dataGridView_phanconggiangday.Location = new Point(6, 33);
             dataGridView_phanconggiangday.Name = "dataGridView_phanconggiangday";
             dataGridView_phanconggiangday.ReadOnly = true;
             dataGridView_phanconggiangday.RowHeadersWidth = 51;
             dataGridView_phanconggiangday.RowTemplate.Height = 29;
-            dataGridView_phanconggiangday.Size = new Size(977, 573);
+            dataGridView_phanconggiangday.Size = new Size(977, 551);
             dataGridView_phanconggiangday.TabIndex = 13;
             // 
             // tabPage_lopgiangday
@@ -451,12 +455,12 @@
             dataGridView_xemlopgiangday.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView_xemlopgiangday.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_xemlopgiangday.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_xemlopgiangday.Location = new Point(6, 11);
+            dataGridView_xemlopgiangday.Location = new Point(6, 38);
             dataGridView_xemlopgiangday.Name = "dataGridView_xemlopgiangday";
             dataGridView_xemlopgiangday.ReadOnly = true;
             dataGridView_xemlopgiangday.RowHeadersWidth = 51;
             dataGridView_xemlopgiangday.RowTemplate.Height = 29;
-            dataGridView_xemlopgiangday.Size = new Size(977, 573);
+            dataGridView_xemlopgiangday.Size = new Size(977, 546);
             dataGridView_xemlopgiangday.TabIndex = 14;
             // 
             // tabPage_thongtinsv
@@ -477,12 +481,12 @@
             dataGridView_sinhvien.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView_sinhvien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_sinhvien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_sinhvien.Location = new Point(9, 1);
+            dataGridView_sinhvien.Location = new Point(9, 33);
             dataGridView_sinhvien.Name = "dataGridView_sinhvien";
             dataGridView_sinhvien.ReadOnly = true;
             dataGridView_sinhvien.RowHeadersWidth = 51;
             dataGridView_sinhvien.RowTemplate.Height = 29;
-            dataGridView_sinhvien.Size = new Size(977, 573);
+            dataGridView_sinhvien.Size = new Size(977, 541);
             dataGridView_sinhvien.TabIndex = 12;
             // 
             // tabPage_capnhatdiem
@@ -520,11 +524,11 @@
             dataGridView_capnhatdiem.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView_capnhatdiem.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_capnhatdiem.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_capnhatdiem.Location = new Point(6, 11);
+            dataGridView_capnhatdiem.Location = new Point(6, 34);
             dataGridView_capnhatdiem.Name = "dataGridView_capnhatdiem";
             dataGridView_capnhatdiem.RowHeadersWidth = 51;
             dataGridView_capnhatdiem.RowTemplate.Height = 29;
-            dataGridView_capnhatdiem.Size = new Size(977, 529);
+            dataGridView_capnhatdiem.Size = new Size(977, 506);
             dataGridView_capnhatdiem.TabIndex = 14;
             dataGridView_capnhatdiem.CellValueChanged += dataGridView_capnhatdiem_CellValueChanged;
             // 
@@ -545,12 +549,12 @@
             dataGridView_thongtindv.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView_thongtindv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_thongtindv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_thongtindv.Location = new Point(9, 3);
+            dataGridView_thongtindv.Location = new Point(9, 33);
             dataGridView_thongtindv.Name = "dataGridView_thongtindv";
             dataGridView_thongtindv.ReadOnly = true;
             dataGridView_thongtindv.RowHeadersWidth = 51;
             dataGridView_thongtindv.RowTemplate.Height = 29;
-            dataGridView_thongtindv.Size = new Size(977, 573);
+            dataGridView_thongtindv.Size = new Size(977, 543);
             dataGridView_thongtindv.TabIndex = 13;
             // 
             // tabPage_thongtinhp
@@ -570,12 +574,12 @@
             dataGridView_thongtinhp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView_thongtinhp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_thongtinhp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_thongtinhp.Location = new Point(6, 21);
+            dataGridView_thongtinhp.Location = new Point(6, 27);
             dataGridView_thongtinhp.Name = "dataGridView_thongtinhp";
             dataGridView_thongtinhp.ReadOnly = true;
             dataGridView_thongtinhp.RowHeadersWidth = 51;
             dataGridView_thongtinhp.RowTemplate.Height = 29;
-            dataGridView_thongtinhp.Size = new Size(977, 573);
+            dataGridView_thongtinhp.Size = new Size(977, 567);
             dataGridView_thongtinhp.TabIndex = 14;
             // 
             // tabPage_kehoachmohp
@@ -595,12 +599,12 @@
             dataGridView_khmohp.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView_khmohp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView_khmohp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_khmohp.Location = new Point(6, 21);
+            dataGridView_khmohp.Location = new Point(6, 33);
             dataGridView_khmohp.Name = "dataGridView_khmohp";
             dataGridView_khmohp.ReadOnly = true;
             dataGridView_khmohp.RowHeadersWidth = 51;
             dataGridView_khmohp.RowTemplate.Height = 29;
-            dataGridView_khmohp.Size = new Size(974, 551);
+            dataGridView_khmohp.Size = new Size(974, 539);
             dataGridView_khmohp.TabIndex = 15;
             // 
             // panel5
@@ -763,6 +767,25 @@
             panel3.Size = new Size(1276, 70);
             panel3.TabIndex = 2;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(label_tabPage);
+            panel1.Location = new Point(278, 76);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(995, 52);
+            panel1.TabIndex = 76;
+            // 
+            // label_tabPage
+            // 
+            label_tabPage.AutoSize = true;
+            label_tabPage.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label_tabPage.ForeColor = SystemColors.HotTrack;
+            label_tabPage.Location = new Point(335, 0);
+            label_tabPage.Name = "label_tabPage";
+            label_tabPage.Size = new Size(97, 41);
+            label_tabPage.TabIndex = 0;
+            label_tabPage.Text = "label1";
+            // 
             // dashboard_label
             // 
             dashboard_label.AutoSize = true;
@@ -854,7 +877,7 @@
             Controls.Add(logo);
             Name = "GiangVien_Form";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "GiangVien_Form";
+            Text = "GIảng viên";
             FormClosing += GiangVien_Form_FormClosing;
             Load += GiangVien_Form_Load;
             panel2.ResumeLayout(false);
@@ -881,6 +904,8 @@
             panel7.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             panel8.ResumeLayout(false);
@@ -950,5 +975,7 @@
         private DataGridView dataGridView_capnhatdiem;
         private Button update_score_btn;
         private Panel mail_btn;
+        private Panel panel1;
+        private Label label_tabPage;
     }
 }

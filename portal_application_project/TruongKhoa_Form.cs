@@ -28,18 +28,20 @@ namespace portal_application_project
 
         private void TruongKhoa_Form_Load(object sender, EventArgs e)
         {
+            label_tabPage.Text = tabPage_userInfo.Text;
             LoadThongTinUser();
-            dataGridView_xemphanconggiangday.DataSource = truongkhoa.LoadFullTable(connectionString, query, "PHANCONG");
+            dataGridView_xemphanconggiangday.DataSource = truongkhoa.LoadFullTable(connectionString, query, "V_INFO_PHANCONG");
 
             dataGridView_sinhvien.DataSource = truongkhoa.LoadFullTable(connectionString, query, "SINHVIEN");
             dataGridView_thongtindv.DataSource = truongkhoa.LoadFullTable(connectionString, query, "DONVI");
+            dataGridView_thongtindkhp.DataSource = truongkhoa.LoadFullTable(connectionString, query, "DANGKY");
             dataGridView_thongtinhp.DataSource = truongkhoa.LoadFullTable(connectionString, query, "HOCPHAN");
             dataGridView_khmohp.DataSource = truongkhoa.LoadFullTable(connectionString, query, "KHMO");
-            dataGridView_dkhp.DataSource = truongkhoa.LoadFullTable(connectionString, query, "DANGKY");
+            dataGridView_xemlopgiangday.DataSource = truongkhoa.LoadFullTable(connectionString, query, "V_INFO_LOPPHANCONG");
 
             LoadQuanLyPhanCongWithCheckboxColumn();
 
-            dataGridView_capnhatdiem.DataSource = truongkhoa.LoadFullTable(connectionString, query, "DANGKY");
+            dataGridView_capnhatdiem.DataSource = truongkhoa.LoadFullTable(connectionString, query, "V_INFO_LOPPHANCONG");
 
             LoadQuanLyNhanSuWithCheckboxColumn();
         }
@@ -60,6 +62,19 @@ namespace portal_application_project
         private void LoadQuanLyPhanCongWithCheckboxColumn()
         {
             DataTable dataTable = truongkhoa.LoadFullTable(connectionString, query, "PHANCONG");
+
+            // Thêm cột lưu giá trị ban đầu của MAGV vào DataTable
+            if (!dataTable.Columns.Contains("OLD_MAGV"))
+            {
+                dataTable.Columns.Add("OLD_MAGV", typeof(string));
+            }
+
+            // Lưu giá trị ban đầu của MAGV vào cột OLD_MAGV
+            foreach (DataRow row in dataTable.Rows)
+            {
+                row["OLD_MAGV"] = row["MAGV"];
+            }
+
             dataGridView_quanlyphancong.DataSource = dataTable;
 
             DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn
@@ -70,6 +85,11 @@ namespace portal_application_project
                 FalseValue = false
             };
             dataGridView_quanlyphancong.Columns.Insert(0, checkBoxColumn);
+            // Ẩn cột OLD_MAGV
+            if (dataGridView_quanlyphancong.Columns.Contains("OLD_MAGV"))
+            {
+                dataGridView_quanlyphancong.Columns["OLD_MAGV"].Visible = false;
+            }
         }
 
         private void LoadQuanLyNhanSuWithCheckboxColumn()
@@ -99,60 +119,77 @@ namespace portal_application_project
         private void user_info_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_userInfo;
+            label_tabPage.Text = tabPage_userInfo.Text;
             modifiedRows.Clear();
         }
 
         private void phancong_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_phancong;
+            label_tabPage.Text = tabPage_phancong.Text;
             modifiedRows.Clear();
         }
 
         private void thongtinsv_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_thongtinsv;
+            label_tabPage.Text = tabPage_thongtinsv.Text;
             modifiedRows.Clear();
         }
 
         private void capnhatsv_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_capnhatsv;
+            label_tabPage.Text = tabPage_capnhatsv.Text;
             modifiedRows.Clear();
         }
 
         private void thongtindv_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_thongtindonvi;
+            label_tabPage.Text = tabPage_thongtindonvi.Text;
             modifiedRows.Clear();
         }
 
         private void thongtinhp_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_thongtinhp;
+            label_tabPage.Text = tabPage_thongtinhp.Text;
             modifiedRows.Clear();
         }
 
         private void khmohp_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_kehoachmohp;
+            label_tabPage.Text = tabPage_kehoachmohp.Text;
             modifiedRows.Clear();
         }
 
         private void thongtin_dkhp_btn_Click(object sender, EventArgs e)
         {
-            tabControl_nvcb.SelectedTab = tabPage_thongtindkhp;
+            tabControl_nvcb.SelectedTab = tabPage_xemlopgiangday;
+            label_tabPage.Text = tabPage_xemlopgiangday.Text;
             modifiedRows.Clear();
         }
 
         private void quanlyphancong_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_quanlyphancong;
+            label_tabPage.Text = tabPage_quanlyphancong.Text;
             modifiedRows.Clear();
         }
 
         private void quanlynhansu_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_quanlynhansu;
+            label_tabPage.Text = tabPage_userInfo.Text;
+            modifiedRows.Clear();
+        }
+
+        private void thongtindkhp_btn_Click(object sender, EventArgs e)
+        {
+            tabControl_nvcb.SelectedTab = tabPage_thongtindkhp;
+            label_tabPage.Text = tabPage_thongtindkhp.Text;
             modifiedRows.Clear();
         }
 
@@ -201,7 +238,7 @@ namespace portal_application_project
 
         private void refresh_capnhatdiem_btn_Click(object sender, EventArgs e)
         {
-            dataGridView_capnhatdiem.DataSource = truongkhoa.LoadFullTable(connectionString, query, "DANGKY");
+            dataGridView_capnhatdiem.DataSource = truongkhoa.LoadFullTable(connectionString, query, "V_INFO_LOPPHANCONG");
         }
 
 
@@ -242,7 +279,11 @@ namespace portal_application_project
 
         private void refresh_quanlyphancong_btn_Click(object sender, EventArgs e)
         {
-            dataGridView_quanlyphancong.DataSource = truongkhoa.LoadFullTable(connectionString, query, "PHANCONG");
+            if (dataGridView_quanlyphancong.Columns.Contains("Delete"))
+            {
+                dataGridView_quanlyphancong.Columns.Remove("Delete");
+            }
+            LoadQuanLyPhanCongWithCheckboxColumn();
         }
 
         private void delete_quanlyphancong_btn_Click(object sender, EventArgs e)
@@ -355,14 +396,17 @@ namespace portal_application_project
 
         private void mail_btn_Click(object sender, EventArgs e)
         {
-            Mail_Form mailForm = new Mail_Form(connectionString, truongkhoa.hoten);
+            string mailConnectionString = query.LoginMailString("Tkhoa633", "pwd");
+            Mail_Form mailForm = new Mail_Form(mailConnectionString, truongkhoa.hoten);
             mailForm.ShowDialog();
         }
 
         private void TruongKhoa_Form_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
             Application.Exit();
         }
+
+
     }
 }

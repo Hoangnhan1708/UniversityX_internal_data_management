@@ -32,7 +32,7 @@ namespace portal_application_project
         private void LoadEmails()
         {
 
-            string query = "SELECT NOIDUNG FROM QLTRUONGHOC.THONGBAO";
+            string query = "SELECT NOIDUNG FROM ols_quocbao.THONGBAO";
 
             try
             {

@@ -328,94 +328,105 @@ END;
 /
 
 -- Gán label cho user --
+--BEGIN
+--   -- a) 
+--   SA_USER_ADMIN.SET_USER_LABELS (
+--      policy_name    => 'THONGBAO_OLS_POL',
+--      user_name      => 'Tkhoa633', 
+--      max_read_label => 'TS:HTTT,CNPM,KHMT,CNTT,TGMT,MMT:TT');
+--   -- b)
+--   SA_USER_ADMIN.SET_USER_LABELS (
+--      policy_name    => 'THONGBAO_OLS_POL',
+--      user_name      => 'TDonVi082', 
+--      max_read_label => 'S:HTTT,CNPM,KHMT,CNTT,TGMT,MMT:TT');
+--   -- c)
+--   SA_USER_ADMIN.SET_USER_LABELS (
+--      policy_name    => 'THONGBAO_OLS_POL',
+--      user_name      => 'GVu011', 
+--      max_read_label => 'R:HTTT,CNPM,KHMT,CNTT,TGMT,MMT:TT');
+--  
+--   ------
+--   SA_USER_ADMIN.SET_USER_LABELS (
+--      policy_name    => 'THONGBAO_OLS_POL',
+--      user_name      => 'TDonVi081', 
+--      max_read_label => 'S:KHMT:CS1');
+--      
+--   SA_USER_ADMIN.SET_USER_LABELS (
+--      policy_name    => 'THONGBAO_OLS_POL',
+--      user_name      => 'GVien401', 
+--      max_read_label => 'C:HTTT,KHMT:CS1');
+--
+--   SA_USER_ADMIN.SET_USER_LABELS (
+--      policy_name    => 'THONGBAO_OLS_POL',
+--      user_name      => 'SVien321', 
+--      max_read_label => 'P:HTTT:CS1');
+--      
+--   SA_USER_ADMIN.SET_USER_LABELS (
+--      policy_name    => 'THONGBAO_OLS_POL',
+--      user_name      => 'NVien122', 
+--      max_read_label => 'I:KHMT,CNTT:CS2');  
+--      
+--   SA_USER_ADMIN.SET_USER_LABELS (
+--      policy_name    => 'THONGBAO_OLS_POL',
+--      user_name      => 'SVien322', 
+--      max_read_label => 'P:HTTT:CS2');
+--      
+--   SA_USER_ADMIN.SET_USER_LABELS (
+--      policy_name    => 'THONGBAO_OLS_POL',
+--      user_name      => 'GVien402', 
+--      max_read_label => 'C:HTTT,KHMT:CS2');
+--END;
+--/
+
+
+-- Gán label cho user --
 BEGIN
    -- a) 
    SA_USER_ADMIN.SET_USER_LABELS (
       policy_name    => 'THONGBAO_OLS_POL',
-      user_name      => 'Tkhoa633', 
+      user_name      => 'NV0001', 
       max_read_label => 'TS:HTTT,CNPM,KHMT,CNTT,TGMT,MMT:TT');
    -- b)
    SA_USER_ADMIN.SET_USER_LABELS (
       policy_name    => 'THONGBAO_OLS_POL',
-      user_name      => 'TDonVi082', 
+      user_name      => 'NV0007', 
       max_read_label => 'S:HTTT,CNPM,KHMT,CNTT,TGMT,MMT:TT');
    -- c)
    SA_USER_ADMIN.SET_USER_LABELS (
       policy_name    => 'THONGBAO_OLS_POL',
-      user_name      => 'GVu011', 
+      user_name      => 'NV0014', 
       max_read_label => 'R:HTTT,CNPM,KHMT,CNTT,TGMT,MMT:TT');
   
    ------
    SA_USER_ADMIN.SET_USER_LABELS (
       policy_name    => 'THONGBAO_OLS_POL',
-      user_name      => 'TDonVi081', 
+      user_name      => 'NV0006', 
       max_read_label => 'S:KHMT:CS1');
       
    SA_USER_ADMIN.SET_USER_LABELS (
       policy_name    => 'THONGBAO_OLS_POL',
-      user_name      => 'GVien401', 
+      user_name      => 'NV0049', 
       max_read_label => 'C:HTTT,KHMT:CS1');
 
    SA_USER_ADMIN.SET_USER_LABELS (
       policy_name    => 'THONGBAO_OLS_POL',
-      user_name      => 'SVien321', 
+      user_name      => 'SV0001', 
       max_read_label => 'P:HTTT:CS1');
       
    SA_USER_ADMIN.SET_USER_LABELS (
       policy_name    => 'THONGBAO_OLS_POL',
-      user_name      => 'NVien122', 
+      user_name      => 'NV0018', 
       max_read_label => 'I:KHMT,CNTT:CS2');  
       
    SA_USER_ADMIN.SET_USER_LABELS (
       policy_name    => 'THONGBAO_OLS_POL',
-      user_name      => 'SVien322', 
+      user_name      => 'SV0002', 
       max_read_label => 'P:HTTT:CS2');
       
    SA_USER_ADMIN.SET_USER_LABELS (
       policy_name    => 'THONGBAO_OLS_POL',
-      user_name      => 'GVien402', 
+      user_name      => 'NV0034', 
       max_read_label => 'C:HTTT,KHMT:CS2');
-END;
-/
-
-
-BEGIN
-   -- a) 
-   SA_USER_ADMIN.SET_USER_LABELS (
-      policy_name    => 'THONGBAO_OLS_POL',
-      user_name      => 'NV0005', 
-      max_read_label => 'TS:HTTT,CNPM,KHMT,CNTT,TGMT,MMT:TT');
-   -- b)
-   SA_USER_ADMIN.SET_USER_LABELS (
-      policy_name    => 'THONGBAO_OLS_POL',
-      user_name      => 'NV0004', 
-      max_read_label => 'S:HTTT,CNPM,KHMT,CNTT,TGMT,MMT:TT');
-   -- c)
-   SA_USER_ADMIN.SET_USER_LABELS (
-      policy_name    => 'THONGBAO_OLS_POL',
-      user_name      => 'NV0003', 
-      max_read_label => 'R:HTTT,CNPM,KHMT,CNTT,TGMT,MMT:TT');
-  
-   ------
-
-      
-   SA_USER_ADMIN.SET_USER_LABELS (
-      policy_name    => 'THONGBAO_OLS_POL',
-      user_name      => 'NV0002', 
-      max_read_label => 'C:HTTT,KHMT:CS1');
-
-      
-   SA_USER_ADMIN.SET_USER_LABELS (
-      policy_name    => 'THONGBAO_OLS_POL',
-      user_name      => 'NV0001', 
-      max_read_label => 'I:KHMT,CNTT:CS2');  
-      
-   SA_USER_ADMIN.SET_USER_LABELS (
-      policy_name    => 'THONGBAO_OLS_POL',
-      user_name      => 'SV0001', 
-      max_read_label => 'P:HTTT:CS2');
-      
-  
 END;
 /
 

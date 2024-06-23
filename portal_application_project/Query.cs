@@ -16,7 +16,8 @@ namespace portal_application_project
         // Login
         public string getAdminLoginString(string username, string password)
         {
-            return "Data Source=localhost;User Id=" + username + ";Password=" + password + ";DBA Privilege=SYSDBA;";
+            //return "Data Source=localhost;User Id=" + username + ";Password=" + password + ";DBA Privilege=SYSDBA;";
+            return "Data Source=0.tcp.ap.ngrok.io:13647/XE;User Id=" + username + ";Password=" + password + ";DBA Privilege=SYSDBA;";
         }
 
         //public string getUserLoginString(string username, string password)
@@ -26,7 +27,14 @@ namespace portal_application_project
         public string getUserLoginString(string username, string password)
         {
             //return "Data Source=localhost:1521/XEPDB1;User Id=" + username + ";Password=" + password + ";";
-            return "Data Source=0.tcp.ap.ngrok.io:16088/XE;User Id=" + username + ";Password=" + password + ";";
+            return "Data Source=0.tcp.ap.ngrok.io:13647/XE;User Id=" + username + ";Password=" + password + ";";
+        }
+
+        public string LoginMailString(string username, string password)
+        {
+            //return "Data Source=localhost:1521/XEPDB1;User Id=" + username + ";Password=" + password + ";";
+            return "Data Source=0.tcp.ap.ngrok.io:13647/XEPDB1;User Id=" + username + ";Password=" + password + ";";
+            //return "Data Source=0.tcp.ap.ngrok.io:13647/XE;User Id=" + username + ";Password=" + password + ";";
         }
 
 
@@ -38,7 +46,15 @@ namespace portal_application_project
         // NVCB
         public string getUserInfo(string manv)
         {
-            return "SELECT * FROM QLTRUONGHOC.NHANSU WHERE MANV = '" + manv + "'";
+            //return "SELECT * FROM QLTRUONGHOC.NHANSU WHERE MANV = '" + manv + "'";
+            return "SELECT * FROM QLTRUONGHOC.V_INFO_NHANSU";
+        }
+
+        public string nhanvienUpdatePhoneNumber()
+        {
+            
+            //return "UPDATE QLTRUONGHOC.NHANSU SET DT = :newPhoneNumber WHERE MANV = :manv";
+            return "UPDATE QLTRUONGHOC.V_INFO_NHANSU SET DT = :newPhoneNumber WHERE MANV = :manv";
         }
 
         public string getSinhVienInfo(string masv)
@@ -65,7 +81,9 @@ namespace portal_application_project
         // GIANGVIEN
         public string giangvienUpdateScore()
         {
-            return "UPDATE QLTRUONGHOC.DANGKY SET DIEMTH = :DIEMTH, DIEMQT = :DIEMQT, DIEMCK = :DIEMCK, DIEMTK = :DIEMTK " +
+            //return "UPDATE QLTRUONGHOC.DANGKY SET DIEMTH = :DIEMTH, DIEMQT = :DIEMQT, DIEMCK = :DIEMCK, DIEMTK = :DIEMTK " +
+            //                         "WHERE MASV = :MASV AND MAGV = :MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
+            return "UPDATE QLTRUONGHOC.V_INFO_LOPPHANCONG SET DIEMTH = :DIEMTH, DIEMQT = :DIEMQT, DIEMCK = :DIEMCK, DIEMTK = :DIEMTK " +
                                      "WHERE MASV = :MASV AND MAGV = :MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
         }
 
@@ -84,7 +102,7 @@ namespace portal_application_project
         }
 
         // GIAOVU -> DONVI
-
+        //INSERT
         public string giaovuInsertDonVi()
         {
             return "INSERT INTO QLTRUONGHOC.DONVI (MADV, TENDV, TRGDV) " +
@@ -128,8 +146,8 @@ namespace portal_application_project
         // GIAOVU -> PHANCONG
         public string giaovuUpdatePhanCongInfo()
         {
-            return "UPDATE QLTRUONGHOC.PHANCONG SET HK = :HK, NAM = :NAM, MACT = :MACT " +
-                            "WHERE MAGV = :MAGV AND MAHP = :MAHP";
+            return "UPDATE QLTRUONGHOC.V_PHANCONG_GIAOVU SET MAGV = :MAGV " +
+                            "WHERE MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
         }
 
         // GIAOVU -> DANGKY
@@ -137,13 +155,13 @@ namespace portal_application_project
         // INSERT
         public string giaovuInsertDangKy()
         {
-            return "INSERT INTO QLTRUONGHOC.DANGKY (MASV, MAGV, MAHP, HK, NAM ,MACT, DIEMTH,DIEMQT,DIEMCK,DIEMTK) " +
+            return "INSERT INTO QLTRUONGHOC.V_DANGKY_GIAOVU (MASV, MAGV, MAHP, HK, NAM ,MACT, DIEMTH,DIEMQT,DIEMCK,DIEMTK) " +
                                  "VALUES (:MASV, :MAGV, :MAHP,:HK,:NAM, :MACT, :DIEMTH, :DIEMQT, :DIEMCK, :DIEMTK)";
         }
         // DELETE
         public string giaovuDeleteDangKy()
         {
-            return "DELETE FROM QLTRUONGHOC.DANGKY WHERE MASV = :MASV AND MAGV = :MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
+            return "DELETE FROM QLTRUONGHOC.V_DANGKY_GIAOVU WHERE MASV = :MASV AND MAGV = :MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
         }
 
 
@@ -151,20 +169,20 @@ namespace portal_application_project
 
         public string truongdonviInsertPhanCong()
         {
-            return "INSERT INTO QLTRUONGHOC.PHANCONG (MAGV, MAHP, HK, NAM ,MACT) " +
+            return "INSERT INTO QLTRUONGHOC.V_PHANCONG_TDV (MAGV, MAHP, HK, NAM ,MACT) " +
                                  "VALUES (:MAGV, :MAHP,:HK,:NAM, :MACT)";
         }
 
         public string truongdonviUpdatePhanCongInfo()
         {
-            return "UPDATE QLTRUONGHOC.PHANCONG SET HK = :HK, NAM = :NAM, MACT = :MACT " +
-                            "WHERE MAGV = :MAGV AND MAHP = :MAHP";
+            return "UPDATE QLTRUONGHOC.V_PHANCONG_TDV SET MAGV = :MAGV " +
+                            "WHERE MAGV = :OLD_MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
         }
 
         // DELETE
         public string truongdonviDeletePhanCong()
         {
-            return "DELETE FROM QLTRUONGHOC.PHANCONG WHERE MAGV = :MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
+            return "DELETE FROM QLTRUONGHOC.V_PHANCONG_TDV WHERE MAGV = :MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
         }
 
 
@@ -173,15 +191,21 @@ namespace portal_application_project
         // INSERT
         public string truongkhoaInsertPhanCong()
         {
-            return "INSERT INTO QLTRUONGHOC.PHANCONG (MAGV, MAHP, HK, NAM ,MACT) " +
+            return "INSERT INTO QLTRUONGHOC.V_PHANCONG_TK (MAGV, MAHP, HK, NAM ,MACT) " +
                                  "VALUES (:MAGV, :MAHP,:HK,:NAM, :MACT)";
         }
 
         // UPDATE
         public string truongkhoaUpdatePhanCongInfo()
         {
-            return "UPDATE QLTRUONGHOC.PHANCONG SET HK = :HK, NAM = :NAM, MACT = :MACT " +
-                            "WHERE MAGV = :MAGV AND MAHP = :MAHP";
+            return "UPDATE QLTRUONGHOC.V_PHANCONG_TK SET MAGV = :MAGV " +
+                            "WHERE MAGV = :OLD_MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
+        }
+
+        // DELETE
+        public string truongkhoaDeletePhanCong()
+        {
+            return "DELETE FROM QLTRUONGHOC.V_PHANCONG_TK WHERE MAGV = :MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
         }
 
         // TRUONGKHOA -> NHANSU

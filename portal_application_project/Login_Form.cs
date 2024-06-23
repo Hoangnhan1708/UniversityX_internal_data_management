@@ -149,7 +149,7 @@ namespace portal_application_project
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: User does not have NVCB role");
+                    MessageBox.Show("Error: Sai tài khoản hoặc mật khẩu!");
                 }
 
             }
