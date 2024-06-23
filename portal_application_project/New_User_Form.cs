@@ -51,6 +51,14 @@ namespace portal_application_project
                             // Thực thi procedure
                             command.ExecuteNonQuery();
 
+                            command.CommandType = CommandType.StoredProcedure;
+                            command.CommandText = $"AUDIT_USER_PROCEDURE({username})";
+
+                            
+
+                            // Thực thi procedure
+                            command.ExecuteNonQuery();
+
                             MessageBox.Show("Tạo user thành công!");
                         }
                         connection.Close();
