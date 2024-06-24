@@ -113,7 +113,7 @@ namespace portal_application_project
         {
             Login_Form login_Form = new Login_Form();
             login_Form.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void user_info_btn_Click(object sender, EventArgs e)

@@ -34,7 +34,8 @@ namespace portal_application_project
             dataGridView_thongtindv.DataSource = giaovu.LoadFullTable(connectionString, query, "DONVI");
             dataGridView_thongtinhp.DataSource = giaovu.LoadFullTable(connectionString, query, "HOCPHAN");
             dataGridView_khmohp.DataSource = giaovu.LoadFullTable(connectionString, query, "KHMO");
-            dataGridView_phancong.DataSource = giaovu.LoadFullTable(connectionString, query, "V_PHANCONG_GIAOVU");
+            LoadPhanCongWithOldMAGVColumn();
+            //dataGridView_phancong.DataSource = giaovu.LoadFullTable(connectionString, query, "V_PHANCONG_GIAOVU");
             LoadDangKyWithCheckboxColumn();
         }
 
@@ -51,10 +52,40 @@ namespace portal_application_project
             field_madv.Text = giaovu.madv;
         }
 
+        private void LoadPhanCongWithOldMAGVColumn()
+        {
+            DataTable dataTable = giaovu.LoadFullTable(connectionString, query, "V_PHANCONG_GIAOVU");
+
+            // Thêm cột lưu giá trị ban đầu của MAGV vào DataTable
+            if (!dataTable.Columns.Contains("OLD_MAGV"))
+            {
+                dataTable.Columns.Add("OLD_MAGV", typeof(string));
+            }
+
+            // Lưu giá trị ban đầu của MAGV vào cột OLD_MAGV
+            foreach (DataRow row in dataTable.Rows)
+            {
+                row["OLD_MAGV"] = row["MAGV"];
+            }
+
+            dataGridView_phancong.DataSource = dataTable;
+
+            
+            
+            // Ẩn cột OLD_MAGV
+            if (dataGridView_phancong.Columns.Contains("OLD_MAGV"))
+            {
+                dataGridView_phancong.Columns["OLD_MAGV"].Visible = false;
+            }
+        }
+
         // Load data and add the checkbox column
         private void LoadDangKyWithCheckboxColumn()
         {
             DataTable dataTable = giaovu.LoadFullTable(connectionString, query, "V_DANGKY_GIAOVU");
+
+
+
             dataGridView_dkhp.DataSource = dataTable;
 
             DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn

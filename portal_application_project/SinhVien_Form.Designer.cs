@@ -84,6 +84,7 @@
             dashboard_label = new Label();
             panel4 = new Panel();
             mail_btn = new Panel();
+            refresh_hpdadk_btn = new Button();
             panel2.SuspendLayout();
             tabControl_sinhvien.SuspendLayout();
             tabPage_thongtinsv.SuspendLayout();
@@ -587,6 +588,7 @@
             // 
             // tabPage_hpdadangky
             // 
+            tabPage_hpdadangky.Controls.Add(refresh_hpdadk_btn);
             tabPage_hpdadangky.Controls.Add(dataGridView_hpdadk);
             tabPage_hpdadangky.Location = new Point(4, 29);
             tabPage_hpdadangky.Name = "tabPage_hpdadangky";
@@ -607,7 +609,7 @@
             dataGridView_hpdadk.ReadOnly = true;
             dataGridView_hpdadk.RowHeadersWidth = 51;
             dataGridView_hpdadk.RowTemplate.Height = 29;
-            dataGridView_hpdadk.Size = new Size(974, 524);
+            dataGridView_hpdadk.Size = new Size(974, 492);
             dataGridView_hpdadk.TabIndex = 17;
             // 
             // panel5
@@ -758,6 +760,23 @@
             mail_btn.TabIndex = 69;
             mail_btn.Click += mail_btn_Click;
             // 
+            // refresh_hpdadk_btn
+            // 
+            refresh_hpdadk_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            refresh_hpdadk_btn.BackColor = SystemColors.ButtonHighlight;
+            refresh_hpdadk_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            refresh_hpdadk_btn.FlatAppearance.BorderSize = 3;
+            refresh_hpdadk_btn.FlatStyle = FlatStyle.Flat;
+            refresh_hpdadk_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            refresh_hpdadk_btn.ForeColor = SystemColors.HotTrack;
+            refresh_hpdadk_btn.Location = new Point(746, 536);
+            refresh_hpdadk_btn.Name = "refresh_hpdadk_btn";
+            refresh_hpdadk_btn.Size = new Size(180, 53);
+            refresh_hpdadk_btn.TabIndex = 36;
+            refresh_hpdadk_btn.Text = "Refresh";
+            refresh_hpdadk_btn.UseVisualStyleBackColor = false;
+            refresh_hpdadk_btn.Click += refresh_hpdadk_btn_Click;
+            // 
             // SinhVien_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -857,5 +876,6 @@
         private TabPage tabPage_hpdadangky;
         private DataGridView dataGridView_hpdadk;
         private Label hpdadk_btn;
+        private Button refresh_hpdadk_btn;
     }
 }

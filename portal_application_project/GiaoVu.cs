@@ -453,6 +453,7 @@ namespace portal_application_project
 
                 // Get the values from the row
                 string magv = row.Cells["MAGV"].Value.ToString();
+                string oldMagv = row.Cells["OLD_MAGV"].Value.ToString(); // Giá trị MAGV ban đầu
                 string mahp = row.Cells["MAHP"].Value.ToString();
                 int hk = Convert.ToInt32(row.Cells["HK"].Value);
                 int nam = Convert.ToInt32(row.Cells["NAM"].Value);
@@ -470,6 +471,7 @@ namespace portal_application_project
                         using (OracleCommand command = new OracleCommand(updateQuery, connection))
                         {
                             command.Parameters.Add(new OracleParameter("MAGV", magv));
+                            command.Parameters.Add(new OracleParameter("OLD_MAGV", oldMagv));
                             command.Parameters.Add(new OracleParameter("MAHP", mahp));
                             command.Parameters.Add(new OracleParameter("HK", hk));
                             command.Parameters.Add(new OracleParameter("NAM", nam));

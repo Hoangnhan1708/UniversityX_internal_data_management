@@ -264,6 +264,9 @@ namespace portal_application_project
             LoadDKHPWithCheckboxColumn();
         }
 
-        
+        private void refresh_hpdadk_btn_Click(object sender, EventArgs e)
+        {
+            dataGridView_hpdadk.DataSource = sinhvien.LoadFullTable(connectionString, query, "DANGKY");
+        }
     }
 }

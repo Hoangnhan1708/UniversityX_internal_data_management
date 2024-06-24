@@ -16,8 +16,8 @@ namespace portal_application_project
         // Login
         public string getAdminLoginString(string username, string password)
         {
-            //return "Data Source=localhost;User Id=" + username + ";Password=" + password + ";DBA Privilege=SYSDBA;";
-            return "Data Source=0.tcp.ap.ngrok.io:16201/XE;User Id=" + username + ";Password=" + password + ";DBA Privilege=SYSDBA;";
+            return "Data Source=localhost;User Id=" + username + ";Password=" + password + ";DBA Privilege=SYSDBA;";
+            //return "Data Source=0.tcp.ap.ngrok.io:18165/XE;User Id=" + username + ";Password=" + password + ";DBA Privilege=SYSDBA;";
         }
 
         //public string getUserLoginString(string username, string password)
@@ -26,15 +26,15 @@ namespace portal_application_project
         //}
         public string getUserLoginString(string username, string password)
         {
-            //return "Data Source=localhost:1521/XEPDB1;User Id=" + username + ";Password=" + password + ";";
-            return "Data Source=0.tcp.ap.ngrok.io:16201/XE;User Id=" + username + ";Password=" + password + ";";
+            return "Data Source=localhost;User Id=" + username + ";Password=" + password + ";";
+            //return "Data Source=0.tcp.ap.ngrok.io:18165/XE;User Id=" + username + ";Password=" + password + ";";
         }
 
         public string LoginMailString(string username, string password)
         {
-            //return "Data Source=localhost:1521/XEPDB1;User Id=" + username + ";Password=" + password + ";";
-            return "Data Source=0.tcp.ap.ngrok.io:16201/XEPDB1;User Id=" + username + ";Password=" + password + ";";
-            //return "Data Source=0.tcp.ap.ngrok.io:13647/XE;User Id=" + username + ";Password=" + password + ";";
+            return "Data Source=localhost:1521/XEPDB1;User Id=" + username + ";Password=" + password + ";";
+            //return "Data Source=0.tcp.ap.ngrok.io:18165/XEPDB1;User Id=" + username + ";Password=" + password + ";";
+
         }
 
 
@@ -147,7 +147,7 @@ namespace portal_application_project
         public string giaovuUpdatePhanCongInfo()
         {
             return "UPDATE QLTRUONGHOC.V_PHANCONG_GIAOVU SET MAGV = :MAGV " +
-                            "WHERE MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
+                            "WHERE MAGV = :OLD_MAGV AND MAHP = :MAHP AND HK = :HK AND NAM = :NAM AND MACT = :MACT";
         }
 
         // GIAOVU -> DANGKY
