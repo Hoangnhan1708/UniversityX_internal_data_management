@@ -36,10 +36,11 @@ namespace portal_application_project
             int hk = Convert.ToInt32(field_hk.Text);
             int nam = Convert.ToInt32(field_nam.Text);
             string mact = field_mact.Text;
-            float diemth = Convert.ToSingle(field_diemth.Text);
-            float diemqt = Convert.ToSingle(field_diemqt.Text);
-            float diemck = Convert.ToSingle(field_diemck.Text);
-            float diemtk = Convert.ToSingle(field_diemtk.Text);
+            // Check and convert diem fields, if empty assign NULL equivalent
+            float? diemth = string.IsNullOrEmpty(field_diemth.Text) ? (float?)null : Convert.ToSingle(field_diemth.Text);
+            float? diemqt = string.IsNullOrEmpty(field_diemqt.Text) ? (float?)null : Convert.ToSingle(field_diemqt.Text);
+            float? diemck = string.IsNullOrEmpty(field_diemck.Text) ? (float?)null : Convert.ToSingle(field_diemck.Text);
+            float? diemtk = string.IsNullOrEmpty(field_diemtk.Text) ? (float?)null : Convert.ToSingle(field_diemtk.Text);
 
 
             giaovu.insertDangKy(connectionString, query, masv, magv, mahp, hk, nam, mact, diemth, diemqt, diemck, diemtk);

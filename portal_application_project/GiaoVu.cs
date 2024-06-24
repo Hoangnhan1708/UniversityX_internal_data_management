@@ -503,7 +503,7 @@ namespace portal_application_project
         }
 
 
-        public void insertDangKy(string connectionString, Query query, string masv, string magv, string mahp, int hk, int nam, string mact, float diemth, float diemqt, float diemck, float diemtk)
+        public void insertDangKy(string connectionString, Query query, string masv, string magv, string mahp, int hk, int nam, string mact, float? diemth, float? diemqt, float? diemck, float? diemtk)
         {
 
 
