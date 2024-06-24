@@ -20,7 +20,7 @@ ALTER SESSION SET "_ORACLE_SCRIPT" = FALSE;
 /
 
 
-
+select * from qltruonghoc.nhansu
 
 
 ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;

@@ -34,7 +34,7 @@ namespace portal_application_project
             dataGridView_thongtindv.DataSource = giaovu.LoadFullTable(connectionString, query, "DONVI");
             dataGridView_thongtinhp.DataSource = giaovu.LoadFullTable(connectionString, query, "HOCPHAN");
             dataGridView_khmohp.DataSource = giaovu.LoadFullTable(connectionString, query, "KHMO");
-            dataGridView_phancong.DataSource = giaovu.LoadFullTable(connectionString, query, "V_TEST_PHANCONG");
+            dataGridView_phancong.DataSource = giaovu.LoadFullTable(connectionString, query, "V_PHANCONG_GIAOVU");
             LoadDangKyWithCheckboxColumn();
         }
 
@@ -284,7 +284,7 @@ namespace portal_application_project
 
         private void refresh_phancong_btn_Click(object sender, EventArgs e)
         {
-            dataGridView_phancong.DataSource = giaovu.LoadFullTable(connectionString, query, "V_TEST_PHANCONG");
+            dataGridView_phancong.DataSource = giaovu.LoadFullTable(connectionString, query, "V_PHANCONG_GIAOVU");
         }
 
         // Tab Page: DANGKY
