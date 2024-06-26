@@ -169,30 +169,54 @@ namespace portal_application_project
 
         public void insertDangKySelectedRow(string connectionString, Query query, List<DataGridViewRow> rowsToHandle)
         {
-            List<string> values = new List<string>();
-
-            foreach (DataGridViewRow row in rowsToHandle)
-            {
-                
-                string magv = row.Cells["MAGV"].Value.ToString();
-                string mahp = row.Cells["MAHP"].Value.ToString();
-                int hk = Convert.ToInt32(row.Cells["HK"].Value);
-                int nam = Convert.ToInt32(row.Cells["NAM"].Value);
-                string mact = row.Cells["MACT"].Value.ToString();
-
-                values.Add($"('{this.masv}', '{magv}', '{mahp}', {hk}, {nam}, '{mact}')");
-            }
-
-            string insertQuery = query.sinhvienInsertDKHP() + string.Join(", ", values);
+            string insertQuery = query.sinhvienInsertDKHP();
 
             try
             {
                 using (OracleConnection connection = new OracleConnection(connectionString))
                 {
+                    connection.Open();
+
                     using (OracleCommand command = new OracleCommand(insertQuery, connection))
                     {
-                        connection.Open();
+                        command.ArrayBindCount = rowsToHandle.Count;
+
+                        // Prepare parameters
+                        command.Parameters.Add(":MASV", OracleDbType.Varchar2);
+                        command.Parameters.Add(":MAGV", OracleDbType.Varchar2);
+                        command.Parameters.Add(":MAHP", OracleDbType.Varchar2);
+                        command.Parameters.Add(":HK", OracleDbType.Int32);
+                        command.Parameters.Add(":NAM", OracleDbType.Int32);
+                        command.Parameters.Add(":MACT", OracleDbType.Varchar2);
+
+                        // Populate parameter values
+                        string[] masvArray = new string[rowsToHandle.Count];
+                        string[] magvArray = new string[rowsToHandle.Count];
+                        string[] mahpArray = new string[rowsToHandle.Count];
+                        int[] hkArray = new int[rowsToHandle.Count];
+                        int[] namArray = new int[rowsToHandle.Count];
+                        string[] mactArray = new string[rowsToHandle.Count];
+
+                        for (int i = 0; i < rowsToHandle.Count; i++)
+                        {
+                            DataGridViewRow row = rowsToHandle[i];
+                            masvArray[i] = this.masv;
+                            magvArray[i] = row.Cells["MAGV"].Value.ToString();
+                            mahpArray[i] = row.Cells["MAHP"].Value.ToString();
+                            hkArray[i] = Convert.ToInt32(row.Cells["HK"].Value);
+                            namArray[i] = Convert.ToInt32(row.Cells["NAM"].Value);
+                            mactArray[i] = row.Cells["MACT"].Value.ToString();
+                        }
+
+                        command.Parameters[":MASV"].Value = masvArray;
+                        command.Parameters[":MAGV"].Value = magvArray;
+                        command.Parameters[":MAHP"].Value = mahpArray;
+                        command.Parameters[":HK"].Value = hkArray;
+                        command.Parameters[":NAM"].Value = namArray;
+                        command.Parameters[":MACT"].Value = mactArray;
+
                         int rowsAffected = command.ExecuteNonQuery();
+
                         connection.Close();
 
                         if (rowsAffected > 0)
@@ -204,59 +228,14 @@ namespace portal_application_project
                             MessageBox.Show("Không có hàng nào được thêm!");
                         }
                     }
-                    connection.Close();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-            //// Perform the deletion
-            //foreach (DataGridViewRow row in rowsToHandle)
-            //{
-            //    string masv = row.Cells["MASV"].Value.ToString();
-            //    string magv = row.Cells["MAGV"].Value.ToString();
-            //    string mahp = row.Cells["MAHP"].Value.ToString();
-            //    int hk = Convert.ToInt32(row.Cells["HK"].Value);
-            //    int nam = Convert.ToInt32(row.Cells["NAM"].Value);
-            //    string mact = row.Cells["MACT"].Value.ToString();
+            
 
-            //    string deleteQuery = query.sinhvienInsertDangKy();
-
-            //    try
-            //    {
-            //        using (OracleConnection connection = new OracleConnection(connectionString))
-            //        {
-            //            using (OracleCommand command = new OracleCommand(deleteQuery, connection))
-            //            {
-            //                command.Parameters.Add(new OracleParameter("MASV", masv));
-            //                command.Parameters.Add(new OracleParameter("MAGV", magv));
-            //                command.Parameters.Add(new OracleParameter("MAHP", mahp));
-            //                command.Parameters.Add(new OracleParameter("HK", hk));
-            //                command.Parameters.Add(new OracleParameter("NAM", nam));
-            //                command.Parameters.Add(new OracleParameter("MACT", mact));
-
-            //                connection.Open();
-            //                int rowsAffected = command.ExecuteNonQuery();
-            //                connection.Close();
-
-            //                if (rowsAffected > 0)
-            //                {
-            //                    MessageBox.Show("Thêm thành công!");
-            //                }
-            //                else
-            //                {
-            //                    MessageBox.Show("Không có hàng nào được thêm!");
-            //                }
-
-            //            }
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show("Error: " + ex.Message);
-            //    }
-            //}
         }
 
         public void deleteDangKySelectedRow(string connectionString, Query query, List<DataGridViewRow> rowsToDelete)

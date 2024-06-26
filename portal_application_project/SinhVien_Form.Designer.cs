@@ -37,8 +37,6 @@
             panel2 = new Panel();
             tabControl_sinhvien = new TabControl();
             tabPage_thongtinsv = new TabPage();
-            panel1 = new Panel();
-            label_tabPage = new Label();
             change_address_btn = new Button();
             change_phoneNumber_btn = new Button();
             field_phoneNumber = new TextBox();
@@ -66,11 +64,12 @@
             tabPage_kehoachmohp = new TabPage();
             dataGridView_khmohp = new DataGridView();
             tabPage_dkhp = new TabPage();
-            delete_dkhp_btn = new Button();
             refresh_dkhp_btn = new Button();
             add_dkhp_btn = new Button();
             dataGridView_dkhp = new DataGridView();
             tabPage_hpdadangky = new TabPage();
+            delete_dkhp_btn = new Button();
+            refresh_hpdadk_btn = new Button();
             dataGridView_hpdadk = new DataGridView();
             panel5 = new Panel();
             hpdadk_btn = new Label();
@@ -81,14 +80,14 @@
             btn_dkhp = new Label();
             hpddk_btn = new Label();
             panel3 = new Panel();
+            panel1 = new Panel();
+            label_tabPage = new Label();
             dashboard_label = new Label();
             panel4 = new Panel();
             mail_btn = new Panel();
-            refresh_hpdadk_btn = new Button();
             panel2.SuspendLayout();
             tabControl_sinhvien.SuspendLayout();
             tabPage_thongtinsv.SuspendLayout();
-            panel1.SuspendLayout();
             tabPage_danhsachhp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_danhsachhp).BeginInit();
             tabPage_kehoachmohp.SuspendLayout();
@@ -100,6 +99,7 @@
             panel5.SuspendLayout();
             panel6.SuspendLayout();
             panel3.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // logout_btn
@@ -194,7 +194,6 @@
             // 
             // tabPage_thongtinsv
             // 
-            tabPage_thongtinsv.Controls.Add(panel1);
             tabPage_thongtinsv.Controls.Add(change_address_btn);
             tabPage_thongtinsv.Controls.Add(change_phoneNumber_btn);
             tabPage_thongtinsv.Controls.Add(field_phoneNumber);
@@ -223,25 +222,6 @@
             tabPage_thongtinsv.TabIndex = 4;
             tabPage_thongtinsv.Text = "Thông tin sinh viên";
             tabPage_thongtinsv.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(label_tabPage);
-            panel1.Location = new Point(3, 6);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(995, 52);
-            panel1.TabIndex = 70;
-            // 
-            // label_tabPage
-            // 
-            label_tabPage.AutoSize = true;
-            label_tabPage.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label_tabPage.ForeColor = SystemColors.HotTrack;
-            label_tabPage.Location = new Point(335, 0);
-            label_tabPage.Name = "label_tabPage";
-            label_tabPage.Size = new Size(97, 41);
-            label_tabPage.TabIndex = 0;
-            label_tabPage.Text = "label1";
             // 
             // change_address_btn
             // 
@@ -510,7 +490,6 @@
             // 
             // tabPage_dkhp
             // 
-            tabPage_dkhp.Controls.Add(delete_dkhp_btn);
             tabPage_dkhp.Controls.Add(refresh_dkhp_btn);
             tabPage_dkhp.Controls.Add(add_dkhp_btn);
             tabPage_dkhp.Controls.Add(dataGridView_dkhp);
@@ -520,23 +499,6 @@
             tabPage_dkhp.TabIndex = 3;
             tabPage_dkhp.Text = "Đăng ký học phần";
             tabPage_dkhp.UseVisualStyleBackColor = true;
-            // 
-            // delete_dkhp_btn
-            // 
-            delete_dkhp_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            delete_dkhp_btn.BackColor = SystemColors.ButtonHighlight;
-            delete_dkhp_btn.FlatAppearance.BorderColor = Color.Red;
-            delete_dkhp_btn.FlatAppearance.BorderSize = 3;
-            delete_dkhp_btn.FlatStyle = FlatStyle.Flat;
-            delete_dkhp_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            delete_dkhp_btn.ForeColor = Color.Red;
-            delete_dkhp_btn.Location = new Point(76, 536);
-            delete_dkhp_btn.Name = "delete_dkhp_btn";
-            delete_dkhp_btn.Size = new Size(180, 53);
-            delete_dkhp_btn.TabIndex = 36;
-            delete_dkhp_btn.Text = "Xóa";
-            delete_dkhp_btn.UseVisualStyleBackColor = false;
-            delete_dkhp_btn.Click += delete_dkhp_btn_Click;
             // 
             // refresh_dkhp_btn
             // 
@@ -588,6 +550,7 @@
             // 
             // tabPage_hpdadangky
             // 
+            tabPage_hpdadangky.Controls.Add(delete_dkhp_btn);
             tabPage_hpdadangky.Controls.Add(refresh_hpdadk_btn);
             tabPage_hpdadangky.Controls.Add(dataGridView_hpdadk);
             tabPage_hpdadangky.Location = new Point(4, 29);
@@ -596,6 +559,40 @@
             tabPage_hpdadangky.TabIndex = 5;
             tabPage_hpdadangky.Text = "Học phần đã đăng ký";
             tabPage_hpdadangky.UseVisualStyleBackColor = true;
+            // 
+            // delete_dkhp_btn
+            // 
+            delete_dkhp_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            delete_dkhp_btn.BackColor = SystemColors.ButtonHighlight;
+            delete_dkhp_btn.FlatAppearance.BorderColor = Color.Red;
+            delete_dkhp_btn.FlatAppearance.BorderSize = 3;
+            delete_dkhp_btn.FlatStyle = FlatStyle.Flat;
+            delete_dkhp_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            delete_dkhp_btn.ForeColor = Color.Red;
+            delete_dkhp_btn.Location = new Point(62, 536);
+            delete_dkhp_btn.Name = "delete_dkhp_btn";
+            delete_dkhp_btn.Size = new Size(180, 53);
+            delete_dkhp_btn.TabIndex = 37;
+            delete_dkhp_btn.Text = "Xóa";
+            delete_dkhp_btn.UseVisualStyleBackColor = false;
+            delete_dkhp_btn.Click += delete_dkhp_btn_Click;
+            // 
+            // refresh_hpdadk_btn
+            // 
+            refresh_hpdadk_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            refresh_hpdadk_btn.BackColor = SystemColors.ButtonHighlight;
+            refresh_hpdadk_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            refresh_hpdadk_btn.FlatAppearance.BorderSize = 3;
+            refresh_hpdadk_btn.FlatStyle = FlatStyle.Flat;
+            refresh_hpdadk_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            refresh_hpdadk_btn.ForeColor = SystemColors.HotTrack;
+            refresh_hpdadk_btn.Location = new Point(746, 536);
+            refresh_hpdadk_btn.Name = "refresh_hpdadk_btn";
+            refresh_hpdadk_btn.Size = new Size(180, 53);
+            refresh_hpdadk_btn.TabIndex = 36;
+            refresh_hpdadk_btn.Text = "Refresh";
+            refresh_hpdadk_btn.UseVisualStyleBackColor = false;
+            refresh_hpdadk_btn.Click += refresh_hpdadk_btn_Click;
             // 
             // dataGridView_hpdadk
             // 
@@ -606,10 +603,9 @@
             dataGridView_hpdadk.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView_hpdadk.Location = new Point(6, 42);
             dataGridView_hpdadk.Name = "dataGridView_hpdadk";
-            dataGridView_hpdadk.ReadOnly = true;
             dataGridView_hpdadk.RowHeadersWidth = 51;
             dataGridView_hpdadk.RowTemplate.Height = 29;
-            dataGridView_hpdadk.Size = new Size(974, 492);
+            dataGridView_hpdadk.Size = new Size(974, 488);
             dataGridView_hpdadk.TabIndex = 17;
             // 
             // panel5
@@ -721,6 +717,7 @@
             // panel3
             // 
             panel3.BackColor = SystemColors.Highlight;
+            panel3.Controls.Add(panel1);
             panel3.Controls.Add(dashboard_label);
             panel3.Controls.Add(panel4);
             panel3.Dock = DockStyle.Top;
@@ -728,6 +725,27 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(1276, 70);
             panel3.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(label_tabPage);
+            panel1.Location = new Point(281, 14);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(995, 52);
+            panel1.TabIndex = 70;
+            // 
+            // label_tabPage
+            // 
+            label_tabPage.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            label_tabPage.AutoSize = true;
+            label_tabPage.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label_tabPage.ForeColor = SystemColors.HotTrack;
+            label_tabPage.Location = new Point(335, 0);
+            label_tabPage.Name = "label_tabPage";
+            label_tabPage.Size = new Size(97, 41);
+            label_tabPage.TabIndex = 0;
+            label_tabPage.Text = "label1";
             // 
             // dashboard_label
             // 
@@ -760,23 +778,6 @@
             mail_btn.TabIndex = 69;
             mail_btn.Click += mail_btn_Click;
             // 
-            // refresh_hpdadk_btn
-            // 
-            refresh_hpdadk_btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            refresh_hpdadk_btn.BackColor = SystemColors.ButtonHighlight;
-            refresh_hpdadk_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
-            refresh_hpdadk_btn.FlatAppearance.BorderSize = 3;
-            refresh_hpdadk_btn.FlatStyle = FlatStyle.Flat;
-            refresh_hpdadk_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            refresh_hpdadk_btn.ForeColor = SystemColors.HotTrack;
-            refresh_hpdadk_btn.Location = new Point(746, 536);
-            refresh_hpdadk_btn.Name = "refresh_hpdadk_btn";
-            refresh_hpdadk_btn.Size = new Size(180, 53);
-            refresh_hpdadk_btn.TabIndex = 36;
-            refresh_hpdadk_btn.Text = "Refresh";
-            refresh_hpdadk_btn.UseVisualStyleBackColor = false;
-            refresh_hpdadk_btn.Click += refresh_hpdadk_btn_Click;
-            // 
             // SinhVien_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -799,8 +800,6 @@
             tabControl_sinhvien.ResumeLayout(false);
             tabPage_thongtinsv.ResumeLayout(false);
             tabPage_thongtinsv.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             tabPage_danhsachhp.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView_danhsachhp).EndInit();
             tabPage_kehoachmohp.ResumeLayout(false);
@@ -815,6 +814,8 @@
             panel6.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -867,7 +868,6 @@
         private DataGridView dataGridView_khmohp;
         private DataGridView dataGridView_dkhp;
         private DataGridView dataGridView_danhsachhp;
-        private Button delete_dkhp_btn;
         private Button refresh_dkhp_btn;
         private Button add_dkhp_btn;
         private Panel mail_btn;
@@ -877,5 +877,6 @@
         private DataGridView dataGridView_hpdadk;
         private Label hpdadk_btn;
         private Button refresh_hpdadk_btn;
+        private Button delete_dkhp_btn;
     }
 }

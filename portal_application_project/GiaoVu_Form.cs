@@ -70,8 +70,8 @@ namespace portal_application_project
 
             dataGridView_phancong.DataSource = dataTable;
 
-            
-            
+
+
             // Ẩn cột OLD_MAGV
             if (dataGridView_phancong.Columns.Contains("OLD_MAGV"))
             {

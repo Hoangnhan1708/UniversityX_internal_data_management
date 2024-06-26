@@ -38,6 +38,8 @@
             dashboard_label = new Label();
             panel4 = new Panel();
             panel2 = new Panel();
+            panel1 = new Panel();
+            label_tabPage = new Label();
             tabControl_nvcb = new TabControl();
             tabPage_userInfo = new TabPage();
             dollar_icon = new Label();
@@ -79,10 +81,9 @@
             panel6 = new Panel();
             label2 = new Label();
             mail_btn = new Panel();
-            label_tabPage = new Label();
-            panel1 = new Panel();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
+            panel1.SuspendLayout();
             tabControl_nvcb.SuspendLayout();
             tabPage_userInfo.SuspendLayout();
             tabPage_thongtinsv.SuspendLayout();
@@ -97,7 +98,6 @@
             panel7.SuspendLayout();
             panel8.SuspendLayout();
             panel6.SuspendLayout();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // logo
@@ -203,6 +203,27 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1276, 690);
             panel2.TabIndex = 48;
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(label_tabPage);
+            panel1.Location = new Point(281, 72);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(995, 52);
+            panel1.TabIndex = 4;
+            // 
+            // label_tabPage
+            // 
+            label_tabPage.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            label_tabPage.AutoSize = true;
+            label_tabPage.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label_tabPage.ForeColor = SystemColors.HotTrack;
+            label_tabPage.Location = new Point(335, 0);
+            label_tabPage.Name = "label_tabPage";
+            label_tabPage.Size = new Size(97, 41);
+            label_tabPage.TabIndex = 0;
+            label_tabPage.Text = "label1";
             // 
             // tabControl_nvcb
             // 
@@ -687,25 +708,6 @@
             mail_btn.TabIndex = 64;
             mail_btn.Click += mail_btn_Click;
             // 
-            // label_tabPage
-            // 
-            label_tabPage.AutoSize = true;
-            label_tabPage.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label_tabPage.ForeColor = SystemColors.HotTrack;
-            label_tabPage.Location = new Point(335, 0);
-            label_tabPage.Name = "label_tabPage";
-            label_tabPage.Size = new Size(97, 41);
-            label_tabPage.TabIndex = 0;
-            label_tabPage.Text = "label1";
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(label_tabPage);
-            panel1.Location = new Point(281, 72);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(995, 52);
-            panel1.TabIndex = 4;
-            // 
             // NVCB_Form
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -728,6 +730,8 @@
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel2.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             tabControl_nvcb.ResumeLayout(false);
             tabPage_userInfo.ResumeLayout(false);
             tabPage_userInfo.PerformLayout();
@@ -747,8 +751,6 @@
             panel8.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }

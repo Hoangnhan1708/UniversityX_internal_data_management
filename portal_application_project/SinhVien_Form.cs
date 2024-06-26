@@ -43,7 +43,8 @@ namespace portal_application_project
             dataGridView_danhsachhp.DataSource = sinhvien.LoadFullTable(connectionString, query, "HOCPHAN");
             //dataGridView_dkhp.DataSource = sinhvien.LoadFullTable(connectionString, query, "DANGKY");
             dataGridView_khmohp.DataSource = sinhvien.LoadFullTable(connectionString, query, "KHMO");
-            dataGridView_hpdadk.DataSource = sinhvien.LoadFullTable(connectionString, query, "DANGKY");
+            LoadHPDaDKWithCheckboxColumn();
+            //dataGridView_hpdadk.DataSource = sinhvien.LoadFullTable(connectionString, query, "DANGKY");
             LoadDKHPWithCheckboxColumn();
         }
 
@@ -75,6 +76,21 @@ namespace portal_application_project
                 FalseValue = false
             };
             dataGridView_dkhp.Columns.Insert(0, checkBoxColumn);
+        }
+
+        private void LoadHPDaDKWithCheckboxColumn()
+        {
+            DataTable dataTable = sinhvien.LoadFullTable(connectionString, query, "DANGKY");
+            dataGridView_hpdadk.DataSource = dataTable;
+
+            DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn
+            {
+                Name = "Select",
+                HeaderText = "Select",
+                TrueValue = true,
+                FalseValue = false
+            };
+            dataGridView_hpdadk.Columns.Insert(0, checkBoxColumn);
         }
 
         private void btn_thongtinsv_Click(object sender, EventArgs e)
@@ -266,7 +282,13 @@ namespace portal_application_project
 
         private void refresh_hpdadk_btn_Click(object sender, EventArgs e)
         {
-            dataGridView_hpdadk.DataSource = sinhvien.LoadFullTable(connectionString, query, "DANGKY");
+            if (dataGridView_dkhp.Columns.Contains("Select"))
+            {
+                dataGridView_dkhp.Columns.Remove("Select");
+            }
+
+            // Reload the data
+            LoadHPDaDKWithCheckboxColumn();
         }
     }
 }

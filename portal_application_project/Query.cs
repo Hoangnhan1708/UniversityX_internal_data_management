@@ -16,8 +16,8 @@ namespace portal_application_project
         // Login
         public string getAdminLoginString(string username, string password)
         {
-            return "Data Source=localhost;User Id=" + username + ";Password=" + password + ";DBA Privilege=SYSDBA;";
-            //return "Data Source=0.tcp.ap.ngrok.io:18165/XE;User Id=" + username + ";Password=" + password + ";DBA Privilege=SYSDBA;";
+            //return "Data Source=localhost;User Id=" + username + ";Password=" + password + ";DBA Privilege=SYSDBA;";
+            return "Data Source=0.tcp.ap.ngrok.io:14446/XE;User Id=" + username + ";Password=" + password + ";DBA Privilege=SYSDBA;";
         }
 
         //public string getUserLoginString(string username, string password)
@@ -26,14 +26,14 @@ namespace portal_application_project
         //}
         public string getUserLoginString(string username, string password)
         {
-            return "Data Source=localhost;User Id=" + username + ";Password=" + password + ";";
-            //return "Data Source=0.tcp.ap.ngrok.io:18165/XE;User Id=" + username + ";Password=" + password + ";";
+            //return "Data Source=localhost;User Id=" + username + ";Password=" + password + ";";
+            return "Data Source=0.tcp.ap.ngrok.io:14446/XE;User Id=" + username + ";Password=" + password + ";";
         }
 
         public string LoginMailString(string username, string password)
         {
-            return "Data Source=localhost:1521/XEPDB1;User Id=" + username + ";Password=" + password + ";";
-            //return "Data Source=0.tcp.ap.ngrok.io:18165/XEPDB1;User Id=" + username + ";Password=" + password + ";";
+            //return "Data Source=localhost:1521/XEPDB1;User Id=" + username + ";Password=" + password + ";";
+            return "Data Source=0.tcp.ap.ngrok.io:14446/XEPDB1;User Id=" + username + ";Password=" + password + ";";
 
         }
 
@@ -235,9 +235,7 @@ namespace portal_application_project
         // INSERT
         public string sinhvienInsertDKHP()
         {
-            //return "INSERT INTO QLTRUONGHOC.NHANSU (MANV, HOTEN, PHAI, NGSINH, PHUCAP,DT, VAITRO, MADV) " +
-            //                     "VALUES (:MANV, :HOTEN,:PHAI,:NGSINH, :PHUCAP, :DT, :VAITRO,:MADV)";
-            return "INSERT INTO QLTRUONGHOC.DANGKY (MASV, MAGV, MAHP, HK, NAM, MACT) VALUES ";
+            return "INSERT INTO QLTRUONGHOC.DANGKY (MASV, MAGV, MAHP, HK, NAM, MACT) VALUES (:MASV, :MAGV, :MAHP, :HK, :NAM, :MACT)";
         }
 
         // DELETE

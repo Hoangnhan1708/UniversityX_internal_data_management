@@ -32,7 +32,7 @@ namespace portal_application_project
 
         private void GiangVien_Form_Load(object sender, EventArgs e)
         {
-            label_tabPage.Text = tabPage_userInfo.Text;
+            label.Text = tabPage_userInfo.Text;
             LoadThongTinUser();
             dataGridView_sinhvien.DataSource = giangvien.LoadFullTable(connectionString, query, "SINHVIEN");
             dataGridView_thongtindv.DataSource = giangvien.LoadFullTable(connectionString, query, "DONVI");
@@ -67,51 +67,51 @@ namespace portal_application_project
         private void user_info_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_userInfo;
-            label_tabPage.Text = tabPage_userInfo.Text;
+            label.Text = tabPage_userInfo.Text;
         }
 
         private void student_info_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_thongtinsv;
-            label_tabPage.Text = tabPage_thongtinsv.Text;
+            label.Text = tabPage_thongtinsv.Text;
         }
 
         private void donvi_info_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_thongtindonvi;
-            label_tabPage.Text = tabPage_thongtindonvi.Text;
+            label.Text = tabPage_thongtindonvi.Text;
 
         }
 
         private void course_info_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_thongtinhp;
-            label_tabPage.Text = tabPage_thongtinhp.Text;
+            label.Text = tabPage_thongtinhp.Text;
 
         }
 
         private void kehoachmohp_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_kehoachmohp;
-            label_tabPage.Text = tabPage_kehoachmohp.Text;
+            label.Text = tabPage_kehoachmohp.Text;
         }
 
         private void xemphanconggiangday_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_phanconggiangday;
-            label_tabPage.Text = tabPage_phanconggiangday.Text;
+            label.Text = tabPage_phanconggiangday.Text;
         }
 
         private void xemlopgiangday_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_lopgiangday;
-            label_tabPage.Text = tabPage_lopgiangday.Text;
+            label.Text = tabPage_lopgiangday.Text;
         }
 
         private void capnhatdiem_btn_Click(object sender, EventArgs e)
         {
             tabControl_nvcb.SelectedTab = tabPage_capnhatdiem;
-            label_tabPage.Text = tabPage_capnhatdiem.Text;
+            label.Text = tabPage_capnhatdiem.Text;
         }
 
         private void change_phoneNumber_btn_Click(object sender, EventArgs e)
@@ -167,6 +167,11 @@ namespace portal_application_project
         private void GiangVien_Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void refresh_capnhatdiem_btn_Click(object sender, EventArgs e)
+        {
+            dataGridView_capnhatdiem.DataSource = giangvien.LoadFullTable(connectionString, query, "V_INFO_LOPPHANCONG");
         }
     }
 }

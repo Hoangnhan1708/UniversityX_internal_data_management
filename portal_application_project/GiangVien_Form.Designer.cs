@@ -35,6 +35,10 @@
             title = new Label();
             logo = new Panel();
             panel2 = new Panel();
+            panel9 = new Panel();
+            label = new Label();
+            panel1 = new Panel();
+            label_tabPage = new Label();
             tabControl_nvcb = new TabControl();
             tabPage_userInfo = new TabPage();
             dollar_icon = new Label();
@@ -62,6 +66,7 @@
             tabPage_thongtinsv = new TabPage();
             dataGridView_sinhvien = new DataGridView();
             tabPage_capnhatdiem = new TabPage();
+            refresh_capnhatdiem_btn = new Button();
             update_score_btn = new Button();
             dataGridView_capnhatdiem = new DataGridView();
             tabPage_thongtindonvi = new TabPage();
@@ -82,8 +87,6 @@
             xemlopgiangday_btn = new Label();
             user_info_btn = new Label();
             panel3 = new Panel();
-            panel1 = new Panel();
-            label_tabPage = new Label();
             dashboard_label = new Label();
             panel4 = new Panel();
             panel6 = new Panel();
@@ -92,6 +95,8 @@
             label5 = new Label();
             mail_btn = new Panel();
             panel2.SuspendLayout();
+            panel9.SuspendLayout();
+            panel1.SuspendLayout();
             tabControl_nvcb.SuspendLayout();
             tabPage_userInfo.SuspendLayout();
             tabPage_phanconggiangday.SuspendLayout();
@@ -111,7 +116,6 @@
             panel5.SuspendLayout();
             panel7.SuspendLayout();
             panel3.SuspendLayout();
-            panel1.SuspendLayout();
             panel6.SuspendLayout();
             panel8.SuspendLayout();
             SuspendLayout();
@@ -182,6 +186,7 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(panel9);
             panel2.Controls.Add(panel1);
             panel2.Controls.Add(tabControl_nvcb);
             panel2.Controls.Add(panel5);
@@ -190,6 +195,48 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1276, 701);
             panel2.TabIndex = 74;
+            // 
+            // panel9
+            // 
+            panel9.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel9.Controls.Add(label);
+            panel9.Location = new Point(277, 71);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(995, 52);
+            panel9.TabIndex = 76;
+            // 
+            // label
+            // 
+            label.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            label.AutoSize = true;
+            label.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label.ForeColor = SystemColors.HotTrack;
+            label.Location = new Point(335, 0);
+            label.Name = "label";
+            label.Size = new Size(97, 41);
+            label.TabIndex = 0;
+            label.Text = "label1";
+            // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(label_tabPage);
+            panel1.Location = new Point(278, 83);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(0, 52);
+            panel1.TabIndex = 76;
+            // 
+            // label_tabPage
+            // 
+            label_tabPage.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            label_tabPage.AutoSize = true;
+            label_tabPage.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label_tabPage.ForeColor = SystemColors.HotTrack;
+            label_tabPage.Location = new Point(335, 0);
+            label_tabPage.Name = "label_tabPage";
+            label_tabPage.Size = new Size(97, 41);
+            label_tabPage.TabIndex = 0;
+            label_tabPage.Text = "label1";
             // 
             // tabControl_nvcb
             // 
@@ -491,6 +538,7 @@
             // 
             // tabPage_capnhatdiem
             // 
+            tabPage_capnhatdiem.Controls.Add(refresh_capnhatdiem_btn);
             tabPage_capnhatdiem.Controls.Add(update_score_btn);
             tabPage_capnhatdiem.Controls.Add(dataGridView_capnhatdiem);
             tabPage_capnhatdiem.Location = new Point(4, 29);
@@ -499,6 +547,23 @@
             tabPage_capnhatdiem.TabIndex = 7;
             tabPage_capnhatdiem.Text = "Cập nhật điểm";
             tabPage_capnhatdiem.UseVisualStyleBackColor = true;
+            // 
+            // refresh_capnhatdiem_btn
+            // 
+            refresh_capnhatdiem_btn.Anchor = AnchorStyles.Bottom;
+            refresh_capnhatdiem_btn.BackColor = SystemColors.ButtonHighlight;
+            refresh_capnhatdiem_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
+            refresh_capnhatdiem_btn.FlatAppearance.BorderSize = 3;
+            refresh_capnhatdiem_btn.FlatStyle = FlatStyle.Flat;
+            refresh_capnhatdiem_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            refresh_capnhatdiem_btn.ForeColor = SystemColors.HotTrack;
+            refresh_capnhatdiem_btn.Location = new Point(766, 546);
+            refresh_capnhatdiem_btn.Name = "refresh_capnhatdiem_btn";
+            refresh_capnhatdiem_btn.Size = new Size(182, 46);
+            refresh_capnhatdiem_btn.TabIndex = 16;
+            refresh_capnhatdiem_btn.Text = "Refresh";
+            refresh_capnhatdiem_btn.UseVisualStyleBackColor = false;
+            refresh_capnhatdiem_btn.Click += refresh_capnhatdiem_btn_Click;
             // 
             // update_score_btn
             // 
@@ -554,7 +619,7 @@
             dataGridView_thongtindv.ReadOnly = true;
             dataGridView_thongtindv.RowHeadersWidth = 51;
             dataGridView_thongtindv.RowTemplate.Height = 29;
-            dataGridView_thongtindv.Size = new Size(977, 543);
+            dataGridView_thongtindv.Size = new Size(977, 539);
             dataGridView_thongtindv.TabIndex = 13;
             // 
             // tabPage_thongtinhp
@@ -767,25 +832,6 @@
             panel3.Size = new Size(1276, 70);
             panel3.TabIndex = 2;
             // 
-            // panel1
-            // 
-            panel1.Controls.Add(label_tabPage);
-            panel1.Location = new Point(278, 76);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(995, 52);
-            panel1.TabIndex = 76;
-            // 
-            // label_tabPage
-            // 
-            label_tabPage.AutoSize = true;
-            label_tabPage.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label_tabPage.ForeColor = SystemColors.HotTrack;
-            label_tabPage.Location = new Point(335, 0);
-            label_tabPage.Name = "label_tabPage";
-            label_tabPage.Size = new Size(97, 41);
-            label_tabPage.TabIndex = 0;
-            label_tabPage.Text = "label1";
-            // 
             // dashboard_label
             // 
             dashboard_label.AutoSize = true;
@@ -881,6 +927,10 @@
             FormClosing += GiangVien_Form_FormClosing;
             Load += GiangVien_Form_Load;
             panel2.ResumeLayout(false);
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             tabControl_nvcb.ResumeLayout(false);
             tabPage_userInfo.ResumeLayout(false);
             tabPage_userInfo.PerformLayout();
@@ -904,8 +954,6 @@
             panel7.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             panel8.ResumeLayout(false);
@@ -977,5 +1025,8 @@
         private Panel mail_btn;
         private Panel panel1;
         private Label label_tabPage;
+        private Button refresh_capnhatdiem_btn;
+        private Panel panel9;
+        private Label label;
     }
 }

@@ -422,6 +422,7 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(label_tabPage);
             panel1.Location = new Point(273, 70);
             panel1.Name = "panel1";
