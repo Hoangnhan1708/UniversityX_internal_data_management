@@ -222,12 +222,12 @@ namespace portal_application_project
 
 
 
-        private void delete_dkhp_btn_Click(object sender, EventArgs e)
+        private void delete_hpdadk_btn_Click(object sender, EventArgs e)
         {
             List<DataGridViewRow> rowsToHandle = new List<DataGridViewRow>();
 
             // Collect the selected rows
-            foreach (DataGridViewRow row in dataGridView_dkhp.Rows)
+            foreach (DataGridViewRow row in dataGridView_hpdadk.Rows)
             {
                 DataGridViewCheckBoxCell chk = row.Cells["Select"] as DataGridViewCheckBoxCell;
                 if (chk != null && chk.Value != null && (bool)chk.Value)
@@ -239,15 +239,16 @@ namespace portal_application_project
             DialogResult result = MessageBox.Show("Bạn có muốn xóa những học phần đã chọn không?", "Xác nhận", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+
                 sinhvien.deleteDangKySelectedRow(connectionString, query, rowsToHandle);
                 // Remove the checkbox column if it exists
-                if (dataGridView_dkhp.Columns.Contains("Select"))
+                if (dataGridView_hpdadk.Columns.Contains("Select"))
                 {
-                    dataGridView_dkhp.Columns.Remove("Select");
+                    dataGridView_hpdadk.Columns.Remove("Select");
                 }
 
                 // Reload the data
-                LoadDKHPWithCheckboxColumn();
+                LoadHPDaDKWithCheckboxColumn();
             }
             else
             {
@@ -282,13 +283,15 @@ namespace portal_application_project
 
         private void refresh_hpdadk_btn_Click(object sender, EventArgs e)
         {
-            if (dataGridView_dkhp.Columns.Contains("Select"))
+            if (dataGridView_hpdadk.Columns.Contains("Select"))
             {
-                dataGridView_dkhp.Columns.Remove("Select");
+                dataGridView_hpdadk.Columns.Remove("Select");
             }
 
             // Reload the data
             LoadHPDaDKWithCheckboxColumn();
         }
+
+
     }
 }

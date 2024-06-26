@@ -251,7 +251,7 @@ AS
         TYPE AS Type        
     FROM DBA_TAB_PRIVS 
     WHERE PRIVILEGE IN ('SELECT','UPDATE','INSERT','DELETE','EXCUTE')
-    AND ROWNUM <= 50;
+    AND ROWNUM <= 500;
 /
 
 ----------------------------

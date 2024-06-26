@@ -454,6 +454,7 @@ namespace portal_application_project
                 // Get the values from the row
                 string magv = row.Cells["MAGV"].Value.ToString();
                 string oldMagv = row.Cells["OLD_MAGV"].Value.ToString(); // Giá trị MAGV ban đầu
+                MessageBox.Show(oldMagv);
                 string mahp = row.Cells["MAHP"].Value.ToString();
                 int hk = Convert.ToInt32(row.Cells["HK"].Value);
                 int nam = Convert.ToInt32(row.Cells["NAM"].Value);
@@ -491,7 +492,7 @@ namespace portal_application_project
                             {
                                 MessageBox.Show("Không có hàng nào được cập nhật!");
                             }
-                            connection.Close();
+                            
                         }
                     }
                 }

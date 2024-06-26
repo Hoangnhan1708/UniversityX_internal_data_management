@@ -168,6 +168,7 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(panel1);
             panel2.Controls.Add(tabControl_sinhvien);
             panel2.Controls.Add(panel5);
             panel2.Controls.Add(panel3);
@@ -575,7 +576,7 @@
             delete_dkhp_btn.TabIndex = 37;
             delete_dkhp_btn.Text = "Xóa";
             delete_dkhp_btn.UseVisualStyleBackColor = false;
-            delete_dkhp_btn.Click += delete_dkhp_btn_Click;
+            delete_dkhp_btn.Click += delete_hpdadk_btn_Click;
             // 
             // refresh_hpdadk_btn
             // 
@@ -717,7 +718,6 @@
             // panel3
             // 
             panel3.BackColor = SystemColors.Highlight;
-            panel3.Controls.Add(panel1);
             panel3.Controls.Add(dashboard_label);
             panel3.Controls.Add(panel4);
             panel3.Dock = DockStyle.Top;
@@ -730,7 +730,7 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(label_tabPage);
-            panel1.Location = new Point(281, 14);
+            panel1.Location = new Point(274, 76);
             panel1.Name = "panel1";
             panel1.Size = new Size(995, 52);
             panel1.TabIndex = 70;

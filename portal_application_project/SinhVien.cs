@@ -268,6 +268,7 @@ namespace portal_application_project
 
                             connection.Open();
                             int rowsAffected = command.ExecuteNonQuery();
+                            
                             connection.Close();
 
                             if (rowsAffected > 0)
@@ -279,7 +280,7 @@ namespace portal_application_project
                                 MessageBox.Show("Không có hàng nào được xóa!");
                             }
                         }
-                        connection.Close();
+                        
                     }
                 }
                 catch (Exception ex)

@@ -1,5 +1,5 @@
 ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
-
+select * from qltruonghoc.nhansu
 -- tạo schema mới
 --- Xoá nếu nó đã tồn tại
 BEGIN

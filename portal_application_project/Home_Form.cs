@@ -105,6 +105,7 @@ namespace portal_application_project
                     OracleDataAdapter adapter = new OracleDataAdapter(command);
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
+                    
                     dataGridView_audit.DataSource = dataTable;
                     connection.Close();
                 }

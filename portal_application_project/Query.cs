@@ -17,7 +17,7 @@ namespace portal_application_project
         public string getAdminLoginString(string username, string password)
         {
             //return "Data Source=localhost;User Id=" + username + ";Password=" + password + ";DBA Privilege=SYSDBA;";
-            return "Data Source=0.tcp.ap.ngrok.io:14446/XE;User Id=" + username + ";Password=" + password + ";DBA Privilege=SYSDBA;";
+            return "Data Source=0.tcp.ap.ngrok.io:18166/XE;User Id=" + username + ";Password=" + password + ";DBA Privilege=SYSDBA;";
         }
 
         //public string getUserLoginString(string username, string password)
@@ -27,13 +27,13 @@ namespace portal_application_project
         public string getUserLoginString(string username, string password)
         {
             //return "Data Source=localhost;User Id=" + username + ";Password=" + password + ";";
-            return "Data Source=0.tcp.ap.ngrok.io:14446/XE;User Id=" + username + ";Password=" + password + ";";
+            return "Data Source=0.tcp.ap.ngrok.io:18166/XE;User Id=" + username + ";Password=" + password + ";";
         }
 
         public string LoginMailString(string username, string password)
         {
             //return "Data Source=localhost:1521/XEPDB1;User Id=" + username + ";Password=" + password + ";";
-            return "Data Source=0.tcp.ap.ngrok.io:14446/XEPDB1;User Id=" + username + ";Password=" + password + ";";
+            return "Data Source=0.tcp.ap.ngrok.io:18166/XEPDB1;User Id=" + username + ";Password=" + password + ";";
 
         }
 
@@ -155,7 +155,7 @@ namespace portal_application_project
         // INSERT
         public string giaovuInsertDangKy()
         {
-            return "INSERT INTO QLTRUONGHOC.V_DANGKY_GIAOVU (MASV, MAGV, MAHP, HK, NAM ,MACT, DIEMTH,DIEMQT,DIEMCK,DIEMTK) " +
+            return "INSERT INTO QLTRUONGHOC.DANGKY (MASV, MAGV, MAHP, HK, NAM ,MACT, DIEMTH,DIEMQT,DIEMCK,DIEMTK) " +
                                  "VALUES (:MASV, :MAGV, :MAHP,:HK,:NAM, :MACT, :DIEMTH, :DIEMQT, :DIEMCK, :DIEMTK)";
         }
         // DELETE

@@ -165,11 +165,11 @@ namespace portal_application_project
 
 
         // Tab Page: DONVI
-        private void add_donvi_btn_Click(object sender, EventArgs e)
-        {
-            New_DonVi_Form newDonViForm = new New_DonVi_Form(connectionString);
-            newDonViForm.ShowDialog();
-        }
+        //private void add_donvi_btn_Click(object sender, EventArgs e)
+        //{
+        //    New_DonVi_Form newDonViForm = new New_DonVi_Form(connectionString);
+        //    newDonViForm.ShowDialog();
+        //}
 
         private void refresh_donvi_btn_Click(object sender, EventArgs e)
         {

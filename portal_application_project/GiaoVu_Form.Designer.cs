@@ -52,8 +52,6 @@
             label5 = new Label();
             panel6 = new Panel();
             panel2 = new Panel();
-            panel1 = new Panel();
-            label_tabPage = new Label();
             tabControl_nvcb = new TabControl();
             tabPage_userInfo = new TabPage();
             dollar_icon = new Label();
@@ -82,7 +80,6 @@
             tabPage_quanlythongtindonvi = new TabPage();
             refresh_donvi_btn = new Button();
             update_donvi_btn = new Button();
-            add_donvi_btn = new Button();
             dataGridView_thongtindv = new DataGridView();
             tabPage_quanlyhp = new TabPage();
             refresh_hocphan_btn = new Button();
@@ -104,6 +101,8 @@
             update_phancong_btn = new Button();
             dataGridView_phancong = new DataGridView();
             panel3 = new Panel();
+            panel1 = new Panel();
+            label_tabPage = new Label();
             dashboard_label = new Label();
             panel4 = new Panel();
             logout_btn = new Button();
@@ -120,7 +119,6 @@
             panel8.SuspendLayout();
             panel6.SuspendLayout();
             panel2.SuspendLayout();
-            panel1.SuspendLayout();
             tabControl_nvcb.SuspendLayout();
             tabPage_userInfo.SuspendLayout();
             tabPage_quanlysv.SuspendLayout();
@@ -136,6 +134,7 @@
             tabPage_quanlyphancong.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView_phancong).BeginInit();
             panel3.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label2
@@ -420,26 +419,6 @@
             panel2.Size = new Size(1276, 701);
             panel2.TabIndex = 56;
             // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.Controls.Add(label_tabPage);
-            panel1.Location = new Point(273, 70);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(995, 52);
-            panel1.TabIndex = 57;
-            // 
-            // label_tabPage
-            // 
-            label_tabPage.AutoSize = true;
-            label_tabPage.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            label_tabPage.ForeColor = SystemColors.HotTrack;
-            label_tabPage.Location = new Point(335, 0);
-            label_tabPage.Name = "label_tabPage";
-            label_tabPage.Size = new Size(97, 41);
-            label_tabPage.TabIndex = 0;
-            label_tabPage.Text = "label1";
-            // 
             // tabControl_nvcb
             // 
             tabControl_nvcb.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -450,10 +429,10 @@
             tabControl_nvcb.Controls.Add(tabPage_quanlykehoachmohp);
             tabControl_nvcb.Controls.Add(tabPage_quanlydkhp);
             tabControl_nvcb.Controls.Add(tabPage_quanlyphancong);
-            tabControl_nvcb.Location = new Point(266, 73);
+            tabControl_nvcb.Location = new Point(276, 76);
             tabControl_nvcb.Name = "tabControl_nvcb";
             tabControl_nvcb.SelectedIndex = 0;
-            tabControl_nvcb.Size = new Size(994, 625);
+            tabControl_nvcb.Size = new Size(984, 622);
             tabControl_nvcb.TabIndex = 4;
             // 
             // tabPage_userInfo
@@ -670,7 +649,7 @@
             tabPage_quanlysv.Location = new Point(4, 29);
             tabPage_quanlysv.Name = "tabPage_quanlysv";
             tabPage_quanlysv.Padding = new Padding(3);
-            tabPage_quanlysv.Size = new Size(986, 592);
+            tabPage_quanlysv.Size = new Size(976, 589);
             tabPage_quanlysv.TabIndex = 1;
             tabPage_quanlysv.Text = "Quản lý sinh viên";
             tabPage_quanlysv.UseVisualStyleBackColor = true;
@@ -684,7 +663,7 @@
             refresh_sinhvien_btn.FlatStyle = FlatStyle.Flat;
             refresh_sinhvien_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             refresh_sinhvien_btn.ForeColor = SystemColors.HotTrack;
-            refresh_sinhvien_btn.Location = new Point(776, 533);
+            refresh_sinhvien_btn.Location = new Point(766, 530);
             refresh_sinhvien_btn.Name = "refresh_sinhvien_btn";
             refresh_sinhvien_btn.Size = new Size(180, 53);
             refresh_sinhvien_btn.TabIndex = 16;
@@ -701,7 +680,7 @@
             update_sinhvien_btn.FlatStyle = FlatStyle.Flat;
             update_sinhvien_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             update_sinhvien_btn.ForeColor = SystemColors.HotTrack;
-            update_sinhvien_btn.Location = new Point(447, 533);
+            update_sinhvien_btn.Location = new Point(437, 530);
             update_sinhvien_btn.Name = "update_sinhvien_btn";
             update_sinhvien_btn.Size = new Size(180, 53);
             update_sinhvien_btn.TabIndex = 15;
@@ -718,7 +697,7 @@
             add_sinhvien_btn.FlatStyle = FlatStyle.Flat;
             add_sinhvien_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             add_sinhvien_btn.ForeColor = SystemColors.HotTrack;
-            add_sinhvien_btn.Location = new Point(73, 533);
+            add_sinhvien_btn.Location = new Point(68, 530);
             add_sinhvien_btn.Name = "add_sinhvien_btn";
             add_sinhvien_btn.Size = new Size(159, 53);
             add_sinhvien_btn.TabIndex = 14;
@@ -737,7 +716,7 @@
             dataGridView_sinhvien.Name = "dataGridView_sinhvien";
             dataGridView_sinhvien.RowHeadersWidth = 51;
             dataGridView_sinhvien.RowTemplate.Height = 29;
-            dataGridView_sinhvien.Size = new Size(971, 493);
+            dataGridView_sinhvien.Size = new Size(961, 490);
             dataGridView_sinhvien.TabIndex = 12;
             dataGridView_sinhvien.CellValueChanged += dataGridView_sinhvien_CellValueChanged;
             // 
@@ -745,7 +724,6 @@
             // 
             tabPage_quanlythongtindonvi.Controls.Add(refresh_donvi_btn);
             tabPage_quanlythongtindonvi.Controls.Add(update_donvi_btn);
-            tabPage_quanlythongtindonvi.Controls.Add(add_donvi_btn);
             tabPage_quanlythongtindonvi.Controls.Add(dataGridView_thongtindv);
             tabPage_quanlythongtindonvi.Location = new Point(4, 29);
             tabPage_quanlythongtindonvi.Name = "tabPage_quanlythongtindonvi";
@@ -787,23 +765,6 @@
             update_donvi_btn.Text = "Cập nhật dữ liệu";
             update_donvi_btn.UseVisualStyleBackColor = false;
             update_donvi_btn.Click += update_donvi_btn_Click;
-            // 
-            // add_donvi_btn
-            // 
-            add_donvi_btn.Anchor = AnchorStyles.Bottom;
-            add_donvi_btn.BackColor = SystemColors.ButtonHighlight;
-            add_donvi_btn.FlatAppearance.BorderColor = SystemColors.Highlight;
-            add_donvi_btn.FlatAppearance.BorderSize = 3;
-            add_donvi_btn.FlatStyle = FlatStyle.Flat;
-            add_donvi_btn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            add_donvi_btn.ForeColor = SystemColors.HotTrack;
-            add_donvi_btn.Location = new Point(58, 524);
-            add_donvi_btn.Name = "add_donvi_btn";
-            add_donvi_btn.Size = new Size(159, 53);
-            add_donvi_btn.TabIndex = 17;
-            add_donvi_btn.Text = "Thêm đơn vị";
-            add_donvi_btn.UseVisualStyleBackColor = false;
-            add_donvi_btn.Click += add_donvi_btn_Click;
             // 
             // dataGridView_thongtindv
             // 
@@ -1128,6 +1089,26 @@
             panel3.Size = new Size(1276, 70);
             panel3.TabIndex = 2;
             // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(label_tabPage);
+            panel1.Location = new Point(273, 76);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(987, 52);
+            panel1.TabIndex = 57;
+            // 
+            // label_tabPage
+            // 
+            label_tabPage.AutoSize = true;
+            label_tabPage.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            label_tabPage.ForeColor = SystemColors.HotTrack;
+            label_tabPage.Location = new Point(356, 0);
+            label_tabPage.Name = "label_tabPage";
+            label_tabPage.Size = new Size(97, 41);
+            label_tabPage.TabIndex = 0;
+            label_tabPage.Text = "label1";
+            // 
             // dashboard_label
             // 
             dashboard_label.AutoSize = true;
@@ -1261,8 +1242,6 @@
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             panel2.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             tabControl_nvcb.ResumeLayout(false);
             tabPage_userInfo.ResumeLayout(false);
             tabPage_userInfo.PerformLayout();
@@ -1280,6 +1259,8 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView_phancong).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1353,7 +1334,6 @@
         private Button refresh_sinhvien_btn;
         private Button refresh_donvi_btn;
         private Button update_donvi_btn;
-        private Button add_donvi_btn;
         private Panel mail_btn;
         private ImageList imageList1;
         private Button refresh_hocphan_btn;
